@@ -4,6 +4,8 @@ SandWeaver is a local scheduler for reusable Docker workers. An external client 
 
 The pool prewarms to its configured minimum, grows on demand up to the maximum, and retires excess idle workers after a timeout. A worker that fails to reset is retired. Each scheduler manages one image. Use separate scheduler instances and disjoint workspace roots for separate environments.
 
+Design, experiments, and research notes are in [docs](docs/README.md).
+
 ## Quick start
 
 Requires Python 3.11+ (Python 3.12 for the tested agent setup) and a Docker daemon whose Linux kernel supports OverlayFS and PID and mount namespaces.
