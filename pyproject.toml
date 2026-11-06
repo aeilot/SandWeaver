@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "SandWeaver"
+version = "0.1.0"
+description = "Local scheduler for reusable Docker sandboxes"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+agent = ["openhands-sdk==1.59.0"]
+
+[project.scripts]
+sandweaver = "sandweaver.scheduler:main"
+sandweaver-agent = "sandweaver.agent:main"
+
+[tool.setuptools.packages.find]
+include = ["sandweaver*"]

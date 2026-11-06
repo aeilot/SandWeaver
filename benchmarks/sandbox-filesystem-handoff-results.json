@@ -1,0 +1,159 @@
+{
+  "image": "openhands-pool-cache/python-data-humanize:demo",
+  "image_id": "sha256:e6bf693ca37645c915f1fcc0b575facb9cd526a1ba4e6efa2b6c9deec3456d6a",
+  "worker_setup_ms": 1613.28,
+  "median_handoff_ms": {
+    "fresh_docker": 147.005,
+    "warm_worker": 43.33
+  },
+  "samples": {
+    "fresh_docker": [
+      {
+        "a_ms": 141.27,
+        "handoff_ms": 152.08,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 124.17,
+        "handoff_ms": 143.19,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 131.35,
+        "handoff_ms": 150.54,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 126.44,
+        "handoff_ms": 142.39,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 122.14,
+        "handoff_ms": 145.49,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 129.65,
+        "handoff_ms": 148.52,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 122.58,
+        "handoff_ms": 144.22,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 126.87,
+        "handoff_ms": 159.12,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 129.37,
+        "handoff_ms": 137.06,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 124.64,
+        "handoff_ms": 153.19,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 127.04,
+        "handoff_ms": 143.52,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 168.85,
+        "handoff_ms": 152.7,
+        "dependency": "4.12.3",
+        "isolated": true
+      }
+    ],
+    "warm_worker": [
+      {
+        "a_ms": 52.06,
+        "handoff_ms": 43.22,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 46.04,
+        "handoff_ms": 46.81,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 48.24,
+        "handoff_ms": 42.72,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 50.9,
+        "handoff_ms": 42.98,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 46.24,
+        "handoff_ms": 43.85,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 46.76,
+        "handoff_ms": 41.62,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 50.31,
+        "handoff_ms": 43.68,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 46.65,
+        "handoff_ms": 42.11,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 48.48,
+        "handoff_ms": 48.8,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 49.43,
+        "handoff_ms": 43.44,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 46.67,
+        "handoff_ms": 41.44,
+        "dependency": "4.12.3",
+        "isolated": true
+      },
+      {
+        "a_ms": 49.84,
+        "handoff_ms": 64.32,
+        "dependency": "4.12.3",
+        "isolated": true
+      }
+    ]
+  }
+}
