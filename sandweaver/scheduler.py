@@ -73,6 +73,7 @@ class Worker:
     name: str
     idle_since: float
     workspace: Path | None = None
+    retiring: bool = False
 
 
 class Pool:
@@ -124,14 +125,28 @@ class Pool:
 
     @staticmethod
     def remove(worker):
-        docker("rm", "-f", worker.name, check=False)
+        return docker("rm", "-f", worker.name, check=False)
+
+    def retire(self, worker):
+        # Keep the workspace reserved until Docker confirms the container is gone.
+        try:
+            if self.remove(worker).returncode:
+                remaining = docker("ps", "-aq", "--filter", f"name=^/{worker.name}$")
+                if remaining.stdout.strip():
+                    return
+        except (RuntimeError, OSError, subprocess.TimeoutExpired):
+            return
+        self.workers.remove(worker)
+        self.lock.notify_all()
 
     def maintain(self):
         while not self.stop.wait(.2):
             try:
                 with self.lock:
                     for worker in list(self.workers):
-                        if (len(self.workers) > self.minimum and worker.workspace is None
+                        if worker.retiring:
+                            self.retire(worker)
+                        elif (len(self.workers) > self.minimum and worker.workspace is None
                                 and time.monotonic() - worker.idle_since >= self.idle_seconds):
                             self.remove(worker)
                             self.workers.remove(worker)
@@ -194,8 +209,8 @@ class Pool:
             if worker not in self.workers:
                 return
             if discard:
-                self.remove(worker)
-                self.workers.remove(worker)
+                worker.retiring = True
+                self.retire(worker)
             else:
                 worker.workspace = None
                 worker.idle_since = time.monotonic()

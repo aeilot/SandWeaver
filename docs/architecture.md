@@ -44,7 +44,7 @@ flowchart LR
 2. 有空闲 worker 就租出。没有空闲且未达到 `--max` 时现场补 worker。满池用条件变量等待，默认等待预算约 30 秒。创建和回收 worker 目前会占用池锁，等待预算不能视为严格服务级别承诺。
 3. 建立新的 mount namespace 和 PID namespace。OverlayFS 把 `/basis` 作为 lowerdir，临时可写层放在最多 512 MiB 的 worker tmpfs 下。挂入该任务的 `/workspace` 和少量设备，启动租约的锚进程。
 4. 每次执行用 Docker exec 调用可信辅助程序，经 `nsenter` 进入同一任务空间，以 `setpriv` 降权后执行 shell。普通命令用新的 shell，因此磁盘和后台进程能跨调用保留，shell 局部变量与当前目录不会自动延续。
-5. 归还时杀掉该 PID namespace 的锚进程，等待退出并删除任务目录。重置失败或命令超时则淘汰 worker。健康 worker 回到 idle。维护线程按空闲时间回收超过最低数量的 worker，并尝试补足最低数量。
+5. 归还时杀掉该 PID namespace 的锚进程，等待退出并删除任务目录。重置失败或命令超时则淘汰 worker。若 Docker 暂时无法确认容器已删除，维护线程会重试，期间该 worker 仍计入已租出数量，原工作区及重叠目录继续拒绝新租约。健康 worker 回到 idle。维护线程按空闲时间回收超过最低数量的 worker，并尝试补足最低数量。
 
 池的最低数量指 worker 总数下限，不是每种环境额外预留的空闲数。当前没有公平排队、租约 TTL、磁盘环境目录、多镜像选择或跨重启恢复。正常退出会清理 worker，进程被强制杀死后可能需要人工回收带 `sandweaver-` 前缀的残留容器。
 
