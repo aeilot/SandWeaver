@@ -85,6 +85,9 @@ class Pool:
         self.prefix = "sandweaver-" + uuid.uuid4().hex[:10]
         seed = self.prefix + "-seed"
         self.workers = []
+        self.reservations = {}
+        self.parked = {}
+        self.reclaiming = set()
         self.lock = threading.Condition()
         self.stop = threading.Event()
         docker("create", "--name", seed, self.image)
@@ -156,41 +159,116 @@ class Pool:
             except Exception as exc:
                 print(f"Pool maintenance: {exc}", flush=True)
 
-    def acquire(self, path):
+    def resolve_workspace(self, path):
         workspace = Path(path).resolve(strict=True)
         if not workspace.is_dir() or not workspace.is_relative_to(self.root):
             raise ValueError("Workspace must be a directory under the scheduler workspace root")
-        deadline = time.monotonic() + 30
+        return workspace
+
+    def check_workspace(self, workspace, owner=None):
+        # Call under the pool lock so reservations and active leases agree.
+        for current in self.workers:
+            other = current.workspace
+            if other and (workspace.is_relative_to(other) or other.is_relative_to(workspace)):
+                raise RuntimeError("Workspace overlaps an active lease")
+        for other, holder in self.reservations.items():
+            if holder is not owner and (workspace.is_relative_to(other) or other.is_relative_to(workspace)):
+                raise RuntimeError("Workspace overlaps a session reservation")
+
+    def reserve(self, path, owner):
+        workspace = self.resolve_workspace(path)
         with self.lock:
-            while not self.stop.is_set():
-                for current in self.workers:
-                    other = current.workspace
-                    if other and (workspace.is_relative_to(other) or other.is_relative_to(workspace)):
-                        raise RuntimeError("Workspace overlaps an active lease")
-                worker = next((w for w in self.workers if w.workspace is None), None)
-                if worker is not None:
-                    break
-                if len(self.workers) < self.maximum:
-                    worker = self.spawn()
-                    self.workers.append(worker)
-                    break
+            self.check_workspace(workspace)
+            self.reservations[workspace] = owner
+        return workspace
+
+    def unreserve(self, workspace):
+        with self.lock:
+            del self.reservations[workspace]
+
+    def park(self, owner, worker):
+        with self.lock:
+            self.parked[owner] = worker
+            self.lock.notify_all()
+
+    def release_parked(self, owner):
+        with self.lock:
+            worker = self.parked.pop(owner, None)
+        if worker is not None:
+            self.release(worker)
+
+    def acquire(self, path, timing=None, owner=None):
+        workspace = self.resolve_workspace(path)
+        deadline = time.monotonic() + 30
+        queue_wait_ns = 0
+        reclaim_ns = 0
+        while True:
+            with self.lock:
+                if self.stop.is_set():
+                    raise RuntimeError("Pool is shutting down")
+                if owner is not None and self.reservations.get(workspace) is not owner:
+                    raise RuntimeError("Workspace no longer matches the session reservation")
+                parked = self.parked.pop(owner, None)
+                if parked is not None:
+                    if timing is not None:
+                        timing.update(pool_wait_ns=queue_wait_ns, reclaim_ns=reclaim_ns,
+                                      resumed_parked=True, start_exec_ns=0, readiness_ns=0,
+                                      readiness_exec_ns=0, readiness_attempts=0)
+                    return parked
+                if owner not in self.reclaiming:
+                    self.check_workspace(workspace, owner)
+                    worker = next((w for w in self.workers if w.workspace is None), None)
+                    if worker is None and len(self.workers) < self.maximum:
+                        worker = self.spawn()
+                        self.workers.append(worker)
+                    if worker is not None:
+                        worker.workspace = workspace
+                        break
                 remaining = deadline - time.monotonic()
                 if remaining <= 0:
                     raise TimeoutError("Pool is full")
-                self.lock.wait(remaining)
-            else:
-                raise RuntimeError("Pool is shutting down")
-            worker.workspace = workspace
+                if owner in self.reclaiming or not self.parked:
+                    wait_started = time.monotonic_ns()
+                    self.lock.wait(remaining)
+                    queue_wait_ns += time.monotonic_ns() - wait_started
+                    continue
+                parked_owner = next(iter(self.parked))
+                parked = self.parked.pop(parked_owner)
+                self.reclaiming.add(parked_owner)
+            reclaim_started = time.monotonic_ns()
+            try:
+                self.release(parked)
+            finally:
+                with self.lock:
+                    self.reclaiming.remove(parked_owner)
+                    self.lock.notify_all()
+                reclaim_ns += time.monotonic_ns() - reclaim_started
+
+        if timing is not None:
+            timing.update(pool_wait_ns=queue_wait_ns, reclaim_ns=reclaim_ns, resumed_parked=False)
 
         try:
             relative = workspace.relative_to(self.root)
+            launch_started = time.monotonic_ns() if timing is not None else None
             docker("exec", "-d", worker.name, "/bin/sh", "-ec", START, "start",
                    str(Path("/allowed") / relative))
+            if timing is not None:
+                probe_started = time.monotonic_ns()
+                timing["start_exec_ns"] = probe_started - launch_started
+                timing["readiness_exec_ns"] = 0
+                timing["readiness_attempts"] = 0
             until = time.monotonic() + 5
             while time.monotonic() < until:
+                attempt_started = time.monotonic_ns() if timing is not None else None
                 result = docker("exec", worker.name, "/bin/sh", "-ec", EXEC, "exec",
                                 "true", check=False)
+                if timing is not None:
+                    attempt_finished = time.monotonic_ns()
+                    timing["readiness_exec_ns"] += attempt_finished - attempt_started
+                    timing["readiness_attempts"] += 1
                 if result.returncode == 0:
+                    if timing is not None:
+                        timing["readiness_ns"] = attempt_finished - probe_started
                     return worker
                 time.sleep(.04)
             log = docker("exec", worker.name, "cat", "/state/start.log", check=False)
@@ -238,6 +316,8 @@ class Handler(socketserver.StreamRequestHandler):
 
     def handle(self):
         worker = None
+        reservation = None
+        owner = object()
         discard = False
         try:
             for line in self.rfile:
@@ -245,21 +325,46 @@ class Handler(socketserver.StreamRequestHandler):
                 op = request["op"]
                 if op == "status":
                     self.reply(self.server.pool.status())
+                elif op == "reserve" and reservation is None and worker is None:
+                    reservation = self.server.pool.reserve(request["workspace"], owner)
+                    self.reply({"reserved": True})
                 elif op == "claim" and worker is None:
-                    worker = self.server.pool.acquire(request["workspace"])
-                    self.reply({"worker": worker.name})
+                    timing = {} if request.get("observe") else None
+                    started = time.monotonic_ns()
+                    if reservation is None:
+                        worker = self.server.pool.acquire(request["workspace"], timing)
+                    else:
+                        if "workspace" in request:
+                            raise ValueError("A reserved session claims only its reserved workspace")
+                        worker = self.server.pool.acquire(reservation, timing, owner)
+                    reply = {"worker": worker.name}
+                    if timing is not None:
+                        timing["claim_ns"] = time.monotonic_ns() - started
+                        reply["timing"] = timing
+                    self.reply(reply)
                 elif op == "exec" and worker is not None:
+                    started = time.monotonic_ns()
                     try:
                         result = docker("exec", worker.name, "/bin/sh", "-ec", EXEC,
                                         "exec", request["command"], check=False)
                     except subprocess.TimeoutExpired:
                         discard = True
                         raise RuntimeError("Command timed out; worker will be retired")
-                    self.reply({"stdout": result.stdout, "stderr": result.stderr,
-                                "exit_code": result.returncode})
-                elif op == "release" and worker is not None:
-                    self.server.pool.release(worker, discard)
+                    reply = {"stdout": result.stdout, "stderr": result.stderr,
+                             "exit_code": result.returncode}
+                    if request.get("observe"):
+                        reply["timing"] = {"exec_ns": time.monotonic_ns() - started}
+                    self.reply(reply)
+                elif op == "park" and worker is not None and reservation is not None:
+                    self.server.pool.park(owner, worker)
                     worker = None
+                    self.reply({"parked": True})
+                elif op == "release" and (worker is not None or reservation is not None):
+                    if worker is not None:
+                        self.server.pool.release(worker, discard)
+                        worker = None
+                    else:
+                        self.server.pool.release_parked(owner)
                     self.reply({"released": True})
                 else:
                     raise ValueError("Invalid request for this connection")
@@ -271,8 +376,15 @@ class Handler(socketserver.StreamRequestHandler):
             except OSError:
                 pass
         finally:
-            if worker is not None:
-                self.server.pool.release(worker, discard)
+            try:
+                if worker is not None:
+                    self.server.pool.release(worker, discard)
+            finally:
+                if reservation is not None:
+                    try:
+                        self.server.pool.release_parked(owner)
+                    finally:
+                        self.server.pool.unreserve(reservation)
 
 
 class Server(socketserver.ThreadingUnixStreamServer):

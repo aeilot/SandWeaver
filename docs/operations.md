@@ -7,6 +7,45 @@
 - `sandweaver-agent --smoke-command …` 可多次指定，用 SDK 工具接口跑固定命令，不请求模型。真实 agent 用 `--prompt`，宿主环境提供模型和密钥。状态默认写到 `~/.local/state/sandweaver`，可用 `--state-dir` 调整。
 - `python tests/smoke.py` 验证实际 Docker 和 OpenHands SDK 链路。应先安装项目和 agent extra，构建示例镜像。脚本也接受已存在的同类镜像标签作为参数。
 
+### 按工具批次领用 worker
+
+`sandweaver-agent --batch-leases` 为实验模式。会话连接期间持续独占工作区。首条 shell 命令领用 worker，同一轮的工具命令复用该租约。下一次模型请求前归还 worker，后续工具到达时再领用。项目文件和保存在工作区内的缓存可以随会话恢复。
+
+使用此选项时，调用方需要确认任务在模型请求之间只依赖工作区内的文件和缓存，且没有需要保留的后台进程或未完成操作。其他任务使用默认的全会话持租。`--smoke-command` 在此模式下把每条命令视作一个批次，可用来验证工作区文件跨批次保留。
+
+`sandweaver-agent --demand-leases` 也适用于上述任务。模型等待期间，调度器保留当前执行环境，并允许满池时等待领用的任务触发回收。若恢复先于回收，原会话继续使用当前租约。回收一旦开始，恢复需要等清理完成后重新领用。两种实验模式都持续保留工作区预留。
+
+从仓库根目录复现机制对照。OpenHands 对照需要 `.[agent]`，使用本机模拟模型端点。Rust 对照需要预先拉取指定镜像，构建阶段使用 Cargo 离线模式。
+
+```bash
+PYTHONPATH=. python benchmarks/worker-handover-cleanup.py --rounds 30 --output /tmp/worker-handover-cleanup.json
+PYTHONPATH=. python benchmarks/worker-batch-profile.py --rounds 12 --output /tmp/worker-batch-profile.json
+PYTHONPATH=. python benchmarks/worker-batch-profile.py --rust-cache --image rust:1.85-slim-bookworm --rounds 12 --output /tmp/worker-rust-cache.json
+PYTHONPATH=. python benchmarks/openhands-batch-leases.py --rounds 9 --output /tmp/openhands-demand-leases.json
+```
+
+指标口径和已保存样本见 [worker 复用实验](worker-reuse.md)。
+
+### Agent 时间线
+
+`sandweaver-agent --observe` 会在本次会话的状态目录生成 `trace.jsonl`，记录租约请求、shell 往返耗时和 SDK 事件类型。沿用原有 `--prompt` 或 `--smoke-command` 参数。轨迹使用单调时钟，不记录命令、提示词或工具输出。SDK 自身的 conversation 持久化记录仍按原行为保存。
+
+从仓库根目录运行 `PYTHONPATH=. python benchmarks/observe-agent.py --state-dir /tmp/sandweaver-observation`，可在临时工作区完成三个固定 SDK 工具调用并保存轨迹。需要已安装 agent extra 和本地 demo 镜像。该流程验证依赖、生成小程序并执行断言，无模型请求。
+
+在装有 matplotlib 的分析环境中运行 `python benchmarks/plot-agent-trace.py TRACE_PATH --output /tmp/agent-timeline.png` 生成时间线。租约请求包含客户端往返和任务空间准备，shell 区间包含执行及通信。轨迹从客户端打开记录文件开始，尚未覆盖 Python 启动和 SDK 导入。空白区间暂不分类，不能据此判断模型推理、CPU 空闲或后台进程是否可销毁。启用观测时，模型客户端 completion/responses 调用另记为 llm_call，包含 SDK 内部处理、网络和重试时间；它不能单独测出供应商实际推理耗时。
+
+新轨迹还通过 `span` 关联三种补充事件：
+
+| 事件 | 字段与计时范围 |
+|---|---|
+| `llm_usage` | 模型响应提供的输入、输出、缓存读取和写入 token 数，以及响应提供的美元费用。缺失字段省略，零值保留。失败请求或 SDK 重试的账单无法从该事件还原。 |
+| `scheduler_timing` | `claim_ns` 包含服务端验证、等待、可能的 worker 创建和任务视图准备。`pool_wait_ns` 是其中等待池容量的条件变量耗时，含唤醒后重新拿锁的时间，不含首次拿锁或创建 worker。`exec_ns` 包含服务端 Docker 命令及其进程开销。调度器在成功返回时提供这些字段。 |
+| `command_result` | 退出码及 stdout、stderr 的 UTF-8 字节数。轨迹不保存输出文本。 |
+
+真实模型修复任务可运行 `PYTHONPATH=. python benchmarks/observe-model-agent.py --state-dir /tmp/sandweaver-deepseek-observation`。宿主环境须已安全配置 `LLM_API_KEY`，脚本固定使用 OpenRouter DeepSeek V4 Flash，最多 8 次迭代、每次 2048 输出 token、一次请求尝试，产生付费调用。此脚本不用于普通 smoke；密钥不写入代码或参数，scheduler 子进程不继承相关密钥变量。
+
+直接使用 agent CLI 时，可设置 `--max-iterations`、`--max-output-tokens`、`--llm-attempts`；默认分别为 12、由 SDK 决定、5。`--llm-attempts 1` 表示 SDK 不重试。迭代和输出限制不是账单硬上限，使用前明确模型和任务范围。
+
 | 现象 | 优先检查 |
 |---|---|
 | 找不到或无法连接 socket | 等待 scheduler 打印 Ready；核对路径、属主和本机进程访问权限 |

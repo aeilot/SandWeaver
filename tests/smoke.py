@@ -1,12 +1,144 @@
 from contextlib import ExitStack
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 
 from sandweaver import scheduler as pool
+
+
+def demand_smoke(path, a, b, c, execute):
+    with pool.connect(path) as session, pool.connect(path) as other, pool.connect(path) as waiting:
+        session.request("reserve", workspace=str(a))
+        initial = session.request("claim")["worker"]
+        execute(session, "touch /tmp/parked")
+        session.request("park")
+        other.request("claim", workspace=str(b))
+        resumed = session.request("claim", observe=True)
+        assert resumed["worker"] == initial and resumed["timing"]["resumed_parked"]
+        execute(session, "test -f /tmp/parked")
+        session.request("park")
+        reclaimed = waiting.request("claim", workspace=str(c), observe=True)
+        assert reclaimed["worker"] == initial and reclaimed["timing"]["reclaim_ns"] > 0
+        execute(waiting, "test ! -e /tmp/parked")
+        waiting.request("release")
+        resumed = session.request("claim", observe=True)
+        assert not resumed["timing"]["resumed_parked"]
+        execute(session, "test ! -e /tmp/parked")
+        session.request("park")
+        session.request("release")
+        other.request("release")
+
+
+def batch_smoke(path, root, workspace, other):
+    calls = []
+    errors = []
+    held_worker = None
+    child = workspace / "nested"
+    child.mkdir()
+
+    with pool.connect(path) as blocker:
+        class Model(BaseHTTPRequestHandler):
+            def do_POST(self):
+                nonlocal held_worker
+                try:
+                    request = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+                    step = len(calls)
+                    if step == 0:
+                        assert blocker.request("status")["leased"] == 0
+                        commands = ["echo sdk > saved-batch; touch /tmp/batch",
+                                    "test -e /tmp/batch"]
+                    elif step == 1:
+                        assert blocker.request("status")["leased"] == 0
+                        for overlap in (workspace, child, root):
+                            with pool.connect(path) as duplicate:
+                                try:
+                                    duplicate.request("claim", workspace=str(overlap))
+                                except RuntimeError as exc:
+                                    assert "session reservation" in str(exc)
+                                else:
+                                    raise AssertionError("Reserved workspace was acquired")
+                        held_worker = blocker.request("claim", workspace=str(other))["worker"]
+                        commands = ['test "$(cat saved-batch)" = sdk && test ! -e /tmp/batch '
+                                    '&& echo resumed > result-batch']
+                    elif step == 2:
+                        assert blocker.request("status")["leased"] == 1
+                        commands = []
+                    else:
+                        raise AssertionError(f"Unexpected model request {step}")
+                    calls.append(step)
+                    message = {"role": "assistant", "content": "Done."}
+                    if commands:
+                        message.update(content=None, tool_calls=[
+                            {"id": f"call_{step}_{index}", "type": "function",
+                             "function": {"name": "sandweaver_shell",
+                                          "arguments": json.dumps({"command": command})}}
+                            for index, command in enumerate(commands)
+                        ])
+                    body = json.dumps({
+                        "id": f"chatcmpl-{step}", "object": "chat.completion",
+                        "created": int(time.time()), "model": request["model"],
+                        "choices": [{"index": 0, "message": message,
+                                     "finish_reason": "tool_calls" if commands else "stop"}],
+                        "usage": {"prompt_tokens": 12, "completion_tokens": 8, "total_tokens": 20},
+                    }).encode()
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/json")
+                    self.send_header("Content-Length", str(len(body)))
+                    self.end_headers()
+                    self.wfile.write(body)
+                except Exception as exc:
+                    errors.append(exc)
+                    self.send_error(500)
+
+            def log_message(self, *_):
+                pass
+
+        with HTTPServer(("127.0.0.1", 0), Model) as model:
+            thread = threading.Thread(target=model.serve_forever)
+            thread.start()
+            try:
+                state = root / "batch-agent-state"
+                result = subprocess.run([
+                    sys.executable, "-m", "sandweaver.agent", "--socket", str(path),
+                    "--workspace", str(workspace), "--state-dir", str(state),
+                    "--batch-leases", "--observe", "--prompt", "Run the fixed tools.",
+                    "--llm-attempts", "1", "--max-iterations", "3",
+                ], env={**os.environ, "LLM_MODEL": "openai/gpt-4o-mini", "LLM_API_KEY": "fixture",
+                        "LLM_BASE_URL": f"http://127.0.0.1:{model.server_port}/v1"},
+                    capture_output=True, text=True, timeout=45)
+            finally:
+                model.shutdown()
+                thread.join()
+        assert not errors, errors
+        assert result.returncode == 0, (result.stdout, result.stderr)
+        assert calls == [0, 1, 2], calls
+        blocker.request("release")
+        assert (workspace / "result-batch").read_text() == "resumed\n"
+        trace, = state.glob("*/trace.jsonl")
+        records = [json.loads(line) for line in trace.read_text().splitlines()]
+        workers = [row["worker"] for row in records if row["event"] == "lease_acquired"]
+        assert len(workers) == 2 and workers[0] == held_worker and workers[0] != workers[1], workers
+        assert [row["exit_code"] for row in records if row["event"] == "command_result"] == [0, 0, 0]
+        assert sum(row["event"] == "lease_released" for row in records) == 2
+        deadline = time.monotonic() + 3
+        while True:
+            with pool.connect(path) as next_session:
+                try:
+                    next_session.request("claim", workspace=str(workspace))
+                except RuntimeError as exc:
+                    if "session reservation" not in str(exc) or time.monotonic() >= deadline:
+                        raise
+                else:
+                    next_session.request("release")
+                    break
+            time.sleep(.01)
+
 
 image = sys.argv[1] if len(sys.argv) > 1 else pool.DEFAULT_IMAGE
 with tempfile.TemporaryDirectory(dir="/tmp") as temp:
@@ -60,15 +192,36 @@ with tempfile.TemporaryDirectory(dir="/tmp") as temp:
                     time.sleep(.1)
                 result = subprocess.run([sys.executable, "-m", "sandweaver.agent",
                                          "--socket", str(path), "--workspace", str(b), "--state-dir", str(root / "agent-state"),
+                                         "--observe",
                                          "--smoke-command", "echo sdk > /tmp/sdk",
                                          "--smoke-command", "cat /tmp/sdk"],
                                         text=True, capture_output=True)
                 assert result.returncode == 0 and "sdk" in result.stdout, (result.stdout, result.stderr)
+                traces = list((root / "agent-state").glob("*/trace.jsonl"))
+                assert len(traces) == 1
+                records = [json.loads(line) for line in traces[0].read_text().splitlines()]
+                assert [row["elapsed_ns"] for row in records] == sorted(row["elapsed_ns"] for row in records)
+                assert sum(row["event"] == "span_end" and row["name"] == "exec" for row in records) == 2
+                spans = {row["span"]: row["name"] for row in records if row["event"] == "span_end"}
+                timings = [row for row in records if row["event"] == "scheduler_timing"]
+                claims = [row for row in timings if spans[row["span"]] == "claim"]
+                assert len(claims) == 1 and claims[0]["claim_ns"] > 0
+                assert claims[0]["pool_wait_ns"] == 0
+                executions = [row for row in timings if spans[row["span"]] == "exec"]
+                assert len(executions) == 2 and all(row["exec_ns"] > 0 for row in executions)
+                outputs = [row for row in records if row["event"] == "command_result"]
+                assert [row["stdout_bytes"] for row in outputs] == [0, 4]
+                assert all(row["stderr_bytes"] == 0 and spans[row["span"]] == "exec" for row in outputs)
+                assert records[-1]["event"] == "lease_released"
+                assert all("command" not in row and "stdout" not in row for row in records)
+                batch_smoke(path, root, a, c)
+                demand_smoke(path, a, b, c, execute)
                 print(result.stdout)
                 print(json.dumps({"same_worker": worker, "workspace_persisted": True,
                                   "private_files_reset": True, "background_service_reset": True, "lease_state_preserved": True,
                                   "overlap_rejected": True, "elastic_capacity": [1, 2, 1],
-                                  "openhands_sdk_calls": 2}))
+                                  "openhands_sdk_calls": 2, "openhands_batch_handover": True,
+                                  "demand_reclaim": True}))
         finally:
             server.terminate()
             server.wait(timeout=30)

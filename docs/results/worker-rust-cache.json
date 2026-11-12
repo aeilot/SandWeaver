@@ -1,0 +1,240 @@
+{
+  "docker": "linux/aarch64 OrbStack",
+  "image": "rust:1.85-slim-bookworm",
+  "workers": 2,
+  "rounds": 12,
+  "warmup_per_arm": 1,
+  "image_id": "sha256:63aa9f1637b1c4d84a2567b774a635e05ef043ad569d655893bc914b79289449",
+  "pool_setup_ms": 4435.086625,
+  "rust_cache_profile": {
+    "toolchain": [
+      "cargo 1.85.1 (d73d2caf9 2024-12-31)",
+      "rustc 1.85.1 (4eb161250 2025-03-15)"
+    ],
+    "jobs": 2,
+    "crates": 7,
+    "lease_procfs": "mounted in the Rust benchmark PID namespace",
+    "rounds_per_arm": 12,
+    "warmup_per_arm": 1,
+    "samples": {
+      "retained": [
+        {
+          "build_ms": 135.3675,
+          "build_server_ms": 135.159333,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984825
+        },
+        {
+          "build_ms": 140.423958,
+          "build_server_ms": 140.311125,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984825
+        },
+        {
+          "build_ms": 143.812583,
+          "build_server_ms": 143.580084,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984824
+        },
+        {
+          "build_ms": 138.615875,
+          "build_server_ms": 138.511958,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984825
+        },
+        {
+          "build_ms": 153.812292,
+          "build_server_ms": 153.6405,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984825
+        },
+        {
+          "build_ms": 159.145459,
+          "build_server_ms": 158.997,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984825
+        },
+        {
+          "build_ms": 139.066542,
+          "build_server_ms": 138.878791,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984824
+        },
+        {
+          "build_ms": 134.966083,
+          "build_server_ms": 134.859542,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984825
+        },
+        {
+          "build_ms": 141.793875,
+          "build_server_ms": 141.624459,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984825
+        },
+        {
+          "build_ms": 143.38025,
+          "build_server_ms": 143.262792,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984825
+        },
+        {
+          "build_ms": 140.125,
+          "build_server_ms": 139.875542,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984825
+        },
+        {
+          "build_ms": 139.352167,
+          "build_server_ms": 139.216584,
+          "compiled_crates": 1,
+          "fresh_crates": 6,
+          "seed_files": 94,
+          "seed_bytes": 13984824
+        }
+      ],
+      "rebuild": [
+        {
+          "build_ms": 258.70075,
+          "build_server_ms": 258.527041,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 246.666792,
+          "build_server_ms": 246.413083,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 259.52075,
+          "build_server_ms": 259.317042,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 248.937042,
+          "build_server_ms": 248.753625,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 257.009542,
+          "build_server_ms": 256.683292,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 263.800792,
+          "build_server_ms": 263.576125,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 258.425166,
+          "build_server_ms": 258.160708,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 250.951125,
+          "build_server_ms": 250.695375,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 255.7125,
+          "build_server_ms": 255.482291,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 306.965667,
+          "build_server_ms": 306.649834,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 250.869875,
+          "build_server_ms": 250.603583,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        },
+        {
+          "build_ms": 251.924667,
+          "build_server_ms": 251.711333,
+          "compiled_crates": 7,
+          "fresh_crates": 0
+        }
+      ]
+    },
+    "summary": {
+      "retained": {
+        "build_ms": {
+          "p50": 140.27447899999999,
+          "p95": 159.145459
+        },
+        "build_server_ms": {
+          "p50": 140.0933335,
+          "p95": 158.997
+        },
+        "compiled_crates": {
+          "p50": 1.0,
+          "p95": 1
+        },
+        "fresh_crates": {
+          "p50": 6.0,
+          "p95": 6
+        },
+        "seed_files": {
+          "p50": 94.0,
+          "p95": 94
+        },
+        "seed_bytes": {
+          "p50": 13984825.0,
+          "p95": 13984825
+        }
+      },
+      "rebuild": {
+        "build_ms": {
+          "p50": 256.361021,
+          "p95": 306.965667
+        },
+        "build_server_ms": {
+          "p50": 256.0827915,
+          "p95": 306.649834
+        },
+        "compiled_crates": {
+          "p50": 7.0,
+          "p95": 7
+        },
+        "fresh_crates": {
+          "p50": 0.0,
+          "p95": 0
+        }
+      }
+    }
+  }
+}

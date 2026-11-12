@@ -1,0 +1,3361 @@
+{
+  "docker": "linux/aarch64 OrbStack",
+  "image": "sandweaver-demo:local",
+  "workers": 2,
+  "rounds": 12,
+  "warmup_per_arm": 1,
+  "probe_delay_after_barrier_ms": 50,
+  "scenarios": [
+    {
+      "wait_ms": 150,
+      "stagger_ms": 0,
+      "samples": {
+        "session": [
+          {
+            "ready_gap_ms": 4.206708,
+            "agents": [
+              {
+                "first_exec_ms": 29.417875,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 2.26225,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 47.643625,
+                "exec_server_ms": 47.399958,
+                "ready_to_completion_ms": 49.931208,
+                "first_batch_to_completion_ms": 199.931208,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.748667,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.025917,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 42.809416,
+                "exec_server_ms": 42.613875,
+                "ready_to_completion_ms": 47.848208,
+                "first_batch_to_completion_ms": 197.848208,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 248.152416,
+              "queue_ms": 179.816917,
+              "prepare_ms": 68.15804200000002,
+              "exec_ms": 28.695834,
+              "completion_ms": 276.978458
+            }
+          },
+          {
+            "ready_gap_ms": 0.080917,
+            "agents": [
+              {
+                "first_exec_ms": 28.903167,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.44125,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 45.523791,
+                "exec_server_ms": 44.215375,
+                "ready_to_completion_ms": 48.970666,
+                "first_batch_to_completion_ms": 198.970666,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.255292,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.240792,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 45.818125,
+                "exec_server_ms": 45.508875,
+                "ready_to_completion_ms": 49.084917,
+                "first_batch_to_completion_ms": 199.084917,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 254.965459,
+              "queue_ms": 180.5005,
+              "prepare_ms": 74.30825000000002,
+              "exec_ms": 34.817375,
+              "completion_ms": 289.846917
+            }
+          },
+          {
+            "ready_gap_ms": 0.061792,
+            "agents": [
+              {
+                "first_exec_ms": 28.659584,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.052292,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 62.208292,
+                "exec_server_ms": 59.69975,
+                "ready_to_completion_ms": 67.26625,
+                "first_batch_to_completion_ms": 217.26625,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 28.488917,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.023875,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 62.084083,
+                "exec_server_ms": 61.779959,
+                "ready_to_completion_ms": 67.130334,
+                "first_batch_to_completion_ms": 217.130334,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 276.60175,
+              "queue_ms": 206.045584,
+              "prepare_ms": 70.40587500000001,
+              "exec_ms": 33.265375,
+              "completion_ms": 309.969833
+            }
+          },
+          {
+            "ready_gap_ms": 0.079875,
+            "agents": [
+              {
+                "first_exec_ms": 32.838625,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 0.128625,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 47.946417,
+                "exec_server_ms": 47.774209,
+                "ready_to_completion_ms": 48.096334,
+                "first_batch_to_completion_ms": 198.096334,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.234375,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 2.603125,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 45.534,
+                "exec_server_ms": 45.21225,
+                "ready_to_completion_ms": 48.147375,
+                "first_batch_to_completion_ms": 198.147375,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 242.7145,
+              "queue_ms": 179.6255,
+              "prepare_ms": 62.92791700000001,
+              "exec_ms": 30.661958,
+              "completion_ms": 273.438583
+            }
+          },
+          {
+            "ready_gap_ms": 0.059041,
+            "agents": [
+              {
+                "first_exec_ms": 29.731708,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.540041,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 55.931334,
+                "exec_server_ms": 54.519084,
+                "ready_to_completion_ms": 60.497416,
+                "first_batch_to_completion_ms": 210.497416,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.169625,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.556834,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 54.426458,
+                "exec_server_ms": 54.1645,
+                "ready_to_completion_ms": 58.992167,
+                "first_batch_to_completion_ms": 208.992167,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 266.537208,
+              "queue_ms": 195.366666,
+              "prepare_ms": 71.007251,
+              "exec_ms": 31.89975,
+              "completion_ms": 298.535417
+            }
+          },
+          {
+            "ready_gap_ms": 0.619375,
+            "agents": [
+              {
+                "first_exec_ms": 31.537916,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.03675,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 54.033584,
+                "exec_server_ms": 53.77675,
+                "ready_to_completion_ms": 59.105542,
+                "first_batch_to_completion_ms": 209.105542,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.736542,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 6.286667,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 53.596917,
+                "exec_server_ms": 52.003334,
+                "ready_to_completion_ms": 59.925083,
+                "first_batch_to_completion_ms": 209.925083,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 263.601,
+              "queue_ms": 199.214292,
+              "prepare_ms": 64.22229099999998,
+              "exec_ms": 34.944917,
+              "completion_ms": 298.6645
+            }
+          },
+          {
+            "ready_gap_ms": 0.578958,
+            "agents": [
+              {
+                "first_exec_ms": 25.580708,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.030209,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 48.254416,
+                "exec_server_ms": 47.994542,
+                "ready_to_completion_ms": 53.301709,
+                "first_batch_to_completion_ms": 203.301709,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 26.158875,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 0.045208,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 55.166167,
+                "exec_server_ms": 53.853625,
+                "ready_to_completion_ms": 55.2395,
+                "first_batch_to_completion_ms": 205.2395,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 250.177583,
+              "queue_ms": 187.16175,
+              "prepare_ms": 62.872457999999995,
+              "exec_ms": 29.812959,
+              "completion_ms": 280.10725
+            }
+          },
+          {
+            "ready_gap_ms": 0.309042,
+            "agents": [
+              {
+                "first_exec_ms": 33.447834,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 2.419375,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 49.817875,
+                "exec_server_ms": 49.624666,
+                "ready_to_completion_ms": 52.253916,
+                "first_batch_to_completion_ms": 202.253916,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.60275,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.0535,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 45.617791,
+                "exec_server_ms": 45.293541,
+                "ready_to_completion_ms": 49.701708,
+                "first_batch_to_completion_ms": 199.701708,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 243.67975,
+              "queue_ms": 183.692334,
+              "prepare_ms": 59.83666600000001,
+              "exec_ms": 28.353375,
+              "completion_ms": 272.126791
+            }
+          },
+          {
+            "ready_gap_ms": 0.065417,
+            "agents": [
+              {
+                "first_exec_ms": 27.897542,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.098375,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 58.439667,
+                "exec_server_ms": 56.911583,
+                "ready_to_completion_ms": 63.556084,
+                "first_batch_to_completion_ms": 213.556084,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.37425,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.960667,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 57.007542,
+                "exec_server_ms": 54.441792,
+                "ready_to_completion_ms": 61.990167,
+                "first_batch_to_completion_ms": 211.990167,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 287.058625,
+              "queue_ms": 203.234792,
+              "prepare_ms": 83.64583300000001,
+              "exec_ms": 35.594375,
+              "completion_ms": 322.778333
+            }
+          },
+          {
+            "ready_gap_ms": 0.045125,
+            "agents": [
+              {
+                "first_exec_ms": 31.173041,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.035417,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 56.620916,
+                "exec_server_ms": 56.176625,
+                "ready_to_completion_ms": 61.683708,
+                "first_batch_to_completion_ms": 211.683708,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.145042,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.107833,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 58.468583,
+                "exec_server_ms": 58.191291,
+                "ready_to_completion_ms": 63.590417,
+                "first_batch_to_completion_ms": 213.590417,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 271.073083,
+              "queue_ms": 198.957416,
+              "prepare_ms": 71.937126,
+              "exec_ms": 39.58425,
+              "completion_ms": 310.7685
+            }
+          },
+          {
+            "ready_gap_ms": 0.077208,
+            "agents": [
+              {
+                "first_exec_ms": 30.611208,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.714833,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 56.258125,
+                "exec_server_ms": 55.927375,
+                "ready_to_completion_ms": 60.006625,
+                "first_batch_to_completion_ms": 210.006625,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.7365,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.732875,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 54.487709,
+                "exec_server_ms": 52.352083,
+                "ready_to_completion_ms": 58.229792,
+                "first_batch_to_completion_ms": 208.229792,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 268.821458,
+              "queue_ms": 194.827458,
+              "prepare_ms": 73.82979199999997,
+              "exec_ms": 36.442375,
+              "completion_ms": 305.4
+            }
+          },
+          {
+            "ready_gap_ms": 0.190125,
+            "agents": [
+              {
+                "first_exec_ms": 28.635917,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.947959,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 55.004375,
+                "exec_server_ms": 54.6585,
+                "ready_to_completion_ms": 59.962542,
+                "first_batch_to_completion_ms": 209.962542,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.109041,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.035334,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 55.32225,
+                "exec_server_ms": 55.048542,
+                "ready_to_completion_ms": 60.384292,
+                "first_batch_to_completion_ms": 210.384292,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 280.893208,
+              "queue_ms": 200.497459,
+              "prepare_ms": 80.23416600000002,
+              "exec_ms": 36.147875,
+              "completion_ms": 317.144542
+            }
+          }
+        ],
+        "batch": [
+          {
+            "ready_gap_ms": 1.548542,
+            "agents": [
+              {
+                "first_exec_ms": 26.356,
+                "configured_wait_ms": 150,
+                "release_ms": 30.8655,
+                "ready_lateness_ms": 0.732209,
+                "claim_ms": 51.281625,
+                "queue_ms": 0.0,
+                "prepare_ms": 51.089375,
+                "exec_ms": 31.269042,
+                "exec_server_ms": 31.147875,
+                "ready_to_completion_ms": 83.327959,
+                "first_batch_to_completion_ms": 233.327959,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 29.199542,
+                "configured_wait_ms": 150,
+                "release_ms": 30.9035,
+                "ready_lateness_ms": 0.399958,
+                "claim_ms": 68.222666,
+                "queue_ms": 9.995041,
+                "prepare_ms": 57.986168000000006,
+                "exec_ms": 28.663834,
+                "exec_server_ms": 28.55025,
+                "ready_to_completion_ms": 97.3295,
+                "first_batch_to_completion_ms": 247.3295,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 54.18325,
+              "queue_ms": 0.0,
+              "prepare_ms": 54.001792,
+              "exec_ms": 26.034583,
+              "completion_ms": 80.322084
+            }
+          },
+          {
+            "ready_gap_ms": 0.065166,
+            "agents": [
+              {
+                "first_exec_ms": 32.301667,
+                "configured_wait_ms": 150,
+                "release_ms": 27.604417,
+                "ready_lateness_ms": 2.994625,
+                "claim_ms": 55.167875,
+                "queue_ms": 0.0,
+                "prepare_ms": 54.955,
+                "exec_ms": 30.508541,
+                "exec_server_ms": 30.396833,
+                "ready_to_completion_ms": 88.692,
+                "first_batch_to_completion_ms": 238.692,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 32.252625,
+                "configured_wait_ms": 150,
+                "release_ms": 27.637583,
+                "ready_lateness_ms": 2.769875,
+                "claim_ms": 85.612417,
+                "queue_ms": 28.197458,
+                "prepare_ms": 57.068167,
+                "exec_ms": 29.969167,
+                "exec_server_ms": 29.661625,
+                "ready_to_completion_ms": 118.436584,
+                "first_batch_to_completion_ms": 268.436584,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 67.620667,
+              "queue_ms": 0.0,
+              "prepare_ms": 67.45275,
+              "exec_ms": 31.974584,
+              "completion_ms": 99.698833
+            }
+          },
+          {
+            "ready_gap_ms": 0.096459,
+            "agents": [
+              {
+                "first_exec_ms": 30.171333,
+                "configured_wait_ms": 150,
+                "release_ms": 27.942209,
+                "ready_lateness_ms": 3.751375,
+                "claim_ms": 76.46125,
+                "queue_ms": 20.955833,
+                "prepare_ms": 55.299625000000006,
+                "exec_ms": 31.510917,
+                "exec_server_ms": 31.382416,
+                "ready_to_completion_ms": 111.741833,
+                "first_batch_to_completion_ms": 261.741833,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 28.598792,
+                "configured_wait_ms": 150,
+                "release_ms": 27.944542,
+                "ready_lateness_ms": 3.767709,
+                "claim_ms": 50.950209,
+                "queue_ms": 0.0,
+                "prepare_ms": 50.747,
+                "exec_ms": 27.395791,
+                "exec_server_ms": 27.303209,
+                "ready_to_completion_ms": 82.150584,
+                "first_batch_to_completion_ms": 232.150584,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 59.105125,
+              "queue_ms": 0.0,
+              "prepare_ms": 58.981917,
+              "exec_ms": 29.571792,
+              "completion_ms": 88.76475
+            }
+          },
+          {
+            "ready_gap_ms": 0.089792,
+            "agents": [
+              {
+                "first_exec_ms": 27.64075,
+                "configured_wait_ms": 150,
+                "release_ms": 28.718083,
+                "ready_lateness_ms": 0.047916,
+                "claim_ms": 52.106583,
+                "queue_ms": 0.0,
+                "prepare_ms": 51.9315,
+                "exec_ms": 30.943083,
+                "exec_server_ms": 30.8265,
+                "ready_to_completion_ms": 83.137166,
+                "first_batch_to_completion_ms": 233.137166,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 27.443125,
+                "configured_wait_ms": 150,
+                "release_ms": 27.312792,
+                "ready_lateness_ms": 4.281167,
+                "claim_ms": 63.82425,
+                "queue_ms": 11.83875,
+                "prepare_ms": 51.815667000000005,
+                "exec_ms": 27.204333,
+                "exec_server_ms": 27.058875,
+                "ready_to_completion_ms": 95.352333,
+                "first_batch_to_completion_ms": 245.352333,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 56.166666,
+              "queue_ms": 0.0,
+              "prepare_ms": 56.015834,
+              "exec_ms": 29.477042,
+              "completion_ms": 85.741292
+            }
+          },
+          {
+            "ready_gap_ms": 0.088125,
+            "agents": [
+              {
+                "first_exec_ms": 27.856583,
+                "configured_wait_ms": 150,
+                "release_ms": 57.46375,
+                "ready_lateness_ms": 3.107209,
+                "claim_ms": 72.2475,
+                "queue_ms": 17.065458,
+                "prepare_ms": 53.909167000000004,
+                "exec_ms": 30.420333,
+                "exec_server_ms": 30.310042,
+                "ready_to_completion_ms": 105.792375,
+                "first_batch_to_completion_ms": 255.792375,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 27.668167,
+                "configured_wait_ms": 150,
+                "release_ms": 34.989625,
+                "ready_lateness_ms": 3.121417,
+                "claim_ms": 57.058083,
+                "queue_ms": 0.0,
+                "prepare_ms": 56.826791,
+                "exec_ms": 27.072708,
+                "exec_server_ms": 26.943833,
+                "ready_to_completion_ms": 87.2915,
+                "first_batch_to_completion_ms": 237.2915,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 57.616167,
+              "queue_ms": 0.0,
+              "prepare_ms": 57.481667,
+              "exec_ms": 30.472459,
+              "completion_ms": 88.187083
+            }
+          },
+          {
+            "ready_gap_ms": 0.225583,
+            "agents": [
+              {
+                "first_exec_ms": 29.828875,
+                "configured_wait_ms": 150,
+                "release_ms": 27.867125,
+                "ready_lateness_ms": 2.310709,
+                "claim_ms": 68.766959,
+                "queue_ms": 14.885916,
+                "prepare_ms": 53.726209000000004,
+                "exec_ms": 29.002209,
+                "exec_server_ms": 28.881083,
+                "ready_to_completion_ms": 100.093875,
+                "first_batch_to_completion_ms": 250.093875,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.841208,
+                "configured_wait_ms": 150,
+                "release_ms": 28.164542,
+                "ready_lateness_ms": 2.434375,
+                "claim_ms": 55.235417,
+                "queue_ms": 0.0,
+                "prepare_ms": 54.944125,
+                "exec_ms": 30.8415,
+                "exec_server_ms": 30.722916,
+                "ready_to_completion_ms": 88.545542,
+                "first_batch_to_completion_ms": 238.545542,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 58.847917,
+              "queue_ms": 0.0,
+              "prepare_ms": 58.702834,
+              "exec_ms": 27.416958,
+              "completion_ms": 86.360542
+            }
+          },
+          {
+            "ready_gap_ms": 0.064541,
+            "agents": [
+              {
+                "first_exec_ms": 25.509,
+                "configured_wait_ms": 150,
+                "release_ms": 28.689666,
+                "ready_lateness_ms": 1.15,
+                "claim_ms": 50.732791,
+                "queue_ms": 0.0,
+                "prepare_ms": 50.547708,
+                "exec_ms": 24.76975,
+                "exec_server_ms": 24.673917,
+                "ready_to_completion_ms": 76.6945,
+                "first_batch_to_completion_ms": 226.6945,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 26.985917,
+                "configured_wait_ms": 150,
+                "release_ms": 28.672875,
+                "ready_lateness_ms": 1.383292,
+                "claim_ms": 73.471084,
+                "queue_ms": 16.47675,
+                "prepare_ms": 55.839708,
+                "exec_ms": 33.486125,
+                "exec_server_ms": 33.4135,
+                "ready_to_completion_ms": 108.355792,
+                "first_batch_to_completion_ms": 258.355792,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 56.051209,
+              "queue_ms": 0.0,
+              "prepare_ms": 55.909209,
+              "exec_ms": 26.539084,
+              "completion_ms": 82.6905
+            }
+          },
+          {
+            "ready_gap_ms": 1.030833,
+            "agents": [
+              {
+                "first_exec_ms": 28.608209,
+                "configured_wait_ms": 150,
+                "release_ms": 35.158417,
+                "ready_lateness_ms": 1.079084,
+                "claim_ms": 54.642375,
+                "queue_ms": 0.0,
+                "prepare_ms": 54.462416,
+                "exec_ms": 27.354167,
+                "exec_server_ms": 27.203167,
+                "ready_to_completion_ms": 83.1185,
+                "first_batch_to_completion_ms": 233.1185,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.609166,
+                "configured_wait_ms": 150,
+                "release_ms": 32.836125,
+                "ready_lateness_ms": 3.257625,
+                "claim_ms": 73.787125,
+                "queue_ms": 17.915292,
+                "prepare_ms": 55.6445,
+                "exec_ms": 25.016708,
+                "exec_server_ms": 24.901625,
+                "ready_to_completion_ms": 102.095833,
+                "first_batch_to_completion_ms": 252.095833,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 60.166542,
+              "queue_ms": 0.0,
+              "prepare_ms": 60.014542,
+              "exec_ms": 28.414708,
+              "completion_ms": 88.655334
+            }
+          },
+          {
+            "ready_gap_ms": 0.080417,
+            "agents": [
+              {
+                "first_exec_ms": 29.623583,
+                "configured_wait_ms": 150,
+                "release_ms": 26.638166,
+                "ready_lateness_ms": 0.248958,
+                "claim_ms": 54.060334,
+                "queue_ms": 0.0,
+                "prepare_ms": 53.821834,
+                "exec_ms": 27.92625,
+                "exec_server_ms": 27.754583,
+                "ready_to_completion_ms": 82.276125,
+                "first_batch_to_completion_ms": 232.276125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.470416,
+                "configured_wait_ms": 150,
+                "release_ms": 26.387292,
+                "ready_lateness_ms": 3.015417,
+                "claim_ms": 77.871,
+                "queue_ms": 17.145166,
+                "prepare_ms": 60.535292999999996,
+                "exec_ms": 32.884875,
+                "exec_server_ms": 32.80875,
+                "ready_to_completion_ms": 113.803209,
+                "first_batch_to_completion_ms": 263.803209,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 58.141667,
+              "queue_ms": 0.0,
+              "prepare_ms": 58.000625,
+              "exec_ms": 31.380084,
+              "completion_ms": 89.619458
+            }
+          },
+          {
+            "ready_gap_ms": 0.023208,
+            "agents": [
+              {
+                "first_exec_ms": 34.828709,
+                "configured_wait_ms": 150,
+                "release_ms": 29.66825,
+                "ready_lateness_ms": 4.774542,
+                "claim_ms": 65.644667,
+                "queue_ms": 0.0,
+                "prepare_ms": 65.458625,
+                "exec_ms": 27.695375,
+                "exec_server_ms": 27.567833,
+                "ready_to_completion_ms": 98.138667,
+                "first_batch_to_completion_ms": 248.138667,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 34.935833,
+                "configured_wait_ms": 150,
+                "release_ms": 29.658625,
+                "ready_lateness_ms": 4.688042,
+                "claim_ms": 94.470041,
+                "queue_ms": 36.994416,
+                "prepare_ms": 57.192291999999995,
+                "exec_ms": 28.28275,
+                "exec_server_ms": 28.187458,
+                "ready_to_completion_ms": 127.506,
+                "first_batch_to_completion_ms": 277.506,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 71.221042,
+              "queue_ms": 0.0,
+              "prepare_ms": 71.072208,
+              "exec_ms": 30.844375,
+              "completion_ms": 102.159833
+            }
+          },
+          {
+            "ready_gap_ms": 0.064375,
+            "agents": [
+              {
+                "first_exec_ms": 27.650458,
+                "configured_wait_ms": 150,
+                "release_ms": 31.239041,
+                "ready_lateness_ms": 0.451167,
+                "claim_ms": 54.273208,
+                "queue_ms": 0.0,
+                "prepare_ms": 54.077125,
+                "exec_ms": 27.079125,
+                "exec_server_ms": 26.904417,
+                "ready_to_completion_ms": 81.845959,
+                "first_batch_to_completion_ms": 231.845959,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 28.825834,
+                "configured_wait_ms": 150,
+                "release_ms": 31.149583,
+                "ready_lateness_ms": 1.940834,
+                "claim_ms": 69.94025,
+                "queue_ms": 14.545417,
+                "prepare_ms": 55.1405,
+                "exec_ms": 28.761959,
+                "exec_server_ms": 28.639625,
+                "ready_to_completion_ms": 100.677792,
+                "first_batch_to_completion_ms": 250.677792,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 53.09675,
+              "queue_ms": 0.0,
+              "prepare_ms": 52.951834,
+              "exec_ms": 29.508208,
+              "completion_ms": 82.698958
+            }
+          },
+          {
+            "ready_gap_ms": 0.040958,
+            "agents": [
+              {
+                "first_exec_ms": 32.711167,
+                "configured_wait_ms": 150,
+                "release_ms": 31.4855,
+                "ready_lateness_ms": 3.132292,
+                "claim_ms": 87.824875,
+                "queue_ms": 28.203375,
+                "prepare_ms": 59.470125,
+                "exec_ms": 28.936,
+                "exec_server_ms": 28.767667,
+                "ready_to_completion_ms": 119.952459,
+                "first_batch_to_completion_ms": 269.952459,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 32.703875,
+                "configured_wait_ms": 150,
+                "release_ms": 31.760708,
+                "ready_lateness_ms": 1.298583,
+                "claim_ms": 58.495166,
+                "queue_ms": 0.0,
+                "prepare_ms": 58.235416,
+                "exec_ms": 32.333541,
+                "exec_server_ms": 31.247,
+                "ready_to_completion_ms": 92.178125,
+                "first_batch_to_completion_ms": 242.178125,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 61.823208,
+              "queue_ms": 0.0,
+              "prepare_ms": 61.70425,
+              "exec_ms": 33.401583,
+              "completion_ms": 95.329375
+            }
+          }
+        ]
+      },
+      "summary": {
+        "session": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 29.9468545,
+              "p95": 32.838625
+            },
+            "configured_wait_ms": {
+              "p50": 150.0,
+              "p95": 150
+            },
+            "release_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "ready_lateness_ms": {
+              "p50": 4.7523965,
+              "p95": 5.107833
+            },
+            "claim_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "exec_ms": {
+              "p50": 54.457083499999996,
+              "p95": 62.084083
+            },
+            "exec_server_ms": {
+              "p50": 53.8151875,
+              "p95": 59.69975
+            },
+            "ready_to_completion_ms": {
+              "p50": 59.048854500000004,
+              "p95": 67.130334
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 209.0488545,
+              "p95": 217.130334
+            },
+            "changed_worker": 0
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 265.06910400000004,
+              "p95": 287.058625
+            },
+            "queue_ms": {
+              "p50": 195.097062,
+              "p95": 206.045584
+            },
+            "prepare_ms": {
+              "p50": 70.706563,
+              "p95": 83.64583300000001
+            },
+            "exec_ms": {
+              "p50": 34.041375,
+              "p95": 39.58425
+            },
+            "completion_ms": {
+              "p50": 298.59995849999996,
+              "p95": 322.778333
+            }
+          }
+        },
+        "batch": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 29.012688,
+              "p95": 34.828709
+            },
+            "configured_wait_ms": {
+              "p50": 150.0,
+              "p95": 150
+            },
+            "release_ms": {
+              "p50": 29.188354,
+              "p95": 35.158417
+            },
+            "ready_lateness_ms": {
+              "p50": 2.602125,
+              "p95": 4.688042
+            },
+            "claim_ms": {
+              "p50": 64.7344585,
+              "p95": 87.824875
+            },
+            "queue_ms": {
+              "p50": 4.9975205,
+              "p95": 28.203375
+            },
+            "prepare_ms": {
+              "p50": 55.04775,
+              "p95": 60.535292999999996
+            },
+            "exec_ms": {
+              "p50": 28.8489795,
+              "p95": 32.884875
+            },
+            "exec_server_ms": {
+              "p50": 28.703646,
+              "p95": 32.80875
+            },
+            "ready_to_completion_ms": {
+              "p50": 96.34091649999999,
+              "p95": 119.952459
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 246.3409165,
+              "p95": 269.952459
+            },
+            "changed_worker": 12
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 58.494792000000004,
+              "p95": 71.221042
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 58.351729500000005,
+              "p95": 71.072208
+            },
+            "exec_ms": {
+              "p50": 29.54,
+              "p95": 33.401583
+            },
+            "completion_ms": {
+              "p50": 88.4212085,
+              "p95": 102.159833
+            }
+          }
+        }
+      }
+    },
+    {
+      "wait_ms": 830,
+      "stagger_ms": 0,
+      "samples": {
+        "session": [
+          {
+            "ready_gap_ms": 0.100792,
+            "agents": [
+              {
+                "first_exec_ms": 31.510792,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 7.370334,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 62.724708,
+                "exec_server_ms": 61.987875,
+                "ready_to_completion_ms": 70.15725,
+                "first_batch_to_completion_ms": 900.15725,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.960625,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.199875,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 66.01575,
+                "exec_server_ms": 65.7725,
+                "ready_to_completion_ms": 70.252083,
+                "first_batch_to_completion_ms": 900.252083,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 956.690458,
+              "queue_ms": 888.063127,
+              "prepare_ms": 68.47958099999994,
+              "exec_ms": 30.387834,
+              "completion_ms": 987.174917
+            }
+          },
+          {
+            "ready_gap_ms": 0.052209,
+            "agents": [
+              {
+                "first_exec_ms": 30.695541,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 1.242167,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 47.513334,
+                "exec_server_ms": 47.230625,
+                "ready_to_completion_ms": 48.763417,
+                "first_batch_to_completion_ms": 878.763417,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.861166,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 1.073416,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 49.150292,
+                "exec_server_ms": 48.8455,
+                "ready_to_completion_ms": 50.25625,
+                "first_batch_to_completion_ms": 880.25625,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 929.392667,
+              "queue_ms": 862.048208,
+              "prepare_ms": 67.19341699999995,
+              "exec_ms": 30.877708,
+              "completion_ms": 960.375792
+            }
+          },
+          {
+            "ready_gap_ms": 0.06825,
+            "agents": [
+              {
+                "first_exec_ms": 33.995792,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.067541,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 66.824125,
+                "exec_server_ms": 66.574958,
+                "ready_to_completion_ms": 71.904916,
+                "first_batch_to_completion_ms": 901.904916,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 34.041458,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.026333,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 65.140583,
+                "exec_server_ms": 64.670958,
+                "ready_to_completion_ms": 70.197,
+                "first_batch_to_completion_ms": 900.197,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 955.190334,
+              "queue_ms": 887.133333,
+              "prepare_ms": 67.87395900000001,
+              "exec_ms": 32.903166,
+              "completion_ms": 988.209584
+            }
+          },
+          {
+            "ready_gap_ms": 0.361,
+            "agents": [
+              {
+                "first_exec_ms": 30.376917,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.680042,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 66.190958,
+                "exec_server_ms": 64.192416,
+                "ready_to_completion_ms": 70.920042,
+                "first_batch_to_completion_ms": 900.920042,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.144416,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.177125,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 64.369208,
+                "exec_server_ms": 64.129458,
+                "ready_to_completion_ms": 69.557417,
+                "first_batch_to_completion_ms": 899.557417,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 978.794916,
+              "queue_ms": 892.356,
+              "prepare_ms": 86.24991599999998,
+              "exec_ms": 38.753333,
+              "completion_ms": 1017.644
+            }
+          },
+          {
+            "ready_gap_ms": 0.932958,
+            "agents": [
+              {
+                "first_exec_ms": 28.836167,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 8.357542,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 65.016333,
+                "exec_server_ms": 64.449166,
+                "ready_to_completion_ms": 73.425375,
+                "first_batch_to_completion_ms": 903.425375,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.321458,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.061041,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 71.006625,
+                "exec_server_ms": 70.595875,
+                "ready_to_completion_ms": 76.121083,
+                "first_batch_to_completion_ms": 906.121083,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 969.439375,
+              "queue_ms": 893.704542,
+              "prepare_ms": 75.5590830000001,
+              "exec_ms": 38.076625,
+              "completion_ms": 1007.623958
+            }
+          },
+          {
+            "ready_gap_ms": 0.099125,
+            "agents": [
+              {
+                "first_exec_ms": 32.302083,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.190166,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 67.787833,
+                "exec_server_ms": 67.590459,
+                "ready_to_completion_ms": 72.982541,
+                "first_batch_to_completion_ms": 902.982541,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.534542,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.949916,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 67.633708,
+                "exec_server_ms": 67.08075,
+                "ready_to_completion_ms": 72.618583,
+                "first_batch_to_completion_ms": 902.618583,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 983.774209,
+              "queue_ms": 896.653292,
+              "prepare_ms": 86.946999,
+              "exec_ms": 41.786875,
+              "completion_ms": 1025.662625
+            }
+          },
+          {
+            "ready_gap_ms": 0.460333,
+            "agents": [
+              {
+                "first_exec_ms": 29.334041,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 7.813042,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 63.038,
+                "exec_server_ms": 62.400083,
+                "ready_to_completion_ms": 70.898875,
+                "first_batch_to_completion_ms": 900.898875,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.566542,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.045291,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 68.379583,
+                "exec_server_ms": 66.281792,
+                "ready_to_completion_ms": 73.475541,
+                "first_batch_to_completion_ms": 903.475541,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 972.563959,
+              "queue_ms": 891.978374,
+              "prepare_ms": 80.42158499999994,
+              "exec_ms": 42.230917,
+              "completion_ms": 1014.8865
+            }
+          },
+          {
+            "ready_gap_ms": 0.098166,
+            "agents": [
+              {
+                "first_exec_ms": 35.787542,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.043125,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 67.851375,
+                "exec_server_ms": 67.495667,
+                "ready_to_completion_ms": 72.931708,
+                "first_batch_to_completion_ms": 902.931708,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 37.320333,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.081084,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 67.9345,
+                "exec_server_ms": 67.558417,
+                "ready_to_completion_ms": 73.020292,
+                "first_batch_to_completion_ms": 903.020292,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 965.35475,
+              "queue_ms": 892.39296,
+              "prepare_ms": 72.80787299999997,
+              "exec_ms": 35.507458,
+              "completion_ms": 1000.95425
+            }
+          },
+          {
+            "ready_gap_ms": 0.15175,
+            "agents": [
+              {
+                "first_exec_ms": 32.2775,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.027,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 69.582833,
+                "exec_server_ms": 69.256417,
+                "ready_to_completion_ms": 74.624292,
+                "first_batch_to_completion_ms": 904.624292,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.021583,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.038292,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 71.679791,
+                "exec_server_ms": 71.023542,
+                "ready_to_completion_ms": 76.762167,
+                "first_batch_to_completion_ms": 906.762167,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 967.255708,
+              "queue_ms": 894.939584,
+              "prepare_ms": 72.17754100000002,
+              "exec_ms": 31.653666,
+              "completion_ms": 999.038875
+            }
+          },
+          {
+            "ready_gap_ms": 2.099459,
+            "agents": [
+              {
+                "first_exec_ms": 33.296708,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 6.636791,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 64.79925,
+                "exec_server_ms": 64.11725,
+                "ready_to_completion_ms": 71.488125,
+                "first_batch_to_completion_ms": 901.488125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.16075,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.0375,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 70.400083,
+                "exec_server_ms": 69.989708,
+                "ready_to_completion_ms": 75.479584,
+                "first_batch_to_completion_ms": 905.479584,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 977.225041,
+              "queue_ms": 900.269251,
+              "prepare_ms": 76.79308299999991,
+              "exec_ms": 32.841667,
+              "completion_ms": 1010.142458
+            }
+          },
+          {
+            "ready_gap_ms": 0.112708,
+            "agents": [
+              {
+                "first_exec_ms": 32.119333,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.036916,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 54.797958,
+                "exec_server_ms": 52.159958,
+                "ready_to_completion_ms": 59.861375,
+                "first_batch_to_completion_ms": 889.861375,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.343042,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.041458,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 54.809,
+                "exec_server_ms": 54.623333,
+                "ready_to_completion_ms": 59.856042,
+                "first_batch_to_completion_ms": 889.856042,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 992.094333,
+              "queue_ms": 871.874374,
+              "prepare_ms": 120.09287600000005,
+              "exec_ms": 32.255625,
+              "completion_ms": 1024.416541
+            }
+          },
+          {
+            "ready_gap_ms": 0.05725,
+            "agents": [
+              {
+                "first_exec_ms": 28.163041,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.0705,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 58.827334,
+                "exec_server_ms": 58.422,
+                "ready_to_completion_ms": 63.914916,
+                "first_batch_to_completion_ms": 893.914916,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.433459,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.024958,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 57.154333,
+                "exec_server_ms": 56.834209,
+                "ready_to_completion_ms": 62.2055,
+                "first_batch_to_completion_ms": 892.2055,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 961.438291,
+              "queue_ms": 892.110376,
+              "prepare_ms": 69.15991600000007,
+              "exec_ms": 33.653291,
+              "completion_ms": 995.218042
+            }
+          }
+        ],
+        "batch": [
+          {
+            "ready_gap_ms": 0.038458,
+            "agents": [
+              {
+                "first_exec_ms": 30.021416,
+                "configured_wait_ms": 830,
+                "release_ms": 30.481583,
+                "ready_lateness_ms": 5.097375,
+                "claim_ms": 104.103541,
+                "queue_ms": 0.0,
+                "prepare_ms": 103.740041,
+                "exec_ms": 44.905291,
+                "exec_server_ms": 43.56825,
+                "ready_to_completion_ms": 154.181208,
+                "first_batch_to_completion_ms": 984.181208,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 30.031292,
+                "configured_wait_ms": 830,
+                "release_ms": 30.58575,
+                "ready_lateness_ms": 5.253667,
+                "claim_ms": 103.780125,
+                "queue_ms": 0.0,
+                "prepare_ms": 103.24375,
+                "exec_ms": 43.476208,
+                "exec_server_ms": 43.28725,
+                "ready_to_completion_ms": 152.537,
+                "first_batch_to_completion_ms": 982.537,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 63.353709,
+              "queue_ms": 0.0,
+              "prepare_ms": 63.230917,
+              "exec_ms": 29.32025,
+              "completion_ms": 92.785959
+            }
+          },
+          {
+            "ready_gap_ms": 0.071583,
+            "agents": [
+              {
+                "first_exec_ms": 27.828667,
+                "configured_wait_ms": 830,
+                "release_ms": 53.067542,
+                "ready_lateness_ms": 5.063542,
+                "claim_ms": 112.268417,
+                "queue_ms": 0.0,
+                "prepare_ms": 111.881583,
+                "exec_ms": 42.949292,
+                "exec_server_ms": 42.722083,
+                "ready_to_completion_ms": 160.33125,
+                "first_batch_to_completion_ms": 990.33125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.254,
+                "configured_wait_ms": 830,
+                "release_ms": 27.029708,
+                "ready_lateness_ms": 5.129042,
+                "claim_ms": 112.113167,
+                "queue_ms": 0.0,
+                "prepare_ms": 111.889167,
+                "exec_ms": 40.758083,
+                "exec_server_ms": 40.554584,
+                "ready_to_completion_ms": 158.019875,
+                "first_batch_to_completion_ms": 988.019875,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 57.187125,
+              "queue_ms": 0.0,
+              "prepare_ms": 57.009667,
+              "exec_ms": 31.747458,
+              "completion_ms": 89.059709
+            }
+          },
+          {
+            "ready_gap_ms": 0.093,
+            "agents": [
+              {
+                "first_exec_ms": 30.496541,
+                "configured_wait_ms": 830,
+                "release_ms": 30.211958,
+                "ready_lateness_ms": 5.06225,
+                "claim_ms": 96.05375,
+                "queue_ms": 0.0,
+                "prepare_ms": 95.859792,
+                "exec_ms": 40.673,
+                "exec_server_ms": 40.540042,
+                "ready_to_completion_ms": 141.810167,
+                "first_batch_to_completion_ms": 971.810167,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.348416,
+                "configured_wait_ms": 830,
+                "release_ms": 32.445,
+                "ready_lateness_ms": 5.0475,
+                "claim_ms": 97.763375,
+                "queue_ms": 0.0,
+                "prepare_ms": 97.382542,
+                "exec_ms": 40.750417,
+                "exec_server_ms": 40.551667,
+                "ready_to_completion_ms": 143.6285,
+                "first_batch_to_completion_ms": 973.6285,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 57.042583,
+              "queue_ms": 0.0,
+              "prepare_ms": 56.911291,
+              "exec_ms": 28.623875,
+              "completion_ms": 85.726292
+            }
+          },
+          {
+            "ready_gap_ms": 0.090708,
+            "agents": [
+              {
+                "first_exec_ms": 41.829125,
+                "configured_wait_ms": 830,
+                "release_ms": 33.891667,
+                "ready_lateness_ms": 4.998209,
+                "claim_ms": 102.66925,
+                "queue_ms": 0.0,
+                "prepare_ms": 102.06625,
+                "exec_ms": 38.313292,
+                "exec_server_ms": 38.182084,
+                "ready_to_completion_ms": 146.063792,
+                "first_batch_to_completion_ms": 976.063792,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 40.290042,
+                "configured_wait_ms": 830,
+                "release_ms": 33.82,
+                "ready_lateness_ms": 5.273833,
+                "claim_ms": 101.006792,
+                "queue_ms": 0.0,
+                "prepare_ms": 100.742125,
+                "exec_ms": 39.731458,
+                "exec_server_ms": 39.5615,
+                "ready_to_completion_ms": 146.031583,
+                "first_batch_to_completion_ms": 976.031583,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 72.81575,
+              "queue_ms": 0.0,
+              "prepare_ms": 72.631,
+              "exec_ms": 36.123875,
+              "completion_ms": 109.024458
+            }
+          },
+          {
+            "ready_gap_ms": 0.072042,
+            "agents": [
+              {
+                "first_exec_ms": 31.693291,
+                "configured_wait_ms": 830,
+                "release_ms": 31.641625,
+                "ready_lateness_ms": 5.078208,
+                "claim_ms": 106.232917,
+                "queue_ms": 0.0,
+                "prepare_ms": 104.741834,
+                "exec_ms": 35.18075,
+                "exec_server_ms": 34.975916,
+                "ready_to_completion_ms": 146.568083,
+                "first_batch_to_completion_ms": 976.568083,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 31.739709,
+                "configured_wait_ms": 830,
+                "release_ms": 32.722959,
+                "ready_lateness_ms": 5.171583,
+                "claim_ms": 104.662625,
+                "queue_ms": 0.0,
+                "prepare_ms": 104.233041,
+                "exec_ms": 36.59975,
+                "exec_server_ms": 36.382584,
+                "ready_to_completion_ms": 146.453041,
+                "first_batch_to_completion_ms": 976.453041,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 64.469542,
+              "queue_ms": 0.0,
+              "prepare_ms": 64.31025,
+              "exec_ms": 32.311291,
+              "completion_ms": 96.862083
+            }
+          },
+          {
+            "ready_gap_ms": 1.035417,
+            "agents": [
+              {
+                "first_exec_ms": 38.056417,
+                "configured_wait_ms": 830,
+                "release_ms": 33.50025,
+                "ready_lateness_ms": 4.210792,
+                "claim_ms": 105.4125,
+                "queue_ms": 0.0,
+                "prepare_ms": 103.811084,
+                "exec_ms": 44.042625,
+                "exec_server_ms": 43.826084,
+                "ready_to_completion_ms": 153.692458,
+                "first_batch_to_completion_ms": 983.692458,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 36.8895,
+                "configured_wait_ms": 830,
+                "release_ms": 55.5405,
+                "ready_lateness_ms": 5.076167,
+                "claim_ms": 104.157167,
+                "queue_ms": 0.0,
+                "prepare_ms": 103.813125,
+                "exec_ms": 46.703708,
+                "exec_server_ms": 45.479958,
+                "ready_to_completion_ms": 156.015917,
+                "first_batch_to_completion_ms": 986.015917,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 60.94975,
+              "queue_ms": 0.0,
+              "prepare_ms": 60.814417,
+              "exec_ms": 31.551542,
+              "completion_ms": 92.583125
+            }
+          },
+          {
+            "ready_gap_ms": 2.027041,
+            "agents": [
+              {
+                "first_exec_ms": 31.882459,
+                "configured_wait_ms": 830,
+                "release_ms": 29.355208,
+                "ready_lateness_ms": 5.057708,
+                "claim_ms": 115.008125,
+                "queue_ms": 0.0,
+                "prepare_ms": 114.720792,
+                "exec_ms": 34.690667,
+                "exec_server_ms": 34.554167,
+                "ready_to_completion_ms": 154.807458,
+                "first_batch_to_completion_ms": 984.807458,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 32.739417,
+                "configured_wait_ms": 830,
+                "release_ms": 30.543417,
+                "ready_lateness_ms": 5.744542,
+                "claim_ms": 113.832292,
+                "queue_ms": 0.0,
+                "prepare_ms": 113.467166,
+                "exec_ms": 34.523625,
+                "exec_server_ms": 34.350792,
+                "ready_to_completion_ms": 154.159834,
+                "first_batch_to_completion_ms": 984.159834,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 66.084792,
+              "queue_ms": 0.0,
+              "prepare_ms": 65.93575,
+              "exec_ms": 30.545,
+              "completion_ms": 96.7155
+            }
+          },
+          {
+            "ready_gap_ms": 0.071542,
+            "agents": [
+              {
+                "first_exec_ms": 32.264667,
+                "configured_wait_ms": 830,
+                "release_ms": 31.139125,
+                "ready_lateness_ms": 5.068584,
+                "claim_ms": 107.555417,
+                "queue_ms": 0.0,
+                "prepare_ms": 106.823584,
+                "exec_ms": 35.500459,
+                "exec_server_ms": 35.354916,
+                "ready_to_completion_ms": 148.210292,
+                "first_batch_to_completion_ms": 978.210292,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 30.896,
+                "configured_wait_ms": 830,
+                "release_ms": 31.744542,
+                "ready_lateness_ms": 5.201833,
+                "claim_ms": 105.694083,
+                "queue_ms": 0.0,
+                "prepare_ms": 105.4065,
+                "exec_ms": 39.702958,
+                "exec_server_ms": 39.569833,
+                "ready_to_completion_ms": 150.620875,
+                "first_batch_to_completion_ms": 980.620875,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 59.489708,
+              "queue_ms": 0.0,
+              "prepare_ms": 59.353708,
+              "exec_ms": 36.941125,
+              "completion_ms": 96.520209
+            }
+          },
+          {
+            "ready_gap_ms": 1.407958,
+            "agents": [
+              {
+                "first_exec_ms": 27.795459,
+                "configured_wait_ms": 830,
+                "release_ms": 29.235708,
+                "ready_lateness_ms": 5.102458,
+                "claim_ms": 100.964375,
+                "queue_ms": 0.0,
+                "prepare_ms": 100.527084,
+                "exec_ms": 32.60675,
+                "exec_server_ms": 32.40825,
+                "ready_to_completion_ms": 138.758958,
+                "first_batch_to_completion_ms": 968.758958,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.979375,
+                "configured_wait_ms": 830,
+                "release_ms": 28.119583,
+                "ready_lateness_ms": 8.109542,
+                "claim_ms": 96.599958,
+                "queue_ms": 0.0,
+                "prepare_ms": 96.033167,
+                "exec_ms": 32.595834,
+                "exec_server_ms": 32.413542,
+                "ready_to_completion_ms": 137.379542,
+                "first_batch_to_completion_ms": 967.379542,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 55.206541,
+              "queue_ms": 0.0,
+              "prepare_ms": 55.06975,
+              "exec_ms": 29.88325,
+              "completion_ms": 85.169875
+            }
+          },
+          {
+            "ready_gap_ms": 0.106541,
+            "agents": [
+              {
+                "first_exec_ms": 34.3785,
+                "configured_wait_ms": 830,
+                "release_ms": 33.397875,
+                "ready_lateness_ms": 5.202959,
+                "claim_ms": 109.483875,
+                "queue_ms": 0.0,
+                "prepare_ms": 107.935041,
+                "exec_ms": 38.397625,
+                "exec_server_ms": 38.144417,
+                "ready_to_completion_ms": 153.119625,
+                "first_batch_to_completion_ms": 983.119625,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 34.399292,
+                "configured_wait_ms": 830,
+                "release_ms": 33.312125,
+                "ready_lateness_ms": 5.094916,
+                "claim_ms": 108.060959,
+                "queue_ms": 0.0,
+                "prepare_ms": 107.484333,
+                "exec_ms": 41.640791,
+                "exec_server_ms": 41.384083,
+                "ready_to_completion_ms": 154.886291,
+                "first_batch_to_completion_ms": 984.886291,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 65.685916,
+              "queue_ms": 0.0,
+              "prepare_ms": 65.556833,
+              "exec_ms": 28.429291,
+              "completion_ms": 94.216792
+            }
+          },
+          {
+            "ready_gap_ms": 0.273167,
+            "agents": [
+              {
+                "first_exec_ms": 27.059833,
+                "configured_wait_ms": 830,
+                "release_ms": 29.983375,
+                "ready_lateness_ms": 5.03975,
+                "claim_ms": 109.293209,
+                "queue_ms": 0.0,
+                "prepare_ms": 108.766834,
+                "exec_ms": 35.29725,
+                "exec_server_ms": 35.176542,
+                "ready_to_completion_ms": 149.664,
+                "first_batch_to_completion_ms": 979.664,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 28.754375,
+                "configured_wait_ms": 830,
+                "release_ms": 29.890375,
+                "ready_lateness_ms": 5.0755,
+                "claim_ms": 107.207125,
+                "queue_ms": 0.0,
+                "prepare_ms": 106.72525,
+                "exec_ms": 37.479792,
+                "exec_server_ms": 37.327583,
+                "ready_to_completion_ms": 149.831,
+                "first_batch_to_completion_ms": 979.831,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 56.739375,
+              "queue_ms": 0.0,
+              "prepare_ms": 56.606,
+              "exec_ms": 28.6125,
+              "completion_ms": 85.408875
+            }
+          },
+          {
+            "ready_gap_ms": 0.049709,
+            "agents": [
+              {
+                "first_exec_ms": 29.389042,
+                "configured_wait_ms": 830,
+                "release_ms": 30.636916,
+                "ready_lateness_ms": 5.066875,
+                "claim_ms": 106.469875,
+                "queue_ms": 0.0,
+                "prepare_ms": 105.8955,
+                "exec_ms": 40.637167,
+                "exec_server_ms": 40.500875,
+                "ready_to_completion_ms": 152.247709,
+                "first_batch_to_completion_ms": 982.247709,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 30.831208,
+                "configured_wait_ms": 830,
+                "release_ms": 28.30625,
+                "ready_lateness_ms": 5.19525,
+                "claim_ms": 107.85,
+                "queue_ms": 0.0,
+                "prepare_ms": 107.557833,
+                "exec_ms": 39.077292,
+                "exec_server_ms": 38.887041,
+                "ready_to_completion_ms": 152.153458,
+                "first_batch_to_completion_ms": 982.153458,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 52.725917,
+              "queue_ms": 0.0,
+              "prepare_ms": 52.553209,
+              "exec_ms": 30.803833,
+              "completion_ms": 83.634042
+            }
+          }
+        ]
+      },
+      "summary": {
+        "session": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 31.7661875,
+              "p95": 35.787542
+            },
+            "configured_wait_ms": {
+              "p50": 830.0,
+              "p95": 830
+            },
+            "release_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "ready_lateness_ms": {
+              "p50": 5.0422915,
+              "p95": 7.813042
+            },
+            "claim_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "exec_ms": {
+              "p50": 65.57816650000001,
+              "p95": 71.006625
+            },
+            "exec_server_ms": {
+              "p50": 64.560062,
+              "p95": 70.595875
+            },
+            "ready_to_completion_ms": {
+              "p50": 71.2040835,
+              "p95": 76.121083
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 901.2040835,
+              "p95": 906.121083
+            },
+            "changed_worker": 0
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 968.3475415,
+              "p95": 992.094333
+            },
+            "queue_ms": {
+              "p50": 892.2331879999999,
+              "p95": 900.269251
+            },
+            "prepare_ms": {
+              "p50": 74.18347800000004,
+              "p95": 120.09287600000005
+            },
+            "exec_ms": {
+              "p50": 33.2782285,
+              "p95": 42.230917
+            },
+            "completion_ms": {
+              "p50": 1004.289104,
+              "p95": 1025.662625
+            }
+          }
+        },
+        "batch": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 30.863604000000002,
+              "p95": 40.290042
+            },
+            "configured_wait_ms": {
+              "p50": 830.0,
+              "p95": 830
+            },
+            "release_ms": {
+              "p50": 30.8880205,
+              "p95": 53.067542
+            },
+            "ready_lateness_ms": {
+              "p50": 5.086562,
+              "p95": 5.744542
+            },
+            "claim_ms": {
+              "p50": 105.96350000000001,
+              "p95": 113.832292
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 105.07416699999999,
+              "p95": 113.467166
+            },
+            "exec_ms": {
+              "p50": 39.390125,
+              "p95": 44.905291
+            },
+            "exec_server_ms": {
+              "p50": 39.2242705,
+              "p95": 43.826084
+            },
+            "ready_to_completion_ms": {
+              "p50": 151.3871665,
+              "p95": 158.019875
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 981.3871664999999,
+              "p95": 988.019875
+            },
+            "changed_worker": 14
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 60.219729,
+              "p95": 72.81575
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 60.0840625,
+              "p95": 72.631
+            },
+            "exec_ms": {
+              "p50": 30.6744165,
+              "p95": 36.941125
+            },
+            "completion_ms": {
+              "p50": 92.684542,
+              "p95": 109.024458
+            }
+          }
+        }
+      }
+    },
+    {
+      "wait_ms": 830,
+      "stagger_ms": 250,
+      "samples": {
+        "session": [
+          {
+            "ready_gap_ms": 249.723167,
+            "agents": [
+              {
+                "first_exec_ms": 28.89875,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.039958,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 67.70825,
+                "exec_server_ms": 67.356042,
+                "ready_to_completion_ms": 72.778542,
+                "first_batch_to_completion_ms": 902.778542,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.045792,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.035791,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 33.911541,
+                "exec_server_ms": 33.692375,
+                "ready_to_completion_ms": 38.965416,
+                "first_batch_to_completion_ms": 1118.965416,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 980.931125,
+              "queue_ms": 898.221376,
+              "prepare_ms": 82.55424900000003,
+              "exec_ms": 37.347125,
+              "completion_ms": 1018.421709
+            }
+          },
+          {
+            "ready_gap_ms": 250.075375,
+            "agents": [
+              {
+                "first_exec_ms": 31.467084,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.044917,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 73.241,
+                "exec_server_ms": 72.866625,
+                "ready_to_completion_ms": 78.324334,
+                "first_batch_to_completion_ms": 908.324334,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.835334,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 2.529084,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 40.169458,
+                "exec_server_ms": 39.956208,
+                "ready_to_completion_ms": 42.716542,
+                "first_batch_to_completion_ms": 1122.716542,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 981.223083,
+              "queue_ms": 904.707582,
+              "prepare_ms": 76.37433399999998,
+              "exec_ms": 35.696375,
+              "completion_ms": 1017.013
+            }
+          },
+          {
+            "ready_gap_ms": 250.044166,
+            "agents": [
+              {
+                "first_exec_ms": 31.872333,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.033,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 64.680333,
+                "exec_server_ms": 64.430125,
+                "ready_to_completion_ms": 69.740125,
+                "first_batch_to_completion_ms": 899.740125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 33.639292,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 2.431209,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 37.001834,
+                "exec_server_ms": 36.807875,
+                "ready_to_completion_ms": 39.453459,
+                "first_batch_to_completion_ms": 1119.453459,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 965.858209,
+              "queue_ms": 888.792292,
+              "prepare_ms": 76.85000000000002,
+              "exec_ms": 41.329709,
+              "completion_ms": 1007.267791
+            }
+          },
+          {
+            "ready_gap_ms": 250.047334,
+            "agents": [
+              {
+                "first_exec_ms": 30.8775,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.038459,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 69.42075,
+                "exec_server_ms": 68.971375,
+                "ready_to_completion_ms": 74.498834,
+                "first_batch_to_completion_ms": 904.498834,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.088459,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 1.50875,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 31.255,
+                "exec_server_ms": 31.058583,
+                "ready_to_completion_ms": 32.786625,
+                "first_batch_to_completion_ms": 1112.786625,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 972.738792,
+              "queue_ms": 900.775873,
+              "prepare_ms": 71.79812699999991,
+              "exec_ms": 30.364416,
+              "completion_ms": 1003.227416
+            }
+          },
+          {
+            "ready_gap_ms": 249.62825,
+            "agents": [
+              {
+                "first_exec_ms": 31.975791,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.051792,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 71.198666,
+                "exec_server_ms": 70.773583,
+                "ready_to_completion_ms": 76.292042,
+                "first_batch_to_completion_ms": 906.292042,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 33.831208,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 0.102584,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 35.000667,
+                "exec_server_ms": 34.738834,
+                "ready_to_completion_ms": 35.122375,
+                "first_batch_to_completion_ms": 1115.122375,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 1009.510458,
+              "queue_ms": 923.063876,
+              "prepare_ms": 86.26154099999997,
+              "exec_ms": 34.23325,
+              "completion_ms": 1043.848625
+            }
+          },
+          {
+            "ready_gap_ms": 250.072541,
+            "agents": [
+              {
+                "first_exec_ms": 30.063708,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.029791,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 63.420875,
+                "exec_server_ms": 63.159084,
+                "ready_to_completion_ms": 68.476083,
+                "first_batch_to_completion_ms": 898.476083,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 28.608875,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 2.766459,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 35.921667,
+                "exec_server_ms": 35.703,
+                "ready_to_completion_ms": 38.707542,
+                "first_batch_to_completion_ms": 1118.707542,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 978.330625,
+              "queue_ms": 901.279501,
+              "prepare_ms": 76.90966600000002,
+              "exec_ms": 36.997583,
+              "completion_ms": 1015.433542
+            }
+          },
+          {
+            "ready_gap_ms": 247.78525,
+            "agents": [
+              {
+                "first_exec_ms": 29.339167,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.98625,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 60.643625,
+                "exec_server_ms": 60.348,
+                "ready_to_completion_ms": 65.654875,
+                "first_batch_to_completion_ms": 895.654875,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 28.621334,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 1.108667,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 37.169667,
+                "exec_server_ms": 36.935875,
+                "ready_to_completion_ms": 38.3,
+                "first_batch_to_completion_ms": 1118.3,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 967.895666,
+              "queue_ms": 887.498666,
+              "prepare_ms": 80.24033400000008,
+              "exec_ms": 40.3855,
+              "completion_ms": 1008.422083
+            }
+          },
+          {
+            "ready_gap_ms": 250.04,
+            "agents": [
+              {
+                "first_exec_ms": 32.217916,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.044083,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 76.672541,
+                "exec_server_ms": 76.315833,
+                "ready_to_completion_ms": 81.756875,
+                "first_batch_to_completion_ms": 911.756875,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 34.529708,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.730458,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 40.198,
+                "exec_server_ms": 39.935042,
+                "ready_to_completion_ms": 45.950833,
+                "first_batch_to_completion_ms": 1125.950833,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 990.829459,
+              "queue_ms": 903.020333,
+              "prepare_ms": 87.64329199999997,
+              "exec_ms": 38.6345,
+              "completion_ms": 1029.567125
+            }
+          },
+          {
+            "ready_gap_ms": 250.04125,
+            "agents": [
+              {
+                "first_exec_ms": 39.186041,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.044875,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 71.023709,
+                "exec_server_ms": 70.720958,
+                "ready_to_completion_ms": 76.106583,
+                "first_batch_to_completion_ms": 906.106583,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 39.386458,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.095708,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 38.652292,
+                "exec_server_ms": 38.451042,
+                "ready_to_completion_ms": 43.783208,
+                "first_batch_to_completion_ms": 1123.783208,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 970.685,
+              "queue_ms": 895.289584,
+              "prepare_ms": 75.21604100000002,
+              "exec_ms": 34.321875,
+              "completion_ms": 1005.13425
+            }
+          },
+          {
+            "ready_gap_ms": 250.040666,
+            "agents": [
+              {
+                "first_exec_ms": 29.971417,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.037708,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 71.947917,
+                "exec_server_ms": 71.633667,
+                "ready_to_completion_ms": 77.028958,
+                "first_batch_to_completion_ms": 907.028958,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.320708,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 0.648417,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 31.656042,
+                "exec_server_ms": 31.472792,
+                "ready_to_completion_ms": 32.322042,
+                "first_batch_to_completion_ms": 1112.322042,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 977.599958,
+              "queue_ms": 896.896082,
+              "prepare_ms": 80.55821000000003,
+              "exec_ms": 36.065125,
+              "completion_ms": 1013.796792
+            }
+          },
+          {
+            "ready_gap_ms": 250.757583,
+            "agents": [
+              {
+                "first_exec_ms": 32.779791,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.051667,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 74.332625,
+                "exec_server_ms": 73.968041,
+                "ready_to_completion_ms": 79.432375,
+                "first_batch_to_completion_ms": 909.432375,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 35.183833,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 0.376334,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 32.334792,
+                "exec_server_ms": 32.149083,
+                "ready_to_completion_ms": 32.7285,
+                "first_batch_to_completion_ms": 1112.7285,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 974.306625,
+              "queue_ms": 900.919542,
+              "prepare_ms": 73.21991700000001,
+              "exec_ms": 34.645666,
+              "completion_ms": 1009.05425
+            }
+          },
+          {
+            "ready_gap_ms": 249.091875,
+            "agents": [
+              {
+                "first_exec_ms": 29.397417,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.0375,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 78.073125,
+                "exec_server_ms": 77.728834,
+                "ready_to_completion_ms": 83.1475,
+                "first_batch_to_completion_ms": 913.1475,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.221,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.063625,
+                "claim_ms": 0.0,
+                "queue_ms": 0.0,
+                "prepare_ms": 0.0,
+                "exec_ms": 46.332458,
+                "exec_server_ms": 46.029459,
+                "ready_to_completion_ms": 51.42025,
+                "first_batch_to_completion_ms": 1131.42025,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 996.2245,
+              "queue_ms": 910.394208,
+              "prepare_ms": 85.663542,
+              "exec_ms": 42.074375,
+              "completion_ms": 1038.405834
+            }
+          }
+        ],
+        "batch": [
+          {
+            "ready_gap_ms": 250.267709,
+            "agents": [
+              {
+                "first_exec_ms": 33.973625,
+                "configured_wait_ms": 830,
+                "release_ms": 33.6545,
+                "ready_lateness_ms": 3.542209,
+                "claim_ms": 140.3535,
+                "queue_ms": 0.0,
+                "prepare_ms": 140.014583,
+                "exec_ms": 30.898667,
+                "exec_server_ms": 30.777833,
+                "ready_to_completion_ms": 174.869917,
+                "first_batch_to_completion_ms": 1004.869917,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 35.43775,
+                "configured_wait_ms": 1080,
+                "release_ms": 30.116625,
+                "ready_lateness_ms": 3.281875,
+                "claim_ms": 79.503167,
+                "queue_ms": 0.0,
+                "prepare_ms": 79.322291,
+                "exec_ms": 34.883375,
+                "exec_server_ms": 34.73775,
+                "ready_to_completion_ms": 117.730625,
+                "first_batch_to_completion_ms": 1197.730625,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 57.748834,
+              "queue_ms": 0.0,
+              "prepare_ms": 57.576459,
+              "exec_ms": 30.736042,
+              "completion_ms": 88.572291
+            }
+          },
+          {
+            "ready_gap_ms": 249.915833,
+            "agents": [
+              {
+                "first_exec_ms": 32.378125,
+                "configured_wait_ms": 830,
+                "release_ms": 30.208292,
+                "ready_lateness_ms": 5.074583,
+                "claim_ms": 111.17275,
+                "queue_ms": 0.0,
+                "prepare_ms": 110.856625,
+                "exec_ms": 45.339084,
+                "exec_server_ms": 45.18725,
+                "ready_to_completion_ms": 161.663875,
+                "first_batch_to_completion_ms": 991.663875,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 33.522333,
+                "configured_wait_ms": 1080,
+                "release_ms": 30.112042,
+                "ready_lateness_ms": 5.042125,
+                "claim_ms": 89.517458,
+                "queue_ms": 0.0,
+                "prepare_ms": 89.341625,
+                "exec_ms": 36.550042,
+                "exec_server_ms": 36.372666,
+                "ready_to_completion_ms": 131.162083,
+                "first_batch_to_completion_ms": 1211.162083,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 61.759417,
+              "queue_ms": 0.0,
+              "prepare_ms": 61.621792,
+              "exec_ms": 30.198791,
+              "completion_ms": 92.052542
+            }
+          },
+          {
+            "ready_gap_ms": 250.052833,
+            "agents": [
+              {
+                "first_exec_ms": 36.605625,
+                "configured_wait_ms": 830,
+                "release_ms": 31.719042,
+                "ready_lateness_ms": 5.072833,
+                "claim_ms": 87.235042,
+                "queue_ms": 0.0,
+                "prepare_ms": 86.88275,
+                "exec_ms": 39.021,
+                "exec_server_ms": 38.889834,
+                "ready_to_completion_ms": 131.395291,
+                "first_batch_to_completion_ms": 961.395291,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 36.626375,
+                "configured_wait_ms": 1080,
+                "release_ms": 54.967042,
+                "ready_lateness_ms": 5.056458,
+                "claim_ms": 94.435292,
+                "queue_ms": 0.0,
+                "prepare_ms": 94.191958,
+                "exec_ms": 44.410041,
+                "exec_server_ms": 44.263417,
+                "ready_to_completion_ms": 143.967958,
+                "first_batch_to_completion_ms": 1223.967958,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 60.091208,
+              "queue_ms": 0.0,
+              "prepare_ms": 59.931291,
+              "exec_ms": 27.743666,
+              "completion_ms": 87.902292
+            }
+          },
+          {
+            "ready_gap_ms": 249.077959,
+            "agents": [
+              {
+                "first_exec_ms": 29.510875,
+                "configured_wait_ms": 830,
+                "release_ms": 28.68275,
+                "ready_lateness_ms": 5.118792,
+                "claim_ms": 103.942541,
+                "queue_ms": 0.0,
+                "prepare_ms": 103.556917,
+                "exec_ms": 45.898167,
+                "exec_server_ms": 45.721625,
+                "ready_to_completion_ms": 155.064667,
+                "first_batch_to_completion_ms": 985.064667,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.25975,
+                "configured_wait_ms": 1080,
+                "release_ms": 28.98725,
+                "ready_lateness_ms": 5.048125,
+                "claim_ms": 87.017584,
+                "queue_ms": 0.0,
+                "prepare_ms": 86.82125,
+                "exec_ms": 45.866833,
+                "exec_server_ms": 45.741833,
+                "ready_to_completion_ms": 137.987833,
+                "first_batch_to_completion_ms": 1217.987833,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 63.59925,
+              "queue_ms": 0.0,
+              "prepare_ms": 63.447875,
+              "exec_ms": 36.470667,
+              "completion_ms": 100.169041
+            }
+          },
+          {
+            "ready_gap_ms": 250.052417,
+            "agents": [
+              {
+                "first_exec_ms": 37.277375,
+                "configured_wait_ms": 830,
+                "release_ms": 31.536542,
+                "ready_lateness_ms": 5.087042,
+                "claim_ms": 112.866334,
+                "queue_ms": 0.0,
+                "prepare_ms": 112.495958,
+                "exec_ms": 46.428041,
+                "exec_server_ms": 46.252416,
+                "ready_to_completion_ms": 164.462,
+                "first_batch_to_completion_ms": 994.462,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 35.61075,
+                "configured_wait_ms": 1080,
+                "release_ms": 31.548875,
+                "ready_lateness_ms": 4.612958,
+                "claim_ms": 91.529625,
+                "queue_ms": 0.0,
+                "prepare_ms": 91.324667,
+                "exec_ms": 44.270709,
+                "exec_server_ms": 44.107334,
+                "ready_to_completion_ms": 140.453,
+                "first_batch_to_completion_ms": 1220.453,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 60.025292,
+              "queue_ms": 0.0,
+              "prepare_ms": 59.898083,
+              "exec_ms": 33.887791,
+              "completion_ms": 94.008875
+            }
+          },
+          {
+            "ready_gap_ms": 249.924791,
+            "agents": [
+              {
+                "first_exec_ms": 30.755875,
+                "configured_wait_ms": 830,
+                "release_ms": 28.422833,
+                "ready_lateness_ms": 5.070666,
+                "claim_ms": 111.42475,
+                "queue_ms": 0.0,
+                "prepare_ms": 111.101292,
+                "exec_ms": 37.943667,
+                "exec_server_ms": 37.8035,
+                "ready_to_completion_ms": 154.514208,
+                "first_batch_to_completion_ms": 984.514208,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.027292,
+                "configured_wait_ms": 1080,
+                "release_ms": 53.452834,
+                "ready_lateness_ms": 5.041334,
+                "claim_ms": 89.279958,
+                "queue_ms": 0.0,
+                "prepare_ms": 89.053458,
+                "exec_ms": 37.690959,
+                "exec_server_ms": 37.547542,
+                "ready_to_completion_ms": 132.060709,
+                "first_batch_to_completion_ms": 1212.060709,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 63.883209,
+              "queue_ms": 0.0,
+              "prepare_ms": 63.749208,
+              "exec_ms": 32.587333,
+              "completion_ms": 96.534583
+            }
+          },
+          {
+            "ready_gap_ms": 249.915375,
+            "agents": [
+              {
+                "first_exec_ms": 34.408333,
+                "configured_wait_ms": 830,
+                "release_ms": 30.545709,
+                "ready_lateness_ms": 5.066417,
+                "claim_ms": 129.344834,
+                "queue_ms": 0.0,
+                "prepare_ms": 129.01975,
+                "exec_ms": 44.8845,
+                "exec_server_ms": 44.765708,
+                "ready_to_completion_ms": 179.367584,
+                "first_batch_to_completion_ms": 1009.367584,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 34.188959,
+                "configured_wait_ms": 1080,
+                "release_ms": 30.608583,
+                "ready_lateness_ms": 5.04225,
+                "claim_ms": 84.578833,
+                "queue_ms": 0.0,
+                "prepare_ms": 84.401625,
+                "exec_ms": 44.616666,
+                "exec_server_ms": 44.480958,
+                "ready_to_completion_ms": 134.284792,
+                "first_batch_to_completion_ms": 1214.284792,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 60.318584,
+              "queue_ms": 0.0,
+              "prepare_ms": 60.188292,
+              "exec_ms": 31.5975,
+              "completion_ms": 91.967459
+            }
+          },
+          {
+            "ready_gap_ms": 249.948166,
+            "agents": [
+              {
+                "first_exec_ms": 30.677667,
+                "configured_wait_ms": 830,
+                "release_ms": 27.934708,
+                "ready_lateness_ms": 5.057875,
+                "claim_ms": 109.377,
+                "queue_ms": 0.0,
+                "prepare_ms": 109.058375,
+                "exec_ms": 48.496958,
+                "exec_server_ms": 48.351542,
+                "ready_to_completion_ms": 163.01125,
+                "first_batch_to_completion_ms": 993.01125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.852042,
+                "configured_wait_ms": 1080,
+                "release_ms": 27.893083,
+                "ready_lateness_ms": 5.052084,
+                "claim_ms": 87.395917,
+                "queue_ms": 0.0,
+                "prepare_ms": 87.239625,
+                "exec_ms": 39.238791,
+                "exec_server_ms": 39.085,
+                "ready_to_completion_ms": 131.733875,
+                "first_batch_to_completion_ms": 1211.733875,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 61.847583,
+              "queue_ms": 0.0,
+              "prepare_ms": 61.698291,
+              "exec_ms": 30.909917,
+              "completion_ms": 92.861292
+            }
+          },
+          {
+            "ready_gap_ms": 249.417542,
+            "agents": [
+              {
+                "first_exec_ms": 35.234708,
+                "configured_wait_ms": 830,
+                "release_ms": 33.574667,
+                "ready_lateness_ms": 5.060417,
+                "claim_ms": 122.835125,
+                "queue_ms": 0.0,
+                "prepare_ms": 122.506334,
+                "exec_ms": 45.637416,
+                "exec_server_ms": 45.500875,
+                "ready_to_completion_ms": 173.60125,
+                "first_batch_to_completion_ms": 1003.60125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 34.519792,
+                "configured_wait_ms": 1080,
+                "release_ms": 33.078166,
+                "ready_lateness_ms": 5.041292,
+                "claim_ms": 97.61575,
+                "queue_ms": 0.0,
+                "prepare_ms": 97.419125,
+                "exec_ms": 42.842542,
+                "exec_server_ms": 42.723875,
+                "ready_to_completion_ms": 145.5435,
+                "first_batch_to_completion_ms": 1225.5435,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 61.801416,
+              "queue_ms": 0.0,
+              "prepare_ms": 61.657375,
+              "exec_ms": 32.11925,
+              "completion_ms": 94.0185
+            }
+          },
+          {
+            "ready_gap_ms": 250.06775,
+            "agents": [
+              {
+                "first_exec_ms": 29.061125,
+                "configured_wait_ms": 830,
+                "release_ms": 31.425417,
+                "ready_lateness_ms": 5.059917,
+                "claim_ms": 115.841542,
+                "queue_ms": 0.0,
+                "prepare_ms": 115.509708,
+                "exec_ms": 46.782709,
+                "exec_server_ms": 46.617083,
+                "ready_to_completion_ms": 167.758167,
+                "first_batch_to_completion_ms": 997.758167,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.02375,
+                "configured_wait_ms": 1080,
+                "release_ms": 31.396916,
+                "ready_lateness_ms": 3.334917,
+                "claim_ms": 89.691125,
+                "queue_ms": 0.0,
+                "prepare_ms": 89.44825,
+                "exec_ms": 36.666542,
+                "exec_server_ms": 36.524209,
+                "ready_to_completion_ms": 129.7395,
+                "first_batch_to_completion_ms": 1209.7395,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 59.18425,
+              "queue_ms": 0.0,
+              "prepare_ms": 59.049458,
+              "exec_ms": 33.653833,
+              "completion_ms": 92.911125
+            }
+          },
+          {
+            "ready_gap_ms": 250.091375,
+            "agents": [
+              {
+                "first_exec_ms": 32.648833,
+                "configured_wait_ms": 830,
+                "release_ms": 33.566083,
+                "ready_lateness_ms": 5.072292,
+                "claim_ms": 107.777709,
+                "queue_ms": 0.0,
+                "prepare_ms": 107.457792,
+                "exec_ms": 48.444042,
+                "exec_server_ms": 48.312542,
+                "ready_to_completion_ms": 161.377375,
+                "first_batch_to_completion_ms": 991.377375,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.350458,
+                "configured_wait_ms": 1080,
+                "release_ms": 32.281125,
+                "ready_lateness_ms": 1.530333,
+                "claim_ms": 85.981,
+                "queue_ms": 0.0,
+                "prepare_ms": 85.814708,
+                "exec_ms": 36.244667,
+                "exec_server_ms": 36.111916,
+                "ready_to_completion_ms": 123.799875,
+                "first_batch_to_completion_ms": 1203.799875,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 63.332334,
+              "queue_ms": 0.0,
+              "prepare_ms": 63.203417,
+              "exec_ms": 30.494084,
+              "completion_ms": 93.890584
+            }
+          },
+          {
+            "ready_gap_ms": 249.956833,
+            "agents": [
+              {
+                "first_exec_ms": 30.843792,
+                "configured_wait_ms": 830,
+                "release_ms": 30.635208,
+                "ready_lateness_ms": 5.063625,
+                "claim_ms": 103.547166,
+                "queue_ms": 0.0,
+                "prepare_ms": 103.237916,
+                "exec_ms": 41.739334,
+                "exec_server_ms": 41.587042,
+                "ready_to_completion_ms": 150.411333,
+                "first_batch_to_completion_ms": 980.411333,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.57575,
+                "configured_wait_ms": 1080,
+                "release_ms": 30.551583,
+                "ready_lateness_ms": 5.020834,
+                "claim_ms": 101.212125,
+                "queue_ms": 0.0,
+                "prepare_ms": 101.035708,
+                "exec_ms": 44.905458,
+                "exec_server_ms": 44.7535,
+                "ready_to_completion_ms": 151.165084,
+                "first_batch_to_completion_ms": 1231.165084,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 57.177459,
+              "queue_ms": 0.0,
+              "prepare_ms": 57.052666,
+              "exec_ms": 33.408709,
+              "completion_ms": 90.670958
+            }
+          }
+        ]
+      },
+      "summary": {
+        "session": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 31.2045835,
+              "p95": 39.186041
+            },
+            "configured_wait_ms": {
+              "p50": 955.0,
+              "p95": 1080
+            },
+            "release_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "ready_lateness_ms": {
+              "p50": 5.0366455,
+              "p95": 5.095708
+            },
+            "claim_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "exec_ms": {
+              "p50": 53.4880415,
+              "p95": 76.672541
+            },
+            "exec_server_ms": {
+              "p50": 53.1887295,
+              "p95": 76.315833
+            },
+            "ready_to_completion_ms": {
+              "p50": 58.53756250000001,
+              "p95": 81.756875
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 1012.734771,
+              "p95": 1125.950833
+            },
+            "changed_worker": 0
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 977.9652915,
+              "p95": 1009.510458
+            },
+            "queue_ms": {
+              "p50": 900.8477075000001,
+              "p95": 923.063876
+            },
+            "prepare_ms": {
+              "p50": 78.57500000000005,
+              "p95": 87.64329199999997
+            },
+            "exec_ms": {
+              "p50": 36.531354,
+              "p95": 42.074375
+            },
+            "completion_ms": {
+              "p50": 1014.6151669999999,
+              "p95": 1043.848625
+            }
+          }
+        },
+        "batch": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 32.513479000000004,
+              "p95": 36.626375
+            },
+            "configured_wait_ms": {
+              "p50": 955.0,
+              "p95": 1080
+            },
+            "release_ms": {
+              "p50": 31.016061999999998,
+              "p95": 53.452834
+            },
+            "ready_lateness_ms": {
+              "p50": 5.054271,
+              "p95": 5.087042
+            },
+            "claim_ms": {
+              "p50": 99.4139375,
+              "p95": 129.344834
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 99.2274165,
+              "p95": 129.01975
+            },
+            "exec_ms": {
+              "p50": 44.340374999999995,
+              "p95": 48.444042
+            },
+            "exec_server_ms": {
+              "p50": 44.1853755,
+              "p95": 48.312542
+            },
+            "ready_to_completion_ms": {
+              "p50": 147.9774165,
+              "p95": 174.869917
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 1103.5491044999999,
+              "p95": 1225.5435
+            },
+            "changed_worker": 12
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 61.0390005,
+              "p95": 63.883209
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 60.905041999999995,
+              "p95": 63.749208
+            },
+            "exec_ms": {
+              "p50": 31.858375000000002,
+              "p95": 36.470667
+            },
+            "completion_ms": {
+              "p50": 92.88620850000001,
+              "p95": 100.169041
+            }
+          }
+        }
+      }
+    }
+  ],
+  "image_id": "sha256:37a3c702065ee52b8fc6c33238cd83e103cd10d9f0ba58ca144c8fcbffba599d",
+  "pool_setup_ms": 1421.809917,
+  "state_profile": {
+    "switched_worker": true,
+    "workspace_file_bytes": 3,
+    "retained_dependency_bytes": 11,
+    "private_dependency_lost": true,
+    "original_listener_gone": true
+  }
+}

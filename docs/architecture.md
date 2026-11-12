@@ -18,6 +18,7 @@ flowchart LR
 |---|---|---|
 | 对话、工具结果、LLM 配置 | 外置 agent。SDK 记录写到 agent 状态目录 | 可以跨 worker 存在。当前 CLI 每次运行新建 conversation，没有公开的跨 CLI 恢复入口 |
 | 项目文件 | 宿主目录，租约内挂到 `/workspace` | 随项目保留。普通文件修改不依赖容器写层 |
+| 必要产物和可重建缓存 | 放在工作区或由调用方明确管理 | 工作区内的数据跨 worker 保留。独立会话缓存层和配额淘汰仍是设计提案 |
 | 预装工具和依赖 | 从 Docker 镜像提取的只读基础文件树 | 随 worker 使用。每个 scheduler 实例固定一个镜像 ID |
 | 任意全局安装、`/tmp`、用户目录写入 | 当前租约的 OverlayFS 可写层 | 归还时丢弃 |
 | 后台进程和监听端口 | 当前租约的 PID namespace，worker 网络关闭 | 同租约内可继续使用，归还后不保留 |
@@ -32,16 +33,20 @@ flowchart LR
 | 操作 | 字段 | 成功结果 |
 |---|---|---|
 | `status` | 无 | `total`、`leased`、`idle` |
-| `claim` | `workspace` | `worker` |
+| `reserve` | `workspace` | `reserved` |
+| `claim` | 普通连接传 `workspace`，已预留的连接省略 | `worker` |
 | `exec` | `command` | `stdout`、`stderr`、`exit_code` |
+| `park` | 已预留工作区且持有 worker | `parked` |
 | `release` | 无 | `released` |
 
-请求包含 `op` 字段。异常用 `error` 返回。单连接至多持有一个租约。服务端在连接关闭时执行归还。工作区解析后必须位于配置根目录内；相同、父子重叠工作区在同一个 scheduler 内不能同时租出。这不协调其他进程或 scheduler 对同一目录的写入。
+请求包含 `op` 字段。异常用 `error` 返回。单连接至多持有一个 worker 租约和一份会话工作区预留。归还 worker 后，预留持续到连接关闭。服务端在连接关闭时先归还 worker，再结束预留。若无法确认旧容器已移除，旧 worker 继续阻止重叠路径被领用。工作区解析后必须位于配置根目录内。同一个 scheduler 拒绝与已有租约或预留相同、父子重叠的工作区。其他进程或 scheduler 对同一目录的访问由使用方协调。
+
+`park` 把当前租约标记为可回收，并要求原连接先重新 `claim` 才能执行命令。池满且没有空闲 worker 时，领用者可以触发清理，回收顺序按标记时间。重新领用与启动清理由同一把池锁协调。清理期间旧工作区仍受租约保护。
 
 ## 分配、执行和归还
 
 1. 启动时解析镜像 ID，用临时容器导出 rootfs，并预热 `--min` 个 worker。每个 worker 把导出内容解到自己的 `/basis`。当前实现按 worker 拷贝基础文件树，未实现 worker 之间的额外共享挂载或去重。
-2. 有空闲 worker 就租出。没有空闲且未达到 `--max` 时现场补 worker。满池用条件变量等待，默认等待预算约 30 秒。创建和回收 worker 目前会占用池锁，等待预算不能视为严格服务级别承诺。
+2. 有空闲 worker 就租出。没有空闲且未达到 `--max` 时现场补 worker。满池时可以回收已标记的租约，或用条件变量等待，默认等待预算约 30 秒。扩池创建和维护删除仍可能占用池锁。按需回收的 reset 在池锁外执行，等待预算仍受 Docker 调用耗时影响。
 3. 建立新的 mount namespace 和 PID namespace。OverlayFS 把 `/basis` 作为 lowerdir，临时可写层放在最多 512 MiB 的 worker tmpfs 下。挂入该任务的 `/workspace` 和少量设备，启动租约的锚进程。
 4. 每次执行用 Docker exec 调用可信辅助程序，经 `nsenter` 进入同一任务空间，以 `setpriv` 降权后执行 shell。普通命令用新的 shell，因此磁盘和后台进程能跨调用保留，shell 局部变量与当前目录不会自动延续。
 5. 归还时杀掉该 PID namespace 的锚进程，等待退出并删除任务目录。重置失败或命令超时则淘汰 worker。若 Docker 暂时无法确认容器已删除，维护线程会重试，期间该 worker 仍计入已租出数量，原工作区及重叠目录继续拒绝新租约。健康 worker 回到 idle。维护线程按空闲时间回收超过最低数量的 worker，并尝试补足最低数量。
@@ -51,5 +56,7 @@ flowchart LR
 ## 信任和恢复边界
 
 这个原型面向可信本地任务。worker 的挂载辅助程序使用 `SYS_ADMIN` 和放宽的 seccomp 配置。命令经过降权，worker 无外网，但这些措施尚未验证为对抗不可信租户的隔离边界。整个配置工作区根目录挂在 worker 的管理层，任务视图只绑定所选目录。要支持对抗性任务，需要独立验证路径解析、目录替换竞争、挂载传播、文件描述符、IPC、资源限制和宿主侧凭据。
+
+当前 `EXEC` 在进入租约根目录后调用该视图的 `/usr/bin/setpriv`，清除 capabilities 并设置 `no-new-privs`，未显式切换为非 root UID/GID。把执行及降权入口放到任务无法改写的可信侧是待做的安全改造。
 
 更换可写层可以消除测试覆盖的文件残留。更换 PID namespace 可以结束测试覆盖的后台服务。跨租约需要服务状态时，应明确持久化和重建，或先保留原租约。没有实现进程快照、透明恢复、共享外部数据库重置和 CRIU/Firecracker 后端。

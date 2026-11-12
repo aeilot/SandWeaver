@@ -7,3 +7,4 @@ SandWeaver is a local Docker worker scheduler. The OpenHands agent runs outside 
 - Keep secrets, real workspaces, local sockets, and generated session data out of Git.
 - For lifecycle changes, run the Docker integration smoke test with the demo image. For docs changes, verify local links and claims against the implementation.
 - Distinguish measured behavior, design proposals, and unverified security properties.
+- Use DeepSeek Flash through OpenRouter for model-backed research runs unless the user explicitly selects another model. Do not silently substitute another model.

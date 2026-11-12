@@ -1,0 +1,4641 @@
+{
+  "docker": "linux/aarch64 OrbStack",
+  "image": "sandweaver-demo:local",
+  "workers": 2,
+  "rounds": 12,
+  "warmup_per_arm": 1,
+  "probe_delay_after_barrier_ms": 50,
+  "scenarios": [
+    {
+      "wait_ms": 150,
+      "stagger_ms": 0,
+      "samples": {
+        "session": [
+          {
+            "ready_gap_ms": 0.564917,
+            "agents": [
+              {
+                "first_exec_ms": 29.022542,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.240875,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 61.5555,
+                "exec_server_ms": 61.327375,
+                "ready_to_completion_ms": 65.853291,
+                "first_batch_to_completion_ms": 215.853291,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 26.820833,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.065958,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 62.99025,
+                "exec_server_ms": 62.739625,
+                "ready_to_completion_ms": 68.072542,
+                "first_batch_to_completion_ms": 218.072542,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 276.955958,
+              "queue_ms": 202.766959,
+              "prepare_ms": 74.02566599999997,
+              "start_exec_ms": 37.913541,
+              "readiness_ms": 35.757625,
+              "readiness_exec_ms": 35.755875,
+              "readiness_attempts": 1,
+              "exec_ms": 36.545084,
+              "completion_ms": 313.624334
+            }
+          },
+          {
+            "ready_gap_ms": 0.4315,
+            "agents": [
+              {
+                "first_exec_ms": 32.616917,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 1.607417,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 59.827583,
+                "exec_server_ms": 59.524334,
+                "ready_to_completion_ms": 61.482958,
+                "first_batch_to_completion_ms": 211.482958,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.220209,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.064042,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 56.840292,
+                "exec_server_ms": 56.373208,
+                "ready_to_completion_ms": 61.956792,
+                "first_batch_to_completion_ms": 211.956792,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 269.395708,
+              "queue_ms": 204.315459,
+              "prepare_ms": 64.93599900000001,
+              "start_exec_ms": 33.352375,
+              "readiness_ms": 31.28575,
+              "readiness_exec_ms": 31.28325,
+              "readiness_attempts": 1,
+              "exec_ms": 25.360416,
+              "completion_ms": 294.85075
+            }
+          },
+          {
+            "ready_gap_ms": 0.070791,
+            "agents": [
+              {
+                "first_exec_ms": 31.52875,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.108834,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 64.579584,
+                "exec_server_ms": 64.411833,
+                "ready_to_completion_ms": 69.697,
+                "first_batch_to_completion_ms": 219.697,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.161292,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.042541,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 64.445,
+                "exec_server_ms": 63.90525,
+                "ready_to_completion_ms": 69.5285,
+                "first_batch_to_completion_ms": 219.5285,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 274.991208,
+              "queue_ms": 205.942,
+              "prepare_ms": 68.87037499999997,
+              "start_exec_ms": 34.8535,
+              "readiness_ms": 33.679375,
+              "readiness_exec_ms": 33.677958,
+              "readiness_attempts": 1,
+              "exec_ms": 31.750875,
+              "completion_ms": 306.862125
+            }
+          },
+          {
+            "ready_gap_ms": 0.043833,
+            "agents": [
+              {
+                "first_exec_ms": 29.906166,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 1.02725,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 53.925333,
+                "exec_server_ms": 53.704209,
+                "ready_to_completion_ms": 54.964958,
+                "first_batch_to_completion_ms": 204.964958,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.83575,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 0.927792,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 55.744667,
+                "exec_server_ms": 53.994334,
+                "ready_to_completion_ms": 56.704583,
+                "first_batch_to_completion_ms": 206.704583,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 276.383,
+              "queue_ms": 202.062459,
+              "prepare_ms": 74.11275,
+              "start_exec_ms": 36.8445,
+              "readiness_ms": 36.891958,
+              "readiness_exec_ms": 36.890083,
+              "readiness_attempts": 1,
+              "exec_ms": 35.113042,
+              "completion_ms": 311.620667
+            }
+          },
+          {
+            "ready_gap_ms": 0.034417,
+            "agents": [
+              {
+                "first_exec_ms": 31.516708,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 1.714625,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 55.641875,
+                "exec_server_ms": 53.466584,
+                "ready_to_completion_ms": 57.37225,
+                "first_batch_to_completion_ms": 207.37225,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.376875,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 1.680792,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 54.062833,
+                "exec_server_ms": 53.800125,
+                "ready_to_completion_ms": 55.767625,
+                "first_batch_to_completion_ms": 205.767625,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 261.915625,
+              "queue_ms": 194.029291,
+              "prepare_ms": 67.73345899999998,
+              "start_exec_ms": 33.0195,
+              "readiness_ms": 34.315375,
+              "readiness_exec_ms": 34.313375,
+              "readiness_attempts": 1,
+              "exec_ms": 34.33975,
+              "completion_ms": 296.352167
+            }
+          },
+          {
+            "ready_gap_ms": 0.207,
+            "agents": [
+              {
+                "first_exec_ms": 34.089916,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.133958,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 60.242083,
+                "exec_server_ms": 59.876,
+                "ready_to_completion_ms": 65.386458,
+                "first_batch_to_completion_ms": 215.386458,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 34.407458,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.829208,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 61.887709,
+                "exec_server_ms": 61.584291,
+                "ready_to_completion_ms": 66.759125,
+                "first_batch_to_completion_ms": 216.759125,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 269.059458,
+              "queue_ms": 201.083208,
+              "prepare_ms": 67.781542,
+              "start_exec_ms": 36.41475,
+              "readiness_ms": 31.077417,
+              "readiness_exec_ms": 31.075875,
+              "readiness_attempts": 1,
+              "exec_ms": 32.574166,
+              "completion_ms": 301.733166
+            }
+          },
+          {
+            "ready_gap_ms": 1.123292,
+            "agents": [
+              {
+                "first_exec_ms": 25.256166,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 6.622333,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 61.403333,
+                "exec_server_ms": 60.892958,
+                "ready_to_completion_ms": 68.112125,
+                "first_batch_to_completion_ms": 218.112125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.635167,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.035083,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 62.031292,
+                "exec_server_ms": 61.614292,
+                "ready_to_completion_ms": 67.103083,
+                "first_batch_to_completion_ms": 217.103083,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 286.802125,
+              "queue_ms": 207.743668,
+              "prepare_ms": 78.86337399999996,
+              "start_exec_ms": 41.4765,
+              "readiness_ms": 37.014209,
+              "readiness_exec_ms": 37.011917,
+              "readiness_attempts": 1,
+              "exec_ms": 32.54,
+              "completion_ms": 319.452625
+            }
+          },
+          {
+            "ready_gap_ms": 0.080583,
+            "agents": [
+              {
+                "first_exec_ms": 32.877166,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.032042,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 65.402083,
+                "exec_server_ms": 65.059875,
+                "ready_to_completion_ms": 70.469958,
+                "first_batch_to_completion_ms": 220.469958,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.638625,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.058167,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 65.237958,
+                "exec_server_ms": 64.748167,
+                "ready_to_completion_ms": 70.313625,
+                "first_batch_to_completion_ms": 220.313625,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 307.671458,
+              "queue_ms": 214.278084,
+              "prepare_ms": 93.247041,
+              "start_exec_ms": 40.372041,
+              "readiness_ms": 52.490542,
+              "readiness_exec_ms": 52.488917,
+              "readiness_attempts": 1,
+              "exec_ms": 35.944416,
+              "completion_ms": 343.715875
+            }
+          },
+          {
+            "ready_gap_ms": 0.090208,
+            "agents": [
+              {
+                "first_exec_ms": 28.226375,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 6.579166,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 54.929167,
+                "exec_server_ms": 53.136875,
+                "ready_to_completion_ms": 61.57325,
+                "first_batch_to_completion_ms": 211.57325,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.1675,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.35075,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 56.669375,
+                "exec_server_ms": 56.462833,
+                "ready_to_completion_ms": 60.063583,
+                "first_batch_to_completion_ms": 210.063583,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 250.048125,
+              "queue_ms": 191.197875,
+              "prepare_ms": 58.71199999999999,
+              "start_exec_ms": 28.770042,
+              "readiness_ms": 29.530708,
+              "readiness_exec_ms": 29.529417,
+              "readiness_attempts": 1,
+              "exec_ms": 35.3975,
+              "completion_ms": 285.5465
+            }
+          },
+          {
+            "ready_gap_ms": 0.130875,
+            "agents": [
+              {
+                "first_exec_ms": 29.1775,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.006042,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 47.031583,
+                "exec_server_ms": 46.833875,
+                "ready_to_completion_ms": 52.051208,
+                "first_batch_to_completion_ms": 202.051208,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.080875,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.012083,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 45.441333,
+                "exec_server_ms": 45.248,
+                "ready_to_completion_ms": 50.472792,
+                "first_batch_to_completion_ms": 200.472792,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 248.894583,
+              "queue_ms": 185.577959,
+              "prepare_ms": 63.18195800000001,
+              "start_exec_ms": 30.803542,
+              "readiness_ms": 32.104166,
+              "readiness_exec_ms": 32.102666,
+              "readiness_attempts": 1,
+              "exec_ms": 34.568916,
+              "completion_ms": 283.535958
+            }
+          },
+          {
+            "ready_gap_ms": 0.24625,
+            "agents": [
+              {
+                "first_exec_ms": 29.779584,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.9025,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 42.305875,
+                "exec_server_ms": 42.041125,
+                "ready_to_completion_ms": 46.235334,
+                "first_batch_to_completion_ms": 196.235334,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 28.677792,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 2.482417,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 42.061125,
+                "exec_server_ms": 41.887084,
+                "ready_to_completion_ms": 44.560292,
+                "first_batch_to_completion_ms": 194.560292,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 240.47675,
+              "queue_ms": 178.661084,
+              "prepare_ms": 61.67458300000001,
+              "start_exec_ms": 34.3745,
+              "readiness_ms": 27.05425,
+              "readiness_exec_ms": 27.052208,
+              "readiness_attempts": 1,
+              "exec_ms": 30.069292,
+              "completion_ms": 270.618666
+            }
+          },
+          {
+            "ready_gap_ms": 0.032167,
+            "agents": [
+              {
+                "first_exec_ms": 36.483917,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.828875,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 42.213375,
+                "exec_server_ms": 42.045292,
+                "ready_to_completion_ms": 47.049833,
+                "first_batch_to_completion_ms": 197.049833,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 35.095083,
+                "configured_wait_ms": 150,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.813208,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 44.375792,
+                "exec_server_ms": 44.16,
+                "ready_to_completion_ms": 49.204625,
+                "first_batch_to_completion_ms": 199.204625,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 229.061917,
+              "queue_ms": 176.364209,
+              "prepare_ms": 52.569749,
+              "start_exec_ms": 27.733834,
+              "readiness_ms": 24.622833,
+              "readiness_exec_ms": 24.621167,
+              "readiness_attempts": 1,
+              "exec_ms": 30.495334,
+              "completion_ms": 259.612583
+            }
+          }
+        ],
+        "batch": [
+          {
+            "ready_gap_ms": 0.078416,
+            "agents": [
+              {
+                "first_exec_ms": 28.0095,
+                "configured_wait_ms": 150,
+                "release_ms": 28.697333,
+                "ready_lateness_ms": 0.15825,
+                "claim_ms": 72.552,
+                "queue_ms": 19.83025,
+                "prepare_ms": 52.531,
+                "start_exec_ms": 25.707416,
+                "readiness_ms": 25.650125,
+                "readiness_exec_ms": 25.648958,
+                "readiness_attempts": 1,
+                "exec_ms": 30.503292,
+                "exec_server_ms": 30.377208,
+                "ready_to_completion_ms": 103.230625,
+                "first_batch_to_completion_ms": 253.230625,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.755708,
+                "configured_wait_ms": 150,
+                "release_ms": 28.608834,
+                "ready_lateness_ms": 0.166083,
+                "claim_ms": 58.724292,
+                "queue_ms": 0.0,
+                "prepare_ms": 58.539375,
+                "start_exec_ms": 27.155375,
+                "readiness_ms": 31.2165,
+                "readiness_exec_ms": 31.215042,
+                "readiness_attempts": 1,
+                "exec_ms": 29.977875,
+                "exec_server_ms": 29.8405,
+                "ready_to_completion_ms": 88.895916,
+                "first_batch_to_completion_ms": 238.895916,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 56.434583,
+              "queue_ms": 0.0,
+              "prepare_ms": 56.300166,
+              "start_exec_ms": 27.099209,
+              "readiness_ms": 29.105083,
+              "readiness_exec_ms": 29.103958,
+              "readiness_attempts": 1,
+              "exec_ms": 28.726167,
+              "completion_ms": 85.242584
+            }
+          },
+          {
+            "ready_gap_ms": 0.112333,
+            "agents": [
+              {
+                "first_exec_ms": 24.278834,
+                "configured_wait_ms": 150,
+                "release_ms": 28.323917,
+                "ready_lateness_ms": 0.578875,
+                "claim_ms": 93.979625,
+                "queue_ms": 16.842041,
+                "prepare_ms": 76.957875,
+                "start_exec_ms": 27.163875,
+                "readiness_ms": 48.591958,
+                "readiness_exec_ms": 48.590417,
+                "readiness_attempts": 1,
+                "exec_ms": 61.629958,
+                "exec_server_ms": 61.231666,
+                "ready_to_completion_ms": 156.218667,
+                "first_batch_to_completion_ms": 306.218667,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 25.636333,
+                "configured_wait_ms": 150,
+                "release_ms": 27.970125,
+                "ready_lateness_ms": 0.393333,
+                "claim_ms": 56.558959,
+                "queue_ms": 0.0,
+                "prepare_ms": 56.316125,
+                "start_exec_ms": 25.683333,
+                "readiness_ms": 30.495584,
+                "readiness_exec_ms": 30.492417,
+                "readiness_attempts": 1,
+                "exec_ms": 52.329292,
+                "exec_server_ms": 50.195042,
+                "ready_to_completion_ms": 109.340708,
+                "first_batch_to_completion_ms": 259.340708,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 53.188541,
+              "queue_ms": 0.0,
+              "prepare_ms": 53.055167,
+              "start_exec_ms": 24.742667,
+              "readiness_ms": 28.193833,
+              "readiness_exec_ms": 28.1925,
+              "readiness_attempts": 1,
+              "exec_ms": 28.4845,
+              "completion_ms": 81.780125
+            }
+          },
+          {
+            "ready_gap_ms": 0.138292,
+            "agents": [
+              {
+                "first_exec_ms": 50.238541,
+                "configured_wait_ms": 150,
+                "release_ms": 47.167667,
+                "ready_lateness_ms": 0.111917,
+                "claim_ms": 93.008708,
+                "queue_ms": 36.874292,
+                "prepare_ms": 56.01762500000001,
+                "start_exec_ms": 27.712041,
+                "readiness_ms": 26.918292,
+                "readiness_exec_ms": 26.917125,
+                "readiness_attempts": 1,
+                "exec_ms": 61.076083,
+                "exec_server_ms": 60.919792,
+                "ready_to_completion_ms": 154.219208,
+                "first_batch_to_completion_ms": 304.219208,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 51.621708,
+                "configured_wait_ms": 150,
+                "release_ms": 47.529375,
+                "ready_lateness_ms": 0.050792,
+                "claim_ms": 60.56375,
+                "queue_ms": 0.0,
+                "prepare_ms": 60.367292,
+                "start_exec_ms": 27.330542,
+                "readiness_ms": 32.8185,
+                "readiness_exec_ms": 32.817,
+                "readiness_attempts": 1,
+                "exec_ms": 28.192209,
+                "exec_server_ms": 28.049708,
+                "ready_to_completion_ms": 88.857917,
+                "first_batch_to_completion_ms": 238.857917,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 79.895792,
+              "queue_ms": 0.0,
+              "prepare_ms": 79.69725,
+              "start_exec_ms": 51.649875,
+              "readiness_ms": 27.713458,
+              "readiness_exec_ms": 27.712,
+              "readiness_attempts": 1,
+              "exec_ms": 25.7025,
+              "completion_ms": 105.720542
+            }
+          },
+          {
+            "ready_gap_ms": 0.089041,
+            "agents": [
+              {
+                "first_exec_ms": 30.287959,
+                "configured_wait_ms": 150,
+                "release_ms": 30.25425,
+                "ready_lateness_ms": 4.7685,
+                "claim_ms": 99.715292,
+                "queue_ms": 28.400583,
+                "prepare_ms": 69.749583,
+                "start_exec_ms": 32.194583,
+                "readiness_ms": 37.380583,
+                "readiness_exec_ms": 37.378625,
+                "readiness_attempts": 1,
+                "exec_ms": 36.901541,
+                "exec_server_ms": 36.729792,
+                "ready_to_completion_ms": 141.469833,
+                "first_batch_to_completion_ms": 291.469833,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.50875,
+                "configured_wait_ms": 150,
+                "release_ms": 29.625667,
+                "ready_lateness_ms": 1.456917,
+                "claim_ms": 65.831167,
+                "queue_ms": 0.0,
+                "prepare_ms": 65.567625,
+                "start_exec_ms": 32.966542,
+                "readiness_ms": 32.395875,
+                "readiness_exec_ms": 32.395,
+                "readiness_attempts": 1,
+                "exec_ms": 33.833958,
+                "exec_server_ms": 33.618042,
+                "ready_to_completion_ms": 101.173209,
+                "first_batch_to_completion_ms": 251.173209,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 62.674292,
+              "queue_ms": 0.0,
+              "prepare_ms": 62.529959,
+              "start_exec_ms": 28.541042,
+              "readiness_ms": 33.883458,
+              "readiness_exec_ms": 33.881667,
+              "readiness_attempts": 1,
+              "exec_ms": 32.629209,
+              "completion_ms": 95.389458
+            }
+          },
+          {
+            "ready_gap_ms": 0.0485,
+            "agents": [
+              {
+                "first_exec_ms": 31.03925,
+                "configured_wait_ms": 150,
+                "release_ms": 28.24725,
+                "ready_lateness_ms": 4.115333,
+                "claim_ms": 50.389125,
+                "queue_ms": 0.0,
+                "prepare_ms": 50.210042,
+                "start_exec_ms": 25.9895,
+                "readiness_ms": 24.048667,
+                "readiness_exec_ms": 24.047458,
+                "readiness_attempts": 1,
+                "exec_ms": 27.588375,
+                "exec_server_ms": 27.478167,
+                "ready_to_completion_ms": 82.135958,
+                "first_batch_to_completion_ms": 232.135958,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 31.2395,
+                "configured_wait_ms": 150,
+                "release_ms": 28.322834,
+                "ready_lateness_ms": 4.238,
+                "claim_ms": 66.991625,
+                "queue_ms": 14.696917,
+                "prepare_ms": 51.113416,
+                "start_exec_ms": 26.245625,
+                "readiness_ms": 24.628834,
+                "readiness_exec_ms": 24.627542,
+                "readiness_attempts": 1,
+                "exec_ms": 28.861125,
+                "exec_server_ms": 28.74025,
+                "ready_to_completion_ms": 100.107167,
+                "first_batch_to_completion_ms": 250.107167,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 54.385791,
+              "queue_ms": 0.0,
+              "prepare_ms": 54.269416,
+              "start_exec_ms": 25.436875,
+              "readiness_ms": 28.726375,
+              "readiness_exec_ms": 28.724834,
+              "readiness_attempts": 1,
+              "exec_ms": 34.8775,
+              "completion_ms": 89.357666
+            }
+          },
+          {
+            "ready_gap_ms": 0.024375,
+            "agents": [
+              {
+                "first_exec_ms": 27.375792,
+                "configured_wait_ms": 150,
+                "release_ms": 28.718166,
+                "ready_lateness_ms": 5.191125,
+                "claim_ms": 87.073375,
+                "queue_ms": 32.221083,
+                "prepare_ms": 54.543292,
+                "start_exec_ms": 28.557375,
+                "readiness_ms": 25.620167,
+                "readiness_exec_ms": 25.619125,
+                "readiness_attempts": 1,
+                "exec_ms": 29.812292,
+                "exec_server_ms": 29.744416,
+                "ready_to_completion_ms": 122.154083,
+                "first_batch_to_completion_ms": 272.154083,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 28.395958,
+                "configured_wait_ms": 150,
+                "release_ms": 27.44375,
+                "ready_lateness_ms": 3.592291,
+                "claim_ms": 61.420542,
+                "queue_ms": 0.0,
+                "prepare_ms": 61.171333,
+                "start_exec_ms": 30.2985,
+                "readiness_ms": 30.700291,
+                "readiness_exec_ms": 30.698541,
+                "readiness_attempts": 1,
+                "exec_ms": 28.358,
+                "exec_server_ms": 27.358,
+                "ready_to_completion_ms": 93.443875,
+                "first_batch_to_completion_ms": 243.443875,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 75.956916,
+              "queue_ms": 0.0,
+              "prepare_ms": 75.754625,
+              "start_exec_ms": 35.589834,
+              "readiness_ms": 40.037125,
+              "readiness_exec_ms": 40.033459,
+              "readiness_attempts": 1,
+              "exec_ms": 28.646833,
+              "completion_ms": 104.707917
+            }
+          },
+          {
+            "ready_gap_ms": 0.041208,
+            "agents": [
+              {
+                "first_exec_ms": 28.341833,
+                "configured_wait_ms": 150,
+                "release_ms": 33.892125,
+                "ready_lateness_ms": 2.546041,
+                "claim_ms": 50.412875,
+                "queue_ms": 0.0,
+                "prepare_ms": 50.232375,
+                "start_exec_ms": 23.881792,
+                "readiness_ms": 26.230541,
+                "readiness_exec_ms": 26.229291,
+                "readiness_attempts": 1,
+                "exec_ms": 25.0645,
+                "exec_server_ms": 24.959833,
+                "ready_to_completion_ms": 78.061125,
+                "first_batch_to_completion_ms": 228.061125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.209708,
+                "configured_wait_ms": 150,
+                "release_ms": 34.118875,
+                "ready_lateness_ms": 3.607958,
+                "claim_ms": 69.1675,
+                "queue_ms": 17.3445,
+                "prepare_ms": 51.608833000000004,
+                "start_exec_ms": 25.307584,
+                "readiness_ms": 26.086916,
+                "readiness_exec_ms": 26.085291,
+                "readiness_attempts": 1,
+                "exec_ms": 28.121625,
+                "exec_server_ms": 28.008583,
+                "ready_to_completion_ms": 100.937042,
+                "first_batch_to_completion_ms": 250.937042,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 62.639417,
+              "queue_ms": 0.0,
+              "prepare_ms": 62.507875,
+              "start_exec_ms": 27.860791,
+              "readiness_ms": 34.527125,
+              "readiness_exec_ms": 34.525875,
+              "readiness_attempts": 1,
+              "exec_ms": 31.325959,
+              "completion_ms": 94.071833
+            }
+          },
+          {
+            "ready_gap_ms": 0.0925,
+            "agents": [
+              {
+                "first_exec_ms": 32.805083,
+                "configured_wait_ms": 150,
+                "release_ms": 34.444875,
+                "ready_lateness_ms": 4.33875,
+                "claim_ms": 79.74175,
+                "queue_ms": 24.495834,
+                "prepare_ms": 55.013124000000005,
+                "start_exec_ms": 27.584125,
+                "readiness_ms": 27.17775,
+                "readiness_exec_ms": 27.175917,
+                "readiness_attempts": 1,
+                "exec_ms": 28.786625,
+                "exec_server_ms": 28.685375,
+                "ready_to_completion_ms": 112.941584,
+                "first_batch_to_completion_ms": 262.941584,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.995916,
+                "configured_wait_ms": 150,
+                "release_ms": 34.488459,
+                "ready_lateness_ms": 2.043167,
+                "claim_ms": 56.915667,
+                "queue_ms": 0.0,
+                "prepare_ms": 56.75925,
+                "start_exec_ms": 25.568167,
+                "readiness_ms": 31.072292,
+                "readiness_exec_ms": 31.070792,
+                "readiness_attempts": 1,
+                "exec_ms": 26.626541,
+                "exec_server_ms": 26.49525,
+                "ready_to_completion_ms": 85.630417,
+                "first_batch_to_completion_ms": 235.630417,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 59.255917,
+              "queue_ms": 0.0,
+              "prepare_ms": 59.109541,
+              "start_exec_ms": 32.501833,
+              "readiness_ms": 26.501708,
+              "readiness_exec_ms": 26.500458,
+              "readiness_attempts": 1,
+              "exec_ms": 33.682292,
+              "completion_ms": 93.009958
+            }
+          },
+          {
+            "ready_gap_ms": 0.044667,
+            "agents": [
+              {
+                "first_exec_ms": 33.795084,
+                "configured_wait_ms": 150,
+                "release_ms": 31.459833,
+                "ready_lateness_ms": 4.08875,
+                "claim_ms": 105.276208,
+                "queue_ms": 50.569292,
+                "prepare_ms": 54.494458,
+                "start_exec_ms": 27.589958,
+                "readiness_ms": 25.715834,
+                "readiness_exec_ms": 25.714584,
+                "readiness_attempts": 1,
+                "exec_ms": 25.468875,
+                "exec_server_ms": 25.395708,
+                "ready_to_completion_ms": 134.851083,
+                "first_batch_to_completion_ms": 284.851083,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.31525,
+                "configured_wait_ms": 150,
+                "release_ms": 31.404083,
+                "ready_lateness_ms": 4.07275,
+                "claim_ms": 64.448375,
+                "queue_ms": 0.0,
+                "prepare_ms": 64.278458,
+                "start_exec_ms": 34.177583,
+                "readiness_ms": 29.907125,
+                "readiness_exec_ms": 29.90475,
+                "readiness_attempts": 1,
+                "exec_ms": 26.748792,
+                "exec_server_ms": 26.63975,
+                "ready_to_completion_ms": 95.296958,
+                "first_batch_to_completion_ms": 245.296958,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 64.076583,
+              "queue_ms": 0.0,
+              "prepare_ms": 63.90425,
+              "start_exec_ms": 34.353667,
+              "readiness_ms": 29.422666,
+              "readiness_exec_ms": 29.421,
+              "readiness_attempts": 1,
+              "exec_ms": 30.52825,
+              "completion_ms": 94.70825
+            }
+          },
+          {
+            "ready_gap_ms": 1.070916,
+            "agents": [
+              {
+                "first_exec_ms": 29.990834,
+                "configured_wait_ms": 150,
+                "release_ms": 31.39125,
+                "ready_lateness_ms": 1.559166,
+                "claim_ms": 81.328916,
+                "queue_ms": 27.535791,
+                "prepare_ms": 53.609668,
+                "start_exec_ms": 25.74125,
+                "readiness_ms": 27.519042,
+                "readiness_exec_ms": 27.516334,
+                "readiness_attempts": 1,
+                "exec_ms": 33.051291,
+                "exec_server_ms": 32.991166,
+                "ready_to_completion_ms": 115.974125,
+                "first_batch_to_completion_ms": 265.974125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.405916,
+                "configured_wait_ms": 150,
+                "release_ms": 32.209,
+                "ready_lateness_ms": 0.538959,
+                "claim_ms": 55.160375,
+                "queue_ms": 0.0,
+                "prepare_ms": 54.922334,
+                "start_exec_ms": 25.848208,
+                "readiness_ms": 28.951083,
+                "readiness_exec_ms": 28.94925,
+                "readiness_attempts": 1,
+                "exec_ms": 28.202084,
+                "exec_server_ms": 28.019167,
+                "ready_to_completion_ms": 83.930334,
+                "first_batch_to_completion_ms": 233.930334,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 62.4335,
+              "queue_ms": 0.0,
+              "prepare_ms": 62.299333,
+              "start_exec_ms": 31.579083,
+              "readiness_ms": 30.639209,
+              "readiness_exec_ms": 30.63775,
+              "readiness_attempts": 1,
+              "exec_ms": 29.342875,
+              "completion_ms": 91.8285
+            }
+          },
+          {
+            "ready_gap_ms": 0.076917,
+            "agents": [
+              {
+                "first_exec_ms": 29.577,
+                "configured_wait_ms": 150,
+                "release_ms": 29.685125,
+                "ready_lateness_ms": 3.28575,
+                "claim_ms": 81.677875,
+                "queue_ms": 30.720583,
+                "prepare_ms": 50.78908299999999,
+                "start_exec_ms": 24.119917,
+                "readiness_ms": 26.429791,
+                "readiness_exec_ms": 26.427666,
+                "readiness_attempts": 1,
+                "exec_ms": 30.057208,
+                "exec_server_ms": 29.998333,
+                "ready_to_completion_ms": 115.085625,
+                "first_batch_to_completion_ms": 265.085625,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 29.533917,
+                "configured_wait_ms": 150,
+                "release_ms": 27.776792,
+                "ready_lateness_ms": 1.062334,
+                "claim_ms": 58.901083,
+                "queue_ms": 0.0,
+                "prepare_ms": 58.61025,
+                "start_exec_ms": 31.466417,
+                "readiness_ms": 26.942958,
+                "readiness_exec_ms": 26.939583,
+                "readiness_attempts": 1,
+                "exec_ms": 26.338834,
+                "exec_server_ms": 26.195958,
+                "ready_to_completion_ms": 86.3595,
+                "first_batch_to_completion_ms": 236.3595,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 63.833458,
+              "queue_ms": 0.0,
+              "prepare_ms": 63.694125,
+              "start_exec_ms": 31.957416,
+              "readiness_ms": 31.653292,
+              "readiness_exec_ms": 31.652,
+              "readiness_attempts": 1,
+              "exec_ms": 30.900583,
+              "completion_ms": 94.798416
+            }
+          },
+          {
+            "ready_gap_ms": 1.80975,
+            "agents": [
+              {
+                "first_exec_ms": 29.457625,
+                "configured_wait_ms": 150,
+                "release_ms": 27.501542,
+                "ready_lateness_ms": 1.550667,
+                "claim_ms": 57.743666,
+                "queue_ms": 0.0,
+                "prepare_ms": 57.556666,
+                "start_exec_ms": 28.879792,
+                "readiness_ms": 28.54525,
+                "readiness_exec_ms": 28.543334,
+                "readiness_attempts": 1,
+                "exec_ms": 30.724458,
+                "exec_server_ms": 30.541667,
+                "ready_to_completion_ms": 90.076833,
+                "first_batch_to_completion_ms": 240.076833,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 26.276041,
+                "configured_wait_ms": 150,
+                "release_ms": 27.529833,
+                "ready_lateness_ms": 5.0205,
+                "claim_ms": 117.815166,
+                "queue_ms": 54.012792,
+                "prepare_ms": 63.460708000000004,
+                "start_exec_ms": 30.676875,
+                "readiness_ms": 32.445708,
+                "readiness_exec_ms": 32.442542,
+                "readiness_attempts": 1,
+                "exec_ms": 27.496959,
+                "exec_server_ms": 27.410084,
+                "ready_to_completion_ms": 150.371958,
+                "first_batch_to_completion_ms": 300.371958,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 65.561125,
+              "queue_ms": 0.0,
+              "prepare_ms": 65.416166,
+              "start_exec_ms": 32.903583,
+              "readiness_ms": 32.417959,
+              "readiness_exec_ms": 32.416375,
+              "readiness_attempts": 1,
+              "exec_ms": 34.594792,
+              "completion_ms": 100.232875
+            }
+          }
+        ]
+      },
+      "summary": {
+        "session": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 30.033729,
+              "p95": 35.095083
+            },
+            "configured_wait_ms": {
+              "p50": 150.0,
+              "p95": 150
+            },
+            "release_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "ready_lateness_ms": {
+              "p50": 4.917625,
+              "p95": 6.579166
+            },
+            "claim_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "prepare_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "start_exec_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "readiness_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "readiness_exec_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "readiness_attempts": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "exec_ms": {
+              "p50": 56.754833500000004,
+              "p95": 65.237958
+            },
+            "exec_server_ms": {
+              "p50": 56.4180205,
+              "p95": 64.748167
+            },
+            "ready_to_completion_ms": {
+              "p50": 61.528104,
+              "p95": 70.313625
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 211.52810399999998,
+              "p95": 220.313625
+            },
+            "changed_worker": 0
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 269.227583,
+              "p95": 307.671458
+            },
+            "queue_ms": {
+              "p50": 201.5728335,
+              "p95": 214.278084
+            },
+            "prepare_ms": {
+              "p50": 67.75750049999999,
+              "p95": 93.247041
+            },
+            "start_exec_ms": {
+              "p50": 34.614,
+              "p95": 41.4765
+            },
+            "readiness_ms": {
+              "p50": 32.8917705,
+              "p95": 52.490542
+            },
+            "readiness_exec_ms": {
+              "p50": 32.890311999999994,
+              "p95": 52.488917
+            },
+            "readiness_attempts": {
+              "p50": 1.0,
+              "p95": 1
+            },
+            "exec_ms": {
+              "p50": 33.456958,
+              "p95": 36.545084
+            },
+            "completion_ms": {
+              "p50": 299.0426665,
+              "p95": 343.715875
+            }
+          }
+        },
+        "batch": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 29.783917000000002,
+              "p95": 50.238541
+            },
+            "configured_wait_ms": {
+              "p50": 150.0,
+              "p95": 150
+            },
+            "release_ms": {
+              "p50": 29.655396,
+              "p95": 47.167667
+            },
+            "ready_lateness_ms": {
+              "p50": 2.294604,
+              "p95": 5.0205
+            },
+            "claim_ms": {
+              "p50": 66.411396,
+              "p95": 105.276208
+            },
+            "queue_ms": {
+              "p50": 7.3484585,
+              "p95": 50.569292
+            },
+            "prepare_ms": {
+              "p50": 56.166875000000005,
+              "p95": 69.749583
+            },
+            "start_exec_ms": {
+              "p50": 27.2472085,
+              "p95": 32.966542
+            },
+            "readiness_ms": {
+              "p50": 28.032145999999997,
+              "p95": 37.380583
+            },
+            "readiness_exec_ms": {
+              "p50": 28.029834,
+              "p95": 37.378625
+            },
+            "readiness_attempts": {
+              "p50": 1.0,
+              "p95": 1
+            },
+            "exec_ms": {
+              "p50": 28.823875,
+              "p95": 61.076083
+            },
+            "exec_server_ms": {
+              "p50": 28.7128125,
+              "p95": 60.919792
+            },
+            "ready_to_completion_ms": {
+              "p50": 101.0551255,
+              "p95": 154.219208
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 251.0551255,
+              "p95": 304.219208
+            },
+            "changed_worker": 8
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 62.6568545,
+              "p95": 79.895792
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 62.518917,
+              "p95": 79.69725
+            },
+            "start_exec_ms": {
+              "p50": 31.7682495,
+              "p95": 51.649875
+            },
+            "readiness_ms": {
+              "p50": 30.0309375,
+              "p95": 40.037125
+            },
+            "readiness_exec_ms": {
+              "p50": 30.029375,
+              "p95": 40.033459
+            },
+            "readiness_attempts": {
+              "p50": 1.0,
+              "p95": 1
+            },
+            "exec_ms": {
+              "p50": 30.7144165,
+              "p95": 34.8775
+            },
+            "completion_ms": {
+              "p50": 94.3900415,
+              "p95": 105.720542
+            }
+          }
+        }
+      }
+    },
+    {
+      "wait_ms": 830,
+      "stagger_ms": 0,
+      "samples": {
+        "session": [
+          {
+            "ready_gap_ms": 0.530917,
+            "agents": [
+              {
+                "first_exec_ms": 28.754875,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.012875,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 52.337792,
+                "exec_server_ms": 52.184834,
+                "ready_to_completion_ms": 57.367292,
+                "first_batch_to_completion_ms": 887.367292,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.2465,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.537083,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 52.341375,
+                "exec_server_ms": 51.181583,
+                "ready_to_completion_ms": 57.910875,
+                "first_batch_to_completion_ms": 887.910875,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 974.264042,
+              "queue_ms": 895.585542,
+              "prepare_ms": 78.46841599999993,
+              "start_exec_ms": 36.423458,
+              "readiness_ms": 41.587834,
+              "readiness_exec_ms": 41.585,
+              "readiness_attempts": 1,
+              "exec_ms": 38.183334,
+              "completion_ms": 1012.574792
+            }
+          },
+          {
+            "ready_gap_ms": 0.064542,
+            "agents": [
+              {
+                "first_exec_ms": 28.505,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.038583,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 97.719208,
+                "exec_server_ms": 97.059959,
+                "ready_to_completion_ms": 102.815167,
+                "first_batch_to_completion_ms": 932.815167,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 28.719667,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.13425,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 95.582041,
+                "exec_server_ms": 95.269667,
+                "ready_to_completion_ms": 100.733083,
+                "first_batch_to_completion_ms": 930.733083,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 1023.721458,
+              "queue_ms": 939.092125,
+              "prepare_ms": 84.45116599999994,
+              "start_exec_ms": 40.528792,
+              "readiness_ms": 42.747333,
+              "readiness_exec_ms": 42.744041,
+              "readiness_attempts": 1,
+              "exec_ms": 38.402708,
+              "completion_ms": 1062.260875
+            }
+          },
+          {
+            "ready_gap_ms": 0.039167,
+            "agents": [
+              {
+                "first_exec_ms": 34.933541,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.154792,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 70.580417,
+                "exec_server_ms": 70.242375,
+                "ready_to_completion_ms": 74.764417,
+                "first_batch_to_completion_ms": 904.764417,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 35.116416,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 8.347916,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 66.2595,
+                "exec_server_ms": 65.679917,
+                "ready_to_completion_ms": 74.691166,
+                "first_batch_to_completion_ms": 904.691166,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 970.028958,
+              "queue_ms": 897.802292,
+              "prepare_ms": 72.020083,
+              "start_exec_ms": 35.102125,
+              "readiness_ms": 35.841166,
+              "readiness_exec_ms": 35.8395,
+              "readiness_attempts": 1,
+              "exec_ms": 36.043375,
+              "completion_ms": 1006.200333
+            }
+          },
+          {
+            "ready_gap_ms": 0.051542,
+            "agents": [
+              {
+                "first_exec_ms": 33.698666,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.043708,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 66.376625,
+                "exec_server_ms": 65.89675,
+                "ready_to_completion_ms": 71.470875,
+                "first_batch_to_completion_ms": 901.470875,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.059042,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.177083,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 64.498167,
+                "exec_server_ms": 63.988,
+                "ready_to_completion_ms": 69.691291,
+                "first_batch_to_completion_ms": 899.691291,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 975.035041,
+              "queue_ms": 891.680459,
+              "prepare_ms": 83.17320699999993,
+              "start_exec_ms": 44.795833,
+              "readiness_ms": 37.547875,
+              "readiness_exec_ms": 37.544458,
+              "readiness_attempts": 1,
+              "exec_ms": 33.978667,
+              "completion_ms": 1009.108458
+            }
+          },
+          {
+            "ready_gap_ms": 0.052833,
+            "agents": [
+              {
+                "first_exec_ms": 31.495375,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.184708,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 70.437042,
+                "exec_server_ms": 69.924708,
+                "ready_to_completion_ms": 75.636917,
+                "first_batch_to_completion_ms": 905.636917,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.383708,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.051,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 70.651042,
+                "exec_server_ms": 70.1945,
+                "ready_to_completion_ms": 75.742583,
+                "first_batch_to_completion_ms": 905.742583,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 980.159042,
+              "queue_ms": 892.373749,
+              "prepare_ms": 87.622751,
+              "start_exec_ms": 41.791917,
+              "readiness_ms": 44.79075,
+              "readiness_exec_ms": 44.789208,
+              "readiness_attempts": 1,
+              "exec_ms": 38.741917,
+              "completion_ms": 1018.997667
+            }
+          },
+          {
+            "ready_gap_ms": 0.053875,
+            "agents": [
+              {
+                "first_exec_ms": 34.462125,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.241792,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 66.815041,
+                "exec_server_ms": 66.431542,
+                "ready_to_completion_ms": 72.073125,
+                "first_batch_to_completion_ms": 902.073125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.835375,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.062792,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 67.189916,
+                "exec_server_ms": 66.507541,
+                "ready_to_completion_ms": 72.310667,
+                "first_batch_to_completion_ms": 902.310667,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 953.536458,
+              "queue_ms": 885.18325,
+              "prepare_ms": 68.18908299999998,
+              "start_exec_ms": 35.267792,
+              "readiness_ms": 31.837792,
+              "readiness_exec_ms": 31.834584,
+              "readiness_attempts": 1,
+              "exec_ms": 39.124042,
+              "completion_ms": 992.753708
+            }
+          },
+          {
+            "ready_gap_ms": 0.046583,
+            "agents": [
+              {
+                "first_exec_ms": 29.233791,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.000292,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 62.2985,
+                "exec_server_ms": 61.613667,
+                "ready_to_completion_ms": 67.347292,
+                "first_batch_to_completion_ms": 897.347292,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 27.750375,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.220833,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 62.339708,
+                "exec_server_ms": 62.065916,
+                "ready_to_completion_ms": 67.569792,
+                "first_batch_to_completion_ms": 897.569792,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 956.000917,
+              "queue_ms": 882.106958,
+              "prepare_ms": 73.70600100000001,
+              "start_exec_ms": 36.118708,
+              "readiness_ms": 36.69575,
+              "readiness_exec_ms": 36.693792,
+              "readiness_attempts": 1,
+              "exec_ms": 38.969375,
+              "completion_ms": 995.045666
+            }
+          },
+          {
+            "ready_gap_ms": 0.778459,
+            "agents": [
+              {
+                "first_exec_ms": 51.336958,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 7.456083,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 60.422,
+                "exec_server_ms": 59.772792,
+                "ready_to_completion_ms": 67.948583,
+                "first_batch_to_completion_ms": 897.948583,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 52.178875,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.058042,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 63.824166,
+                "exec_server_ms": 63.510042,
+                "ready_to_completion_ms": 68.936542,
+                "first_batch_to_completion_ms": 898.936542,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 960.017292,
+              "queue_ms": 888.469293,
+              "prepare_ms": 71.34658200000001,
+              "start_exec_ms": 36.4145,
+              "readiness_ms": 33.992875,
+              "readiness_exec_ms": 33.990792,
+              "readiness_attempts": 1,
+              "exec_ms": 39.908375,
+              "completion_ms": 1000.06525
+            }
+          },
+          {
+            "ready_gap_ms": 0.876791,
+            "agents": [
+              {
+                "first_exec_ms": 33.397042,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.047166,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 70.795542,
+                "exec_server_ms": 70.08225,
+                "ready_to_completion_ms": 75.891041,
+                "first_batch_to_completion_ms": 905.891041,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.704834,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.33875,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 70.894791,
+                "exec_server_ms": 70.666417,
+                "ready_to_completion_ms": 75.243417,
+                "first_batch_to_completion_ms": 905.243417,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 982.499708,
+              "queue_ms": 898.27004,
+              "prepare_ms": 84.03308500000003,
+              "start_exec_ms": 41.48525,
+              "readiness_ms": 41.709875,
+              "readiness_exec_ms": 41.707875,
+              "readiness_attempts": 1,
+              "exec_ms": 44.601417,
+              "completion_ms": 1027.215375
+            }
+          },
+          {
+            "ready_gap_ms": 0.966375,
+            "agents": [
+              {
+                "first_exec_ms": 34.860208,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.052667,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 70.533708,
+                "exec_server_ms": 70.115084,
+                "ready_to_completion_ms": 75.634417,
+                "first_batch_to_completion_ms": 905.634417,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 35.593583,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 8.455167,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 66.379666,
+                "exec_server_ms": 65.750667,
+                "ready_to_completion_ms": 74.902667,
+                "first_batch_to_completion_ms": 904.902667,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 971.30875,
+              "queue_ms": 893.151124,
+              "prepare_ms": 78.00466700000004,
+              "start_exec_ms": 41.37875,
+              "readiness_ms": 35.544416,
+              "readiness_exec_ms": 35.54175,
+              "readiness_attempts": 1,
+              "exec_ms": 34.253417,
+              "completion_ms": 1005.647875
+            }
+          },
+          {
+            "ready_gap_ms": 0.19825,
+            "agents": [
+              {
+                "first_exec_ms": 29.6245,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.049166,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 62.604792,
+                "exec_server_ms": 62.205584,
+                "ready_to_completion_ms": 67.708583,
+                "first_batch_to_completion_ms": 897.708583,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.11275,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.024583,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 65.064458,
+                "exec_server_ms": 64.637458,
+                "ready_to_completion_ms": 70.104458,
+                "first_batch_to_completion_ms": 900.104458,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 963.921875,
+              "queue_ms": 889.083292,
+              "prepare_ms": 74.66770799999995,
+              "start_exec_ms": 38.80875,
+              "readiness_ms": 34.732583,
+              "readiness_exec_ms": 34.727458,
+              "readiness_attempts": 1,
+              "exec_ms": 38.452375,
+              "completion_ms": 1002.485667
+            }
+          },
+          {
+            "ready_gap_ms": 0.074958,
+            "agents": [
+              {
+                "first_exec_ms": 25.107083,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.119292,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 68.864042,
+                "exec_server_ms": 68.599625,
+                "ready_to_completion_ms": 74.002958,
+                "first_batch_to_completion_ms": 904.002958,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 26.183416,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.045291,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 67.263542,
+                "exec_server_ms": 66.762708,
+                "ready_to_completion_ms": 72.358083,
+                "first_batch_to_completion_ms": 902.358083,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 958.224625,
+              "queue_ms": 889.716958,
+              "prepare_ms": 68.08529199999998,
+              "start_exec_ms": 31.877542,
+              "readiness_ms": 35.563291,
+              "readiness_exec_ms": 35.561291,
+              "readiness_attempts": 1,
+              "exec_ms": 31.983625,
+              "completion_ms": 990.326417
+            }
+          }
+        ],
+        "batch": [
+          {
+            "ready_gap_ms": 0.0375,
+            "agents": [
+              {
+                "first_exec_ms": 30.266583,
+                "configured_wait_ms": 830,
+                "release_ms": 33.942084,
+                "ready_lateness_ms": 5.043292,
+                "claim_ms": 75.244667,
+                "queue_ms": 0.0,
+                "prepare_ms": 75.029625,
+                "start_exec_ms": 43.776042,
+                "readiness_ms": 31.1005,
+                "readiness_exec_ms": 31.09925,
+                "readiness_attempts": 1,
+                "exec_ms": 30.785291,
+                "exec_server_ms": 30.714375,
+                "ready_to_completion_ms": 111.085375,
+                "first_batch_to_completion_ms": 941.085375,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.378375,
+                "configured_wait_ms": 830,
+                "release_ms": 33.901958,
+                "ready_lateness_ms": 5.025708,
+                "claim_ms": 77.552583,
+                "queue_ms": 0.0,
+                "prepare_ms": 77.398,
+                "start_exec_ms": 42.299459,
+                "readiness_ms": 34.939458,
+                "readiness_exec_ms": 34.937,
+                "readiness_attempts": 1,
+                "exec_ms": 28.350292,
+                "exec_server_ms": 28.230166,
+                "ready_to_completion_ms": 110.959958,
+                "first_batch_to_completion_ms": 940.959958,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 79.538875,
+              "queue_ms": 0.0,
+              "prepare_ms": 79.358375,
+              "start_exec_ms": 46.956167,
+              "readiness_ms": 32.3145,
+              "readiness_exec_ms": 32.3125,
+              "readiness_attempts": 1,
+              "exec_ms": 25.814333,
+              "completion_ms": 105.423417
+            }
+          },
+          {
+            "ready_gap_ms": 0.071958,
+            "agents": [
+              {
+                "first_exec_ms": 31.577125,
+                "configured_wait_ms": 830,
+                "release_ms": 30.451125,
+                "ready_lateness_ms": 5.039375,
+                "claim_ms": 98.682125,
+                "queue_ms": 0.0,
+                "prepare_ms": 98.325417,
+                "start_exec_ms": 49.336666,
+                "readiness_ms": 48.873917,
+                "readiness_exec_ms": 48.871708,
+                "readiness_attempts": 1,
+                "exec_ms": 29.95725,
+                "exec_server_ms": 29.818334,
+                "ready_to_completion_ms": 133.722417,
+                "first_batch_to_completion_ms": 963.722417,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.458583,
+                "configured_wait_ms": 830,
+                "release_ms": 30.367292,
+                "ready_lateness_ms": 5.025708,
+                "claim_ms": 96.239417,
+                "queue_ms": 0.0,
+                "prepare_ms": 95.958416,
+                "start_exec_ms": 49.353875,
+                "readiness_ms": 44.377667,
+                "readiness_exec_ms": 44.373959,
+                "readiness_attempts": 1,
+                "exec_ms": 32.630208,
+                "exec_server_ms": 32.486208,
+                "ready_to_completion_ms": 133.93475,
+                "first_batch_to_completion_ms": 963.93475,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 68.314125,
+              "queue_ms": 0.0,
+              "prepare_ms": 68.167208,
+              "start_exec_ms": 38.480375,
+              "readiness_ms": 29.569083,
+              "readiness_exec_ms": 29.567666,
+              "readiness_attempts": 1,
+              "exec_ms": 29.134291,
+              "completion_ms": 97.519458
+            }
+          },
+          {
+            "ready_gap_ms": 2.709125,
+            "agents": [
+              {
+                "first_exec_ms": 31.396959,
+                "configured_wait_ms": 830,
+                "release_ms": 30.034166,
+                "ready_lateness_ms": 5.066,
+                "claim_ms": 107.063375,
+                "queue_ms": 0.0,
+                "prepare_ms": 106.602125,
+                "start_exec_ms": 60.55375,
+                "readiness_ms": 45.555708,
+                "readiness_exec_ms": 45.553333,
+                "readiness_attempts": 1,
+                "exec_ms": 47.479458,
+                "exec_server_ms": 45.9195,
+                "ready_to_completion_ms": 159.7095,
+                "first_batch_to_completion_ms": 989.7095,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 34.042,
+                "configured_wait_ms": 830,
+                "release_ms": 30.101542,
+                "ready_lateness_ms": 2.572917,
+                "claim_ms": 109.478583,
+                "queue_ms": 0.0,
+                "prepare_ms": 108.854959,
+                "start_exec_ms": 62.332083,
+                "readiness_ms": 46.05825,
+                "readiness_exec_ms": 46.056708,
+                "readiness_attempts": 1,
+                "exec_ms": 43.362583,
+                "exec_server_ms": 43.194042,
+                "ready_to_completion_ms": 155.457625,
+                "first_batch_to_completion_ms": 985.457625,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 61.058,
+              "queue_ms": 0.0,
+              "prepare_ms": 60.905875,
+              "start_exec_ms": 33.823333,
+              "readiness_ms": 26.977208,
+              "readiness_exec_ms": 26.975708,
+              "readiness_attempts": 1,
+              "exec_ms": 30.610333,
+              "completion_ms": 91.742584
+            }
+          },
+          {
+            "ready_gap_ms": 0.034041,
+            "agents": [
+              {
+                "first_exec_ms": 27.355417,
+                "configured_wait_ms": 830,
+                "release_ms": 27.615541,
+                "ready_lateness_ms": 5.25775,
+                "claim_ms": 113.409875,
+                "queue_ms": 0.0,
+                "prepare_ms": 113.097833,
+                "start_exec_ms": 63.415709,
+                "readiness_ms": 48.723666,
+                "readiness_exec_ms": 48.722125,
+                "readiness_attempts": 1,
+                "exec_ms": 43.88725,
+                "exec_server_ms": 42.386584,
+                "ready_to_completion_ms": 162.594167,
+                "first_batch_to_completion_ms": 992.594167,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 29.324209,
+                "configured_wait_ms": 830,
+                "release_ms": 27.573875,
+                "ready_lateness_ms": 5.0725,
+                "claim_ms": 113.734834,
+                "queue_ms": 0.0,
+                "prepare_ms": 113.081583,
+                "start_exec_ms": 62.031708,
+                "readiness_ms": 50.652208,
+                "readiness_exec_ms": 50.649416,
+                "readiness_attempts": 1,
+                "exec_ms": 42.131084,
+                "exec_server_ms": 41.960708,
+                "ready_to_completion_ms": 161.016791,
+                "first_batch_to_completion_ms": 991.016791,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 64.045209,
+              "queue_ms": 0.0,
+              "prepare_ms": 63.900875,
+              "start_exec_ms": 33.397042,
+              "readiness_ms": 30.385042,
+              "readiness_exec_ms": 30.383375,
+              "readiness_attempts": 1,
+              "exec_ms": 29.80325,
+              "completion_ms": 93.93875
+            }
+          },
+          {
+            "ready_gap_ms": 1.361958,
+            "agents": [
+              {
+                "first_exec_ms": 34.761875,
+                "configured_wait_ms": 830,
+                "release_ms": 30.788292,
+                "ready_lateness_ms": 7.480292,
+                "claim_ms": 106.274917,
+                "queue_ms": 0.0,
+                "prepare_ms": 105.673875,
+                "start_exec_ms": 57.838292,
+                "readiness_ms": 47.322917,
+                "readiness_exec_ms": 47.321292,
+                "readiness_attempts": 1,
+                "exec_ms": 42.31875,
+                "exec_server_ms": 42.155375,
+                "ready_to_completion_ms": 156.174708,
+                "first_batch_to_completion_ms": 986.174708,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 33.447959,
+                "configured_wait_ms": 830,
+                "release_ms": 30.673333,
+                "ready_lateness_ms": 5.087583,
+                "claim_ms": 109.88175,
+                "queue_ms": 0.0,
+                "prepare_ms": 109.499375,
+                "start_exec_ms": 61.92125,
+                "readiness_ms": 47.203583,
+                "readiness_exec_ms": 47.201458,
+                "readiness_attempts": 1,
+                "exec_ms": 44.300083,
+                "exec_server_ms": 44.058917,
+                "ready_to_completion_ms": 159.35175,
+                "first_batch_to_completion_ms": 989.35175,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 57.7535,
+              "queue_ms": 0.0,
+              "prepare_ms": 57.605417,
+              "start_exec_ms": 28.039208,
+              "readiness_ms": 29.446208,
+              "readiness_exec_ms": 29.444041,
+              "readiness_attempts": 1,
+              "exec_ms": 28.396,
+              "completion_ms": 86.2465
+            }
+          },
+          {
+            "ready_gap_ms": 0.265458,
+            "agents": [
+              {
+                "first_exec_ms": 31.938333,
+                "configured_wait_ms": 830,
+                "release_ms": 31.284791,
+                "ready_lateness_ms": 5.081458,
+                "claim_ms": 106.750333,
+                "queue_ms": 0.0,
+                "prepare_ms": 106.369708,
+                "start_exec_ms": 61.484333,
+                "readiness_ms": 44.203417,
+                "readiness_exec_ms": 44.199959,
+                "readiness_attempts": 1,
+                "exec_ms": 41.181583,
+                "exec_server_ms": 40.967334,
+                "ready_to_completion_ms": 153.095458,
+                "first_batch_to_completion_ms": 983.095458,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 33.646083,
+                "configured_wait_ms": 830,
+                "release_ms": 31.674583,
+                "ready_lateness_ms": 5.29625,
+                "claim_ms": 108.713,
+                "queue_ms": 0.0,
+                "prepare_ms": 108.413791,
+                "start_exec_ms": 59.446,
+                "readiness_ms": 44.833083,
+                "readiness_exec_ms": 44.831917,
+                "readiness_attempts": 1,
+                "exec_ms": 38.914666,
+                "exec_server_ms": 38.678958,
+                "ready_to_completion_ms": 152.941709,
+                "first_batch_to_completion_ms": 982.941709,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 63.040042,
+              "queue_ms": 0.0,
+              "prepare_ms": 62.894167,
+              "start_exec_ms": 28.876917,
+              "readiness_ms": 33.90475,
+              "readiness_exec_ms": 33.901875,
+              "readiness_attempts": 1,
+              "exec_ms": 31.682542,
+              "completion_ms": 94.808958
+            }
+          },
+          {
+            "ready_gap_ms": 0.077208,
+            "agents": [
+              {
+                "first_exec_ms": 32.932084,
+                "configured_wait_ms": 830,
+                "release_ms": 36.4615,
+                "ready_lateness_ms": 5.212209,
+                "claim_ms": 105.35,
+                "queue_ms": 0.0,
+                "prepare_ms": 105.018542,
+                "start_exec_ms": 60.084833,
+                "readiness_ms": 43.895584,
+                "readiness_exec_ms": 43.894292,
+                "readiness_attempts": 1,
+                "exec_ms": 42.591084,
+                "exec_server_ms": 42.391375,
+                "ready_to_completion_ms": 153.188959,
+                "first_batch_to_completion_ms": 983.188959,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.799708,
+                "configured_wait_ms": 830,
+                "release_ms": 36.660167,
+                "ready_lateness_ms": 5.064417,
+                "claim_ms": 103.922208,
+                "queue_ms": 0.0,
+                "prepare_ms": 103.196166,
+                "start_exec_ms": 60.350875,
+                "readiness_ms": 42.4195,
+                "readiness_exec_ms": 42.416584,
+                "readiness_attempts": 1,
+                "exec_ms": 44.243166,
+                "exec_server_ms": 44.079541,
+                "ready_to_completion_ms": 153.306792,
+                "first_batch_to_completion_ms": 983.306792,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 54.263,
+              "queue_ms": 0.0,
+              "prepare_ms": 54.129292,
+              "start_exec_ms": 27.532292,
+              "readiness_ms": 26.483083,
+              "readiness_exec_ms": 26.48125,
+              "readiness_attempts": 1,
+              "exec_ms": 24.73675,
+              "completion_ms": 79.073375
+            }
+          },
+          {
+            "ready_gap_ms": 0.049916,
+            "agents": [
+              {
+                "first_exec_ms": 32.593916,
+                "configured_wait_ms": 830,
+                "release_ms": 55.099,
+                "ready_lateness_ms": 5.256084,
+                "claim_ms": 110.937792,
+                "queue_ms": 0.0,
+                "prepare_ms": 110.48475,
+                "start_exec_ms": 64.893458,
+                "readiness_ms": 45.335084,
+                "readiness_exec_ms": 45.333917,
+                "readiness_attempts": 1,
+                "exec_ms": 37.048625,
+                "exec_server_ms": 36.868291,
+                "ready_to_completion_ms": 153.271584,
+                "first_batch_to_completion_ms": 983.271584,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.645125,
+                "configured_wait_ms": 830,
+                "release_ms": 32.881375,
+                "ready_lateness_ms": 5.090666,
+                "claim_ms": 112.875459,
+                "queue_ms": 0.0,
+                "prepare_ms": 112.433334,
+                "start_exec_ms": 60.841125,
+                "readiness_ms": 47.216125,
+                "readiness_exec_ms": 47.213625,
+                "readiness_attempts": 1,
+                "exec_ms": 37.198583,
+                "exec_server_ms": 37.01175,
+                "ready_to_completion_ms": 155.275666,
+                "first_batch_to_completion_ms": 985.275666,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 52.864,
+              "queue_ms": 0.0,
+              "prepare_ms": 52.719,
+              "start_exec_ms": 26.738708,
+              "readiness_ms": 25.846709,
+              "readiness_exec_ms": 25.845542,
+              "readiness_attempts": 1,
+              "exec_ms": 29.849042,
+              "completion_ms": 82.775292
+            }
+          },
+          {
+            "ready_gap_ms": 0.075083,
+            "agents": [
+              {
+                "first_exec_ms": 33.347542,
+                "configured_wait_ms": 830,
+                "release_ms": 35.077542,
+                "ready_lateness_ms": 5.070417,
+                "claim_ms": 111.775166,
+                "queue_ms": 0.0,
+                "prepare_ms": 111.304,
+                "start_exec_ms": 63.537709,
+                "readiness_ms": 43.587416,
+                "readiness_exec_ms": 43.5855,
+                "readiness_attempts": 1,
+                "exec_ms": 43.81625,
+                "exec_server_ms": 43.66325,
+                "ready_to_completion_ms": 160.740667,
+                "first_batch_to_completion_ms": 990.740667,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.79,
+                "configured_wait_ms": 830,
+                "release_ms": 35.701709,
+                "ready_lateness_ms": 5.194209,
+                "claim_ms": 111.750292,
+                "queue_ms": 0.0,
+                "prepare_ms": 111.181208,
+                "start_exec_ms": 65.22925,
+                "readiness_ms": 45.570208,
+                "readiness_exec_ms": 45.567917,
+                "readiness_attempts": 1,
+                "exec_ms": 43.550875,
+                "exec_server_ms": 43.381708,
+                "ready_to_completion_ms": 160.516,
+                "first_batch_to_completion_ms": 990.516,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 61.68925,
+              "queue_ms": 0.0,
+              "prepare_ms": 61.53775,
+              "start_exec_ms": 33.220417,
+              "readiness_ms": 28.199917,
+              "readiness_exec_ms": 28.198125,
+              "readiness_attempts": 1,
+              "exec_ms": 31.886333,
+              "completion_ms": 93.661125
+            }
+          },
+          {
+            "ready_gap_ms": 0.081958,
+            "agents": [
+              {
+                "first_exec_ms": 38.28625,
+                "configured_wait_ms": 830,
+                "release_ms": 37.073083,
+                "ready_lateness_ms": 5.080458,
+                "claim_ms": 110.397167,
+                "queue_ms": 0.0,
+                "prepare_ms": 109.948959,
+                "start_exec_ms": 59.159542,
+                "readiness_ms": 45.38625,
+                "readiness_exec_ms": 45.384042,
+                "readiness_attempts": 1,
+                "exec_ms": 39.296083,
+                "exec_server_ms": 39.098583,
+                "ready_to_completion_ms": 154.854667,
+                "first_batch_to_completion_ms": 984.854667,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 38.332875,
+                "configured_wait_ms": 830,
+                "release_ms": 37.067084,
+                "ready_lateness_ms": 5.2075,
+                "claim_ms": 111.510834,
+                "queue_ms": 0.0,
+                "prepare_ms": 109.965208,
+                "start_exec_ms": 65.754708,
+                "readiness_ms": 43.795583,
+                "readiness_exec_ms": 43.79425,
+                "readiness_attempts": 1,
+                "exec_ms": 36.44175,
+                "exec_server_ms": 36.2235,
+                "ready_to_completion_ms": 153.196,
+                "first_batch_to_completion_ms": 983.196,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 67.271708,
+              "queue_ms": 0.0,
+              "prepare_ms": 67.109959,
+              "start_exec_ms": 33.851959,
+              "readiness_ms": 33.149791,
+              "readiness_exec_ms": 33.147916,
+              "readiness_attempts": 1,
+              "exec_ms": 28.878708,
+              "completion_ms": 96.217708
+            }
+          },
+          {
+            "ready_gap_ms": 0.049625,
+            "agents": [
+              {
+                "first_exec_ms": 28.834834,
+                "configured_wait_ms": 830,
+                "release_ms": 30.95,
+                "ready_lateness_ms": 5.242583,
+                "claim_ms": 102.577917,
+                "queue_ms": 0.0,
+                "prepare_ms": 102.042875,
+                "start_exec_ms": 56.848541,
+                "readiness_ms": 44.477709,
+                "readiness_exec_ms": 44.476209,
+                "readiness_attempts": 1,
+                "exec_ms": 37.327375,
+                "exec_server_ms": 37.111375,
+                "ready_to_completion_ms": 145.166833,
+                "first_batch_to_completion_ms": 975.166833,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 28.879125,
+                "configured_wait_ms": 830,
+                "release_ms": 30.970917,
+                "ready_lateness_ms": 5.080416,
+                "claim_ms": 102.671041,
+                "queue_ms": 0.0,
+                "prepare_ms": 102.190584,
+                "start_exec_ms": 58.500541,
+                "readiness_ms": 43.050042,
+                "readiness_exec_ms": 43.048958,
+                "readiness_attempts": 1,
+                "exec_ms": 37.543666,
+                "exec_server_ms": 37.34725,
+                "ready_to_completion_ms": 145.371708,
+                "first_batch_to_completion_ms": 975.371708,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 55.495125,
+              "queue_ms": 0.0,
+              "prepare_ms": 55.321084,
+              "start_exec_ms": 27.665959,
+              "readiness_ms": 27.51375,
+              "readiness_exec_ms": 27.512334,
+              "readiness_attempts": 1,
+              "exec_ms": 28.865917,
+              "completion_ms": 84.547667
+            }
+          },
+          {
+            "ready_gap_ms": 0.074542,
+            "agents": [
+              {
+                "first_exec_ms": 31.617041,
+                "configured_wait_ms": 830,
+                "release_ms": 32.0895,
+                "ready_lateness_ms": 5.234458,
+                "claim_ms": 105.942625,
+                "queue_ms": 0.0,
+                "prepare_ms": 105.565791,
+                "start_exec_ms": 58.458708,
+                "readiness_ms": 46.624709,
+                "readiness_exec_ms": 46.622459,
+                "readiness_attempts": 1,
+                "exec_ms": 45.028625,
+                "exec_server_ms": 44.811583,
+                "ready_to_completion_ms": 156.238333,
+                "first_batch_to_completion_ms": 986.238333,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 33.230292,
+                "configured_wait_ms": 830,
+                "release_ms": 30.507416,
+                "ready_lateness_ms": 4.98725,
+                "claim_ms": 106.140959,
+                "queue_ms": 0.0,
+                "prepare_ms": 105.6715,
+                "start_exec_ms": 60.161083,
+                "readiness_ms": 45.054667,
+                "readiness_exec_ms": 45.053292,
+                "readiness_attempts": 1,
+                "exec_ms": 43.401375,
+                "exec_server_ms": 43.196709,
+                "ready_to_completion_ms": 154.590958,
+                "first_batch_to_completion_ms": 984.590958,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 63.317042,
+              "queue_ms": 0.0,
+              "prepare_ms": 63.180208,
+              "start_exec_ms": 32.225291,
+              "readiness_ms": 30.846167,
+              "readiness_exec_ms": 30.844458,
+              "readiness_attempts": 1,
+              "exec_ms": 28.763083,
+              "completion_ms": 92.1875
+            }
+          }
+        ]
+      },
+      "summary": {
+        "session": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 31.7772085,
+              "p95": 51.336958
+            },
+            "configured_wait_ms": {
+              "p50": 830.0,
+              "p95": 830
+            },
+            "release_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "ready_lateness_ms": {
+              "p50": 5.0553545,
+              "p95": 8.347916
+            },
+            "claim_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "prepare_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "start_exec_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "readiness_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "readiness_exec_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "readiness_attempts": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "exec_ms": {
+              "p50": 66.5973535,
+              "p95": 95.582041
+            },
+            "exec_server_ms": {
+              "p50": 66.16414599999999,
+              "p95": 95.269667
+            },
+            "ready_to_completion_ms": {
+              "p50": 72.334375,
+              "p95": 100.733083
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 902.3343749999999,
+              "p95": 930.733083
+            },
+            "changed_worker": 0
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 970.668854,
+              "p95": 1023.721458
+            },
+            "queue_ms": {
+              "p50": 892.027104,
+              "p95": 939.092125
+            },
+            "prepare_ms": {
+              "p50": 76.3361875,
+              "p95": 87.622751
+            },
+            "start_exec_ms": {
+              "p50": 37.616104,
+              "p95": 44.795833
+            },
+            "readiness_ms": {
+              "p50": 36.268457999999995,
+              "p95": 44.79075
+            },
+            "readiness_exec_ms": {
+              "p50": 36.266646,
+              "p95": 44.789208
+            },
+            "readiness_attempts": {
+              "p50": 1.0,
+              "p95": 1
+            },
+            "exec_ms": {
+              "p50": 38.427541500000004,
+              "p95": 44.601417
+            },
+            "completion_ms": {
+              "p50": 1005.9241039999999,
+              "p95": 1062.260875
+            }
+          }
+        },
+        "batch": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 32.266124500000004,
+              "p95": 38.28625
+            },
+            "configured_wait_ms": {
+              "p50": 830.0,
+              "p95": 830
+            },
+            "release_ms": {
+              "p50": 31.479687,
+              "p95": 37.073083
+            },
+            "ready_lateness_ms": {
+              "p50": 5.080958,
+              "p95": 5.29625
+            },
+            "claim_ms": {
+              "p50": 106.906854,
+              "p95": 113.409875
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 106.4859165,
+              "p95": 113.081583
+            },
+            "start_exec_ms": {
+              "p50": 60.255978999999996,
+              "p95": 65.22925
+            },
+            "readiness_ms": {
+              "p50": 45.1948755,
+              "p95": 48.873917
+            },
+            "readiness_exec_ms": {
+              "p50": 45.1936045,
+              "p95": 48.871708
+            },
+            "readiness_attempts": {
+              "p50": 1.0,
+              "p95": 1
+            },
+            "exec_ms": {
+              "p50": 41.6563335,
+              "p95": 45.028625
+            },
+            "exec_server_ms": {
+              "p50": 41.464021,
+              "p95": 44.811583
+            },
+            "ready_to_completion_ms": {
+              "p50": 153.948875,
+              "p95": 161.016791
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 983.948875,
+              "p95": 991.016791
+            },
+            "changed_worker": 10
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 62.364646,
+              "p95": 79.538875
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 62.2159585,
+              "p95": 79.358375
+            },
+            "start_exec_ms": {
+              "p50": 32.722854,
+              "p95": 46.956167
+            },
+            "readiness_ms": {
+              "p50": 29.5076455,
+              "p95": 33.90475
+            },
+            "readiness_exec_ms": {
+              "p50": 29.5058535,
+              "p95": 33.901875
+            },
+            "readiness_attempts": {
+              "p50": 1.0,
+              "p95": 1
+            },
+            "exec_ms": {
+              "p50": 29.0064995,
+              "p95": 31.886333
+            },
+            "completion_ms": {
+              "p50": 92.9243125,
+              "p95": 105.423417
+            }
+          }
+        }
+      }
+    },
+    {
+      "wait_ms": 830,
+      "stagger_ms": 250,
+      "samples": {
+        "session": [
+          {
+            "ready_gap_ms": 249.359625,
+            "agents": [
+              {
+                "first_exec_ms": 34.39325,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.044375,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 65.830417,
+                "exec_server_ms": 65.535291,
+                "ready_to_completion_ms": 70.924917,
+                "first_batch_to_completion_ms": 900.924917,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 33.803334,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 2.61025,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 39.765125,
+                "exec_server_ms": 39.509042,
+                "ready_to_completion_ms": 42.405375,
+                "first_batch_to_completion_ms": 1122.405375,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 982.64225,
+              "queue_ms": 897.778292,
+              "prepare_ms": 84.70062500000006,
+              "start_exec_ms": 45.271583,
+              "readiness_ms": 38.220875,
+              "readiness_exec_ms": 38.218375,
+              "readiness_attempts": 1,
+              "exec_ms": 38.85475,
+              "completion_ms": 1021.631291
+            }
+          },
+          {
+            "ready_gap_ms": 250.02725,
+            "agents": [
+              {
+                "first_exec_ms": 31.353416,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.015375,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 119.189459,
+                "exec_server_ms": 118.92625,
+                "ready_to_completion_ms": 124.227541,
+                "first_batch_to_completion_ms": 954.227541,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 29.296708,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 0.063416,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 104.953708,
+                "exec_server_ms": 104.216917,
+                "ready_to_completion_ms": 105.045916,
+                "first_batch_to_completion_ms": 1185.045916,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 1252.497709,
+              "queue_ms": 1038.212836,
+              "prepare_ms": 214.09108100000003,
+              "start_exec_ms": 96.834917,
+              "readiness_ms": 116.023,
+              "readiness_exec_ms": 116.0205,
+              "readiness_attempts": 1,
+              "exec_ms": 124.903,
+              "completion_ms": 1377.542958
+            }
+          },
+          {
+            "ready_gap_ms": 250.052542,
+            "agents": [
+              {
+                "first_exec_ms": 32.821292,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.053625,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 67.827625,
+                "exec_server_ms": 67.537125,
+                "ready_to_completion_ms": 72.924542,
+                "first_batch_to_completion_ms": 902.924542,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.754958,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 2.188291,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 32.672208,
+                "exec_server_ms": 32.46325,
+                "ready_to_completion_ms": 34.891666,
+                "first_batch_to_completion_ms": 1114.891666,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 984.857125,
+              "queue_ms": 896.849458,
+              "prepare_ms": 87.74391700000001,
+              "start_exec_ms": 42.171167,
+              "readiness_ms": 44.485167,
+              "readiness_exec_ms": 44.483,
+              "readiness_attempts": 1,
+              "exec_ms": 42.426833,
+              "completion_ms": 1027.420958
+            }
+          },
+          {
+            "ready_gap_ms": 249.955083,
+            "agents": [
+              {
+                "first_exec_ms": 34.613791,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.043458,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 74.798375,
+                "exec_server_ms": 74.447916,
+                "ready_to_completion_ms": 79.892917,
+                "first_batch_to_completion_ms": 909.892917,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 34.442542,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 0.194584,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 34.5175,
+                "exec_server_ms": 34.331916,
+                "ready_to_completion_ms": 34.737375,
+                "first_batch_to_completion_ms": 1114.737375,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 975.998041,
+              "queue_ms": 899.11925,
+              "prepare_ms": 76.715375,
+              "start_exec_ms": 39.40175,
+              "readiness_ms": 35.827,
+              "readiness_exec_ms": 35.82525,
+              "readiness_attempts": 1,
+              "exec_ms": 34.701375,
+              "completion_ms": 1010.836083
+            }
+          },
+          {
+            "ready_gap_ms": 249.188458,
+            "agents": [
+              {
+                "first_exec_ms": 37.59925,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.050916,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 110.393208,
+                "exec_server_ms": 109.990833,
+                "ready_to_completion_ms": 115.469125,
+                "first_batch_to_completion_ms": 945.469125,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 37.924,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.70575,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 44.734708,
+                "exec_server_ms": 44.388916,
+                "ready_to_completion_ms": 48.475542,
+                "first_batch_to_completion_ms": 1128.475542,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 1072.473583,
+              "queue_ms": 974.031167,
+              "prepare_ms": 98.18941600000005,
+              "start_exec_ms": 54.034542,
+              "readiness_ms": 42.88725,
+              "readiness_exec_ms": 42.885834,
+              "readiness_attempts": 1,
+              "exec_ms": 34.127084,
+              "completion_ms": 1106.685458
+            }
+          },
+          {
+            "ready_gap_ms": 249.892917,
+            "agents": [
+              {
+                "first_exec_ms": 33.628958,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 1.000917,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 74.093125,
+                "exec_server_ms": 73.628541,
+                "ready_to_completion_ms": 75.156167,
+                "first_batch_to_completion_ms": 905.156167,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.158834,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.656458,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 37.970542,
+                "exec_server_ms": 37.558208,
+                "ready_to_completion_ms": 42.670833,
+                "first_batch_to_completion_ms": 1122.670833,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 1002.678458,
+              "queue_ms": 905.595166,
+              "prepare_ms": 96.8989180000001,
+              "start_exec_ms": 51.410125,
+              "readiness_ms": 44.399583,
+              "readiness_exec_ms": 44.39625,
+              "readiness_attempts": 1,
+              "exec_ms": 35.874458,
+              "completion_ms": 1038.633
+            }
+          },
+          {
+            "ready_gap_ms": 249.946041,
+            "agents": [
+              {
+                "first_exec_ms": 35.332208,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.062041,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 67.470708,
+                "exec_server_ms": 67.08625,
+                "ready_to_completion_ms": 72.58175,
+                "first_batch_to_completion_ms": 902.58175,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 35.222458,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.630709,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 36.94525,
+                "exec_server_ms": 36.721959,
+                "ready_to_completion_ms": 40.602667,
+                "first_batch_to_completion_ms": 1120.602667,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 979.705958,
+              "queue_ms": 897.70075,
+              "prepare_ms": 81.81179200000008,
+              "start_exec_ms": 42.669542,
+              "readiness_ms": 38.180208,
+              "readiness_exec_ms": 38.17875,
+              "readiness_attempts": 1,
+              "exec_ms": 36.9085,
+              "completion_ms": 1016.722542
+            }
+          },
+          {
+            "ready_gap_ms": 250.737292,
+            "agents": [
+              {
+                "first_exec_ms": 30.829,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.045333,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 73.991042,
+                "exec_server_ms": 73.62275,
+                "ready_to_completion_ms": 79.090167,
+                "first_batch_to_completion_ms": 909.090167,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.621166,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.424458,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 30.254125,
+                "exec_server_ms": 30.039917,
+                "ready_to_completion_ms": 33.704166,
+                "first_batch_to_completion_ms": 1113.704166,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 994.901334,
+              "queue_ms": 901.015417,
+              "prepare_ms": 93.67083300000002,
+              "start_exec_ms": 35.742666,
+              "readiness_ms": 56.751125,
+              "readiness_exec_ms": 56.748541,
+              "readiness_attempts": 1,
+              "exec_ms": 32.238542,
+              "completion_ms": 1027.249125
+            }
+          },
+          {
+            "ready_gap_ms": 250.038792,
+            "agents": [
+              {
+                "first_exec_ms": 32.702833,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.048042,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 64.273209,
+                "exec_server_ms": 63.977459,
+                "ready_to_completion_ms": 69.368667,
+                "first_batch_to_completion_ms": 899.368667,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.408125,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.947208,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 30.352167,
+                "exec_server_ms": 30.15175,
+                "ready_to_completion_ms": 34.343041,
+                "first_batch_to_completion_ms": 1114.343041,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 969.769875,
+              "queue_ms": 890.818916,
+              "prepare_ms": 78.78204300000004,
+              "start_exec_ms": 36.341584,
+              "readiness_ms": 41.296625,
+              "readiness_exec_ms": 41.295167,
+              "readiness_attempts": 1,
+              "exec_ms": 33.152958,
+              "completion_ms": 1003.041625
+            }
+          },
+          {
+            "ready_gap_ms": 249.921584,
+            "agents": [
+              {
+                "first_exec_ms": 30.979833,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.033334,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 72.0255,
+                "exec_server_ms": 71.673875,
+                "ready_to_completion_ms": 77.09925,
+                "first_batch_to_completion_ms": 907.09925,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.972292,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 4.656875,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 32.854,
+                "exec_server_ms": 32.640375,
+                "ready_to_completion_ms": 37.551833,
+                "first_batch_to_completion_ms": 1117.551833,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 967.474417,
+              "queue_ms": 897.530375,
+              "prepare_ms": 69.77033299999994,
+              "start_exec_ms": 34.68825,
+              "readiness_ms": 33.963041,
+              "readiness_exec_ms": 33.96175,
+              "readiness_attempts": 1,
+              "exec_ms": 34.122625,
+              "completion_ms": 1001.72075
+            }
+          },
+          {
+            "ready_gap_ms": 249.952125,
+            "agents": [
+              {
+                "first_exec_ms": 33.065875,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.054917,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 71.897375,
+                "exec_server_ms": 71.441375,
+                "ready_to_completion_ms": 77.027,
+                "first_batch_to_completion_ms": 907.027,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 32.889041,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 0.384083,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 32.199583,
+                "exec_server_ms": 31.990416,
+                "ready_to_completion_ms": 32.623833,
+                "first_batch_to_completion_ms": 1112.623833,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 972.817167,
+              "queue_ms": 893.100791,
+              "prepare_ms": 79.54612600000007,
+              "start_exec_ms": 41.672833,
+              "readiness_ms": 36.873292,
+              "readiness_exec_ms": 36.871125,
+              "readiness_attempts": 1,
+              "exec_ms": 34.383208,
+              "completion_ms": 1007.303583
+            }
+          },
+          {
+            "ready_gap_ms": 250.075958,
+            "agents": [
+              {
+                "first_exec_ms": 31.99025,
+                "configured_wait_ms": 830,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 5.074041,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 69.896292,
+                "exec_server_ms": 69.510167,
+                "ready_to_completion_ms": 75.018708,
+                "first_batch_to_completion_ms": 905.018708,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.916791,
+                "configured_wait_ms": 1080,
+                "release_ms": 0.0,
+                "ready_lateness_ms": 3.998125,
+                "claim_ms": 0,
+                "queue_ms": 0,
+                "prepare_ms": 0,
+                "start_exec_ms": 0,
+                "readiness_ms": 0,
+                "readiness_exec_ms": 0,
+                "readiness_attempts": 0,
+                "exec_ms": 35.978042,
+                "exec_server_ms": 35.78975,
+                "ready_to_completion_ms": 40.000917,
+                "first_batch_to_completion_ms": 1120.000917,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 981.093958,
+              "queue_ms": 894.468042,
+              "prepare_ms": 86.45004100000006,
+              "start_exec_ms": 42.884583,
+              "readiness_ms": 42.657333,
+              "readiness_exec_ms": 42.655583,
+              "readiness_attempts": 1,
+              "exec_ms": 42.01675,
+              "completion_ms": 1023.175875
+            }
+          }
+        ],
+        "batch": [
+          {
+            "ready_gap_ms": 249.928667,
+            "agents": [
+              {
+                "first_exec_ms": 34.103417,
+                "configured_wait_ms": 830,
+                "release_ms": 35.802875,
+                "ready_lateness_ms": 5.069209,
+                "claim_ms": 108.645584,
+                "queue_ms": 0.0,
+                "prepare_ms": 108.299417,
+                "start_exec_ms": 67.411417,
+                "readiness_ms": 40.433458,
+                "readiness_exec_ms": 40.431042,
+                "readiness_attempts": 1,
+                "exec_ms": 44.394541,
+                "exec_server_ms": 44.2335,
+                "ready_to_completion_ms": 158.185459,
+                "first_batch_to_completion_ms": 988.185459,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 33.918417,
+                "configured_wait_ms": 1080,
+                "release_ms": 55.392584,
+                "ready_lateness_ms": 5.04225,
+                "claim_ms": 94.294667,
+                "queue_ms": 0.0,
+                "prepare_ms": 94.090584,
+                "start_exec_ms": 49.778875,
+                "readiness_ms": 44.136583,
+                "readiness_exec_ms": 44.133958,
+                "readiness_attempts": 1,
+                "exec_ms": 41.563125,
+                "exec_server_ms": 41.437583,
+                "ready_to_completion_ms": 140.949,
+                "first_batch_to_completion_ms": 1220.949,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 61.6745,
+              "queue_ms": 0.0,
+              "prepare_ms": 61.529166,
+              "start_exec_ms": 27.858958,
+              "readiness_ms": 33.522417,
+              "readiness_exec_ms": 33.520667,
+              "readiness_attempts": 1,
+              "exec_ms": 31.418125,
+              "completion_ms": 93.168125
+            }
+          },
+          {
+            "ready_gap_ms": 261.900583,
+            "agents": [
+              {
+                "first_exec_ms": 60.54475,
+                "configured_wait_ms": 830,
+                "release_ms": 48.8445,
+                "ready_lateness_ms": 4.284542,
+                "claim_ms": 160.094625,
+                "queue_ms": 0.0,
+                "prepare_ms": 159.805375,
+                "start_exec_ms": 68.350792,
+                "readiness_ms": 91.066208,
+                "readiness_exec_ms": 91.063167,
+                "readiness_attempts": 1,
+                "exec_ms": 57.726708,
+                "exec_server_ms": 57.266459,
+                "ready_to_completion_ms": 222.154792,
+                "first_batch_to_completion_ms": 1052.154792,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 64.75125,
+                "configured_wait_ms": 1080,
+                "release_ms": 54.925416,
+                "ready_lateness_ms": 5.050834,
+                "claim_ms": 69.49,
+                "queue_ms": 0.0,
+                "prepare_ms": 69.290042,
+                "start_exec_ms": 33.295166,
+                "readiness_ms": 35.82675,
+                "readiness_exec_ms": 35.824791,
+                "readiness_attempts": 1,
+                "exec_ms": 43.32425,
+                "exec_server_ms": 43.099208,
+                "ready_to_completion_ms": 117.931667,
+                "first_batch_to_completion_ms": 1197.931667,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 67.866291,
+              "queue_ms": 0.0,
+              "prepare_ms": 67.641417,
+              "start_exec_ms": 29.3825,
+              "readiness_ms": 37.991958,
+              "readiness_exec_ms": 37.989958,
+              "readiness_attempts": 1,
+              "exec_ms": 50.362667,
+              "completion_ms": 118.346833
+            }
+          },
+          {
+            "ready_gap_ms": 250.030875,
+            "agents": [
+              {
+                "first_exec_ms": 32.953667,
+                "configured_wait_ms": 830,
+                "release_ms": 27.048625,
+                "ready_lateness_ms": 3.5195,
+                "claim_ms": 87.576917,
+                "queue_ms": 0.0,
+                "prepare_ms": 87.348292,
+                "start_exec_ms": 46.933083,
+                "readiness_ms": 40.228959,
+                "readiness_exec_ms": 40.227792,
+                "readiness_attempts": 1,
+                "exec_ms": 39.696625,
+                "exec_server_ms": 39.528625,
+                "ready_to_completion_ms": 130.850916,
+                "first_batch_to_completion_ms": 960.850916,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 32.940417,
+                "configured_wait_ms": 1080,
+                "release_ms": 27.149875,
+                "ready_lateness_ms": 2.527541,
+                "claim_ms": 70.866125,
+                "queue_ms": 0.0,
+                "prepare_ms": 70.674833,
+                "start_exec_ms": 37.711625,
+                "readiness_ms": 32.81,
+                "readiness_exec_ms": 32.807542,
+                "readiness_attempts": 1,
+                "exec_ms": 31.960166,
+                "exec_server_ms": 31.842375,
+                "ready_to_completion_ms": 105.406416,
+                "first_batch_to_completion_ms": 1185.406416,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 76.5565,
+              "queue_ms": 0.0,
+              "prepare_ms": 76.3615,
+              "start_exec_ms": 35.162458,
+              "readiness_ms": 41.078292,
+              "readiness_exec_ms": 41.076042,
+              "readiness_attempts": 1,
+              "exec_ms": 31.0065,
+              "completion_ms": 107.646833
+            }
+          },
+          {
+            "ready_gap_ms": 249.940666,
+            "agents": [
+              {
+                "first_exec_ms": 28.58925,
+                "configured_wait_ms": 830,
+                "release_ms": 29.19525,
+                "ready_lateness_ms": 5.049333,
+                "claim_ms": 83.424875,
+                "queue_ms": 0.0,
+                "prepare_ms": 83.163709,
+                "start_exec_ms": 45.137084,
+                "readiness_ms": 37.846,
+                "readiness_exec_ms": 37.844667,
+                "readiness_attempts": 1,
+                "exec_ms": 38.3285,
+                "exec_server_ms": 38.124541,
+                "ready_to_completion_ms": 126.854416,
+                "first_batch_to_completion_ms": 956.854416,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 28.5725,
+                "configured_wait_ms": 1080,
+                "release_ms": 29.078958,
+                "ready_lateness_ms": 4.112667,
+                "claim_ms": 89.9635,
+                "queue_ms": 0.0,
+                "prepare_ms": 89.74875,
+                "start_exec_ms": 45.312084,
+                "readiness_ms": 44.283875,
+                "readiness_exec_ms": 44.280959,
+                "readiness_attempts": 1,
+                "exec_ms": 42.388875,
+                "exec_server_ms": 42.235459,
+                "ready_to_completion_ms": 136.505125,
+                "first_batch_to_completion_ms": 1216.505125,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 65.307708,
+              "queue_ms": 0.0,
+              "prepare_ms": 65.08925,
+              "start_exec_ms": 33.37425,
+              "readiness_ms": 31.543917,
+              "readiness_exec_ms": 31.541917,
+              "readiness_attempts": 1,
+              "exec_ms": 27.031667,
+              "completion_ms": 92.44
+            }
+          },
+          {
+            "ready_gap_ms": 249.920333,
+            "agents": [
+              {
+                "first_exec_ms": 32.638667,
+                "configured_wait_ms": 830,
+                "release_ms": 30.801209,
+                "ready_lateness_ms": 0.086792,
+                "claim_ms": 133.590833,
+                "queue_ms": 0.0,
+                "prepare_ms": 133.294,
+                "start_exec_ms": 57.031417,
+                "readiness_ms": 75.875542,
+                "readiness_exec_ms": 75.873417,
+                "readiness_attempts": 1,
+                "exec_ms": 43.80775,
+                "exec_server_ms": 43.658209,
+                "ready_to_completion_ms": 177.551375,
+                "first_batch_to_completion_ms": 1007.551375,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 34.305875,
+                "configured_wait_ms": 1080,
+                "release_ms": 31.487167,
+                "ready_lateness_ms": 5.035334,
+                "claim_ms": 75.282375,
+                "queue_ms": 0.0,
+                "prepare_ms": 75.073292,
+                "start_exec_ms": 38.496209,
+                "readiness_ms": 36.362333,
+                "readiness_exec_ms": 36.351333,
+                "readiness_attempts": 1,
+                "exec_ms": 37.557375,
+                "exec_server_ms": 37.428792,
+                "ready_to_completion_ms": 117.916667,
+                "first_batch_to_completion_ms": 1197.916667,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 66.3115,
+              "queue_ms": 0.0,
+              "prepare_ms": 66.169833,
+              "start_exec_ms": 30.265542,
+              "readiness_ms": 35.7875,
+              "readiness_exec_ms": 35.786,
+              "readiness_attempts": 1,
+              "exec_ms": 30.511625,
+              "completion_ms": 96.895625
+            }
+          },
+          {
+            "ready_gap_ms": 249.69225,
+            "agents": [
+              {
+                "first_exec_ms": 37.44225,
+                "configured_wait_ms": 830,
+                "release_ms": 56.157583,
+                "ready_lateness_ms": 5.02925,
+                "claim_ms": 94.042208,
+                "queue_ms": 0.0,
+                "prepare_ms": 93.815708,
+                "start_exec_ms": 47.343334,
+                "readiness_ms": 46.298208,
+                "readiness_exec_ms": 46.292375,
+                "readiness_attempts": 1,
+                "exec_ms": 43.145292,
+                "exec_server_ms": 42.983833,
+                "ready_to_completion_ms": 142.262541,
+                "first_batch_to_completion_ms": 972.262541,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 37.247083,
+                "configured_wait_ms": 1080,
+                "release_ms": 33.487042,
+                "ready_lateness_ms": 5.063125,
+                "claim_ms": 89.717916,
+                "queue_ms": 0.0,
+                "prepare_ms": 89.48225,
+                "start_exec_ms": 45.944917,
+                "readiness_ms": 43.337375,
+                "readiness_exec_ms": 43.334459,
+                "readiness_attempts": 1,
+                "exec_ms": 40.620875,
+                "exec_server_ms": 40.46625,
+                "ready_to_completion_ms": 135.463958,
+                "first_batch_to_completion_ms": 1215.463958,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 62.144666,
+              "queue_ms": 0.0,
+              "prepare_ms": 61.955833,
+              "start_exec_ms": 31.978833,
+              "readiness_ms": 29.848042,
+              "readiness_exec_ms": 29.846125,
+              "readiness_attempts": 1,
+              "exec_ms": 27.619959,
+              "completion_ms": 89.865917
+            }
+          },
+          {
+            "ready_gap_ms": 249.953583,
+            "agents": [
+              {
+                "first_exec_ms": 37.175792,
+                "configured_wait_ms": 830,
+                "release_ms": 30.294708,
+                "ready_lateness_ms": 5.075917,
+                "claim_ms": 107.506375,
+                "queue_ms": 0.0,
+                "prepare_ms": 107.081375,
+                "start_exec_ms": 65.397458,
+                "readiness_ms": 41.1565,
+                "readiness_exec_ms": 41.153417,
+                "readiness_attempts": 1,
+                "exec_ms": 41.4235,
+                "exec_server_ms": 41.279458,
+                "ready_to_completion_ms": 154.103708,
+                "first_batch_to_completion_ms": 984.103708,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 36.937959,
+                "configured_wait_ms": 1080,
+                "release_ms": 30.281875,
+                "ready_lateness_ms": 5.039792,
+                "claim_ms": 92.492458,
+                "queue_ms": 0.0,
+                "prepare_ms": 92.252667,
+                "start_exec_ms": 50.136875,
+                "readiness_ms": 41.924125,
+                "readiness_exec_ms": 41.922041,
+                "readiness_attempts": 1,
+                "exec_ms": 44.261833,
+                "exec_server_ms": 44.097417,
+                "ready_to_completion_ms": 141.851709,
+                "first_batch_to_completion_ms": 1221.851709,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 68.107875,
+              "queue_ms": 0.0,
+              "prepare_ms": 67.937375,
+              "start_exec_ms": 35.508042,
+              "readiness_ms": 32.337458,
+              "readiness_exec_ms": 32.335875,
+              "readiness_attempts": 1,
+              "exec_ms": 32.3245,
+              "completion_ms": 100.510292
+            }
+          },
+          {
+            "ready_gap_ms": 249.918666,
+            "agents": [
+              {
+                "first_exec_ms": 67.446834,
+                "configured_wait_ms": 830,
+                "release_ms": 35.433958,
+                "ready_lateness_ms": 5.071041,
+                "claim_ms": 121.85175,
+                "queue_ms": 0.0,
+                "prepare_ms": 121.473,
+                "start_exec_ms": 73.278583,
+                "readiness_ms": 47.648917,
+                "readiness_exec_ms": 47.645458,
+                "readiness_attempts": 1,
+                "exec_ms": 43.446709,
+                "exec_server_ms": 43.286666,
+                "ready_to_completion_ms": 170.451875,
+                "first_batch_to_completion_ms": 1000.451875,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 65.838291,
+                "configured_wait_ms": 1080,
+                "release_ms": 35.347167,
+                "ready_lateness_ms": 5.034292,
+                "claim_ms": 87.143833,
+                "queue_ms": 0.0,
+                "prepare_ms": 86.949209,
+                "start_exec_ms": 44.065958,
+                "readiness_ms": 42.706584,
+                "readiness_exec_ms": 42.705209,
+                "readiness_attempts": 1,
+                "exec_ms": 39.259167,
+                "exec_server_ms": 39.116708,
+                "ready_to_completion_ms": 131.486459,
+                "first_batch_to_completion_ms": 1211.486459,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 62.027292,
+              "queue_ms": 0.0,
+              "prepare_ms": 61.823958,
+              "start_exec_ms": 30.18775,
+              "readiness_ms": 31.469291,
+              "readiness_exec_ms": 31.467916,
+              "readiness_attempts": 1,
+              "exec_ms": 27.775209,
+              "completion_ms": 89.924541
+            }
+          },
+          {
+            "ready_gap_ms": 249.5215,
+            "agents": [
+              {
+                "first_exec_ms": 35.396125,
+                "configured_wait_ms": 830,
+                "release_ms": 32.354459,
+                "ready_lateness_ms": 5.061625,
+                "claim_ms": 113.00125,
+                "queue_ms": 0.0,
+                "prepare_ms": 112.663708,
+                "start_exec_ms": 66.423375,
+                "readiness_ms": 45.861583,
+                "readiness_exec_ms": 45.859,
+                "readiness_attempts": 1,
+                "exec_ms": 44.634166,
+                "exec_server_ms": 44.495958,
+                "ready_to_completion_ms": 162.770416,
+                "first_batch_to_completion_ms": 992.770416,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 36.477542,
+                "configured_wait_ms": 1080,
+                "release_ms": 32.33925,
+                "ready_lateness_ms": 5.034083,
+                "claim_ms": 91.097083,
+                "queue_ms": 0.0,
+                "prepare_ms": 90.882416,
+                "start_exec_ms": 47.149584,
+                "readiness_ms": 43.551541,
+                "readiness_exec_ms": 43.54975,
+                "readiness_attempts": 1,
+                "exec_ms": 44.411291,
+                "exec_server_ms": 44.2125,
+                "ready_to_completion_ms": 140.597458,
+                "first_batch_to_completion_ms": 1220.597458,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 67.77125,
+              "queue_ms": 0.0,
+              "prepare_ms": 67.60775,
+              "start_exec_ms": 34.378625,
+              "readiness_ms": 33.105542,
+              "readiness_exec_ms": 33.103875,
+              "readiness_attempts": 1,
+              "exec_ms": 29.005583,
+              "completion_ms": 96.850833
+            }
+          },
+          {
+            "ready_gap_ms": 250.029959,
+            "agents": [
+              {
+                "first_exec_ms": 32.481417,
+                "configured_wait_ms": 830,
+                "release_ms": 30.585584,
+                "ready_lateness_ms": 4.568,
+                "claim_ms": 106.400459,
+                "queue_ms": 0.0,
+                "prepare_ms": 105.999,
+                "start_exec_ms": 59.428834,
+                "readiness_ms": 46.078541,
+                "readiness_exec_ms": 46.074416,
+                "readiness_attempts": 1,
+                "exec_ms": 37.720375,
+                "exec_server_ms": 37.572709,
+                "ready_to_completion_ms": 148.776834,
+                "first_batch_to_completion_ms": 978.776834,
+                "changed_worker": true
+              },
+              {
+                "first_exec_ms": 32.385,
+                "configured_wait_ms": 1080,
+                "release_ms": 29.552125,
+                "ready_lateness_ms": 4.475541,
+                "claim_ms": 92.888833,
+                "queue_ms": 0.0,
+                "prepare_ms": 92.668542,
+                "start_exec_ms": 49.42475,
+                "readiness_ms": 43.070959,
+                "readiness_exec_ms": 43.069084,
+                "readiness_attempts": 1,
+                "exec_ms": 41.382541,
+                "exec_server_ms": 41.258,
+                "ready_to_completion_ms": 138.792416,
+                "first_batch_to_completion_ms": 1218.792416,
+                "changed_worker": false
+              }
+            ],
+            "probe": {
+              "claim_ms": 59.209334,
+              "queue_ms": 0.0,
+              "prepare_ms": 59.059416,
+              "start_exec_ms": 30.689542,
+              "readiness_ms": 28.256375,
+              "readiness_exec_ms": 28.254917,
+              "readiness_attempts": 1,
+              "exec_ms": 26.602292,
+              "completion_ms": 85.903333
+            }
+          },
+          {
+            "ready_gap_ms": 250.3345,
+            "agents": [
+              {
+                "first_exec_ms": 28.716708,
+                "configured_wait_ms": 830,
+                "release_ms": 31.045833,
+                "ready_lateness_ms": 5.09125,
+                "claim_ms": 112.235167,
+                "queue_ms": 0.0,
+                "prepare_ms": 111.80825,
+                "start_exec_ms": 74.478166,
+                "readiness_ms": 36.83025,
+                "readiness_exec_ms": 36.828541,
+                "readiness_attempts": 1,
+                "exec_ms": 36.969042,
+                "exec_server_ms": 36.830292,
+                "ready_to_completion_ms": 154.388416,
+                "first_batch_to_completion_ms": 984.388416,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 30.4355,
+                "configured_wait_ms": 1080,
+                "release_ms": 31.088292,
+                "ready_lateness_ms": 5.043708,
+                "claim_ms": 91.289333,
+                "queue_ms": 0.0,
+                "prepare_ms": 91.06425,
+                "start_exec_ms": 44.841,
+                "readiness_ms": 46.064542,
+                "readiness_exec_ms": 46.062875,
+                "readiness_attempts": 1,
+                "exec_ms": 36.180709,
+                "exec_server_ms": 36.027667,
+                "ready_to_completion_ms": 132.566458,
+                "first_batch_to_completion_ms": 1212.566458,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 57.603458,
+              "queue_ms": 0.0,
+              "prepare_ms": 57.441916,
+              "start_exec_ms": 28.829833,
+              "readiness_ms": 28.523208,
+              "readiness_exec_ms": 28.52225,
+              "readiness_attempts": 1,
+              "exec_ms": 36.59275,
+              "completion_ms": 94.257416
+            }
+          },
+          {
+            "ready_gap_ms": 249.891083,
+            "agents": [
+              {
+                "first_exec_ms": 32.969875,
+                "configured_wait_ms": 830,
+                "release_ms": 29.424458,
+                "ready_lateness_ms": 5.089917,
+                "claim_ms": 95.392625,
+                "queue_ms": 0.0,
+                "prepare_ms": 95.086959,
+                "start_exec_ms": 52.017792,
+                "readiness_ms": 42.731333,
+                "readiness_exec_ms": 42.729667,
+                "readiness_attempts": 1,
+                "exec_ms": 41.813416,
+                "exec_server_ms": 41.65425,
+                "ready_to_completion_ms": 142.382,
+                "first_batch_to_completion_ms": 972.382,
+                "changed_worker": false
+              },
+              {
+                "first_exec_ms": 31.28425,
+                "configured_wait_ms": 1080,
+                "release_ms": 29.281667,
+                "ready_lateness_ms": 5.044709,
+                "claim_ms": 91.510875,
+                "queue_ms": 0.0,
+                "prepare_ms": 91.307084,
+                "start_exec_ms": 48.740375,
+                "readiness_ms": 42.367208,
+                "readiness_exec_ms": 42.365542,
+                "readiness_attempts": 1,
+                "exec_ms": 44.1175,
+                "exec_server_ms": 43.958208,
+                "ready_to_completion_ms": 140.713792,
+                "first_batch_to_completion_ms": 1220.713792,
+                "changed_worker": true
+              }
+            ],
+            "probe": {
+              "claim_ms": 62.557709,
+              "queue_ms": 0.0,
+              "prepare_ms": 62.410584,
+              "start_exec_ms": 30.1015,
+              "readiness_ms": 32.186458,
+              "readiness_exec_ms": 32.185208,
+              "readiness_attempts": 1,
+              "exec_ms": 29.828625,
+              "completion_ms": 92.481583
+            }
+          }
+        ]
+      },
+      "summary": {
+        "session": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 32.788125,
+              "p95": 37.59925
+            },
+            "configured_wait_ms": {
+              "p50": 955.0,
+              "p95": 1080
+            },
+            "release_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "ready_lateness_ms": {
+              "p50": 4.6566665,
+              "p95": 5.062041
+            },
+            "claim_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "prepare_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "start_exec_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "readiness_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "readiness_exec_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "readiness_attempts": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "exec_ms": {
+              "p50": 65.051813,
+              "p95": 110.393208
+            },
+            "exec_server_ms": {
+              "p50": 64.756375,
+              "p95": 109.990833
+            },
+            "ready_to_completion_ms": {
+              "p50": 70.146792,
+              "p95": 115.469125
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 1033.425687,
+              "p95": 1128.475542
+            },
+            "changed_worker": 0
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 981.868104,
+              "p95": 1252.497709
+            },
+            "queue_ms": {
+              "p50": 897.739521,
+              "p95": 1038.212836
+            },
+            "prepare_ms": {
+              "p50": 85.57533300000006,
+              "p95": 214.09108100000003
+            },
+            "start_exec_ms": {
+              "p50": 42.4203545,
+              "p95": 96.834917
+            },
+            "readiness_ms": {
+              "p50": 41.976979,
+              "p95": 116.023
+            },
+            "readiness_exec_ms": {
+              "p50": 41.975375,
+              "p95": 116.0205
+            },
+            "readiness_attempts": {
+              "p50": 1.0,
+              "p95": 1
+            },
+            "exec_ms": {
+              "p50": 35.287916499999994,
+              "p95": 124.903
+            },
+            "completion_ms": {
+              "p50": 1022.403583,
+              "p95": 1377.542958
+            }
+          }
+        },
+        "batch": {
+          "agents": {
+            "first_exec_ms": {
+              "p50": 34.010917,
+              "p95": 65.838291
+            },
+            "configured_wait_ms": {
+              "p50": 955.0,
+              "p95": 1080
+            },
+            "release_ms": {
+              "p50": 31.0670625,
+              "p95": 55.392584
+            },
+            "ready_lateness_ms": {
+              "p50": 5.041021000000001,
+              "p95": 5.089917
+            },
+            "claim_ms": {
+              "p50": 92.6906455,
+              "p95": 133.590833
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 92.4606045,
+              "p95": 133.294
+            },
+            "start_exec_ms": {
+              "p50": 49.0825625,
+              "p95": 73.278583
+            },
+            "readiness_ms": {
+              "p50": 42.901146,
+              "p95": 75.875542
+            },
+            "readiness_exec_ms": {
+              "p50": 42.8993755,
+              "p95": 75.873417
+            },
+            "readiness_attempts": {
+              "p50": 1.0,
+              "p95": 1
+            },
+            "exec_ms": {
+              "p50": 41.6882705,
+              "p95": 44.634166
+            },
+            "exec_server_ms": {
+              "p50": 41.5459165,
+              "p95": 44.495958
+            },
+            "ready_to_completion_ms": {
+              "p50": 140.831396,
+              "p95": 177.551375
+            },
+            "first_batch_to_completion_ms": {
+              "p50": 1118.780604,
+              "p95": 1220.949
+            },
+            "changed_worker": 11
+          },
+          "probe": {
+            "claim_ms": {
+              "p50": 63.932708500000004,
+              "p95": 76.5565
+            },
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "prepare_ms": {
+              "p50": 63.749917,
+              "p95": 76.3615
+            },
+            "start_exec_ms": {
+              "p50": 30.477542,
+              "p95": 35.508042
+            },
+            "readiness_ms": {
+              "p50": 32.261958,
+              "p95": 41.078292
+            },
+            "readiness_exec_ms": {
+              "p50": 32.2605415,
+              "p95": 41.076042
+            },
+            "readiness_attempts": {
+              "p50": 1.0,
+              "p95": 1
+            },
+            "exec_ms": {
+              "p50": 30.170125,
+              "p95": 50.362667
+            },
+            "completion_ms": {
+              "p50": 93.7127705,
+              "p95": 118.346833
+            }
+          }
+        }
+      }
+    }
+  ],
+  "image_id": "sha256:37a3c702065ee52b8fc6c33238cd83e103cd10d9f0ba58ca144c8fcbffba599d",
+  "pool_setup_ms": 1472.451625,
+  "state_profile": {
+    "switched_worker": true,
+    "workspace_file_bytes": 3,
+    "retained_dependency_bytes": 11,
+    "private_dependency_lost": true,
+    "original_listener_gone": true
+  },
+  "cache_profile": {
+    "rounds_per_arm": 12,
+    "warmup_per_arm": 1,
+    "samples": {
+      "retained": [
+        {
+          "imports_ms": 29.537826,
+          "exec_ms": 103.376584,
+          "exec_server_ms": 103.095833,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 31.485073,
+          "exec_ms": 67.227167,
+          "exec_server_ms": 67.108416,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 31.197199,
+          "exec_ms": 82.272042,
+          "exec_server_ms": 82.082709,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 31.061823,
+          "exec_ms": 70.339542,
+          "exec_server_ms": 70.192542,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 31.40924,
+          "exec_ms": 94.536083,
+          "exec_server_ms": 94.38325,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 33.998319,
+          "exec_ms": 74.6265,
+          "exec_server_ms": 74.477875,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 31.074741,
+          "exec_ms": 80.6435,
+          "exec_server_ms": 80.365416,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 31.755739,
+          "exec_ms": 69.335708,
+          "exec_server_ms": 69.207458,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 29.147619,
+          "exec_ms": 75.597334,
+          "exec_server_ms": 75.4085,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 33.476361,
+          "exec_ms": 70.064209,
+          "exec_server_ms": 69.935,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 33.424861,
+          "exec_ms": 83.422791,
+          "exec_server_ms": 83.169625,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 31.882822,
+          "exec_ms": 72.14925,
+          "exec_server_ms": 72.018042,
+          "files": 132,
+          "bytes": 3231598
+        }
+      ],
+      "rebuild": [
+        {
+          "imports_ms": 225.154794,
+          "exec_ms": 269.003916,
+          "exec_server_ms": 268.76125,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 229.035789,
+          "exec_ms": 269.519792,
+          "exec_server_ms": 269.383416,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 283.695489,
+          "exec_ms": 325.113042,
+          "exec_server_ms": 324.932167,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 224.706753,
+          "exec_ms": 265.527417,
+          "exec_server_ms": 265.379083,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 234.497196,
+          "exec_ms": 279.60775,
+          "exec_server_ms": 279.443333,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 248.53663,
+          "exec_ms": 295.192333,
+          "exec_server_ms": 295.078708,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 225.982335,
+          "exec_ms": 270.535917,
+          "exec_server_ms": 270.378542,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 224.45292,
+          "exec_ms": 270.85175,
+          "exec_server_ms": 270.650584,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 227.638749,
+          "exec_ms": 273.577416,
+          "exec_server_ms": 273.350625,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 223.678172,
+          "exec_ms": 267.480917,
+          "exec_server_ms": 267.148208,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 228.644664,
+          "exec_ms": 273.036375,
+          "exec_server_ms": 272.719959,
+          "files": 132,
+          "bytes": 3231598
+        },
+        {
+          "imports_ms": 226.648584,
+          "exec_ms": 271.268458,
+          "exec_server_ms": 271.083083,
+          "files": 132,
+          "bytes": 3231598
+        }
+      ]
+    },
+    "summary": {
+      "retained": {
+        "imports_ms": {
+          "p50": 31.4471565,
+          "p95": 33.998319
+        },
+        "exec_ms": {
+          "p50": 75.111917,
+          "p95": 103.376584
+        },
+        "exec_server_ms": {
+          "p50": 74.9431875,
+          "p95": 103.095833
+        },
+        "files": {
+          "p50": 132.0,
+          "p95": 132
+        },
+        "bytes": {
+          "p50": 3231598.0,
+          "p95": 3231598
+        }
+      },
+      "rebuild": {
+        "imports_ms": {
+          "p50": 227.1436665,
+          "p95": 283.695489
+        },
+        "exec_ms": {
+          "p50": 271.060104,
+          "p95": 325.113042
+        },
+        "exec_server_ms": {
+          "p50": 270.8668335,
+          "p95": 324.932167
+        },
+        "files": {
+          "p50": 132.0,
+          "p95": 132
+        },
+        "bytes": {
+          "p50": 3231598.0,
+          "p95": 3231598
+        }
+      }
+    }
+  }
+}

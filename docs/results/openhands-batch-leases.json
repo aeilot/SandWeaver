@@ -1,0 +1,1290 @@
+{
+  "docker": "linux/aarch64 OrbStack",
+  "image": "sandweaver-demo:local",
+  "workers": 2,
+  "rounds_per_arm": 12,
+  "warmup_per_arm": 1,
+  "probe_after_wait_start_ms": 50,
+  "scenarios": [
+    {
+      "wait_ms": 150,
+      "samples": {
+        "session": [
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 48.750292,
+                "first_to_last_tool_done_ms": 210.981709,
+                "conversation_run_ms": 500.37,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 50.696875,
+                "first_to_last_tool_done_ms": 211.080417,
+                "conversation_run_ms": 500.293792,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 198.328333,
+              "claim_ms": 265.466959,
+              "completion_ms": 303.955375
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 55.360333,
+                "first_to_last_tool_done_ms": 219.421875,
+                "conversation_run_ms": 504.626417,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 54.553583,
+                "first_to_last_tool_done_ms": 217.643875,
+                "conversation_run_ms": 503.362459,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 211.003042,
+              "claim_ms": 288.817167,
+              "completion_ms": 327.633667
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 58.590375,
+                "first_to_last_tool_done_ms": 223.14275,
+                "conversation_run_ms": 524.541208,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 58.639792,
+                "first_to_last_tool_done_ms": 226.084333,
+                "conversation_run_ms": 524.5855,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 217.050001,
+              "claim_ms": 288.340917,
+              "completion_ms": 320.43725
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 59.082417,
+                "first_to_last_tool_done_ms": 221.987292,
+                "conversation_run_ms": 529.475667,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 59.9065,
+                "first_to_last_tool_done_ms": 221.677375,
+                "conversation_run_ms": 529.327334,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 214.457875,
+              "claim_ms": 297.177625,
+              "completion_ms": 332.864417
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 60.670417,
+                "first_to_last_tool_done_ms": 225.553333,
+                "conversation_run_ms": 515.273125,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 60.609333,
+                "first_to_last_tool_done_ms": 225.464333,
+                "conversation_run_ms": 515.44625,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 221.900291,
+              "claim_ms": 294.28575,
+              "completion_ms": 326.360042
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 51.175875,
+                "first_to_last_tool_done_ms": 215.191417,
+                "conversation_run_ms": 552.425709,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 54.522375,
+                "first_to_last_tool_done_ms": 217.560958,
+                "conversation_run_ms": 550.886541,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 246.231375,
+              "claim_ms": 336.875,
+              "completion_ms": 376.308667
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 59.326667,
+                "first_to_last_tool_done_ms": 224.520333,
+                "conversation_run_ms": 530.761292,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 59.366333,
+                "first_to_last_tool_done_ms": 224.991917,
+                "conversation_run_ms": 531.969083,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 216.416792,
+              "claim_ms": 299.70225,
+              "completion_ms": 337.944458
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 55.690875,
+                "first_to_last_tool_done_ms": 218.602416,
+                "conversation_run_ms": 568.990916,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 56.907167,
+                "first_to_last_tool_done_ms": 218.212292,
+                "conversation_run_ms": 569.248,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 211.384,
+              "claim_ms": 292.681,
+              "completion_ms": 332.355625
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 52.259791,
+                "first_to_last_tool_done_ms": 215.836583,
+                "conversation_run_ms": 515.911,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 50.662834,
+                "first_to_last_tool_done_ms": 214.205,
+                "conversation_run_ms": 514.181292,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 207.536334,
+              "claim_ms": 287.292792,
+              "completion_ms": 321.854583
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 61.663541,
+                "first_to_last_tool_done_ms": 226.907083,
+                "conversation_run_ms": 522.690666,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 63.215667,
+                "first_to_last_tool_done_ms": 228.49925,
+                "conversation_run_ms": 523.485375,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 220.370249,
+              "claim_ms": 296.764084,
+              "completion_ms": 329.77325
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 55.478333,
+                "first_to_last_tool_done_ms": 219.251541,
+                "conversation_run_ms": 520.025334,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 56.841459,
+                "first_to_last_tool_done_ms": 218.541375,
+                "conversation_run_ms": 520.205584,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 215.735875,
+              "claim_ms": 299.215666,
+              "completion_ms": 340.363791
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 55.799375,
+                "first_to_last_tool_done_ms": 217.144833,
+                "conversation_run_ms": 508.822541,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 54.583208,
+                "first_to_last_tool_done_ms": 217.03075,
+                "conversation_run_ms": 509.182166,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 208.371958,
+              "claim_ms": 285.850792,
+              "completion_ms": 320.203375
+            }
+          }
+        ],
+        "batch": [
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 88.042625,
+                "first_to_last_tool_done_ms": 277.790708,
+                "conversation_run_ms": 682.165,
+                "resume_claim_ms": 56.313542,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 117.371333,
+                "first_to_last_tool_done_ms": 309.663042,
+                "conversation_run_ms": 710.124833,
+                "resume_claim_ms": 90.7895,
+                "resume_queue_ms": 34.987625
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 76.896333,
+              "completion_ms": 108.475958
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 123.263917,
+                "first_to_last_tool_done_ms": 326.405417,
+                "conversation_run_ms": 834.557,
+                "resume_claim_ms": 92.581417,
+                "resume_queue_ms": 35.503458
+              },
+              {
+                "ready_to_tool_done_ms": 92.310292,
+                "first_to_last_tool_done_ms": 297.723,
+                "conversation_run_ms": 802.632083,
+                "resume_claim_ms": 59.162583,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 77.160792,
+              "completion_ms": 112.917042
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 131.153958,
+                "first_to_last_tool_done_ms": 326.057,
+                "conversation_run_ms": 754.265917,
+                "resume_claim_ms": 102.653833,
+                "resume_queue_ms": 46.976375
+              },
+              {
+                "ready_to_tool_done_ms": 89.871125,
+                "first_to_last_tool_done_ms": 284.758083,
+                "conversation_run_ms": 709.523541,
+                "resume_claim_ms": 58.666958,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 83.227625,
+              "completion_ms": 123.392584
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 78.74025,
+                "first_to_last_tool_done_ms": 266.251416,
+                "conversation_run_ms": 641.221708,
+                "resume_claim_ms": 50.80475,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 118.020875,
+                "first_to_last_tool_done_ms": 307.240542,
+                "conversation_run_ms": 682.144292,
+                "resume_claim_ms": 86.764875,
+                "resume_queue_ms": 36.872833
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 80.572792,
+              "completion_ms": 109.163042
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 126.362583,
+                "first_to_last_tool_done_ms": 317.860916,
+                "conversation_run_ms": 692.587,
+                "resume_claim_ms": 99.40325,
+                "resume_queue_ms": 45.947125
+              },
+              {
+                "ready_to_tool_done_ms": 87.135,
+                "first_to_last_tool_done_ms": 276.727959,
+                "conversation_run_ms": 653.352459,
+                "resume_claim_ms": 56.145833,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 81.092917,
+              "completion_ms": 115.881375
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 114.461958,
+                "first_to_last_tool_done_ms": 301.7705,
+                "conversation_run_ms": 732.628792,
+                "resume_claim_ms": 83.799667,
+                "resume_queue_ms": 33.280208
+              },
+              {
+                "ready_to_tool_done_ms": 85.6065,
+                "first_to_last_tool_done_ms": 272.136708,
+                "conversation_run_ms": 697.416792,
+                "resume_claim_ms": 54.85175,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 81.355291,
+              "completion_ms": 109.2305
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 118.537708,
+                "first_to_last_tool_done_ms": 305.819083,
+                "conversation_run_ms": 699.756958,
+                "resume_claim_ms": 85.494333,
+                "resume_queue_ms": 24.900334
+              },
+              {
+                "ready_to_tool_done_ms": 87.008084,
+                "first_to_last_tool_done_ms": 274.09525,
+                "conversation_run_ms": 663.896667,
+                "resume_claim_ms": 57.7595,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 71.01125,
+              "completion_ms": 104.61325
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 118.315375,
+                "first_to_last_tool_done_ms": 310.787916,
+                "conversation_run_ms": 704.027584,
+                "resume_claim_ms": 88.601166,
+                "resume_queue_ms": 28.762875
+              },
+              {
+                "ready_to_tool_done_ms": 92.089958,
+                "first_to_last_tool_done_ms": 285.19775,
+                "conversation_run_ms": 675.76025,
+                "resume_claim_ms": 60.552083,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 78.011125,
+              "completion_ms": 107.643375
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 124.039834,
+                "first_to_last_tool_done_ms": 309.969625,
+                "conversation_run_ms": 710.952167,
+                "resume_claim_ms": 96.720667,
+                "resume_queue_ms": 39.800542
+              },
+              {
+                "ready_to_tool_done_ms": 82.401917,
+                "first_to_last_tool_done_ms": 270.527625,
+                "conversation_run_ms": 668.52175,
+                "resume_claim_ms": 51.935083,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 85.396292,
+              "completion_ms": 114.399458
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 105.403334,
+                "first_to_last_tool_done_ms": 298.651042,
+                "conversation_run_ms": 684.193417,
+                "resume_claim_ms": 67.010667,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 167.816375,
+                "first_to_last_tool_done_ms": 361.027375,
+                "conversation_run_ms": 746.293917,
+                "resume_claim_ms": 135.806959,
+                "resume_queue_ms": 65.195833
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 90.705042,
+              "completion_ms": 134.515792
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 87.183542,
+                "first_to_last_tool_done_ms": 279.652542,
+                "conversation_run_ms": 669.24475,
+                "resume_claim_ms": 53.816791,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 112.94775,
+                "first_to_last_tool_done_ms": 306.101917,
+                "conversation_run_ms": 701.652791,
+                "resume_claim_ms": 81.990625,
+                "resume_queue_ms": 27.042625
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 67.861209,
+              "completion_ms": 94.333584
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 124.630667,
+                "first_to_last_tool_done_ms": 320.047333,
+                "conversation_run_ms": 703.891583,
+                "resume_claim_ms": 96.799042,
+                "resume_queue_ms": 40.816209
+              },
+              {
+                "ready_to_tool_done_ms": 85.294708,
+                "first_to_last_tool_done_ms": 278.38225,
+                "conversation_run_ms": 664.110584,
+                "resume_claim_ms": 55.516292,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 77.536916,
+              "completion_ms": 113.109375
+            }
+          }
+        ]
+      },
+      "summary": {
+        "session": {
+          "agents": {
+            "ready_to_tool_done_ms": {
+              "p50": 56.320417,
+              "p95": 61.663541
+            },
+            "first_to_last_tool_done_ms": {
+              "p50": 218.92697850000002,
+              "p95": 226.907083
+            },
+            "conversation_run_ms": {
+              "p50": 521.448125,
+              "p95": 568.990916
+            },
+            "resume_claim_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "resume_queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            }
+          },
+          "probe": {
+            "queue_ms": {
+              "p50": 215.096875,
+              "p95": 246.231375
+            },
+            "claim_ms": {
+              "p50": 293.483375,
+              "p95": 336.875
+            },
+            "completion_ms": {
+              "p50": 328.7034585,
+              "p95": 376.308667
+            }
+          }
+        },
+        "batch": {
+          "agents": {
+            "ready_to_tool_done_ms": {
+              "p50": 109.17554200000001,
+              "p95": 131.153958
+            },
+            "first_to_last_tool_done_ms": {
+              "p50": 300.210771,
+              "p95": 326.405417
+            },
+            "conversation_run_ms": {
+              "p50": 698.586875,
+              "p95": 802.632083
+            },
+            "resume_claim_ms": {
+              "p50": 74.50064599999999,
+              "p95": 102.653833
+            },
+            "resume_queue_ms": {
+              "p50": 12.450167,
+              "p95": 46.976375
+            }
+          },
+          "probe": {
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "claim_ms": {
+              "p50": 79.2919585,
+              "p95": 90.705042
+            },
+            "completion_ms": {
+              "p50": 111.073771,
+              "p95": 134.515792
+            }
+          }
+        }
+      }
+    },
+    {
+      "wait_ms": 830,
+      "samples": {
+        "session": [
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 68.641375,
+                "first_to_last_tool_done_ms": 914.975667,
+                "conversation_run_ms": 1217.367834,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 67.943208,
+                "first_to_last_tool_done_ms": 915.371666,
+                "conversation_run_ms": 1217.700792,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 903.963791,
+              "claim_ms": 970.182334,
+              "completion_ms": 1003.697542
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 66.9945,
+                "first_to_last_tool_done_ms": 913.118334,
+                "conversation_run_ms": 1208.87875,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 67.04,
+                "first_to_last_tool_done_ms": 913.101708,
+                "conversation_run_ms": 1209.024625,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 911.634959,
+              "claim_ms": 986.470709,
+              "completion_ms": 1016.937792
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 68.23575,
+                "first_to_last_tool_done_ms": 915.415042,
+                "conversation_run_ms": 1212.086833,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 68.315125,
+                "first_to_last_tool_done_ms": 915.5455,
+                "conversation_run_ms": 1210.504084,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 907.091585,
+              "claim_ms": 981.899625,
+              "completion_ms": 1019.173083
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 62.704834,
+                "first_to_last_tool_done_ms": 910.603542,
+                "conversation_run_ms": 1219.338666,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 62.651875,
+                "first_to_last_tool_done_ms": 908.44125,
+                "conversation_run_ms": 1219.347542,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 901.326624,
+              "claim_ms": 969.258875,
+              "completion_ms": 1001.330792
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 65.992458,
+                "first_to_last_tool_done_ms": 912.66175,
+                "conversation_run_ms": 1213.546709,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 65.885958,
+                "first_to_last_tool_done_ms": 912.627083,
+                "conversation_run_ms": 1213.614541,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 908.001625,
+              "claim_ms": 977.003875,
+              "completion_ms": 1009.485
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 69.392834,
+                "first_to_last_tool_done_ms": 915.771042,
+                "conversation_run_ms": 1224.415334,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 69.455583,
+                "first_to_last_tool_done_ms": 915.773708,
+                "conversation_run_ms": 1224.345916,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 911.311584,
+              "claim_ms": 996.625916,
+              "completion_ms": 1036.481208
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 68.731166,
+                "first_to_last_tool_done_ms": 915.728625,
+                "conversation_run_ms": 1218.58,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 68.327541,
+                "first_to_last_tool_done_ms": 915.367541,
+                "conversation_run_ms": 1218.319292,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 912.615873,
+              "claim_ms": 992.442792,
+              "completion_ms": 1026.016042
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 73.063667,
+                "first_to_last_tool_done_ms": 919.937209,
+                "conversation_run_ms": 1216.896459,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 69.8025,
+                "first_to_last_tool_done_ms": 916.503625,
+                "conversation_run_ms": 1214.49525,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 905.855709,
+              "claim_ms": 974.415292,
+              "completion_ms": 1002.3985
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 60.080042,
+                "first_to_last_tool_done_ms": 906.738125,
+                "conversation_run_ms": 1200.9695,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 59.77125,
+                "first_to_last_tool_done_ms": 904.811292,
+                "conversation_run_ms": 1190.250917,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 886.155165,
+              "claim_ms": 955.893375,
+              "completion_ms": 991.779541
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 65.313583,
+                "first_to_last_tool_done_ms": 911.04075,
+                "conversation_run_ms": 1210.20225,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 65.354417,
+                "first_to_last_tool_done_ms": 911.245792,
+                "conversation_run_ms": 1210.2545,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 930.260834,
+              "claim_ms": 1011.52025,
+              "completion_ms": 1049.666375
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 65.577625,
+                "first_to_last_tool_done_ms": 912.466583,
+                "conversation_run_ms": 1215.122667,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 65.323583,
+                "first_to_last_tool_done_ms": 911.60475,
+                "conversation_run_ms": 1214.815917,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 900.261874,
+              "claim_ms": 973.503875,
+              "completion_ms": 1008.084625
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 58.039584,
+                "first_to_last_tool_done_ms": 900.836667,
+                "conversation_run_ms": 1197.713792,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 57.991417,
+                "first_to_last_tool_done_ms": 900.839584,
+                "conversation_run_ms": 1198.103334,
+                "resume_claim_ms": 0,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 895.239457,
+              "claim_ms": 974.394,
+              "completion_ms": 1007.053666
+            }
+          }
+        ],
+        "batch": [
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 139.496625,
+                "first_to_last_tool_done_ms": 1022.2335,
+                "conversation_run_ms": 1428.190625,
+                "resume_claim_ms": 99.100458,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 139.516084,
+                "first_to_last_tool_done_ms": 1022.225834,
+                "conversation_run_ms": 1428.159375,
+                "resume_claim_ms": 100.787,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 85.987334,
+              "completion_ms": 124.342625
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 105.210875,
+                "first_to_last_tool_done_ms": 980.405084,
+                "conversation_run_ms": 1365.575,
+                "resume_claim_ms": 74.409125,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 113.857459,
+                "first_to_last_tool_done_ms": 989.064167,
+                "conversation_run_ms": 1371.614833,
+                "resume_claim_ms": 81.886959,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 72.739042,
+              "completion_ms": 105.755542
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 206.272958,
+                "first_to_last_tool_done_ms": 1095.093125,
+                "conversation_run_ms": 1499.665416,
+                "resume_claim_ms": 118.914958,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 206.371333,
+                "first_to_last_tool_done_ms": 1095.380208,
+                "conversation_run_ms": 1499.853583,
+                "resume_claim_ms": 116.114542,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 84.037292,
+              "completion_ms": 121.214959
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 139.328042,
+                "first_to_last_tool_done_ms": 1035.910834,
+                "conversation_run_ms": 1428.372167,
+                "resume_claim_ms": 95.66175,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 139.40175,
+                "first_to_last_tool_done_ms": 1035.988375,
+                "conversation_run_ms": 1428.231292,
+                "resume_claim_ms": 95.622041,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 86.948709,
+              "completion_ms": 126.098084
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 149.208333,
+                "first_to_last_tool_done_ms": 1029.994166,
+                "conversation_run_ms": 1431.655,
+                "resume_claim_ms": 102.032959,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 149.155125,
+                "first_to_last_tool_done_ms": 1029.88175,
+                "conversation_run_ms": 1431.663167,
+                "resume_claim_ms": 101.972791,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 55.192083,
+              "completion_ms": 85.065666
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 147.288083,
+                "first_to_last_tool_done_ms": 1025.198667,
+                "conversation_run_ms": 1420.33025,
+                "resume_claim_ms": 102.73125,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 146.921083,
+                "first_to_last_tool_done_ms": 1025.01925,
+                "conversation_run_ms": 1420.2695,
+                "resume_claim_ms": 104.939083,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 86.929416,
+              "completion_ms": 124.690166
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 140.150667,
+                "first_to_last_tool_done_ms": 1021.508583,
+                "conversation_run_ms": 1414.26225,
+                "resume_claim_ms": 98.373333,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 140.194833,
+                "first_to_last_tool_done_ms": 1021.522083,
+                "conversation_run_ms": 1414.208208,
+                "resume_claim_ms": 98.312,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 87.269041,
+              "completion_ms": 127.875541
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 141.749959,
+                "first_to_last_tool_done_ms": 1021.458084,
+                "conversation_run_ms": 1417.119958,
+                "resume_claim_ms": 101.034916,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 141.704333,
+                "first_to_last_tool_done_ms": 1021.399333,
+                "conversation_run_ms": 1417.114875,
+                "resume_claim_ms": 98.297542,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 82.015125,
+              "completion_ms": 121.787625
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 143.394125,
+                "first_to_last_tool_done_ms": 1021.265042,
+                "conversation_run_ms": 1425.445916,
+                "resume_claim_ms": 98.470208,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 142.913125,
+                "first_to_last_tool_done_ms": 1016.074125,
+                "conversation_run_ms": 1425.465625,
+                "resume_claim_ms": 98.479416,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 80.099167,
+              "completion_ms": 117.212375
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 147.443459,
+                "first_to_last_tool_done_ms": 1027.839209,
+                "conversation_run_ms": 1410.773417,
+                "resume_claim_ms": 107.339791,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 145.376458,
+                "first_to_last_tool_done_ms": 1025.63675,
+                "conversation_run_ms": 1412.481333,
+                "resume_claim_ms": 105.716625,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 70.199333,
+              "completion_ms": 103.330625
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 148.815083,
+                "first_to_last_tool_done_ms": 1025.368917,
+                "conversation_run_ms": 1422.3015,
+                "resume_claim_ms": 105.806709,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 148.758958,
+                "first_to_last_tool_done_ms": 1025.572583,
+                "conversation_run_ms": 1422.408916,
+                "resume_claim_ms": 105.809584,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 80.576792,
+              "completion_ms": 117.189208
+            }
+          },
+          {
+            "agents": [
+              {
+                "ready_to_tool_done_ms": 147.715541,
+                "first_to_last_tool_done_ms": 1054.329625,
+                "conversation_run_ms": 1463.210625,
+                "resume_claim_ms": 100.788083,
+                "resume_queue_ms": 0.0
+              },
+              {
+                "ready_to_tool_done_ms": 147.650541,
+                "first_to_last_tool_done_ms": 1053.85925,
+                "conversation_run_ms": 1462.397958,
+                "resume_claim_ms": 100.835416,
+                "resume_queue_ms": 0.0
+              }
+            ],
+            "probe": {
+              "queue_ms": 0.0,
+              "claim_ms": 88.39125,
+              "completion_ms": 124.472083
+            }
+          }
+        ]
+      },
+      "summary": {
+        "session": {
+          "agents": {
+            "ready_to_tool_done_ms": {
+              "p50": 66.49347900000001,
+              "p95": 69.8025
+            },
+            "first_to_last_tool_done_ms": {
+              "p50": 912.881729,
+              "p95": 916.503625
+            },
+            "conversation_run_ms": {
+              "p50": 1214.0548955,
+              "p95": 1224.345916
+            },
+            "resume_claim_ms": {
+              "p50": 0.0,
+              "p95": 0
+            },
+            "resume_queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            }
+          },
+          "probe": {
+            "queue_ms": {
+              "p50": 906.473647,
+              "p95": 930.260834
+            },
+            "claim_ms": {
+              "p50": 975.7095835,
+              "p95": 1011.52025
+            },
+            "completion_ms": {
+              "p50": 1008.7848125,
+              "p95": 1049.666375
+            }
+          }
+        },
+        "batch": {
+          "agents": {
+            "ready_to_tool_done_ms": {
+              "p50": 144.3852915,
+              "p95": 206.272958
+            },
+            "first_to_last_tool_done_ms": {
+              "p50": 1025.283792,
+              "p95": 1095.093125
+            },
+            "conversation_run_ms": {
+              "p50": 1423.927416,
+              "p95": 1499.665416
+            },
+            "resume_claim_ms": {
+              "p50": 100.81174949999999,
+              "p95": 116.114542
+            },
+            "resume_queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            }
+          },
+          "probe": {
+            "queue_ms": {
+              "p50": 0.0,
+              "p95": 0.0
+            },
+            "claim_ms": {
+              "p50": 83.0262085,
+              "p95": 88.39125
+            },
+            "completion_ms": {
+              "p50": 121.501292,
+              "p95": 127.875541
+            }
+          }
+        }
+      }
+    }
+  ],
+  "image_id": "sha256:37a3c702065ee52b8fc6c33238cd83e103cd10d9f0ba58ca144c8fcbffba599d",
+  "pool_setup_ms": 1645.5794579960639
+}

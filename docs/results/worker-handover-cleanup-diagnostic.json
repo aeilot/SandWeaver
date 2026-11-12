@@ -1,0 +1,1450 @@
+{
+  "docker": "linux/aarch64 OrbStack",
+  "image": "sandweaver-demo:local",
+  "rounds_per_arm": 12,
+  "warmup_per_arm_per_workload": 1,
+  "workloads": {
+    "minimal": {
+      "files": 0,
+      "bytes_per_file": 0,
+      "summary_ms": {
+        "synchronous": {
+          "release_ms": {
+            "p50": 54.4922295,
+            "p95": 58.124042
+          },
+          "b_claim_ms": {
+            "p50": 57.7740625,
+            "p95": 61.955167
+          },
+          "handover_ms": {
+            "p50": 158.96391699999998,
+            "p95": 169.784584
+          },
+          "delete_ms": {
+            "p50": 0.5749569999999999,
+            "p95": 0.742623
+          },
+          "start_exec_ms": {
+            "p50": 27.697312500000002,
+            "p95": 32.486958
+          },
+          "probe_exec_total_ms": {
+            "p50": 29.281354,
+            "p95": 35.788
+          },
+          "failed_probes": {
+            "p50": 0.0,
+            "p95": 0
+          },
+          "reset_exec_ms": {
+            "p50": 54.392167,
+            "p95": 58.014583
+          },
+          "reset_shell_ms": {
+            "p50": 28.0406555,
+            "p95": 28.446217
+          },
+          "kill_to_confirm_ms": {
+            "p50": 25.5089335,
+            "p95": 25.941473
+          },
+          "reset_exec_residual_ms": {
+            "p50": 27.170740000000002,
+            "p95": 29.759282000000002
+          },
+          "delete_end_after_reset_shell_ms": {
+            "p50": -0.6836439999999999,
+            "p95": -0.490915
+          },
+          "delete_end_after_b_start_ms": {
+            "p50": -29.241965,
+            "p95": -25.840932
+          }
+        },
+        "deferred": {
+          "release_ms": {
+            "p50": 53.7410625,
+            "p95": 59.463
+          },
+          "b_claim_ms": {
+            "p50": 58.781729,
+            "p95": 62.404375
+          },
+          "handover_ms": {
+            "p50": 158.41247900000002,
+            "p95": 163.931125
+          },
+          "delete_ms": {
+            "p50": 0.5642075,
+            "p95": 0.721331
+          },
+          "start_exec_ms": {
+            "p50": 27.3226875,
+            "p95": 33.208667
+          },
+          "probe_exec_total_ms": {
+            "p50": 29.6074585,
+            "p95": 32.654667
+          },
+          "failed_probes": {
+            "p50": 0.0,
+            "p95": 0
+          },
+          "reset_exec_ms": {
+            "p50": 53.637,
+            "p95": 59.355084
+          },
+          "reset_shell_ms": {
+            "p50": 24.8444975,
+            "p95": 27.528636
+          },
+          "kill_to_confirm_ms": {
+            "p50": 23.570063,
+            "p95": 26.142682
+          },
+          "reset_exec_residual_ms": {
+            "p50": 28.582570500000003,
+            "p95": 33.223611
+          },
+          "delete_end_after_reset_shell_ms": {
+            "p50": 0.612061,
+            "p95": 0.772164
+          },
+          "delete_end_after_b_start_ms": {
+            "p50": -28.340426,
+            "p95": -26.026265
+          }
+        }
+      },
+      "samples": {
+        "synchronous": [
+          {
+            "release_ms": 57.632834,
+            "b_claim_ms": 57.777458,
+            "handover_ms": 163.032,
+            "delete_ms": 0.599623,
+            "start_exec_ms": 30.630375,
+            "probe_exec_total_ms": 26.95425,
+            "failed_probes": 0,
+            "reset_exec_ms": 57.543666,
+            "reset_shell_ms": 28.086259,
+            "kill_to_confirm_ms": 25.564475,
+            "reset_exec_residual_ms": 29.457407000000003,
+            "delete_end_after_reset_shell_ms": -0.690623,
+            "delete_end_after_b_start_ms": -31.297918
+          },
+          {
+            "release_ms": 58.124042,
+            "b_claim_ms": 61.070417,
+            "handover_ms": 169.784584,
+            "delete_ms": 0.742623,
+            "start_exec_ms": 29.284041,
+            "probe_exec_total_ms": 31.564625,
+            "failed_probes": 0,
+            "reset_exec_ms": 58.014583,
+            "reset_shell_ms": 28.255301,
+            "kill_to_confirm_ms": 25.273684,
+            "reset_exec_residual_ms": 29.759282000000002,
+            "delete_end_after_reset_shell_ms": -0.830082,
+            "delete_end_after_b_start_ms": -31.396293
+          },
+          {
+            "release_ms": 55.394708,
+            "b_claim_ms": 61.955167,
+            "handover_ms": 167.817875,
+            "delete_ms": 0.654582,
+            "start_exec_ms": 25.963583,
+            "probe_exec_total_ms": 35.788,
+            "failed_probes": 0,
+            "reset_exec_ms": 55.293709,
+            "reset_shell_ms": 28.306801,
+            "kill_to_confirm_ms": 25.664933,
+            "reset_exec_residual_ms": 26.986908,
+            "delete_end_after_reset_shell_ms": -0.650832,
+            "delete_end_after_b_start_ms": -28.145343
+          },
+          {
+            "release_ms": 54.063417,
+            "b_claim_ms": 54.098333,
+            "handover_ms": 150.528333,
+            "delete_ms": 0.645415,
+            "start_exec_ms": 26.539083,
+            "probe_exec_total_ms": 27.346,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.959417,
+            "reset_shell_ms": 28.446217,
+            "kill_to_confirm_ms": 25.749474,
+            "reset_exec_residual_ms": 25.5132,
+            "delete_end_after_reset_shell_ms": -0.72054,
+            "delete_end_after_b_start_ms": -28.349051
+          },
+          {
+            "release_ms": 53.703875,
+            "b_claim_ms": 61.885708,
+            "handover_ms": 160.82575,
+            "delete_ms": 0.563624,
+            "start_exec_ms": 31.482417,
+            "probe_exec_total_ms": 30.193166,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.593917,
+            "reset_shell_ms": 28.412884,
+            "kill_to_confirm_ms": 25.941473,
+            "reset_exec_residual_ms": 25.181033,
+            "delete_end_after_reset_shell_ms": -0.691956,
+            "delete_end_after_b_start_ms": -33.186788
+          },
+          {
+            "release_ms": 56.217041,
+            "b_claim_ms": 58.249542,
+            "handover_ms": 161.660791,
+            "delete_ms": 0.533249,
+            "start_exec_ms": 27.612375,
+            "probe_exec_total_ms": 30.435916,
+            "failed_probes": 0,
+            "reset_exec_ms": 56.122416,
+            "reset_shell_ms": 27.932677,
+            "kill_to_confirm_ms": 25.407142,
+            "reset_exec_residual_ms": 28.189739,
+            "delete_end_after_reset_shell_ms": -0.68804,
+            "delete_end_after_b_start_ms": -29.068965
+          },
+          {
+            "release_ms": 52.866792,
+            "b_claim_ms": 57.770667,
+            "handover_ms": 154.434459,
+            "delete_ms": 0.536207,
+            "start_exec_ms": 31.289083,
+            "probe_exec_total_ms": 26.196,
+            "failed_probes": 0,
+            "reset_exec_ms": 52.740666,
+            "reset_shell_ms": 24.937935,
+            "kill_to_confirm_ms": 22.363858,
+            "reset_exec_residual_ms": 27.802730999999998,
+            "delete_end_after_reset_shell_ms": -0.679248,
+            "delete_end_after_b_start_ms": -34.155535
+          },
+          {
+            "release_ms": 51.079208,
+            "b_claim_ms": 53.958375,
+            "handover_ms": 149.131958,
+            "delete_ms": 0.58629,
+            "start_exec_ms": 24.6375,
+            "probe_exec_total_ms": 29.131208,
+            "failed_probes": 0,
+            "reset_exec_ms": 50.987125,
+            "reset_shell_ms": 25.443725,
+            "kill_to_confirm_ms": 22.859316,
+            "reset_exec_residual_ms": 25.5434,
+            "delete_end_after_reset_shell_ms": -0.674248,
+            "delete_end_after_b_start_ms": -26.220181
+          },
+          {
+            "release_ms": 54.347834,
+            "b_claim_ms": 57.4235,
+            "handover_ms": 157.102084,
+            "delete_ms": 0.657207,
+            "start_exec_ms": 27.78225,
+            "probe_exec_total_ms": 29.4315,
+            "failed_probes": 0,
+            "reset_exec_ms": 54.246459,
+            "reset_shell_ms": 28.177676,
+            "kill_to_confirm_ms": 25.453392,
+            "reset_exec_residual_ms": 26.068783,
+            "delete_end_after_reset_shell_ms": -0.752456,
+            "delete_end_after_b_start_ms": -29.414965
+          },
+          {
+            "release_ms": 54.636625,
+            "b_claim_ms": 52.026875,
+            "handover_ms": 149.522291,
+            "delete_ms": 0.546707,
+            "start_exec_ms": 25.355334,
+            "probe_exec_total_ms": 26.485792,
+            "failed_probes": 0,
+            "reset_exec_ms": 54.537875,
+            "reset_shell_ms": 27.183303,
+            "kill_to_confirm_ms": 24.90281,
+            "reset_exec_residual_ms": 27.354572,
+            "delete_end_after_reset_shell_ms": -0.627206,
+            "delete_end_after_b_start_ms": -26.891804
+          },
+          {
+            "release_ms": 55.960833,
+            "b_claim_ms": 60.762084,
+            "handover_ms": 161.186875,
+            "delete_ms": 0.535624,
+            "start_exec_ms": 32.486958,
+            "probe_exec_total_ms": 28.063417,
+            "failed_probes": 0,
+            "reset_exec_ms": 55.866208,
+            "reset_shell_ms": 27.995052,
+            "kill_to_confirm_ms": 25.57985,
+            "reset_exec_residual_ms": 27.871156,
+            "delete_end_after_reset_shell_ms": -0.58079,
+            "delete_end_after_b_start_ms": -32.094332
+          },
+          {
+            "release_ms": 54.008208,
+            "b_claim_ms": 54.635584,
+            "handover_ms": 152.856125,
+            "delete_ms": 0.456707,
+            "start_exec_ms": 24.473792,
+            "probe_exec_total_ms": 29.981,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.906792,
+            "reset_shell_ms": 27.641844,
+            "kill_to_confirm_ms": 25.688808,
+            "reset_exec_residual_ms": 26.264948000000004,
+            "delete_end_after_reset_shell_ms": -0.490915,
+            "delete_end_after_b_start_ms": -25.840932
+          }
+        ],
+        "deferred": [
+          {
+            "release_ms": 53.376334,
+            "b_claim_ms": 53.632791,
+            "handover_ms": 154.565709,
+            "delete_ms": 0.541624,
+            "start_exec_ms": 25.419333,
+            "probe_exec_total_ms": 28.023208,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.270208,
+            "reset_shell_ms": 23.803105,
+            "kill_to_confirm_ms": 22.623399,
+            "reset_exec_residual_ms": 29.467102999999998,
+            "delete_end_after_reset_shell_ms": 0.596123,
+            "delete_end_after_b_start_ms": -26.124182
+          },
+          {
+            "release_ms": 53.820875,
+            "b_claim_ms": 56.86875,
+            "handover_ms": 155.881875,
+            "delete_ms": 0.629707,
+            "start_exec_ms": 26.538875,
+            "probe_exec_total_ms": 30.118125,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.709416,
+            "reset_shell_ms": 27.117596,
+            "kill_to_confirm_ms": 25.630391,
+            "reset_exec_residual_ms": 26.59182,
+            "delete_end_after_reset_shell_ms": 0.677248,
+            "delete_end_after_b_start_ms": -27.851427
+          },
+          {
+            "release_ms": 51.013125,
+            "b_claim_ms": 58.979542,
+            "handover_ms": 158.16775,
+            "delete_ms": 0.560499,
+            "start_exec_ms": 29.655958,
+            "probe_exec_total_ms": 29.096792,
+            "failed_probes": 0,
+            "reset_exec_ms": 50.904125,
+            "reset_shell_ms": 24.138895,
+            "kill_to_confirm_ms": 22.813815,
+            "reset_exec_residual_ms": 26.76523,
+            "delete_end_after_reset_shell_ms": 0.613582,
+            "delete_end_after_b_start_ms": -30.725461
+          },
+          {
+            "release_ms": 54.497209,
+            "b_claim_ms": 62.404375,
+            "handover_ms": 160.993167,
+            "delete_ms": 0.525707,
+            "start_exec_ms": 29.549875,
+            "probe_exec_total_ms": 32.654667,
+            "failed_probes": 0,
+            "reset_exec_ms": 54.394667,
+            "reset_shell_ms": 26.183598,
+            "kill_to_confirm_ms": 25.124559,
+            "reset_exec_residual_ms": 28.211069,
+            "delete_end_after_reset_shell_ms": 0.582915,
+            "delete_end_after_b_start_ms": -30.201879
+          },
+          {
+            "release_ms": 50.285458,
+            "b_claim_ms": 51.879792,
+            "handover_ms": 146.650541,
+            "delete_ms": 0.608915,
+            "start_exec_ms": 24.698208,
+            "probe_exec_total_ms": 26.96925,
+            "failed_probes": 0,
+            "reset_exec_ms": 50.178792,
+            "reset_shell_ms": 24.006103,
+            "kill_to_confirm_ms": 22.706023,
+            "reset_exec_residual_ms": 26.172689000000002,
+            "delete_end_after_reset_shell_ms": 0.654082,
+            "delete_end_after_b_start_ms": -26.026265
+          },
+          {
+            "release_ms": 28.337708,
+            "b_claim_ms": 51.732542,
+            "handover_ms": 121.929916,
+            "delete_ms": 0.478832,
+            "start_exec_ms": 25.835625,
+            "probe_exec_total_ms": 25.717833,
+            "failed_probes": 0,
+            "reset_exec_ms": 28.241167,
+            "reset_shell_ms": 1.825495,
+            "kill_to_confirm_ms": 0.711915,
+            "reset_exec_residual_ms": 26.415672,
+            "delete_end_after_reset_shell_ms": 0.51354,
+            "delete_end_after_b_start_ms": -26.786097
+          },
+          {
+            "release_ms": 56.57775,
+            "b_claim_ms": 58.823458,
+            "handover_ms": 158.657208,
+            "delete_ms": 0.60179,
+            "start_exec_ms": 27.354167,
+            "probe_exec_total_ms": 31.27375,
+            "failed_probes": 0,
+            "reset_exec_ms": 56.482708,
+            "reset_shell_ms": 27.528636,
+            "kill_to_confirm_ms": 26.142682,
+            "reset_exec_residual_ms": 28.954072000000004,
+            "delete_end_after_reset_shell_ms": 0.676665,
+            "delete_end_after_b_start_ms": -27.675802
+          },
+          {
+            "release_ms": 53.741333,
+            "b_claim_ms": 55.317958,
+            "handover_ms": 154.578583,
+            "delete_ms": 0.542082,
+            "start_exec_ms": 27.291208,
+            "probe_exec_total_ms": 27.8285,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.635584,
+            "reset_shell_ms": 25.762516,
+            "kill_to_confirm_ms": 24.543353,
+            "reset_exec_residual_ms": 27.873068,
+            "delete_end_after_reset_shell_ms": 0.587373,
+            "delete_end_after_b_start_ms": -28.437134
+          },
+          {
+            "release_ms": 54.901375,
+            "b_claim_ms": 60.353583,
+            "handover_ms": 160.283375,
+            "delete_ms": 0.567916,
+            "start_exec_ms": 29.49275,
+            "probe_exec_total_ms": 30.648709,
+            "failed_probes": 0,
+            "reset_exec_ms": 54.807416,
+            "reset_shell_ms": 25.392017,
+            "kill_to_confirm_ms": 24.094895,
+            "reset_exec_residual_ms": 29.415399000000004,
+            "delete_end_after_reset_shell_ms": 0.61054,
+            "delete_end_after_b_start_ms": -30.411128
+          },
+          {
+            "release_ms": 53.508709,
+            "b_claim_ms": 59.062666,
+            "handover_ms": 161.429292,
+            "delete_ms": 0.721331,
+            "start_exec_ms": 27.265625,
+            "probe_exec_total_ms": 31.5855,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.395458,
+            "reset_shell_ms": 24.20427,
+            "kill_to_confirm_ms": 22.826732,
+            "reset_exec_residual_ms": 29.191187999999997,
+            "delete_end_after_reset_shell_ms": 0.772164,
+            "delete_end_after_b_start_ms": -28.243718
+          },
+          {
+            "release_ms": 59.463,
+            "b_claim_ms": 60.683417,
+            "handover_ms": 163.931125,
+            "delete_ms": 0.529416,
+            "start_exec_ms": 33.208667,
+            "probe_exec_total_ms": 27.282042,
+            "failed_probes": 0,
+            "reset_exec_ms": 59.355084,
+            "reset_shell_ms": 26.131473,
+            "kill_to_confirm_ms": 24.726519,
+            "reset_exec_residual_ms": 33.223611,
+            "delete_end_after_reset_shell_ms": 0.571874,
+            "delete_end_after_b_start_ms": -33.72537
+          },
+          {
+            "release_ms": 53.740792,
+            "b_claim_ms": 58.74,
+            "handover_ms": 161.061834,
+            "delete_ms": 0.601707,
+            "start_exec_ms": 28.381958,
+            "probe_exec_total_ms": 30.143083,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.638416,
+            "reset_shell_ms": 24.296978,
+            "kill_to_confirm_ms": 23.045231,
+            "reset_exec_residual_ms": 29.341438,
+            "delete_end_after_reset_shell_ms": 0.676582,
+            "delete_end_after_b_start_ms": -29.340298
+          }
+        ]
+      }
+    },
+    "small_files": {
+      "files": 8192,
+      "bytes_per_file": 4096,
+      "summary_ms": {
+        "synchronous": {
+          "release_ms": {
+            "p50": 63.677541999999995,
+            "p95": 68.141458
+          },
+          "b_claim_ms": {
+            "p50": 52.986604,
+            "p95": 59.385375
+          },
+          "handover_ms": {
+            "p50": 157.357563,
+            "p95": 167.553958
+          },
+          "delete_ms": {
+            "p50": 9.687453999999999,
+            "p95": 11.510886
+          },
+          "start_exec_ms": {
+            "p50": 26.605438,
+            "p95": 30.546375
+          },
+          "probe_exec_total_ms": {
+            "p50": 26.816167,
+            "p95": 32.50725
+          },
+          "failed_probes": {
+            "p50": 0.0,
+            "p95": 0
+          },
+          "reset_exec_ms": {
+            "p50": 63.586186999999995,
+            "p95": 68.045834
+          },
+          "reset_shell_ms": {
+            "p50": 34.882825499999996,
+            "p95": 38.686065
+          },
+          "kill_to_confirm_ms": {
+            "p50": 23.687959,
+            "p95": 25.824557
+          },
+          "reset_exec_residual_ms": {
+            "p50": 28.662990999999998,
+            "p95": 32.554461999999994
+          },
+          "delete_end_after_reset_shell_ms": {
+            "p50": -0.5162694999999999,
+            "p95": -0.469666
+          },
+          "delete_end_after_b_start_ms": {
+            "p50": -27.8775725,
+            "p95": -25.710099
+          }
+        },
+        "deferred": {
+          "release_ms": {
+            "p50": 62.429917,
+            "p95": 67.442
+          },
+          "b_claim_ms": {
+            "p50": 53.036854500000004,
+            "p95": 60.126209
+          },
+          "handover_ms": {
+            "p50": 155.9560415,
+            "p95": 164.355292
+          },
+          "delete_ms": {
+            "p50": 9.817098999999999,
+            "p95": 11.396012
+          },
+          "start_exec_ms": {
+            "p50": 26.6485,
+            "p95": 30.942291
+          },
+          "probe_exec_total_ms": {
+            "p50": 26.483978999999998,
+            "p95": 29.95
+          },
+          "failed_probes": {
+            "p50": 0.0,
+            "p95": 0
+          },
+          "reset_exec_ms": {
+            "p50": 62.331563,
+            "p95": 67.33575
+          },
+          "reset_shell_ms": {
+            "p50": 24.773726500000002,
+            "p95": 26.612389
+          },
+          "kill_to_confirm_ms": {
+            "p50": 23.730063,
+            "p95": 25.610141
+          },
+          "reset_exec_residual_ms": {
+            "p50": 37.620353,
+            "p95": 40.83111100000001
+          },
+          "delete_end_after_reset_shell_ms": {
+            "p50": 9.872744999999998,
+            "p95": 11.43947
+          },
+          "delete_end_after_b_start_ms": {
+            "p50": -27.8395525,
+            "p95": -26.64868
+          }
+        }
+      },
+      "samples": {
+        "synchronous": [
+          {
+            "release_ms": 64.080542,
+            "b_claim_ms": 52.472541,
+            "handover_ms": 155.206333,
+            "delete_ms": 9.4836,
+            "start_exec_ms": 24.939375,
+            "probe_exec_total_ms": 27.360541,
+            "failed_probes": 0,
+            "reset_exec_ms": 63.995916,
+            "reset_shell_ms": 36.090489,
+            "kill_to_confirm_ms": 25.113393,
+            "reset_exec_residual_ms": 27.905427000000003,
+            "delete_end_after_reset_shell_ms": -0.494457,
+            "delete_end_after_b_start_ms": -26.626388
+          },
+          {
+            "release_ms": 59.871959,
+            "b_claim_ms": 52.1625,
+            "handover_ms": 152.153417,
+            "delete_ms": 9.275309,
+            "start_exec_ms": 24.28025,
+            "probe_exec_total_ms": 27.701708,
+            "failed_probes": 0,
+            "reset_exec_ms": 59.775208,
+            "reset_shell_ms": 32.79358,
+            "kill_to_confirm_ms": 21.846026,
+            "reset_exec_residual_ms": 26.981628,
+            "delete_end_after_reset_shell_ms": -0.51379,
+            "delete_end_after_b_start_ms": -25.710099
+          },
+          {
+            "release_ms": 61.201083,
+            "b_claim_ms": 59.385375,
+            "handover_ms": 162.3845,
+            "delete_ms": 9.823224,
+            "start_exec_ms": 26.712584,
+            "probe_exec_total_ms": 32.50725,
+            "failed_probes": 0,
+            "reset_exec_ms": 61.082958,
+            "reset_shell_ms": 35.822115,
+            "kill_to_confirm_ms": 24.472853,
+            "reset_exec_residual_ms": 25.260843,
+            "delete_end_after_reset_shell_ms": -0.482416,
+            "delete_end_after_b_start_ms": -28.033927
+          },
+          {
+            "release_ms": 59.963833,
+            "b_claim_ms": 51.81775,
+            "handover_ms": 153.996333,
+            "delete_ms": 9.118351,
+            "start_exec_ms": 27.101583,
+            "probe_exec_total_ms": 24.548125,
+            "failed_probes": 0,
+            "reset_exec_ms": 59.879875,
+            "reset_shell_ms": 33.208663,
+            "kill_to_confirm_ms": 22.573357,
+            "reset_exec_residual_ms": 26.671211999999997,
+            "delete_end_after_reset_shell_ms": -0.469666,
+            "delete_end_after_b_start_ms": -27.760969
+          },
+          {
+            "release_ms": 67.665791,
+            "b_claim_ms": 55.207042,
+            "handover_ms": 162.90525,
+            "delete_ms": 9.584183,
+            "start_exec_ms": 26.663167,
+            "probe_exec_total_ms": 28.3655,
+            "failed_probes": 0,
+            "reset_exec_ms": 67.56925,
+            "reset_shell_ms": 36.247072,
+            "kill_to_confirm_ms": 25.143393,
+            "reset_exec_residual_ms": 31.322177999999994,
+            "delete_end_after_reset_shell_ms": -0.473624,
+            "delete_end_after_b_start_ms": -28.021051
+          },
+          {
+            "release_ms": 63.100417,
+            "b_claim_ms": 52.772958,
+            "handover_ms": 158.077709,
+            "delete_ms": 9.793516,
+            "start_exec_ms": 26.7485,
+            "probe_exec_total_ms": 25.8145,
+            "failed_probes": 0,
+            "reset_exec_ms": 63.008625,
+            "reset_shell_ms": 33.943536,
+            "kill_to_confirm_ms": 22.619941,
+            "reset_exec_residual_ms": 29.065089,
+            "delete_end_after_reset_shell_ms": -0.518749,
+            "delete_end_after_b_start_ms": -27.90276
+          },
+          {
+            "release_ms": 61.805125,
+            "b_claim_ms": 52.615084,
+            "handover_ms": 153.488209,
+            "delete_ms": 9.420559,
+            "start_exec_ms": 26.547709,
+            "probe_exec_total_ms": 25.880583,
+            "failed_probes": 0,
+            "reset_exec_ms": 61.708625,
+            "reset_shell_ms": 33.616246,
+            "kill_to_confirm_ms": 22.617191,
+            "reset_exec_residual_ms": 28.092379,
+            "delete_end_after_reset_shell_ms": -0.573249,
+            "delete_end_after_b_start_ms": -27.852385
+          },
+          {
+            "release_ms": 66.4115,
+            "b_claim_ms": 53.187083,
+            "handover_ms": 156.369666,
+            "delete_ms": 9.381309,
+            "start_exec_ms": 26.051459,
+            "probe_exec_total_ms": 26.959625,
+            "failed_probes": 0,
+            "reset_exec_ms": 66.315541,
+            "reset_shell_ms": 33.761079,
+            "kill_to_confirm_ms": 22.903065,
+            "reset_exec_residual_ms": 32.554461999999994,
+            "delete_end_after_reset_shell_ms": -0.499832,
+            "delete_end_after_b_start_ms": -27.403094
+          },
+          {
+            "release_ms": 68.141458,
+            "b_claim_ms": 56.714083,
+            "handover_ms": 166.914375,
+            "delete_ms": 10.422139,
+            "start_exec_ms": 30.546375,
+            "probe_exec_total_ms": 25.987792,
+            "failed_probes": 0,
+            "reset_exec_ms": 68.045834,
+            "reset_shell_ms": 36.867654,
+            "kill_to_confirm_ms": 24.758102,
+            "reset_exec_residual_ms": 31.178179999999998,
+            "delete_end_after_reset_shell_ms": -0.523416,
+            "delete_end_after_b_start_ms": -31.129419
+          },
+          {
+            "release_ms": 66.50725,
+            "b_claim_ms": 54.599958,
+            "handover_ms": 162.99125,
+            "delete_ms": 9.790725,
+            "start_exec_ms": 27.750875,
+            "probe_exec_total_ms": 26.672709,
+            "failed_probes": 0,
+            "reset_exec_ms": 66.402958,
+            "reset_shell_ms": 37.133736,
+            "kill_to_confirm_ms": 25.824557,
+            "reset_exec_residual_ms": 29.269222,
+            "delete_end_after_reset_shell_ms": -0.522998,
+            "delete_end_after_b_start_ms": -29.466339
+          },
+          {
+            "release_ms": 63.274542,
+            "b_claim_ms": 52.786125,
+            "handover_ms": 156.637417,
+            "delete_ms": 10.928847,
+            "start_exec_ms": 26.460709,
+            "probe_exec_total_ms": 26.156708,
+            "failed_probes": 0,
+            "reset_exec_ms": 63.176458,
+            "reset_shell_ms": 33.855912,
+            "kill_to_confirm_ms": 21.346403,
+            "reset_exec_residual_ms": 29.320546,
+            "delete_end_after_reset_shell_ms": -0.532082,
+            "delete_end_after_b_start_ms": -28.081759
+          },
+          {
+            "release_ms": 67.039458,
+            "b_claim_ms": 58.857958,
+            "handover_ms": 167.553958,
+            "delete_ms": 11.510886,
+            "start_exec_ms": 26.201209,
+            "probe_exec_total_ms": 32.488792,
+            "failed_probes": 0,
+            "reset_exec_ms": 66.946958,
+            "reset_shell_ms": 38.686065,
+            "kill_to_confirm_ms": 25.5111,
+            "reset_exec_residual_ms": 28.260892999999996,
+            "delete_end_after_reset_shell_ms": -0.525999,
+            "delete_end_after_b_start_ms": -27.073721
+          }
+        ],
+        "deferred": [
+          {
+            "release_ms": 64.415125,
+            "b_claim_ms": 52.527875,
+            "handover_ms": 153.076166,
+            "delete_ms": 10.62193,
+            "start_exec_ms": 25.679084,
+            "probe_exec_total_ms": 26.678458,
+            "failed_probes": 0,
+            "reset_exec_ms": 64.319375,
+            "reset_shell_ms": 26.015181,
+            "kill_to_confirm_ms": 24.899977,
+            "reset_exec_residual_ms": 38.304193999999995,
+            "delete_end_after_reset_shell_ms": 10.678264,
+            "delete_end_after_b_start_ms": -26.782388
+          },
+          {
+            "release_ms": 62.904083,
+            "b_claim_ms": 52.910167,
+            "handover_ms": 153.99075,
+            "delete_ms": 9.370768,
+            "start_exec_ms": 28.151375,
+            "probe_exec_total_ms": 24.581125,
+            "failed_probes": 0,
+            "reset_exec_ms": 62.803709,
+            "reset_shell_ms": 24.692352,
+            "kill_to_confirm_ms": 23.71448,
+            "reset_exec_residual_ms": 38.111357,
+            "delete_end_after_reset_shell_ms": 9.396184,
+            "delete_end_after_b_start_ms": -29.344089
+          },
+          {
+            "release_ms": 59.279625,
+            "b_claim_ms": 52.585,
+            "handover_ms": 150.112,
+            "delete_ms": 9.760432,
+            "start_exec_ms": 25.879625,
+            "probe_exec_total_ms": 26.536125,
+            "failed_probes": 0,
+            "reset_exec_ms": 59.19625,
+            "reset_shell_ms": 24.622227,
+            "kill_to_confirm_ms": 23.617355,
+            "reset_exec_residual_ms": 34.574023,
+            "delete_end_after_reset_shell_ms": 9.817474,
+            "delete_end_after_b_start_ms": -26.64868
+          },
+          {
+            "release_ms": 61.868042,
+            "b_claim_ms": 53.149917,
+            "handover_ms": 154.623875,
+            "delete_ms": 10.173348,
+            "start_exec_ms": 25.969667,
+            "probe_exec_total_ms": 27.003083,
+            "failed_probes": 0,
+            "reset_exec_ms": 61.775417,
+            "reset_shell_ms": 24.644186,
+            "kill_to_confirm_ms": 23.662647,
+            "reset_exec_residual_ms": 37.131231,
+            "delete_end_after_reset_shell_ms": 10.186598,
+            "delete_end_after_b_start_ms": -26.834221
+          },
+          {
+            "release_ms": 61.96575,
+            "b_claim_ms": 52.881083,
+            "handover_ms": 155.180958,
+            "delete_ms": 10.07339,
+            "start_exec_ms": 26.50925,
+            "probe_exec_total_ms": 26.200583,
+            "failed_probes": 0,
+            "reset_exec_ms": 61.879208,
+            "reset_shell_ms": 26.612389,
+            "kill_to_confirm_ms": 25.610141,
+            "reset_exec_residual_ms": 35.266819,
+            "delete_end_after_reset_shell_ms": 10.107057,
+            "delete_end_after_b_start_ms": -27.391261
+          },
+          {
+            "release_ms": 59.934833,
+            "b_claim_ms": 60.126209,
+            "handover_ms": 163.096292,
+            "delete_ms": 9.851849,
+            "start_exec_ms": 29.991791,
+            "probe_exec_total_ms": 29.95,
+            "failed_probes": 0,
+            "reset_exec_ms": 59.847708,
+            "reset_shell_ms": 22.630024,
+            "kill_to_confirm_ms": 21.545235,
+            "reset_exec_residual_ms": 37.217684,
+            "delete_end_after_reset_shell_ms": 9.917307,
+            "delete_end_after_b_start_ms": -30.929044
+          },
+          {
+            "release_ms": 65.085666,
+            "b_claim_ms": 52.923792,
+            "handover_ms": 156.807,
+            "delete_ms": 9.482183,
+            "start_exec_ms": 27.531833,
+            "probe_exec_total_ms": 25.213792,
+            "failed_probes": 0,
+            "reset_exec_ms": 64.999167,
+            "reset_shell_ms": 24.855101,
+            "kill_to_confirm_ms": 23.745646,
+            "reset_exec_residual_ms": 40.144065999999995,
+            "delete_end_after_reset_shell_ms": 9.513475,
+            "delete_end_after_b_start_ms": -27.745386
+          },
+          {
+            "release_ms": 65.946792,
+            "b_claim_ms": 53.646417,
+            "handover_ms": 161.684042,
+            "delete_ms": 9.782349,
+            "start_exec_ms": 27.398084,
+            "probe_exec_total_ms": 26.067458,
+            "failed_probes": 0,
+            "reset_exec_ms": 65.860708,
+            "reset_shell_ms": 26.360681,
+            "kill_to_confirm_ms": 25.257642,
+            "reset_exec_residual_ms": 39.500027,
+            "delete_end_after_reset_shell_ms": 9.828183,
+            "delete_end_after_b_start_ms": -28.486925
+          },
+          {
+            "release_ms": 60.879125,
+            "b_claim_ms": 53.93525,
+            "handover_ms": 156.731125,
+            "delete_ms": 9.966182,
+            "start_exec_ms": 26.78775,
+            "probe_exec_total_ms": 26.94,
+            "failed_probes": 0,
+            "reset_exec_ms": 60.789709,
+            "reset_shell_ms": 23.918271,
+            "kill_to_confirm_ms": 22.850648,
+            "reset_exec_residual_ms": 36.871438,
+            "delete_end_after_reset_shell_ms": 10.016307,
+            "delete_end_after_b_start_ms": -27.933719
+          },
+          {
+            "release_ms": 62.786875,
+            "b_claim_ms": 54.692416,
+            "handover_ms": 157.595958,
+            "delete_ms": 9.48685,
+            "start_exec_ms": 26.460458,
+            "probe_exec_total_ms": 28.056166,
+            "failed_probes": 0,
+            "reset_exec_ms": 62.686334,
+            "reset_shell_ms": 26.234848,
+            "kill_to_confirm_ms": 25.206851,
+            "reset_exec_residual_ms": 36.451486,
+            "delete_end_after_reset_shell_ms": 9.506017,
+            "delete_end_after_b_start_ms": -28.115301
+          },
+          {
+            "release_ms": 67.442,
+            "b_claim_ms": 56.028042,
+            "handover_ms": 164.355292,
+            "delete_ms": 11.396012,
+            "start_exec_ms": 30.942291,
+            "probe_exec_total_ms": 24.900417,
+            "failed_probes": 0,
+            "reset_exec_ms": 67.33575,
+            "reset_shell_ms": 26.504639,
+            "kill_to_confirm_ms": 25.4041,
+            "reset_exec_residual_ms": 40.83111100000001,
+            "delete_end_after_reset_shell_ms": 11.43947,
+            "delete_end_after_b_start_ms": -32.47379
+          },
+          {
+            "release_ms": 62.072959,
+            "b_claim_ms": 52.55025,
+            "handover_ms": 153.09425,
+            "delete_ms": 9.416433,
+            "start_exec_ms": 25.923625,
+            "probe_exec_total_ms": 26.431833,
+            "failed_probes": 0,
+            "reset_exec_ms": 61.976792,
+            "reset_shell_ms": 23.95377,
+            "kill_to_confirm_ms": 22.883315,
+            "reset_exec_residual_ms": 38.023022000000005,
+            "delete_end_after_reset_shell_ms": 9.452392,
+            "delete_end_after_b_start_ms": -26.949471
+          }
+        ]
+      }
+    },
+    "large_files": {
+      "files": 4,
+      "bytes_per_file": 8388608,
+      "summary_ms": {
+        "synchronous": {
+          "release_ms": {
+            "p50": 54.907686999999996,
+            "p95": 56.977459
+          },
+          "b_claim_ms": {
+            "p50": 56.1504585,
+            "p95": 59.706916
+          },
+          "handover_ms": {
+            "p50": 153.793104,
+            "p95": 161.948625
+          },
+          "delete_ms": {
+            "p50": 1.8238495000000001,
+            "p95": 2.02087
+          },
+          "start_exec_ms": {
+            "p50": 26.9852915,
+            "p95": 29.753166
+          },
+          "probe_exec_total_ms": {
+            "p50": 28.4360625,
+            "p95": 32.845708
+          },
+          "failed_probes": {
+            "p50": 0.0,
+            "p95": 0
+          },
+          "reset_exec_ms": {
+            "p50": 54.805499999999995,
+            "p95": 56.878792
+          },
+          "reset_shell_ms": {
+            "p50": 28.386300499999997,
+            "p95": 29.489298
+          },
+          "kill_to_confirm_ms": {
+            "p50": 24.7405395,
+            "p95": 25.885849
+          },
+          "reset_exec_residual_ms": {
+            "p50": 26.4547185,
+            "p95": 29.076197999999998
+          },
+          "delete_end_after_reset_shell_ms": {
+            "p50": -0.6196444999999999,
+            "p95": -0.530915
+          },
+          "delete_end_after_b_start_ms": {
+            "p50": -28.5911335,
+            "p95": -26.162598
+          }
+        },
+        "deferred": {
+          "release_ms": {
+            "p50": 54.841958000000005,
+            "p95": 58.332583
+          },
+          "b_claim_ms": {
+            "p50": 54.6373125,
+            "p95": 62.044209
+          },
+          "handover_ms": {
+            "p50": 152.05433349999998,
+            "p95": 165.114209
+          },
+          "delete_ms": {
+            "p50": 1.768433,
+            "p95": 1.993578
+          },
+          "start_exec_ms": {
+            "p50": 26.263083,
+            "p95": 30.838125
+          },
+          "probe_exec_total_ms": {
+            "p50": 27.8131665,
+            "p95": 31.513459
+          },
+          "failed_probes": {
+            "p50": 0.0,
+            "p95": 0
+          },
+          "reset_exec_ms": {
+            "p50": 54.737979,
+            "p95": 58.229167
+          },
+          "reset_shell_ms": {
+            "p50": 26.443910000000002,
+            "p95": 27.119846
+          },
+          "kill_to_confirm_ms": {
+            "p50": 25.207559,
+            "p95": 25.82639
+          },
+          "reset_exec_residual_ms": {
+            "p50": 28.427694000000002,
+            "p95": 31.109320999999998
+          },
+          "delete_end_after_reset_shell_ms": {
+            "p50": 1.8020580000000002,
+            "p95": 2.033828
+          },
+          "delete_end_after_b_start_ms": {
+            "p50": -27.5827195,
+            "p95": -26.398931
+          }
+        }
+      },
+      "samples": {
+        "synchronous": [
+          {
+            "release_ms": 56.63425,
+            "b_claim_ms": 53.312708,
+            "handover_ms": 152.546167,
+            "delete_ms": 1.509955,
+            "start_exec_ms": 27.843667,
+            "probe_exec_total_ms": 25.274542,
+            "failed_probes": 0,
+            "reset_exec_ms": 56.531166,
+            "reset_shell_ms": 28.369884,
+            "kill_to_confirm_ms": 25.273767,
+            "reset_exec_residual_ms": 28.161282,
+            "delete_end_after_reset_shell_ms": -0.530915,
+            "delete_end_after_b_start_ms": -29.24734
+          },
+          {
+            "release_ms": 52.090208,
+            "b_claim_ms": 54.646875,
+            "handover_ms": 152.752333,
+            "delete_ms": 1.768912,
+            "start_exec_ms": 27.852167,
+            "probe_exec_total_ms": 26.580708,
+            "failed_probes": 0,
+            "reset_exec_ms": 51.989834,
+            "reset_shell_ms": 25.560808,
+            "kill_to_confirm_ms": 22.097734,
+            "reset_exec_residual_ms": 26.429026,
+            "delete_end_after_reset_shell_ms": -0.582456,
+            "delete_end_after_b_start_ms": -29.445672
+          },
+          {
+            "release_ms": 54.990083,
+            "b_claim_ms": 55.47275,
+            "handover_ms": 154.833875,
+            "delete_ms": 1.840037,
+            "start_exec_ms": 27.501792,
+            "probe_exec_total_ms": 27.774375,
+            "failed_probes": 0,
+            "reset_exec_ms": 54.885917,
+            "reset_shell_ms": 28.896258,
+            "kill_to_confirm_ms": 25.236225,
+            "reset_exec_residual_ms": 25.989659,
+            "delete_end_after_reset_shell_ms": -0.616582,
+            "delete_end_after_b_start_ms": -29.096799
+          },
+          {
+            "release_ms": 56.086459,
+            "b_claim_ms": 59.706916,
+            "handover_ms": 161.948625,
+            "delete_ms": 1.846995,
+            "start_exec_ms": 26.652708,
+            "probe_exec_total_ms": 32.845708,
+            "failed_probes": 0,
+            "reset_exec_ms": 55.961542,
+            "reset_shell_ms": 29.481131,
+            "kill_to_confirm_ms": 25.885849,
+            "reset_exec_residual_ms": 26.480411,
+            "delete_end_after_reset_shell_ms": -0.623999,
+            "delete_end_after_b_start_ms": -27.969469
+          },
+          {
+            "release_ms": 54.685375,
+            "b_claim_ms": 55.624208,
+            "handover_ms": 152.255041,
+            "delete_ms": 1.951537,
+            "start_exec_ms": 26.650708,
+            "probe_exec_total_ms": 28.781375,
+            "failed_probes": 0,
+            "reset_exec_ms": 54.580209,
+            "reset_shell_ms": 28.402717,
+            "kill_to_confirm_ms": 24.591061,
+            "reset_exec_residual_ms": 26.177492000000004,
+            "delete_end_after_reset_shell_ms": -0.638915,
+            "delete_end_after_b_start_ms": -28.231093
+          },
+          {
+            "release_ms": 54.825291,
+            "b_claim_ms": 50.206209,
+            "handover_ms": 143.654333,
+            "delete_ms": 1.807662,
+            "start_exec_ms": 24.861542,
+            "probe_exec_total_ms": 25.147916,
+            "failed_probes": 0,
+            "reset_exec_ms": 54.725083,
+            "reset_shell_ms": 28.447051,
+            "kill_to_confirm_ms": 24.890018,
+            "reset_exec_residual_ms": 26.278032,
+            "delete_end_after_reset_shell_ms": -0.644082,
+            "delete_end_after_b_start_ms": -26.930096
+          },
+          {
+            "release_ms": 56.977459,
+            "b_claim_ms": 58.1235,
+            "handover_ms": 157.84175,
+            "delete_ms": 1.877204,
+            "start_exec_ms": 27.776375,
+            "probe_exec_total_ms": 30.146583,
+            "failed_probes": 0,
+            "reset_exec_ms": 56.878792,
+            "reset_shell_ms": 27.802594,
+            "kill_to_confirm_ms": 24.21227,
+            "reset_exec_residual_ms": 29.076197999999998,
+            "delete_end_after_reset_shell_ms": -0.584956,
+            "delete_end_after_b_start_ms": -29.404506
+          },
+          {
+            "release_ms": 56.357666,
+            "b_claim_ms": 59.320042,
+            "handover_ms": 159.146625,
+            "delete_ms": 1.751329,
+            "start_exec_ms": 27.266042,
+            "probe_exec_total_ms": 31.844625,
+            "failed_probes": 0,
+            "reset_exec_ms": 56.247375,
+            "reset_shell_ms": 27.96851,
+            "kill_to_confirm_ms": 24.504728,
+            "reset_exec_residual_ms": 28.278865,
+            "delete_end_after_reset_shell_ms": -0.566123,
+            "delete_end_after_b_start_ms": -28.951174
+          },
+          {
+            "release_ms": 53.804667,
+            "b_claim_ms": 57.051,
+            "handover_ms": 155.00775,
+            "delete_ms": 2.02087,
+            "start_exec_ms": 26.704541,
+            "probe_exec_total_ms": 30.137458,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.693667,
+            "reset_shell_ms": 26.324306,
+            "kill_to_confirm_ms": 22.457566,
+            "reset_exec_residual_ms": 27.369360999999998,
+            "delete_end_after_reset_shell_ms": -0.625706,
+            "delete_end_after_b_start_ms": -28.119384
+          },
+          {
+            "release_ms": 52.305125,
+            "b_claim_ms": 52.707209,
+            "handover_ms": 147.398459,
+            "delete_ms": 1.705204,
+            "start_exec_ms": 24.39475,
+            "probe_exec_total_ms": 28.09075,
+            "failed_probes": 0,
+            "reset_exec_ms": 52.207417,
+            "reset_shell_ms": 24.76656,
+            "kill_to_confirm_ms": 21.328194,
+            "reset_exec_residual_ms": 27.440857,
+            "delete_end_after_reset_shell_ms": -0.636498,
+            "delete_end_after_b_start_ms": -26.162598
+          },
+          {
+            "release_ms": 55.316917,
+            "b_claim_ms": 57.787958,
+            "handover_ms": 157.861792,
+            "delete_ms": 1.93512,
+            "start_exec_ms": 29.753166,
+            "probe_exec_total_ms": 27.825791,
+            "failed_probes": 0,
+            "reset_exec_ms": 55.193291,
+            "reset_shell_ms": 29.489298,
+            "kill_to_confirm_ms": 25.702807,
+            "reset_exec_residual_ms": 25.703993,
+            "delete_end_after_reset_shell_ms": -0.622707,
+            "delete_end_after_b_start_ms": -31.170918
+          },
+          {
+            "release_ms": 52.879458,
+            "b_claim_ms": 56.676709,
+            "handover_ms": 150.389792,
+            "delete_ms": 1.639413,
+            "start_exec_ms": 26.227458,
+            "probe_exec_total_ms": 30.253542,
+            "failed_probes": 0,
+            "reset_exec_ms": 52.786834,
+            "reset_shell_ms": 28.768466,
+            "kill_to_confirm_ms": 25.367309,
+            "reset_exec_residual_ms": 24.018368,
+            "delete_end_after_reset_shell_ms": -0.55829,
+            "delete_end_after_b_start_ms": -26.857888
+          }
+        ],
+        "deferred": [
+          {
+            "release_ms": 51.733542,
+            "b_claim_ms": 57.254958,
+            "handover_ms": 148.6405,
+            "delete_ms": 1.563246,
+            "start_exec_ms": 25.552958,
+            "probe_exec_total_ms": 31.513459,
+            "failed_probes": 0,
+            "reset_exec_ms": 51.636333,
+            "reset_shell_ms": 25.831432,
+            "kill_to_confirm_ms": 24.804644,
+            "reset_exec_residual_ms": 25.804901,
+            "delete_end_after_reset_shell_ms": 1.602579,
+            "delete_end_after_b_start_ms": -26.524722
+          },
+          {
+            "release_ms": 56.215875,
+            "b_claim_ms": 52.935584,
+            "handover_ms": 150.894709,
+            "delete_ms": 1.803662,
+            "start_exec_ms": 25.589875,
+            "probe_exec_total_ms": 27.151583,
+            "failed_probes": 0,
+            "reset_exec_ms": 56.119,
+            "reset_shell_ms": 26.377139,
+            "kill_to_confirm_ms": 25.178976,
+            "reset_exec_residual_ms": 29.741861,
+            "delete_end_after_reset_shell_ms": 1.84612,
+            "delete_end_after_b_start_ms": -26.585222
+          },
+          {
+            "release_ms": 53.90775,
+            "b_claim_ms": 54.641542,
+            "handover_ms": 152.813042,
+            "delete_ms": 1.721996,
+            "start_exec_ms": 25.571083,
+            "probe_exec_total_ms": 28.874375,
+            "failed_probes": 0,
+            "reset_exec_ms": 53.80425,
+            "reset_shell_ms": 23.328814,
+            "kill_to_confirm_ms": 22.045276,
+            "reset_exec_residual_ms": 30.475436000000002,
+            "delete_end_after_reset_shell_ms": 1.771829,
+            "delete_end_after_b_start_ms": -26.755555
+          },
+          {
+            "release_ms": 55.36675,
+            "b_claim_ms": 53.560958,
+            "handover_ms": 153.600458,
+            "delete_ms": 1.993578,
+            "start_exec_ms": 26.742333,
+            "probe_exec_total_ms": 26.61225,
+            "failed_probes": 0,
+            "reset_exec_ms": 55.269709,
+            "reset_shell_ms": 26.998679,
+            "kill_to_confirm_ms": 25.721349,
+            "reset_exec_residual_ms": 28.27103,
+            "delete_end_after_reset_shell_ms": 2.033828,
+            "delete_end_after_b_start_ms": -27.95551
+          },
+          {
+            "release_ms": 57.50725,
+            "b_claim_ms": 56.540125,
+            "handover_ms": 165.114209,
+            "delete_ms": 1.949828,
+            "start_exec_ms": 28.955666,
+            "probe_exec_total_ms": 27.364875,
+            "failed_probes": 0,
+            "reset_exec_ms": 57.400083,
+            "reset_shell_ms": 26.543097,
+            "kill_to_confirm_ms": 25.236142,
+            "reset_exec_residual_ms": 30.856986000000003,
+            "delete_end_after_reset_shell_ms": 1.970662,
+            "delete_end_after_b_start_ms": -29.68888
+          },
+          {
+            "release_ms": 47.943416,
+            "b_claim_ms": 54.591834,
+            "handover_ms": 143.811291,
+            "delete_ms": 1.571121,
+            "start_exec_ms": 28.28825,
+            "probe_exec_total_ms": 26.12275,
+            "failed_probes": 0,
+            "reset_exec_ms": 47.847541,
+            "reset_shell_ms": 22.504983,
+            "kill_to_confirm_ms": 21.543652,
+            "reset_exec_residual_ms": 25.342558,
+            "delete_end_after_reset_shell_ms": 1.631037,
+            "delete_end_after_b_start_ms": -29.030049
+          },
+          {
+            "release_ms": 58.332583,
+            "b_claim_ms": 54.143917,
+            "handover_ms": 155.629958,
+            "delete_ms": 1.876495,
+            "start_exec_ms": 25.783833,
+            "probe_exec_total_ms": 28.130541,
+            "failed_probes": 0,
+            "reset_exec_ms": 58.229167,
+            "reset_shell_ms": 27.119846,
+            "kill_to_confirm_ms": 25.82639,
+            "reset_exec_residual_ms": 31.109320999999998,
+            "delete_end_after_reset_shell_ms": 1.889745,
+            "delete_end_after_b_start_ms": -27.209929
+          },
+          {
+            "release_ms": 54.315917,
+            "b_claim_ms": 51.868916,
+            "handover_ms": 147.860875,
+            "delete_ms": 1.572246,
+            "start_exec_ms": 25.665666,
+            "probe_exec_total_ms": 26.0185,
+            "failed_probes": 0,
+            "reset_exec_ms": 54.212209,
+            "reset_shell_ms": 25.780641,
+            "kill_to_confirm_ms": 24.555311,
+            "reset_exec_residual_ms": 28.431568000000002,
+            "delete_end_after_reset_shell_ms": 1.616037,
+            "delete_end_after_b_start_ms": -26.398931
+          },
+          {
+            "release_ms": 55.186708,
+            "b_claim_ms": 55.684833,
+            "handover_ms": 151.295625,
+            "delete_ms": 1.782662,
+            "start_exec_ms": 25.424166,
+            "probe_exec_total_ms": 30.055709,
+            "failed_probes": 0,
+            "reset_exec_ms": 55.074125,
+            "reset_shell_ms": 26.650305,
+            "kill_to_confirm_ms": 25.58685,
+            "reset_exec_residual_ms": 28.423820000000003,
+            "delete_end_after_reset_shell_ms": 1.801079,
+            "delete_end_after_b_start_ms": -26.921971
+          },
+          {
+            "release_ms": 57.891459,
+            "b_claim_ms": 58.644541,
+            "handover_ms": 157.949084,
+            "delete_ms": 1.754204,
+            "start_exec_ms": 28.795292,
+            "probe_exec_total_ms": 29.637583,
+            "failed_probes": 0,
+            "reset_exec_ms": 57.790583,
+            "reset_shell_ms": 27.061637,
+            "kill_to_confirm_ms": 25.777849,
+            "reset_exec_residual_ms": 30.728945999999997,
+            "delete_end_after_reset_shell_ms": 1.803037,
+            "delete_end_after_b_start_ms": -30.155838
+          },
+          {
+            "release_ms": 54.497208,
+            "b_claim_ms": 62.044209,
+            "handover_ms": 164.997667,
+            "delete_ms": 1.943787,
+            "start_exec_ms": 30.838125,
+            "probe_exec_total_ms": 31.008,
+            "failed_probes": 0,
+            "reset_exec_ms": 54.401833,
+            "reset_shell_ms": 26.510681,
+            "kill_to_confirm_ms": 25.275059,
+            "reset_exec_residual_ms": 27.891152,
+            "delete_end_after_reset_shell_ms": 1.974203,
+            "delete_end_after_b_start_ms": -31.620375
+          },
+          {
+            "release_ms": 52.248167,
+            "b_claim_ms": 54.633083,
+            "handover_ms": 145.281917,
+            "delete_ms": 1.737829,
+            "start_exec_ms": 26.933542,
+            "probe_exec_total_ms": 27.495792,
+            "failed_probes": 0,
+            "reset_exec_ms": 52.137583,
+            "reset_shell_ms": 24.093562,
+            "kill_to_confirm_ms": 22.942523,
+            "reset_exec_residual_ms": 28.044021,
+            "delete_end_after_reset_shell_ms": 1.78737,
+            "delete_end_after_b_start_ms": -28.319301
+          }
+        ]
+      }
+    }
+  },
+  "worker_setup_ms": 1049.449709,
+  "image_id": "sha256:37a3c702065ee52b8fc6c33238cd83e103cd10d9f0ba58ca144c8fcbffba599d"
+}
