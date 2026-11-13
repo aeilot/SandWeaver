@@ -10,6 +10,7 @@ SandWeaver 是一个独立的本机沙盒调度器。Coding agent 在外部运�
 | [DeepSeek Flash agent 观测报告](agent-observation.md) | 真实修复任务、时间线、租约占用与下一轮机制实验 |
 | [实验与决策记录](experiments.md) | 已验证的结果、早期探索、对照组和可解释范围 |
 | [Coding agent 的 worker 复用实验](worker-reuse.md) | 写层回收、状态与缓存、OpenHands 三种租约策略及逐轮数据 |
+| [研究交接](handoff.md) | 已测结果、TrEnv 对照、依赖缓存实验及换机步骤 |
 | [相关工作与研究计划](research.md) | 相关系统、集中恢复、容量调度与外部基线 |
 | [执行容量与依赖管理](lease-and-dependencies.md) | 等待、复用与扩缩容，隔离，按清单组装依赖和 CXL 假设，附组件实测 |
 
