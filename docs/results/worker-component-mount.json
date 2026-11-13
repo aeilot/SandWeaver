@@ -1,0 +1,41 @@
+{
+  "image": "sandweaver-demo:local",
+  "image_id": "sha256:37a3c702065ee52b8fc6c33238cd83e103cd10d9f0ba58ca144c8fcbffba599d",
+  "manifests": {
+    "a": {
+      "component": "4d061c1f1e61dde4927dfe64f7c7e8ecab366799945de505c6fee9d609c378d3",
+      "version": "v1"
+    },
+    "b": {
+      "component": "f91af338718948ff7b0de3200c48470cb95d4adbf695d6f89f63b4a774f181b1",
+      "version": "v2"
+    }
+  },
+  "same_worker_handoffs": [
+    {
+      "session": "a",
+      "version": "v1",
+      "claim_ms": 51.290125,
+      "claim_to_verified_ms": 81.86125
+    },
+    {
+      "session": "b",
+      "version": "v2",
+      "claim_ms": 48.083875,
+      "claim_to_verified_ms": 79.698333
+    },
+    {
+      "session": "a",
+      "version": "v1",
+      "claim_ms": 51.435083,
+      "claim_to_verified_ms": 85.733
+    }
+  ],
+  "replacement_ms": 694.456083,
+  "restored_on_replacement": {
+    "session": "a",
+    "version": "v1",
+    "claim_ms": 53.060834,
+    "claim_to_verified_ms": 84.337709
+  }
+}

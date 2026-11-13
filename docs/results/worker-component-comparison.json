@@ -1,0 +1,510 @@
+{
+  "image_id": "sha256:37a3c702065ee52b8fc6c33238cd83e103cd10d9f0ba58ca144c8fcbffba599d",
+  "wheel_sha256": "2cbf6370af06568fa6d2da77c86edb7886f3160ecd19ee1ffef07979efc597f6",
+  "rounds_per_arm": 30,
+  "warmup_per_arm": 1,
+  "pool_setup_ms": 844.548833,
+  "component_bytes": 402769,
+  "samples": {
+    "baseline": [
+      {
+        "claim_ms": 59.065708,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 99.673125
+      },
+      {
+        "claim_ms": 58.161542,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 94.187084
+      },
+      {
+        "claim_ms": 51.153208,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 84.869875
+      },
+      {
+        "claim_ms": 52.215417,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 91.205584
+      },
+      {
+        "claim_ms": 56.330125,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 93.379708
+      },
+      {
+        "claim_ms": 51.383083,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 85.169791
+      },
+      {
+        "claim_ms": 53.359542,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 88.400792
+      },
+      {
+        "claim_ms": 54.827666,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 93.386916
+      },
+      {
+        "claim_ms": 46.948708,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 80.542208
+      },
+      {
+        "claim_ms": 52.254833,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 86.929208
+      },
+      {
+        "claim_ms": 55.793916,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 92.581416
+      },
+      {
+        "claim_ms": 52.748792,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 88.078834
+      },
+      {
+        "claim_ms": 53.879708,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 88.484875
+      },
+      {
+        "claim_ms": 51.253542,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 90.701125
+      },
+      {
+        "claim_ms": 59.04125,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 97.944916
+      },
+      {
+        "claim_ms": 52.534292,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 90.685417
+      },
+      {
+        "claim_ms": 66.309584,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 102.916792
+      },
+      {
+        "claim_ms": 48.616584,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 82.930667
+      },
+      {
+        "claim_ms": 51.425958,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 92.983958
+      },
+      {
+        "claim_ms": 52.248291,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 87.764208
+      },
+      {
+        "claim_ms": 52.612417,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 87.926333
+      },
+      {
+        "claim_ms": 53.062541,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 92.9195
+      },
+      {
+        "claim_ms": 51.883167,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 89.64975
+      },
+      {
+        "claim_ms": 53.699291,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 90.397458
+      },
+      {
+        "claim_ms": 57.444917,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 92.207375
+      },
+      {
+        "claim_ms": 49.8425,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 87.203708
+      },
+      {
+        "claim_ms": 55.995,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 92.214334
+      },
+      {
+        "claim_ms": 56.797542,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 91.19275
+      },
+      {
+        "claim_ms": 48.412125,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 83.228458
+      },
+      {
+        "claim_ms": 51.839083,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 87.585625
+      }
+    ],
+    "mounted": [
+      {
+        "claim_ms": 177.726542,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 347.976292
+      },
+      {
+        "claim_ms": 51.940625,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 89.448416
+      },
+      {
+        "claim_ms": 50.877375,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 99.459958
+      },
+      {
+        "claim_ms": 55.708042,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 95.939458
+      },
+      {
+        "claim_ms": 48.770459,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 89.676709
+      },
+      {
+        "claim_ms": 48.576,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 86.803333
+      },
+      {
+        "claim_ms": 51.71625,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 94.111167
+      },
+      {
+        "claim_ms": 57.337125,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 94.184792
+      },
+      {
+        "claim_ms": 49.649041,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 90.365416
+      },
+      {
+        "claim_ms": 49.637125,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 89.085959
+      },
+      {
+        "claim_ms": 49.570584,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 94.215959
+      },
+      {
+        "claim_ms": 53.092042,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 93.981792
+      },
+      {
+        "claim_ms": 50.2605,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 91.919291
+      },
+      {
+        "claim_ms": 50.394375,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 113.775
+      },
+      {
+        "claim_ms": 55.552292,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 93.41625
+      },
+      {
+        "claim_ms": 60.886,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 100.762958
+      },
+      {
+        "claim_ms": 48.405875,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 89.981542
+      },
+      {
+        "claim_ms": 47.736333,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 89.027125
+      },
+      {
+        "claim_ms": 56.005667,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 95.829417
+      },
+      {
+        "claim_ms": 49.134666,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 88.4165
+      },
+      {
+        "claim_ms": 50.14425,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 90.237875
+      },
+      {
+        "claim_ms": 51.569958,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 92.288833
+      },
+      {
+        "claim_ms": 48.654125,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 88.270291
+      },
+      {
+        "claim_ms": 52.996209,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 91.525709
+      },
+      {
+        "claim_ms": 53.405583,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 95.29125
+      },
+      {
+        "claim_ms": 56.810417,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 98.954584
+      },
+      {
+        "claim_ms": 48.799167,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 87.970042
+      },
+      {
+        "claim_ms": 49.048542,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 89.131708
+      },
+      {
+        "claim_ms": 50.922959,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 92.562209
+      },
+      {
+        "claim_ms": 54.644166,
+        "install_ms": 0.0,
+        "claim_to_verified_ms": 104.016708
+      }
+    ],
+    "rebuild": [
+      {
+        "claim_ms": 97.952583,
+        "install_ms": 272.321083,
+        "claim_to_verified_ms": 420.318708
+      },
+      {
+        "claim_ms": 57.020458,
+        "install_ms": 192.484959,
+        "claim_to_verified_ms": 299.6585
+      },
+      {
+        "claim_ms": 54.777334,
+        "install_ms": 166.2215,
+        "claim_to_verified_ms": 263.247167
+      },
+      {
+        "claim_ms": 52.258916,
+        "install_ms": 161.166625,
+        "claim_to_verified_ms": 262.730541
+      },
+      {
+        "claim_ms": 55.776542,
+        "install_ms": 159.748167,
+        "claim_to_verified_ms": 259.374042
+      },
+      {
+        "claim_ms": 48.080583,
+        "install_ms": 158.760875,
+        "claim_to_verified_ms": 250.198958
+      },
+      {
+        "claim_ms": 49.387542,
+        "install_ms": 159.957583,
+        "claim_to_verified_ms": 255.517292
+      },
+      {
+        "claim_ms": 55.459583,
+        "install_ms": 159.280834,
+        "claim_to_verified_ms": 257.484042
+      },
+      {
+        "claim_ms": 50.549084,
+        "install_ms": 159.005791,
+        "claim_to_verified_ms": 261.023292
+      },
+      {
+        "claim_ms": 47.98325,
+        "install_ms": 159.617584,
+        "claim_to_verified_ms": 253.264334
+      },
+      {
+        "claim_ms": 48.15825,
+        "install_ms": 168.356958,
+        "claim_to_verified_ms": 267.142541
+      },
+      {
+        "claim_ms": 55.717541,
+        "install_ms": 161.010459,
+        "claim_to_verified_ms": 259.03775
+      },
+      {
+        "claim_ms": 53.570542,
+        "install_ms": 158.454375,
+        "claim_to_verified_ms": 255.322167
+      },
+      {
+        "claim_ms": 52.275959,
+        "install_ms": 157.247541,
+        "claim_to_verified_ms": 254.653125
+      },
+      {
+        "claim_ms": 52.664834,
+        "install_ms": 165.775416,
+        "claim_to_verified_ms": 259.231959
+      },
+      {
+        "claim_ms": 57.665125,
+        "install_ms": 169.488875,
+        "claim_to_verified_ms": 268.24725
+      },
+      {
+        "claim_ms": 50.969958,
+        "install_ms": 215.559583,
+        "claim_to_verified_ms": 318.904291
+      },
+      {
+        "claim_ms": 51.807542,
+        "install_ms": 169.223708,
+        "claim_to_verified_ms": 261.402167
+      },
+      {
+        "claim_ms": 50.104416,
+        "install_ms": 165.124875,
+        "claim_to_verified_ms": 256.905625
+      },
+      {
+        "claim_ms": 50.531333,
+        "install_ms": 159.532333,
+        "claim_to_verified_ms": 254.805166
+      },
+      {
+        "claim_ms": 49.526334,
+        "install_ms": 159.716958,
+        "claim_to_verified_ms": 253.631792
+      },
+      {
+        "claim_ms": 48.871125,
+        "install_ms": 192.079333,
+        "claim_to_verified_ms": 276.622958
+      },
+      {
+        "claim_ms": 54.445917,
+        "install_ms": 162.573542,
+        "claim_to_verified_ms": 257.518542
+      },
+      {
+        "claim_ms": 51.441541,
+        "install_ms": 166.94625,
+        "claim_to_verified_ms": 256.562833
+      },
+      {
+        "claim_ms": 54.341792,
+        "install_ms": 166.230833,
+        "claim_to_verified_ms": 261.267584
+      },
+      {
+        "claim_ms": 54.516167,
+        "install_ms": 164.884792,
+        "claim_to_verified_ms": 265.477292
+      },
+      {
+        "claim_ms": 54.019166,
+        "install_ms": 169.3005,
+        "claim_to_verified_ms": 267.335958
+      },
+      {
+        "claim_ms": 55.262333,
+        "install_ms": 171.779875,
+        "claim_to_verified_ms": 267.232833
+      },
+      {
+        "claim_ms": 51.4955,
+        "install_ms": 166.404,
+        "claim_to_verified_ms": 254.934959
+      },
+      {
+        "claim_ms": 51.173083,
+        "install_ms": 167.653,
+        "claim_to_verified_ms": 262.557958
+      }
+    ]
+  },
+  "summary_ms": {
+    "baseline": {
+      "claim_ms": {
+        "p50": 52.6806045,
+        "p95": 59.065708
+      },
+      "install_ms": {
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "claim_to_verified_ms": {
+        "p50": 90.5414375,
+        "p95": 99.673125
+      }
+    },
+    "mounted": {
+      "claim_ms": {
+        "p50": 50.900166999999996,
+        "p95": 60.886
+      },
+      "install_ms": {
+        "p50": 0.0,
+        "p95": 0.0
+      },
+      "claim_to_verified_ms": {
+        "p50": 92.425521,
+        "p95": 113.775
+      }
+    },
+    "rebuild": {
+      "claim_ms": {
+        "p50": 52.2674375,
+        "p95": 57.665125
+      },
+      "install_ms": {
+        "p50": 165.45014550000002,
+        "p95": 215.559583
+      },
+      "claim_to_verified_ms": {
+        "p50": 260.198667,
+        "p95": 318.904291
+      }
+    }
+  }
+}

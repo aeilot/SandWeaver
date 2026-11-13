@@ -65,3 +65,5 @@ Rust 两组分别编译 1 和 7 个 crate，保留组复用了 6 个库 crate。
 Docker/OpenHands 集成测试验证了同批工具保留临时文件、A 等模型时 B 接手、A 在另一 worker 恢复文件、等待期间拒绝重叠路径、按需标记及回收。单元测试验证了 reset 失败时的工作区保护，以及恢复请求等待进行中的回收。
 
 [基准脚本](../benchmarks/openhands-batch-leases.py) · [按需对照原始样本](results/openhands-demand-leases.json) · [运行入口](operations.md#按工具批次领用-worker)
+
+只读依赖版本的换绑、替代 worker 恢复和离线重装对照见 [组件原型实测](lease-and-dependencies.md#组件原型实测)。

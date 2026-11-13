@@ -60,3 +60,5 @@ flowchart LR
 当前 `EXEC` 在进入租约根目录后调用该视图的 `/usr/bin/setpriv`，清除 capabilities 并设置 `no-new-privs`，未显式切换为非 root UID/GID。把执行及降权入口放到任务无法改写的可信侧是待做的安全改造。
 
 更换可写层可以消除测试覆盖的文件残留。更换 PID namespace 可以结束测试覆盖的后台服务。跨租约需要服务状态时，应明确持久化和重建，或先保留原租约。没有实现进程快照、透明恢复、共享外部数据库重置和 CRIU/Firecracker 后端。
+
+按租约组装依赖的候选设计与 Docker 原型见 [执行容量与依赖管理](lease-and-dependencies.md#按清单组装环境)。

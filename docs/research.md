@@ -4,12 +4,42 @@
 
 - **Sandman** 已做 coding agent 训练和评测中的跨任务 Pod 复用。它在归还后检查状态、撤销可恢复的变化并复查，其余情况换新 Pod。论文附录的同批测试里，普通复用有 64/787 次错误评分，经检查的复用有 0/787 次。SandWeaver 的候选区别在于，从一开始把写入和任务进程限制在可丢弃的执行视图内。两者的延迟数据不可直接比较。[Sandman](https://arxiv.org/html/2610.39711v1)
 - **Kubernetes Agent Sandbox** 是 sandbox 生命周期的直接系统基线。它支持常驻、有持久卷的 suspend/resume，以及通过 WarmPool/Claim 领取预热 Pod。RL 示例另有 Git 重置、进程与临时目录清理。KEDA 示例以 claim 到达率调整预热池大小。[概览](https://agent-sandbox.sigs.k8s.io/docs/) · [暂停与恢复](https://agent-sandbox.sigs.k8s.io/docs/use-cases/examples/mcp-server-sandbox/) · [RL 复用策略](https://github.com/kubernetes-sigs/agent-sandbox/blob/main/examples/agent-sandbox-rl/docs/strategies.md) · [KEDA](https://agent-sandbox.sigs.k8s.io/docs/use-cases/examples/keda-scale-to-zero/)
-- **aShare** 已明确提出跨 agent 重新分配空闲 sandbox，并用离线划分和在线延迟感知调度实现原型。当前核对了公开摘要，完整状态协议、缓存路径和评估口径仍待逐项比较。[aShare](https://link.springer.com/chapter/10.1007/978-981-92-4805-6_13)
+- **aShare** 已明确提出跨 agent 重新分配空闲 sandbox，并用离线划分和在线延迟感知调度实现原型。全文对照见下节。[aShare](https://link.springer.com/chapter/10.1007/978-981-92-4805-6_13)
 - **Aries** 实现了轨迹观测框架，按工具轨迹和计费模型估算不同保活时间下的快照与恢复成本。它把执行状态与资源分离列作未来工作。[Aries §4.3、§5.3](https://arxiv.org/html/2607.29069)
 - **Firepool** 主要调度 agent 和 RL 的 GPU 容量。Pod 是其执行沙盒，跨调用方可由预热 Pod 接手 GPU，原 Pod 按策略保留或淘汰。其原调用方保护、按队列扩缩容和容量预算可作为算法参照。**CAS** 已在 OpenWhisk 研究利用即将可用的容器，以及按生命周期选择新建或淘汰。通用的等待、回收与扩缩容已有先例。[Firepool §5–7、附录 A.3](https://arxiv.org/html/2611.10832) · [CAS](https://doi.org/10.1002/spe.3016)
 - **SAND** 在 serverless 中用常驻应用沙箱和单独函数进程摊销启动成本。**Function REWIND** 在容器复用时恢复初始状态。[SAND](https://www.usenix.org/conference/atc18/presentation/akkus) · [Function REWIND](https://www.usenix.org/system/files/atc24-song.pdf)
 - **Crab** 按 agent 轮次观察系统副作用，选择文件、进程或完整 checkpoint。**CUA-Sandbox** 则以私有状态 capsule 和共享运行时支持 computer-use 训练。二者都是状态分类和复用的重要先例。[Crab](https://arxiv.org/html/2604.28138v1) · [CUA-Sandbox](https://arxiv.org/html/2609.32750v1)
 - **SpecBox** 用流式模型输出和历史轨迹提前准备环境。**DSec** 在 agent 训练中组合独立版本环境层并按需加载。**SWE-MiniSandbox** 缓存仓库和依赖环境。更早的 **Nix、SOCK、Slacker** 分别覆盖不可变包环境、包感知预热和镜像按需拉取。[SpecBox](https://arxiv.org/html/2607.23933v1) · [DSec](https://arxiv.org/html/2609.22978v1) · [SWE-MiniSandbox](https://proceedings.mlr.press/v306/yuan26l.html) · [Nix](https://edolstra.github.io/pubs/nspfssd-lisa2004-final.pdf) · [SOCK](https://www.usenix.org/conference/atc18/presentation/oakes) · [Slacker](https://www.usenix.org/conference/fast16/technical-sessions/presentation/harter)
+
+## aShare 全文与依赖相关先例
+
+aShare（APPT 2026，pp. 189–202）把工具与模型调用拆成显式工作流节点，调度器保存工作流状态。依赖冲突图在离线阶段分组，在线阶段对兼容计算沙盒做 first-fit + EDF，所有队列都无法满足截止时间时新建沙盒。论文描述请求前重置和新进程执行，评估聚焦资源、延迟与开销。§3.3–3.4 没有展开会话中途安装、升级后的重新分组和依赖淘汰，§5 没有系统验证跨不可信租户隔离。[aShare](https://doi.org/10.1007/978-981-92-4805-6_13)
+
+| 工作或基线 | 策略及适用范围 |
+|---|---|
+| Base | 每请求独占沙盒。AgentCore、E2B 是论文讨论的系统实例。 |
+| OWL / Gsight | 按性能干扰安排沙盒共置。OWL 是 aShare 实验基线，Gsight 是相关工作。[OWL](https://www.cse.ust.hk/~weiwa/papers/owl-socc2022.pdf) · [Gsight](https://sc21.supercomputing.org/proceedings/tech_paper/tech_paper_pages/pap533.html) |
+| StepConf / Aquatope | 按阶段配置资源或预热。aShare 的 StepConf 对照也拆分工具与模型节点，共享限于同一 agent。Aquatope 属于相关工作。[StepConf](https://fangmingliu.github.io/files/INFOCOM22-serverless.pdf) · [Aquatope](https://people.csail.mit.edu/delimitrou/papers/2023.asplos.aquatope.pdf) |
+| TrEnv-X | 清理后复用底层执行环境，切换函数专属依赖，并共享只读内存模板。它是执行环境重分配的先例。[TrEnv-X §4–5](https://arxiv.org/html/2509.09525v2) |
+| SOCK / RainbowCake / DSec | 分别覆盖安装与导入缓存、按层保活和共享、独立版本环境层。coding 会话动态更新依赖后，如何将版本恢复与租约决策联动，仍需用相应负载评估。[SOCK](https://www.usenix.org/conference/atc18/presentation/oakes) · [RainbowCake](https://scholarsmine.mst.edu/comsci_facwork/1497/) · [DSec](https://arxiv.org/html/2609.22978) |
+| SWE-MiniSandbox / MEnvAgent | 前者缓存已准备环境，后者用补丁适配已验证的历史环境。环境复现研究发现声明和实际安装之间的差异最大，lockfile 适合作为匹配线索，运行时变化仍需观测。[SWE-MiniSandbox](https://arxiv.org/abs/2602.11210) · [MEnvAgent](https://arxiv.org/html/2601.22859) · [环境可复现性](https://arxiv.org/html/2610.00425) |
+
+aShare 测了摘要、SQL 问答和旅行规划。Poisson 负载以独占延迟加 5%、10%、15% 设 SLO，报告相对 Base、OWL、StepConf 平均资源节省 92.9%、35.9%、36.8%。按 AgentCore 计费估算则比同样拆分的 StepConf 贵 1.9%–5.6%。Azure 实验使用来自 72 个应用的依赖配置，仍由三种工作流提供负载。SandWeaver 的观察单位是仍会恢复的 OpenHands shell 会话，工作区独占，构建缓存可以跨 worker 保留。回收的代价会落到后续恢复请求上。
+
+### 算法复现与固定容量重放
+
+按论文算法 2 实现的小例子里，三个同时到达的请求在独占、FIFO 截止时间检查和 EDF 下分别用 3、2、1 个沙盒，均满足截止时间。给扩容路径加入 15 ms 启动成本后，20 ms 的紧急请求会在 35 ms 完成，超过 30 ms 截止时间。这是伪代码假设的合成检验，论文集群实验尚未复现。
+
+另以固定容量比较 eager FIFO、aShare 启发的 EDF 和按需保留。每场景 100 个种子，每会话两批工具，首批完成后起算等待。模型参数为 reset 46 ms、准备 107 ms、每批就绪到完成预算 300 ms。EDF 放不下时按最小总超期入队，原论文在这里扩容。下表为恢复 P95（ms），仅用于说明模型内的行为。
+
+| Worker / 会话 | 等待抖动 | FIFO | EDF | 按需 |
+|---|---:|---:|---:|---:|
+| 2 / 2 | 0 ms | 247 | 276 | 140 |
+| 2 / 4 | 0 ms | 436 | 436 | 436 |
+| 4 / 8 | 0 ms | 421 | 421 | 422 |
+| 4 / 8 | 450 ms | 286 | 299 | 297 |
+
+按需组在 2 / 2 保住 200 次原租约，2 / 4 和 4 / 8 无抖动时均未保住。这组实验的恢复时刻随各策略首批完成时间变化，隔离、依赖变化和真实 Docker 负载也未模拟，不能用于给原系统排名。[重放脚本](../benchmarks/ashare-policy-replay.py) · [结果摘要](results/ashare-policy-replay-summary.json)
 
 ## 主线：何时准备环境，何时扩池和缩池
 
