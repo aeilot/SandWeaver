@@ -126,6 +126,9 @@ def batch_smoke(path, root, workspace, other):
         assert len(workers) == 2 and workers[0] == held_worker and workers[0] != workers[1], workers
         assert [row["exit_code"] for row in records if row["event"] == "command_result"] == [0, 0, 0]
         assert sum(row["event"] == "lease_released" for row in records) == 2
+        states = [row for row in records if row["event"] == "lease_state"]
+        assert len(states) == 2 and "tmp/batch" in states[0]["upper_prefix_bytes"], states
+        assert "tmp/batch" not in states[1]["upper_prefix_bytes"], states
         deadline = time.monotonic() + 3
         while True:
             with pool.connect(path) as next_session:
@@ -138,6 +141,9 @@ def batch_smoke(path, root, workspace, other):
                     next_session.request("release")
                     break
             time.sleep(.01)
+        # The reservation is dropped only after root-created files are handed back.
+        owners = {p.lstat().st_uid for p in [workspace, *workspace.rglob("*")]}
+        assert owners == {os.getuid()}, owners
 
 
 image = sys.argv[1] if len(sys.argv) > 1 else pool.DEFAULT_IMAGE
@@ -169,6 +175,10 @@ with tempfile.TemporaryDirectory(dir="/tmp") as temp:
                 while execute(first, probe) != "0":
                     assert time.monotonic() < deadline
                     time.sleep(.05)
+                state = first.request("inspect")
+                assert "sleep" in state["processes"], state
+                assert {"tmp/private", "root/private"} <= state["upper_prefix_bytes"].keys(), state
+                assert "saved" not in state["upper_prefix_bytes"], state
                 first.request("release")
                 assert (a / "saved").exists()
                 with pool.connect(path) as second, pool.connect(path) as third:
@@ -213,6 +223,8 @@ with tempfile.TemporaryDirectory(dir="/tmp") as temp:
                 assert [row["stdout_bytes"] for row in outputs] == [0, 4]
                 assert all(row["stderr_bytes"] == 0 and spans[row["span"]] == "exec" for row in outputs)
                 assert records[-1]["event"] == "lease_released"
+                state, = [row for row in records if row["event"] == "lease_state"]
+                assert "tmp/sdk" in state["upper_prefix_bytes"], state
                 assert all("command" not in row and "stdout" not in row for row in records)
                 batch_smoke(path, root, a, c)
                 demand_smoke(path, a, b, c, execute)

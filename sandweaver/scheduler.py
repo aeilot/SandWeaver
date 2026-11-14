@@ -39,11 +39,31 @@ unshare --mount --propagation private /bin/sh -ec '
     : > "$d/done"
 '
 """
+# Commands keep uid 0 and only the file-permission capabilities, so they can write
+# host-owned workspaces and root-owned system paths like the official task images.
 EXEC = r"""
 read -r pid < /state/task/pid
 exec nsenter --target "$pid" --mount --pid --root --wdns=/ -- /usr/bin/setpriv \
-    --bounding-set=-all --inh-caps=-all --ambient-caps=-all --no-new-privs \
+    --bounding-set=-all,+dac_override,+fowner,+chown \
+    --inh-caps=-all --ambient-caps=-all --no-new-privs \
     /bin/sh -c 'cd /workspace && exec /bin/sh -c "$1"' command "$1"
+"""
+# Read-only view of lease state that RESET would discard: live processes in the
+# lease PID namespace (besides its init) and files in the OverlayFS write layer.
+INSPECT = r"""
+read -r pid < /state/task/pid
+ns=$(readlink "/proc/$pid/ns/pid")
+for p in /proc/[0-9]*; do
+    test "${p#/proc/}" = "$pid" && continue
+    test "$(readlink "$p/ns/pid" 2>/dev/null)" = "$ns" || continue
+    printf 'P\t%s\n' "$(cat "$p/comm" 2>/dev/null)"
+done
+cd /state/task/upper
+find . -mindepth 1 ! -type d -exec stat --printf 'F\t%F\t%s\t%n\n' {} +
+"""
+# Give files that lease commands created as root back to the workspace owner.
+RESTORE_OWNER = r"""
+find "$1" -xdev \( -uid 0 -o -gid 0 \) -exec chown -h "$2" {} +
 """
 RESET = r"""
 read -r pid < /state/task/pid
@@ -58,6 +78,28 @@ for i in $(seq 1 100); do
 done
 exit 1
 """
+
+
+def summarize_lease_state(listing, top=20):
+    """Aggregate INSPECT output; keep process names and two-level path prefixes only."""
+    processes, prefixes = [], {}
+    files = whiteouts = total = 0
+    for line in listing.splitlines():
+        fields = line.split("\t")
+        if fields[0] == "P" and len(fields) == 2:
+            processes.append(fields[1])
+        elif fields[0] == "F" and len(fields) == 4:
+            kind, size, name = fields[1], int(fields[2]), fields[3]
+            if kind == "character special file" and size == 0:
+                whiteouts += 1
+                continue
+            files += 1
+            total += size
+            prefix = "/".join(name.removeprefix("./").split("/")[:2])
+            prefixes[prefix] = prefixes.get(prefix, 0) + size
+    largest = dict(sorted(prefixes.items(), key=lambda item: -item[1])[:top])
+    return {"processes": sorted(processes), "upper_files": files, "upper_bytes": total,
+            "upper_whiteouts": whiteouts, "upper_prefix_bytes": largest}
 
 
 def docker(*args, check=True, stdin=None, timeout=60):
@@ -294,6 +336,25 @@ class Pool:
                 worker.idle_since = time.monotonic()
             self.lock.notify_all()
 
+    def restore_owner(self, workspace):
+        """Chown root-created workspace files to the workspace directory's owner."""
+        info = workspace.stat()
+        if info.st_uid == 0:
+            return
+        target = str(Path("/allowed") / workspace.relative_to(self.root))
+        owner = f"{info.st_uid}:{info.st_gid}"
+        with self.lock:
+            worker = next((w for w in self.workers if not w.retiring), None)
+        # A worker's management layer already mounts /allowed; with none left, use a
+        # short-lived container from the same image.
+        if worker is not None:
+            prefix = ["exec", worker.name, "/bin/sh"]
+        else:
+            prefix = ["run", "--rm", "--network", "none", "--mount",
+                      f"type=bind,src={self.root},dst=/allowed", "--entrypoint", "/bin/sh",
+                      self.image]
+        docker(*prefix, "-ec", RESTORE_OWNER, "restore", target, owner, timeout=300)
+
     def status(self):
         with self.lock:
             leased = sum(w.workspace is not None for w in self.workers)
@@ -319,6 +380,7 @@ class Handler(socketserver.StreamRequestHandler):
         reservation = None
         owner = object()
         discard = False
+        touched = set()
         try:
             for line in self.rfile:
                 request = json.loads(line)
@@ -337,6 +399,7 @@ class Handler(socketserver.StreamRequestHandler):
                         if "workspace" in request:
                             raise ValueError("A reserved session claims only its reserved workspace")
                         worker = self.server.pool.acquire(reservation, timing, owner)
+                    touched.add(worker.workspace)
                     reply = {"worker": worker.name}
                     if timing is not None:
                         timing["claim_ns"] = time.monotonic_ns() - started
@@ -355,6 +418,18 @@ class Handler(socketserver.StreamRequestHandler):
                     if request.get("observe"):
                         reply["timing"] = {"exec_ns": time.monotonic_ns() - started}
                     self.reply(reply)
+                elif op == "inspect" and worker is not None:
+                    # Observation only: a failed probe must not end the session or its lease.
+                    try:
+                        result = docker("exec", worker.name, "/bin/sh", "-ec", INSPECT,
+                                        check=False, timeout=120)
+                    except subprocess.TimeoutExpired:
+                        self.reply({"inspect_failed": "timeout"})
+                        continue
+                    if result.returncode:
+                        self.reply({"inspect_failed": result.stderr.strip()[-200:]})
+                    else:
+                        self.reply(summarize_lease_state(result.stdout))
                 elif op == "park" and worker is not None and reservation is not None:
                     self.server.pool.park(owner, worker)
                     worker = None
@@ -380,11 +455,22 @@ class Handler(socketserver.StreamRequestHandler):
                 if worker is not None:
                     self.server.pool.release(worker, discard)
             finally:
-                if reservation is not None:
-                    try:
+                try:
+                    if reservation is not None:
                         self.server.pool.release_parked(owner)
+                finally:
+                    # After every lease of this connection has been reset, so no lease
+                    # process can still create root-owned files; a reservation stays
+                    # held until ownership is restored.
+                    try:
+                        for workspace in touched:
+                            try:
+                                self.server.pool.restore_owner(workspace)
+                            except Exception as exc:
+                                print(f"Workspace ownership restore failed: {exc}", flush=True)
                     finally:
-                        self.server.pool.unreserve(reservation)
+                        if reservation is not None:
+                            self.server.pool.unreserve(reservation)
 
 
 class Server(socketserver.ThreadingUnixStreamServer):

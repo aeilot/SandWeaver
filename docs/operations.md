@@ -2,7 +2,9 @@
 
 安装和启动命令见仓库根目录 README。调度器只需要 Python 3.11+ 和可用的 Docker daemon。OpenHands 客户端使用 `.[agent]`，锁定 SDK 1.59.0，已用 Python 3.12 验证。默认镜像 `sandweaver-demo:local` 由仓库 Dockerfile 构建。示例包含一个装好 humanize 的虚拟环境 `/project/.venv`。
 
-- 建议用专用 workspace root 并为每个任务提供自己的目录。当前运行镜像需要提供 `unshare`、`mount`、`nsenter`、`setpriv`、`chroot` 和基础 Debian shell 工具。
+- 建议用专用 workspace root 并为每个任务提供自己的目录。当前运行镜像需要提供 `unshare`、`mount`、`nsenter`、`setpriv`、`chroot`、`find`、`chown` 和基础 Debian shell 工具。
+- 租约内命令以 root 运行并保留文件权限相关的 capabilities，新建文件在宿主上暂时属于 root。连接关闭时调度器把它们 chown 回工作区目录的属主。会话进行中从宿主侧修改这些文件需要等会话结束。详见[信任和恢复边界](architecture.md#信任和恢复边界)。
+- WSL2 上没有打开的 `wsl.exe` 会话时，发行版会被关闭，Docker 随之停止。长时间实验前保持一个会话，或调整 `.wslconfig` 的 `vmIdleTimeout`。
 - `sandweaver --socket … status` 查看总量、租出和空闲数量。命令行 `run` 每次创建一个租约；需要跨多条命令保留临时状态时，使用 agent 客户端，或使用 scheduler 模块的 `connect()` 发多个 `exec`。
 - `sandweaver-agent --smoke-command …` 可多次指定，用 SDK 工具接口跑固定命令，不请求模型。真实 agent 用 `--prompt`，宿主环境提供模型和密钥。状态默认写到 `~/.local/state/sandweaver`，可用 `--state-dir` 调整。
 - `python tests/smoke.py` 验证实际 Docker 和 OpenHands SDK 链路。应先安装项目和 agent extra，构建示例镜像。脚本也接受已存在的同类镜像标签作为参数。
@@ -41,6 +43,7 @@ PYTHONPATH=. python benchmarks/openhands-batch-leases.py --rounds 9 --output /tm
 | `llm_usage` | 模型响应提供的输入、输出、缓存读取和写入 token 数，以及响应提供的美元费用。缺失字段省略，零值保留。失败请求或 SDK 重试的账单无法从该事件还原。 |
 | `scheduler_timing` | `claim_ns` 包含服务端验证、等待、可能的 worker 创建和任务视图准备。`pool_wait_ns` 是其中等待池容量的条件变量耗时，含唤醒后重新拿锁的时间，不含首次拿锁或创建 worker。`exec_ns` 包含服务端 Docker 命令及其进程开销。调度器在成功返回时提供这些字段。 |
 | `command_result` | 退出码及 stdout、stderr 的 UTF-8 字节数。轨迹不保存输出文本。 |
+| `lease_state` | 每次归还或停放 worker 前，调度器的只读 `inspect` 记录租约 PID namespace 内除 init 外的进程名，以及 OverlayFS 写层的文件数、字节数、whiteout 数和按两级路径前缀汇总的字节数（取最大的 20 项）。这些就是归还时会被销毁的状态；工作区内的文件不在写层中。只记进程名和路径前缀，不记命令行和文件内容。探测失败时返回 `inspect_failed`，不影响租约。 |
 
 真实模型修复任务可运行 `PYTHONPATH=. python benchmarks/observe-model-agent.py --state-dir /tmp/sandweaver-deepseek-observation`。宿主环境须已安全配置 `LLM_API_KEY`，脚本固定使用 OpenRouter DeepSeek V4 Flash，最多 8 次迭代、每次 2048 输出 token、一次请求尝试，产生付费调用。此脚本不用于普通 smoke；密钥不写入代码或参数，scheduler 子进程不继承相关密钥变量。
 

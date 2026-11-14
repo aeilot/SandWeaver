@@ -101,6 +101,8 @@ class TracedClient:
             self.trace.emit("scheduler_timing", span=span, **timing)
         if op == "claim":
             self.trace.emit("lease_acquired", worker=response["worker"])
+        elif op == "inspect":
+            self.trace.emit("lease_state", span=span, **response)
         elif op == "park":
             self.trace.emit("lease_parked")
         elif op == "release":

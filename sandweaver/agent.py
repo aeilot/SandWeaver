@@ -61,10 +61,11 @@ class ShellResult(Observation):
 
 
 class RemoteShell(ToolExecutor[ShellCommand, ShellResult]):
-    def __init__(self, client, workspace, lease_policy):
+    def __init__(self, client, workspace, lease_policy, inspect=False):
         self.client = client
         self.lock = Lock()
         self.lease_policy = lease_policy
+        self.inspect = inspect
         self.leased = lease_policy == "session"
         self.parked = False
         self.last_worker = None
@@ -84,9 +85,15 @@ class RemoteShell(ToolExecutor[ShellCommand, ShellResult]):
         code = result["exit_code"]
         return ShellResult.from_text(output, is_error=code != 0, exit_code=code)
 
+    def record_state(self):
+        # Call with the lock held and a worker leased, before it is parked or reset.
+        if self.inspect:
+            self.client.request("inspect")
+
     def pause(self):
         with self.lock:
             if self.leased:
+                self.record_state()
                 self.leased = False
                 self.parked = self.lease_policy == "demand"
                 self.client.request("park" if self.parked else "release")
@@ -94,6 +101,8 @@ class RemoteShell(ToolExecutor[ShellCommand, ShellResult]):
     def release(self):
         with self.lock:
             if self.leased or self.parked:
+                if self.leased:
+                    self.record_state()
                 self.leased = self.parked = False
                 self.client.request("release")
 
@@ -147,7 +156,8 @@ def main():
     with Trace(trace_path, binding) as trace, connect(args.socket) as connection:
         client = TracedClient(connection, trace)
         trace.emit("run_mode", mode="fixed_tools" if args.smoke_command else "model")
-        shell = RemoteShell(client, args.workspace.resolve(), args.lease_policy)
+        shell = RemoteShell(client, args.workspace.resolve(), args.lease_policy,
+                            inspect=args.observe)
         EXECUTORS[binding] = shell
         conversation = None
         try:
