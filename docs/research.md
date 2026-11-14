@@ -5,7 +5,7 @@
 - **Sandman** 已做 coding agent 训练和评测中的跨任务 Pod 复用。它在归还后检查状态、撤销可恢复的变化并复查，其余情况换新 Pod。论文附录的同批测试里，普通复用有 64/787 次错误评分，经检查的复用有 0/787 次。SandWeaver 的候选区别在于，从一开始把写入和任务进程限制在可丢弃的执行视图内。两者的延迟数据不可直接比较。[Sandman](https://arxiv.org/html/2610.39711v1)
 - **Kubernetes Agent Sandbox** 是 sandbox 生命周期的直接系统基线。它支持常驻、有持久卷的 suspend/resume，以及通过 WarmPool/Claim 领取预热 Pod。RL 示例另有 Git 重置、进程与临时目录清理。KEDA 示例以 claim 到达率调整预热池大小。[概览](https://agent-sandbox.sigs.k8s.io/docs/) · [暂停与恢复](https://agent-sandbox.sigs.k8s.io/docs/use-cases/examples/mcp-server-sandbox/) · [RL 复用策略](https://github.com/kubernetes-sigs/agent-sandbox/blob/main/examples/agent-sandbox-rl/docs/strategies.md) · [KEDA](https://agent-sandbox.sigs.k8s.io/docs/use-cases/examples/keda-scale-to-zero/)
 - **aShare** 已明确提出跨 agent 重新分配空闲 sandbox，并用离线划分和在线延迟感知调度实现原型。全文对照见下节。[aShare](https://link.springer.com/chapter/10.1007/978-981-92-4805-6_13)
-- **Aries** 实现了轨迹观测框架，按工具轨迹和计费模型估算不同保活时间下的快照与恢复成本。它把执行状态与资源分离列作未来工作。[Aries §4.3、§5.3](https://arxiv.org/html/2607.29069)
+- **Aries** 实现了轨迹观测框架，按工具轨迹和计费模型估算不同保活时间下的快照与恢复成本。它把执行状态与资源分离列作未来工作。与 AgentSysBench 的对照见[下文](#agentsysbench-与-aries空转刻画和卸载成本)。[Aries §4.3、§5.3](https://arxiv.org/html/2607.29069)
 - **Firepool** 主要调度 agent 和 RL 的 GPU 容量。Pod 是其执行沙盒，跨调用方可由预热 Pod 接手 GPU，原 Pod 按策略保留或淘汰。其原调用方保护、按队列扩缩容和容量预算可作为算法参照。**CAS** 已在 OpenWhisk 研究利用即将可用的容器，以及按生命周期选择新建或淘汰。通用的等待、回收与扩缩容已有先例。[Firepool §5–7、附录 A.3](https://arxiv.org/html/2611.10832) · [CAS](https://doi.org/10.1002/spe.3016)
 - **SAND** 在 serverless 中用常驻应用沙箱和单独函数进程摊销启动成本。**Function REWIND** 在容器复用时恢复初始状态。[SAND](https://www.usenix.org/conference/atc18/presentation/akkus) · [Function REWIND](https://www.usenix.org/system/files/atc24-song.pdf)
 - **Crab** 按 agent 轮次观察系统副作用，选择文件、进程或完整 checkpoint。**CUA-Sandbox** 则以私有状态 capsule 和共享运行时支持 computer-use 训练。二者都是状态分类和复用的重要先例。[Crab](https://arxiv.org/html/2604.28138v1) · [CUA-Sandbox](https://arxiv.org/html/2609.32750v1)
@@ -40,6 +40,42 @@ aShare 测了摘要、SQL 问答和旅行规划。Poisson 负载以独占延迟�
 | 4 / 8 | 450 ms | 286 | 299 | 297 |
 
 按需组在 2 / 2 保住 200 次原租约，2 / 4 和 4 / 8 无抖动时均未保住。这组实验的恢复时刻随各策略首批完成时间变化，隔离、依赖变化和真实 Docker 负载也未模拟，不能用于给原系统排名。[重放脚本](../benchmarks/ashare-policy-replay.py) · [结果摘要](results/ashare-policy-replay-summary.json)
+
+## AgentSysBench 与 ARIES：空转刻画和卸载成本
+
+两篇都已刻画 agent 沙盒的空转，并各自评估了一种释放方式。下表数字取自两篇的 arXiv HTML 版，SandWeaver 尚未复现其中任何一项。[AgentSysBench](https://arxiv.org/abs/2608.15127) · [ARIES](https://arxiv.org/html/2607.29069)
+
+| | AgentSysBench | ARIES（SoCC '26） |
+|---|---|---|
+| 受控负载 | 10 个应用，含 Mini-SWE、Codex、Claude Code、WebAgent 和 GUIAgent | OpenHands、Hermes Agent、OpenClaw，运行 SWE-Bench Pro、Terminal-Bench 2 和 DeepResearch Bench |
+| 生产轨迹 | 24 小时，178,799 个会话，其中 coding agent 35,037 个（§7） | 一个 8 小时工作日，100 多个沙盒的分钟级 CPU 与内存采样 |
+| 空转 | coding 会话执行时间的中位数占生命周期 20%，空档多在 1–10 分钟（§7.1） | CPU 空闲超过 80%，内存空闲超过 50%（§4.3） |
+| 释放方式的结果 | 模型调用超过固定阈值后卸载沙盒，下一步工具前恢复。Mini-SWE 上平均内存降 4.6×，峰值降 2.1×，延迟增加不到 0.5%（§8.3） | 每次工具调用后拆除沙盒，实例成本降 65%，快照存取使客户总成本升到常驻基线的 4.9×（§4.3） |
+| 证据性质 | 受控实验，只覆盖组件间的短空档。原文未说明卸载用的是快照、swap 还是分层，也未单独报告恢复延迟 | 按 AWS Lambda MicroVM 定价对工具轨迹做解析回放，没有实测部署。理想系统省 3× 是估算 |
+
+其他相关观察：
+
+- AgentSysBench 的沙盒峰值内存中位数约 0.8 GB，编译和单元测试时单会话工作集可达 28 GB。论文指出这类瞬时页面无需进入 checkpoint（§4.3）。
+- AgentSysBench 把终端上下文列为空转期间持有的正确性关键状态，Codex 另有文件系统改动、已装依赖和进程元数据。
+- GUIAgent 的桌面沙盒占执行时间 70% 以上。两篇的生产轨迹都没有覆盖桌面类负载。
+- ARIES §5.3 把执行状态与资源分离列为未解问题：哪些状态必须驻留，哪些可以外置或重建，以及调整、挂起和迁移时如何保持一致。
+
+### 对 SandWeaver 的含义
+
+以下是据此修正的研究定位，均为待验证的判断。
+
+- **场景。** 主线收在云上交互式 coding agent。沙盒在模型调用期间空转，SandWeaver 用 worker 池循环接力，交接路径不做 checkpoint 与 resume。四项研究问题不变，见[执行容量与依赖管理](lease-and-dependencies.md#四项研究问题)。
+- **空转本身已有刻画。** 两篇和 FreeInference 轨迹已覆盖空转比例与空档分布，SandWeaver 引用这些结果，不把它列为贡献。
+- **“恢复太慢”需要重新立论。** AgentSysBench 报告的卸载延迟开销不到 0.5%，ARIES 的 4.9× 是定价模型下的费用。池循环相对卸载的候选优势有三点：交接时没有快照写入和存储成本，worker 可以跨会话共享，以及峰值内存。三点都需要在同一负载上实测对照。
+- **候选贡献是回答 ARIES §5.3 的问题。** 在真实轨迹上测每个批次边界留下的写层文件和进程，后续批次实际读取了多少，并据此区分可丢弃、可重建和必须驻留的状态。已有的 `lease_state` 探测只记录归还时的状态量，后续读取尚未测量。
+- **常驻 shell 是待解决的状态。** 当前 `exec` 每条命令新开 shell，当前目录和环境变量不延续，与 mini-swe-agent 一致。Codex、Claude Code 这类 harness 使用常驻 shell，放弃 resume 后需要显式记录并重建终端上下文，或保留原租约。
+- **云电脑作为边界负载。** 桌面和浏览器的状态主要在进程内存，沙盒在会话中的空转也更少。它是独立的新问题，本项目先把它放进刻画实验作对照，用来界定池循环的适用范围。
+
+### 复现顺序
+
+1. 复现 AgentSysBench 的模型调用期间卸载，扩展到构建密集、带后台服务和常驻 shell 的任务，检验低延迟开销是否仍成立，并补测捕获成本与峰值内存。
+2. 用本项目的轨迹复现 ARIES 的保活时间成本回放，加入采用实测交接成本的池循环。
+3. 做状态活性刻画，负载包括 coding、浏览器和桌面操作、带常驻服务的开发任务。
 
 ## 主线：何时准备环境，何时扩池和缩池
 
