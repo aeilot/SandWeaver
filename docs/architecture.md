@@ -59,7 +59,7 @@ flowchart LR
 
 1. 启动时解析镜像 ID，用临时容器导出 rootfs，并预热 `--min` 个 worker。每个 worker 把导出内容解到自己的 `/basis`。当前实现按 worker 拷贝基础文件树，未实现 worker 之间的额外共享挂载或去重。
 2. 有空闲 worker 就租出。没有空闲且未达到 `--max` 时现场补 worker。满池时可以回收已标记的租约，或用条件变量等待，默认等待预算约 30 秒。扩池创建和维护删除仍可能占用池锁。按需回收的 reset 在池锁外执行，等待预算仍受 Docker 调用耗时影响。
-3. 建立新的 mount namespace 和 PID namespace。OverlayFS 把 `/basis` 作为 lowerdir，临时可写层放在最多 512 MiB 的 worker tmpfs 下。挂入该任务的 `/workspace` 和少量设备，启动租约的锚进程。
+3. 建立新的 mount namespace 和 PID namespace。OverlayFS 把 `/basis` 作为 lowerdir，临时可写层默认放在最多 512 MiB 的 worker tmpfs 下（`--state-size` 可调大或改用磁盘卷）。挂入该任务的工作区（默认 `/workspace`，`--workspace-mount` 可改）和少量设备，启动租约的锚进程。
 4. 每次执行用 Docker exec 调用可信辅助程序，经 `nsenter` 进入同一任务空间，以 `setpriv` 降权后执行 shell。普通命令用新的 shell，因此磁盘和后台进程能跨调用保留，shell 局部变量与当前目录不会自动延续。
 5. 归还时杀掉该 PID namespace 的锚进程，等待退出并删除任务目录。重置失败或命令超时则淘汰 worker。若 Docker 暂时无法确认容器已删除，维护线程会重试，期间该 worker 仍计入已租出数量，原工作区及重叠目录继续拒绝新租约。健康 worker 回到 idle。维护线程按空闲时间回收超过最低数量的 worker，并尝试补足最低数量。
 
@@ -70,6 +70,8 @@ flowchart LR
 这个原型面向可信本地任务。worker 的挂载辅助程序使用 `SYS_ADMIN` 和放宽的 seccomp 配置。命令经过降权，worker 无外网，但这些措施尚未验证为对抗不可信租户的隔离边界。整个配置工作区根目录挂在 worker 的管理层，任务视图只绑定所选目录。要支持对抗性任务，需要独立验证路径解析、目录替换竞争、挂载传播、文件描述符、IPC、资源限制和宿主侧凭据。
 
 当前 `EXEC` 在进入租约根目录后调用该视图的 `/usr/bin/setpriv`，bounding set 只保留 `CAP_DAC_OVERRIDE`、`CAP_FOWNER` 和 `CAP_CHOWN`，清除其余 capabilities 并设置 `no-new-privs`，仍以 root UID/GID 运行。保留这三项是为了让命令既能写宿主用户所有的工作区，也能像 SWE-bench 官方镜像那样以 root 安装依赖。早期版本清除全部 capabilities，在原生 Linux（WSL2 Arch）上因工作区属于宿主用户而无法写入，现有 smoke 在此失败。早期结果取自 macOS OrbStack，推测其文件共享层的属主映射掩盖了这个问题，未单独验证。代价是租约内的 root 可以绕过工作区内文件的权限位；租约仍看不到其他工作区，没有 `SYS_ADMIN`，网络和 PID 隔离不变。把执行及降权入口放到任务无法改写的可信侧是待做的安全改造。
+
+两个可选项会进一步改变边界。`--network bridge` 让租约访问外网。`--proc` 在每个租约的 PID namespace 里挂载新的 procfs：由于命令以 uid 0 运行，未加保护的 `/proc/sys` 和 `/proc/sysrq-trigger` 会作用于宿主内核。因此锚进程挂载后，参照 Docker 把 `sys`、`sysrq-trigger`、`irq`、`bus`、`fs` 重新绑定为只读，用 `/dev/null` 遮蔽 `kcore`、`keys`、`timer_list`、`sched_debug`，用只读 tmpfs 覆盖 `acpi` 和 `scsi`。租约内没有 `SYS_ADMIN`，无法卸载这些遮蔽。smoke 测试验证 `/proc/sys` 和 `/proc/sysrq-trigger` 不可写，其余遮蔽项尚未逐项验证。
 
 连接关闭时，调度器在该连接的所有租约都已重置之后，把它用过的工作区里属于 uid 0 或 gid 0 的文件 chown 回工作区目录的属主，然后才释放会话预留。没有预留的单次租约在归还和 chown 之间不受保护。chown 失败只记录日志，不影响已完成的归还。
 

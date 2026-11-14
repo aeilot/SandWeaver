@@ -5,6 +5,32 @@
 - 建议用专用 workspace root 并为每个任务提供自己的目录。当前运行镜像需要提供 `unshare`、`mount`、`nsenter`、`setpriv`、`chroot`、`find`、`chown` 和基础 Debian shell 工具。
 - 租约内命令以 root 运行并保留文件权限相关的 capabilities，新建文件在宿主上暂时属于 root。连接关闭时调度器把它们 chown 回工作区目录的属主。会话进行中从宿主侧修改这些文件需要等会话结束。详见[信任和恢复边界](architecture.md#信任和恢复边界)。
 - WSL2 上没有打开的 `wsl.exe` 会话时，发行版会被关闭，Docker 随之停止。长时间实验前保持一个会话，或调整 `.wslconfig` 的 `vmIdleTimeout`。
+
+### 运行任务镜像时的调度器选项
+
+`sandweaver serve` 的默认值保持原型行为。运行 SWE-bench 等任务镜像时按需打开：
+
+| 选项 | 默认 | 用途 |
+|---|---|---|
+| `--workspace-mount PATH` | `/workspace` | 租约内工作区的挂载点。官方 SWE-bench 镜像用 `/testbed`。 |
+| `--exec-timeout S` | 60 | 单条命令超过该时间视为卡死，淘汰 worker。长构建需要调大；需要模拟命令超时时，在命令里用 `timeout` 截断，而不是依赖这个值。 |
+| `--state-size SIZE` | `512m` | 租约写层的 tmpfs 大小。`disk` 改用 Docker 匿名卷，写层不占内存，worker 删除时一并删除。 |
+| `--network none\|bridge` | `none` | `bridge` 允许租约访问外网，用于下载依赖，会扩大隔离边界。 |
+| `--proc` | 关 | 每个租约挂载自己的 procfs，cargo、node 和较老的 `setpriv`（如 Ubuntu 22.04 的 util-linux 2.37）需要它。`/proc/sys` 等保持只读，敏感项被遮蔽，见[信任和恢复边界](architecture.md#信任和恢复边界)。 |
+
+### 回放公开 SWE-bench 轨迹
+
+[replay-swebench.py](../benchmarks/replay-swebench.py) 在 SandWeaver 上按原顺序回放一条 mini-swe-agent 轨迹，不调用模型。数据目录默认是 `~/sandweaver-data`，需要包含数据集 parquet 和 `trajs/<submission>/<instance>.traj.json`，见 [SWE-bench Multilingual 回放基准](swe-bench-multilingual.md#公开轨迹样本第二轮)。脚本依赖 `pyarrow`，评分脚本还需要 `swebench`，两者都装在分析环境里，不进入调度器环境。
+
+```bash
+python benchmarks/replay-swebench.py --instance jqlang__jq-2598 --policy batch --evaluate
+python benchmarks/grade-swebench.py ~/sandweaver-runs/<run-id>
+```
+
+- `--policy session` 全程持有一个租约；`batch` 每步之后归还 worker，下一步重新领用。
+- 每条命令按原轨迹用 `bash -lc` 在 `/testbed` 执行，带原轨迹的环境变量和超时（默认 60 s，`--cap 0` 不截断）。
+- 工作区是镜像内 `/testbed` 的 root 属主副本，和原容器一致；结束后用临时容器删除，`--keep` 保留。
+- 每步记录退出码与原轨迹的对比、领用和归还耗时，以及 `inspect` 得到的租约状态。最终 diff 与原轨迹提交的补丁对比，忽略子模块的 dirty 标记。`--evaluate` 在新租约中运行官方 eval 脚本，评分脚本用 SWE-bench 自带的日志解析器判定。
 - `sandweaver --socket … status` 查看总量、租出和空闲数量。命令行 `run` 每次创建一个租约；需要跨多条命令保留临时状态时，使用 agent 客户端，或使用 scheduler 模块的 `connect()` 发多个 `exec`。
 - `sandweaver-agent --smoke-command …` 可多次指定，用 SDK 工具接口跑固定命令，不请求模型。真实 agent 用 `--prompt`，宿主环境提供模型和密钥。状态默认写到 `~/.local/state/sandweaver`，可用 `--state-dir` 调整。
 - `python tests/smoke.py` 验证实际 Docker 和 OpenHands SDK 链路。应先安装项目和 agent extra，构建示例镜像。脚本也接受已存在的同类镜像标签作为参数。

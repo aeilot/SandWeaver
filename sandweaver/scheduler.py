@@ -5,6 +5,7 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 import json
 from pathlib import Path
+import re
 import signal
 import socket
 import socketserver
@@ -23,31 +24,58 @@ mkdir "$d/upper" "$d/work" "$d/root"
 unshare --mount --propagation private /bin/sh -ec '
     d=/state/task
     mount -t overlay overlay -o lowerdir=/basis,upperdir=$d/upper,workdir=$d/work "$d/root"
-    mkdir -p "$d/root/workspace"
-    mount --bind "$1" "$d/root/workspace"
+    mkdir -p "$d/root$2"
+    mount --bind "$1" "$d/root$2"
     for device in null zero random urandom; do
         touch "$d/root/dev/$device"
         mount --bind "/dev/$device" "$d/root/dev/$device"
     done
-    exec unshare --pid /bin/sh -ec "$2"
-' lease "$1" '
+    exec unshare --pid /bin/sh -ec "$3" anchor "$4"
+' lease "$1" "$2" '
     d=/state/task
-    chroot "$d/root" /bin/sleep infinity </dev/null >/dev/null 2>&1 &
+    if test -n "$1"; then
+        chroot "$d/root" /bin/sh -ec "$1" </dev/null >/dev/null 2>&1 &
+    else
+        chroot "$d/root" /bin/sleep infinity </dev/null >/dev/null 2>&1 &
+    fi
     pid=$!
     echo "$pid" > "$d/pid"
     wait "$pid" || :
     : > "$d/done"
-'
+' "$3"
+"""
+# Optional lease anchor (pid 1 of the lease PID namespace) that mounts a procfs for
+# that namespace. Like Docker, kernel tunables stay read-only and sensitive entries are
+# masked: lease commands run as uid 0 and could otherwise write /proc/sys or
+# /proc/sysrq-trigger, which act on the host kernel.
+PROC_ANCHOR = r"""
+mount -t proc -o nosuid,nodev,noexec proc /proc
+for p in sys sysrq-trigger irq bus fs; do
+    if test -e "/proc/$p"; then
+        mount --bind "/proc/$p" "/proc/$p"
+        mount -o remount,bind,ro "/proc/$p"
+    fi
+done
+for p in kcore keys timer_list sched_debug; do
+    if test -e "/proc/$p"; then mount --bind /dev/null "/proc/$p"; fi
+done
+for p in acpi scsi; do
+    if test -d "/proc/$p"; then mount -t tmpfs -o ro tmpfs "/proc/$p"; fi
+done
+exec /bin/sleep infinity
 """
 # Commands keep uid 0 and only the file-permission capabilities, so they can write
 # host-owned workspaces and root-owned system paths like the official task images.
 EXEC = r"""
 read -r pid < /state/task/pid
-exec nsenter --target "$pid" --mount --pid --root --wdns=/ -- /usr/bin/setpriv \
+# --wd without a value takes the anchor's cwd (/ after chroot); util-linux 2.37,
+# as in Ubuntu 22.04 task images, has no --wdns.
+exec nsenter --target "$pid" --mount --pid --root --wd -- /usr/bin/setpriv \
     --bounding-set=-all,+dac_override,+fowner,+chown \
     --inh-caps=-all --ambient-caps=-all --no-new-privs \
-    /bin/sh -c 'cd /workspace && exec /bin/sh -c "$1"' command "$1"
+    /bin/sh -c 'cd "$2" && exec /bin/sh -c "$1"' command "$1" "${2:-/workspace}"
 """
+DEFAULT_MOUNT = "/workspace"
 # Read-only view of lease state that RESET would discard: live processes in the
 # lease PID namespace (besides its init) and files in the OverlayFS write layer.
 INSPECT = r"""
@@ -119,9 +147,14 @@ class Worker:
 
 
 class Pool:
-    def __init__(self, image, root, minimum, maximum, idle_seconds, directory):
+    def __init__(self, image, root, minimum, maximum, idle_seconds, directory,
+                 mount=DEFAULT_MOUNT, network="none", state_size="512m", exec_timeout=60,
+                 proc=False):
         self.root, self.minimum, self.maximum = root, minimum, maximum
+        self.anchor = PROC_ANCHOR if proc else ""
         self.idle_seconds = idle_seconds
+        self.mount, self.network = mount, network
+        self.state_size, self.exec_timeout = state_size, exec_timeout
         self.image = docker("image", "inspect", "--format", "{{.Id}}", image).stdout.strip()
         self.archive = directory / "basis.tar"
         self.prefix = "sandweaver-" + uuid.uuid4().hex[:10]
@@ -152,14 +185,18 @@ class Pool:
     def spawn(self):
         name = self.prefix + "-" + uuid.uuid4().hex[:8]
         worker = Worker(name, time.monotonic())
+        # "disk" keeps the lease write layer on an anonymous volume instead of RAM.
+        state = (["--mount", "type=volume,dst=/state"] if self.state_size == "disk"
+                 else ["--tmpfs", f"/state:exec,size={self.state_size}"])
         try:
-            docker("run", "-d", "--name", name, "--network", "none",
+            docker("run", "-d", "--name", name, "--network", self.network,
                    "--cap-add", "SYS_ADMIN", "--security-opt", "seccomp=unconfined",
-                   "--tmpfs", "/state:exec,size=512m", "--mount",
+                   *state, "--mount",
                    f"type=bind,src={self.root},dst=/allowed", "--entrypoint", "/bin/sh",
                    self.image, "-ec", "mkdir /basis; exec sleep infinity")
             with self.archive.open("rb") as archive:
-                docker("exec", "-i", name, "tar", "-xf", "-", "-C", "/basis", stdin=archive)
+                docker("exec", "-i", name, "tar", "-xf", "-", "-C", "/basis", stdin=archive,
+                       timeout=900)
             docker("exec", name, "/bin/sh", "-ec",
                    "test -x /basis/usr/bin/setpriv; command -v nsenter; command -v unshare")
         except BaseException:
@@ -170,7 +207,12 @@ class Pool:
 
     @staticmethod
     def remove(worker):
-        return docker("rm", "-f", worker.name, check=False)
+        return docker("rm", "-f", "-v", worker.name, check=False)
+
+    def run(self, worker, command, timeout=60):
+        """Run a shell command inside the worker's current lease."""
+        return docker("exec", worker.name, "/bin/sh", "-ec", EXEC, "exec", command, self.mount,
+                      check=False, timeout=timeout)
 
     def retire(self, worker):
         # Keep the workspace reserved until Docker confirms the container is gone.
@@ -293,7 +335,7 @@ class Pool:
             relative = workspace.relative_to(self.root)
             launch_started = time.monotonic_ns() if timing is not None else None
             docker("exec", "-d", worker.name, "/bin/sh", "-ec", START, "start",
-                   str(Path("/allowed") / relative))
+                   str(Path("/allowed") / relative), self.mount, self.anchor)
             if timing is not None:
                 probe_started = time.monotonic_ns()
                 timing["start_exec_ns"] = probe_started - launch_started
@@ -302,8 +344,7 @@ class Pool:
             until = time.monotonic() + 5
             while time.monotonic() < until:
                 attempt_started = time.monotonic_ns() if timing is not None else None
-                result = docker("exec", worker.name, "/bin/sh", "-ec", EXEC, "exec",
-                                "true", check=False)
+                result = self.run(worker, "true")
                 if timing is not None:
                     attempt_finished = time.monotonic_ns()
                     timing["readiness_exec_ns"] += attempt_finished - attempt_started
@@ -322,7 +363,8 @@ class Pool:
     def release(self, worker, discard=False):
         try:
             if not discard:
-                docker("exec", worker.name, "/bin/sh", "-ec", RESET)
+                # Large write layers on disk can take a while to delete.
+                docker("exec", worker.name, "/bin/sh", "-ec", RESET, timeout=300)
         except Exception:
             discard = True
         with self.lock:
@@ -408,8 +450,8 @@ class Handler(socketserver.StreamRequestHandler):
                 elif op == "exec" and worker is not None:
                     started = time.monotonic_ns()
                     try:
-                        result = docker("exec", worker.name, "/bin/sh", "-ec", EXEC,
-                                        "exec", request["command"], check=False)
+                        result = self.server.pool.run(worker, request["command"],
+                                                      self.server.pool.exec_timeout)
                     except subprocess.TimeoutExpired:
                         discard = True
                         raise RuntimeError("Command timed out; worker will be retired")
@@ -507,10 +549,18 @@ def serve(args):
         raise ValueError("Workspace root must be a directory without commas")
     if not 0 <= args.min <= args.max or args.max < 1 or args.idle_seconds <= 0:
         raise ValueError("Require 0 <= min <= max, max >= 1, and positive idle time")
+    if not re.fullmatch(r"(/[A-Za-z0-9._-]+)+", args.workspace_mount):
+        raise ValueError("Workspace mount must be an absolute path of plain components")
+    if args.state_size != "disk" and not re.fullmatch(r"[0-9]+[kmg]", args.state_size):
+        raise ValueError("State size must look like 512m or 4g, or be 'disk'")
+    if args.exec_timeout <= 0:
+        raise ValueError("Exec timeout must be positive")
     with tempfile.TemporaryDirectory() as directory, Server(str(args.socket), Handler) as server:
         try:
             args.socket.chmod(0o600)
-            server.pool = Pool(args.image, root, args.min, args.max, args.idle_seconds, Path(directory))
+            server.pool = Pool(args.image, root, args.min, args.max, args.idle_seconds, Path(directory),
+                               args.workspace_mount, args.network, args.state_size,
+                               args.exec_timeout, args.proc)
             try:
                 print(f"Ready: {args.socket}", flush=True)
                 server.serve_forever()
@@ -530,6 +580,16 @@ def main():
     daemon.add_argument("--min", type=int, default=1)
     daemon.add_argument("--max", type=int, default=4)
     daemon.add_argument("--idle-seconds", type=float, default=30)
+    daemon.add_argument("--workspace-mount", default=DEFAULT_MOUNT,
+                        help="Path where each lease sees its workspace, e.g. /testbed")
+    daemon.add_argument("--network", choices=("none", "bridge"), default="none",
+                        help="Worker network; bridge allows package downloads (wider boundary)")
+    daemon.add_argument("--state-size", default="512m",
+                        help="tmpfs size for lease write layers, or 'disk' for a Docker volume")
+    daemon.add_argument("--exec-timeout", type=float, default=60,
+                        help="Seconds before a command is treated as hung and its worker retired")
+    daemon.add_argument("--proc", action="store_true",
+                        help="Mount a masked procfs for each lease (needed by cargo, node, old setpriv)")
     run = subs.add_parser("run")
     run.add_argument("workspace", type=Path)
     run.add_argument("command")

@@ -15,7 +15,7 @@ from sandweaver import scheduler
 def run(image):
     docker = scheduler.docker
     start = scheduler.START
-    mount_point = '    mkdir -p "$d/root/workspace"'
+    mount_point = '    mkdir -p "$d/root$2"'
     if start.count(mount_point) != 1:
         raise RuntimeError("Could not locate the lease mount setup")
 
@@ -41,7 +41,7 @@ def run(image):
                 args = (*args[:index], "--mount",
                         f"type=bind,src={components},dst=/components,readonly", *args[index:])
             elif args[:2] == ("exec", "-d") and args[5] == start:
-                session = Path(args[-1]).name
+                session = Path(args[7]).name  # START args: start, workspace, mount
                 digest = manifests[session]["component"]
                 component_mount = (
                     '    mkdir -p "$d/root/opt/dependency"\n'
@@ -115,7 +115,7 @@ def compare(image, rounds):
     arms = ("baseline", "mounted", "rebuild")
     python = "/project/.venv/bin/python"
     start = scheduler.START
-    marker = '    mkdir -p "$d/root/workspace"'
+    marker = '    mkdir -p "$d/root$2"'
     if start.count(marker) != 1:
         raise RuntimeError("Could not locate the lease mount setup")
 
@@ -144,7 +144,7 @@ def compare(image, rounds):
                 index = args.index("--entrypoint")
                 args = (*args[:index], "--mount", mount + ",readonly", *args[index:])
             elif args[:2] == ("exec", "-d") and args[5] == start:
-                arm = Path(args[-1]).name
+                arm = Path(args[7]).name  # START args: start, workspace, mount
                 if arm != "baseline":
                     source = "/components/prepared" if arm == "mounted" else f"/components/{wheel.name}"
                     target = "/opt/dependency" if arm == "mounted" else "/opt/dependency.whl"

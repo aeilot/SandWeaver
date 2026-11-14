@@ -146,7 +146,54 @@ def batch_smoke(path, root, workspace, other):
         assert owners == {os.getuid()}, owners
 
 
+def options_smoke(image):
+    """Custom mount path, disk-backed write layer beyond the tmpfs default, exec timeout."""
+    with tempfile.TemporaryDirectory(dir="/tmp") as temp:
+        root = Path(temp)
+        path, workspace = root / "options.sock", root / "w"
+        workspace.mkdir()
+        cmd = [sys.executable, "-m", "sandweaver.scheduler", "--socket", str(path), "serve",
+               "--workspace-root", str(root), "--min", "1", "--max", "1", "--image", image,
+               "--workspace-mount", "/srv/testbed", "--state-size", "disk", "--exec-timeout", "20",
+               "--proc"]
+        with subprocess.Popen(cmd, stdout=subprocess.PIPE, text=True) as server:
+            try:
+                assert server.stdout.readline().startswith("Ready")
+                with pool.connect(path) as client:
+                    client.request("claim", workspace=str(workspace))
+                    result = client.request("exec", command="pwd; touch made; "
+                                            "dd if=/dev/zero of=/tmp/big bs=1M count=600 status=none")
+                    assert result["exit_code"] == 0 and result["stdout"] == "/srv/testbed\n", result
+                    state = client.request("inspect")
+                    assert state["upper_prefix_bytes"]["tmp/big"] == 600 << 20, state
+                    # Lease-private procfs; kernel tunables stay read-only. Writes use
+                    # harmless values in case the masking ever regresses.
+                    probe = ("test -r /proc/self/status && ls -d /proc/[0-9]* | wc -l; "
+                             "v=$(cat /proc/sys/vm/swappiness); "
+                             "if (echo $v > /proc/sys/vm/swappiness) 2>/dev/null; then echo sys-writable; fi; "
+                             "if (echo h > /proc/sysrq-trigger) 2>/dev/null; then echo sysrq-writable; fi")
+                    result = client.request("exec", command=probe)
+                    lines = result["stdout"].split()
+                    assert result["exit_code"] == 0 and int(lines[0]) <= 4 and len(lines) == 1, result
+                    try:
+                        client.request("exec", command="sleep 30")
+                    except RuntimeError as exc:
+                        assert "timed out" in str(exc)
+                    else:
+                        raise AssertionError("Command did not time out")
+                # Ownership is restored by the server after the connection closes, here
+                # after the timed-out worker was retired.
+                deadline = time.monotonic() + 60
+                while (workspace / "made").stat().st_uid != os.getuid():
+                    assert time.monotonic() < deadline, "workspace ownership not restored"
+                    time.sleep(.2)
+            finally:
+                server.terminate()
+                server.wait(timeout=60)
+
+
 image = sys.argv[1] if len(sys.argv) > 1 else pool.DEFAULT_IMAGE
+options_smoke(image)
 with tempfile.TemporaryDirectory(dir="/tmp") as temp:
     root = Path(temp)
     path = root / "pool.sock"
