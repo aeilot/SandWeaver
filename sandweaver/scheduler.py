@@ -131,8 +131,10 @@ def summarize_lease_state(listing, top=20):
 
 
 def docker(*args, check=True, stdin=None, timeout=60):
+    # Commands may print bytes that are not UTF-8; replace them rather than fail
+    # the request, since replies travel as JSON text.
     result = subprocess.run(["docker", *args], stdin=stdin, capture_output=True,
-                            text=True, timeout=timeout)
+                            text=True, encoding="utf-8", errors="replace", timeout=timeout)
     if check and result.returncode:
         raise RuntimeError(f"docker {args[0]}: {result.stderr.strip()}")
     return result
@@ -198,8 +200,15 @@ class Pool:
             with self.archive.open("rb") as archive:
                 docker("exec", "-i", name, "tar", "-xf", "-", "-C", "/basis", stdin=archive,
                        timeout=900)
+            # `docker export` leaves the runtime-managed /etc/hosts, /etc/hostname and
+            # /etc/resolv.conf empty, so `localhost` would not resolve in a lease. Copy
+            # the worker's own versions into the basis; lease writes to them stay in
+            # the discarded write layer.
             docker("exec", name, "/bin/sh", "-ec",
-                   "test -x /basis/usr/bin/setpriv; command -v nsenter; command -v unshare")
+                   "for f in hosts hostname resolv.conf; do"
+                   " if test -f /etc/$f && test -d /basis/etc; then cat /etc/$f > /basis/etc/$f; fi;"
+                   " done;"
+                   " test -x /basis/usr/bin/setpriv; command -v nsenter; command -v unshare")
         except BaseException:
             self.remove(worker)
             raise
