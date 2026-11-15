@@ -30,7 +30,7 @@ python benchmarks/grade-swebench.py ~/sandweaver-runs/<run-id>
 - `--policy session` 全程持有一个租约；`batch` 每步之后归还 worker，下一步重新领用。
 - 每条命令按原轨迹用 `bash -lc` 在 `/testbed` 执行，带原轨迹的环境变量和超时（默认 60 s，`--cap 0` 不截断）。
 - 工作区是镜像内 `/testbed` 的 root 属主副本，和原容器一致；结束后用临时容器删除，`--keep` 保留。
-- 每步记录退出码与原轨迹的对比、领用和归还耗时，以及 `inspect` 得到的租约状态。最终 diff 与原轨迹提交的补丁对比，忽略子模块的 dirty 标记。`--evaluate` 在新租约中运行官方 eval 脚本，评分脚本用 SWE-bench 自带的日志解析器判定。
+- 每步记录退出码与原轨迹的对比、领用和归还耗时，以及 `inspect` 得到的租约状态。`--sample 0.1` 另在宿主机上按 100 ms 读取 worker 容器的 cgroup，逐命令记录 CPU、I/O 增量和内存峰值，原始样本写入运行目录的 `samples.jsonl`（见 [characterization 方案](characterization.md#插桩)）。最终 diff 与原轨迹提交的补丁对比，忽略子模块的 dirty 标记。`--evaluate` 在新租约中运行官方 eval 脚本，评分脚本用 SWE-bench 自带的日志解析器判定。
 - `sandweaver --socket … status` 查看总量、租出和空闲数量。命令行 `run` 每次创建一个租约；需要跨多条命令保留临时状态时，使用 agent 客户端，或使用 scheduler 模块的 `connect()` 发多个 `exec`。
 - `sandweaver-agent --smoke-command …` 可多次指定，用 SDK 工具接口跑固定命令，不请求模型。真实 agent 用 `--prompt`，宿主环境提供模型和密钥。状态默认写到 `~/.local/state/sandweaver`，可用 `--state-dir` 调整。
 - `python tests/smoke.py` 验证实际 Docker 和 OpenHands SDK 链路。应先安装项目和 agent extra，构建示例镜像。脚本也接受已存在的同类镜像标签作为参数。
@@ -69,7 +69,7 @@ PYTHONPATH=. python benchmarks/openhands-batch-leases.py --rounds 9 --output /tm
 | `llm_usage` | 模型响应提供的输入、输出、缓存读取和写入 token 数，以及响应提供的美元费用。缺失字段省略，零值保留。失败请求或 SDK 重试的账单无法从该事件还原。 |
 | `scheduler_timing` | `claim_ns` 包含服务端验证、等待、可能的 worker 创建和任务视图准备。`pool_wait_ns` 是其中等待池容量的条件变量耗时，含唤醒后重新拿锁的时间，不含首次拿锁或创建 worker。`exec_ns` 包含服务端 Docker 命令及其进程开销。调度器在成功返回时提供这些字段。 |
 | `command_result` | 退出码及 stdout、stderr 的 UTF-8 字节数。轨迹不保存输出文本。 |
-| `lease_state` | 每次归还或停放 worker 前，调度器的只读 `inspect` 记录租约 PID namespace 内除 init 外的进程名，以及 OverlayFS 写层的文件数、字节数、whiteout 数和按两级路径前缀汇总的字节数（取最大的 20 项）。这些就是归还时会被销毁的状态；工作区内的文件不在写层中。只记进程名和路径前缀，不记命令行和文件内容。探测失败时返回 `inspect_failed`，不影响租约。 |
+| `lease_state` | 每次归还或停放 worker 前，调度器的只读 `inspect` 记录租约 PID namespace 内除 init 外的进程名，这些进程监听的 TCP 端口，以及 OverlayFS 写层的文件数、字节数、whiteout 数、按两级路径前缀汇总的字节数（取最大的 20 项）和按内容类别（`python_packages`、`node_modules`、`package_cache`、`build_output`、`tmp`、`dev`、`other`）汇总的字节数。这些就是归还时会被销毁的状态；工作区内的文件不在写层中。只记进程名和路径前缀，不记命令行和文件内容。探测失败时返回 `inspect_failed`，不影响租约。 |
 
 真实模型修复任务可运行 `PYTHONPATH=. python benchmarks/observe-model-agent.py --state-dir /tmp/sandweaver-deepseek-observation`。宿主环境须已安全配置 `LLM_API_KEY`，脚本固定使用 OpenRouter DeepSeek V4 Flash，最多 8 次迭代、每次 2048 输出 token、一次请求尝试，产生付费调用。此脚本不用于普通 smoke；密钥不写入代码或参数，scheduler 子进程不继承相关密钥变量。
 

@@ -77,7 +77,9 @@ exec nsenter --target "$pid" --mount --pid --root --wd -- /usr/bin/setpriv \
 """
 DEFAULT_MOUNT = "/workspace"
 # Read-only view of lease state that RESET would discard: live processes in the
-# lease PID namespace (besides its init) and files in the OverlayFS write layer.
+# lease PID namespace (besides its init), the TCP ports they listen on, and files
+# in the OverlayFS write layer. Leases share the worker's network namespace, so
+# listening sockets are matched to lease processes by socket inode.
 INSPECT = r"""
 read -r pid < /state/task/pid
 ns=$(readlink "/proc/$pid/ns/pid")
@@ -85,10 +87,42 @@ for p in /proc/[0-9]*; do
     test "${p#/proc/}" = "$pid" && continue
     test "$(readlink "$p/ns/pid" 2>/dev/null)" = "$ns" || continue
     printf 'P\t%s\n' "$(cat "$p/comm" 2>/dev/null)"
+    for fd in "$p"/fd/*; do
+        link=$(readlink "$fd" 2>/dev/null) || continue
+        case "$link" in socket:\[*\]) link=${link#socket:[}; printf 'S\t%s\n' "${link%]}";; esac
+    done
+done
+for table in /proc/net/tcp /proc/net/tcp6; do
+    test -r "$table" || continue
+    # sl local_address rem_address st tx:rx tr:when retrnsmt uid timeout inode ...
+    while read -r _ local _ state _ _ _ _ _ inode _; do
+        if test "$state" = 0A; then printf 'L\t%s\t%s\n' "$local" "$inode"; fi
+    done < "$table"
 done
 cd /state/task/upper
 find . -mindepth 1 ! -type d -exec stat --printf 'F\t%F\t%s\t%n\n' {} +
 """
+# Path components that mark write-layer content categories, checked in order.
+UPPER_CATEGORIES = (
+    ("python_packages", {"site-packages", "dist-packages"}),
+    ("node_modules", {"node_modules"}),
+    ("package_cache", {".cache", ".npm", ".m2", ".gradle", ".cargo", ".rustup", ".bundle",
+                       ".composer", "pkg"}),
+    ("build_output", {"target", "build", "dist", "__pycache__", "CMakeFiles", ".pytest_cache"}),
+)
+
+
+def upper_category(name):
+    """Coarse category of a write-layer path, for reporting without file contents."""
+    parts = name.split("/")
+    if parts[0] == "tmp" or parts[:2] == ["var", "tmp"]:
+        return "tmp"
+    if parts[0] == "dev":
+        return "dev"
+    for category, markers in UPPER_CATEGORIES:
+        if markers.intersection(parts):
+            return category
+    return "other"
 # Give files that lease commands created as root back to the workspace owner.
 RESTORE_OWNER = r"""
 find "$1" -xdev \( -uid 0 -o -gid 0 \) -exec chown -h "$2" {} +
@@ -110,12 +144,17 @@ exit 1
 
 def summarize_lease_state(listing, top=20):
     """Aggregate INSPECT output; keep process names and two-level path prefixes only."""
-    processes, prefixes = [], {}
+    processes, prefixes, categories = [], {}, {}
+    sockets, listening = set(), {}
     files = whiteouts = total = 0
     for line in listing.splitlines():
         fields = line.split("\t")
         if fields[0] == "P" and len(fields) == 2:
             processes.append(fields[1])
+        elif fields[0] == "S" and len(fields) == 2:
+            sockets.add(fields[1])
+        elif fields[0] == "L" and len(fields) == 3:
+            listening[fields[2]] = fields[1]
         elif fields[0] == "F" and len(fields) == 4:
             kind, size, name = fields[1], int(fields[2]), fields[3]
             if kind == "character special file" and size == 0:
@@ -123,11 +162,19 @@ def summarize_lease_state(listing, top=20):
                 continue
             files += 1
             total += size
-            prefix = "/".join(name.removeprefix("./").split("/")[:2])
+            name = name.removeprefix("./")
+            prefix = "/".join(name.split("/")[:2])
             prefixes[prefix] = prefixes.get(prefix, 0) + size
+            category = upper_category(name)
+            categories[category] = categories.get(category, 0) + size
+    # /proc/net/tcp addresses are HEX_IP:HEX_PORT; keep the port only.
+    ports = sorted({int(address.rsplit(":", 1)[1], 16)
+                    for inode, address in listening.items() if inode in sockets})
     largest = dict(sorted(prefixes.items(), key=lambda item: -item[1])[:top])
-    return {"processes": sorted(processes), "upper_files": files, "upper_bytes": total,
-            "upper_whiteouts": whiteouts, "upper_prefix_bytes": largest}
+    return {"processes": sorted(processes), "listening_ports": ports,
+            "upper_files": files, "upper_bytes": total,
+            "upper_whiteouts": whiteouts, "upper_prefix_bytes": largest,
+            "upper_category_bytes": categories}
 
 
 def docker(*args, check=True, stdin=None, timeout=60):
@@ -171,8 +218,10 @@ class Pool:
         docker("create", "--name", seed, self.image)
         try:
             with self.archive.open("wb") as archive:
+                # Multi-GB task images can take minutes to export under I/O
+                # contention; use the same bound as extracting the basis.
                 subprocess.run(["docker", "export", seed], stdout=archive,
-                               check=True, timeout=120)
+                               check=True, timeout=900)
         finally:
             docker("rm", "-f", seed, check=False)
         try:

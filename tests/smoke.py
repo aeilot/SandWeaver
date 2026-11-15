@@ -166,6 +166,7 @@ def options_smoke(image):
                     assert result["exit_code"] == 0 and result["stdout"] == "/srv/testbed\n", result
                     state = client.request("inspect")
                     assert state["upper_prefix_bytes"]["tmp/big"] == 600 << 20, state
+                    assert state["upper_category_bytes"]["tmp"] == 600 << 20, state
                     # Lease-private procfs; kernel tunables stay read-only. Writes use
                     # harmless values in case the masking ever regresses.
                     probe = ("test -r /proc/self/status && ls -d /proc/[0-9]* | wc -l; "
@@ -224,6 +225,7 @@ with tempfile.TemporaryDirectory(dir="/tmp") as temp:
                     time.sleep(.05)
                 state = first.request("inspect")
                 assert "sleep" in state["processes"], state
+                assert state["listening_ports"] == [19287], state
                 assert {"tmp/private", "root/private"} <= state["upper_prefix_bytes"].keys(), state
                 assert "saved" not in state["upper_prefix_bytes"], state
                 first.request("release")
