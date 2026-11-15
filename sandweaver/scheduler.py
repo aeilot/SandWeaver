@@ -149,12 +149,13 @@ class Worker:
 class Pool:
     def __init__(self, image, root, minimum, maximum, idle_seconds, directory,
                  mount=DEFAULT_MOUNT, network="none", state_size="512m", exec_timeout=60,
-                 proc=False):
+                 proc=False, *, resume_grace_ms=0):
         self.root, self.minimum, self.maximum = root, minimum, maximum
         self.anchor = PROC_ANCHOR if proc else ""
         self.idle_seconds = idle_seconds
         self.mount, self.network = mount, network
         self.state_size, self.exec_timeout = state_size, exec_timeout
+        self.resume_grace_ms = resume_grace_ms
         self.image = docker("image", "inspect", "--format", "{{.Id}}", image).stdout.strip()
         self.archive = directory / "basis.tar"
         self.prefix = "sandweaver-" + uuid.uuid4().hex[:10]
@@ -281,9 +282,11 @@ class Pool:
         if worker is not None:
             self.release(worker)
 
-    def acquire(self, path, timing=None, owner=None):
+    def acquire(self, path, timing=None, owner=None, *, resuming=False):
         workspace = self.resolve_workspace(path)
-        deadline = time.monotonic() + 30
+        started = time.monotonic()
+        deadline = started + 30
+        grace_deadline = started + (self.resume_grace_ms / 1000 if resuming else 0)
         queue_wait_ns = 0
         reclaim_ns = 0
         while True:
@@ -311,9 +314,10 @@ class Pool:
                 remaining = deadline - time.monotonic()
                 if remaining <= 0:
                     raise TimeoutError("Pool is full")
-                if owner in self.reclaiming or not self.parked:
+                grace_remaining = grace_deadline - time.monotonic()
+                if owner in self.reclaiming or not self.parked or grace_remaining > 0:
                     wait_started = time.monotonic_ns()
-                    self.lock.wait(remaining)
+                    self.lock.wait(min(remaining, grace_remaining) if grace_remaining > 0 else remaining)
                     queue_wait_ns += time.monotonic_ns() - wait_started
                     continue
                 parked_owner = next(iter(self.parked))
@@ -419,6 +423,7 @@ class Handler(socketserver.StreamRequestHandler):
 
     def handle(self):
         worker = None
+        resuming = False
         reservation = None
         owner = object()
         discard = False
@@ -440,7 +445,8 @@ class Handler(socketserver.StreamRequestHandler):
                     else:
                         if "workspace" in request:
                             raise ValueError("A reserved session claims only its reserved workspace")
-                        worker = self.server.pool.acquire(reservation, timing, owner)
+                        worker = self.server.pool.acquire(reservation, timing, owner, resuming=resuming)
+                    resuming = False
                     touched.add(worker.workspace)
                     reply = {"worker": worker.name}
                     if timing is not None:
@@ -475,8 +481,10 @@ class Handler(socketserver.StreamRequestHandler):
                 elif op == "park" and worker is not None and reservation is not None:
                     self.server.pool.park(owner, worker)
                     worker = None
+                    resuming = True
                     self.reply({"parked": True})
                 elif op == "release" and (worker is not None or reservation is not None):
+                    resuming = False
                     if worker is not None:
                         self.server.pool.release(worker, discard)
                         worker = None
