@@ -6,7 +6,7 @@ import threading
 import unittest
 from unittest.mock import Mock, patch
 
-from sandweaver.scheduler import Pool, RESET, Worker
+from sandweaver.scheduler import DEFAULT_MOUNT, Pool, RESET, Worker
 
 
 class RetirementTest(unittest.TestCase):
@@ -15,6 +15,9 @@ class RetirementTest(unittest.TestCase):
             pool = Pool.__new__(Pool)
             pool.root = Path(directory).resolve()
             pool.maximum = 1
+            pool.mount = DEFAULT_MOUNT
+            pool.anchor = ""
+            pool.resume_grace_ms = 0
             pool.lock = threading.Condition()
             pool.stop = threading.Event()
             pool.parked = {}
