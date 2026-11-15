@@ -45,7 +45,8 @@ DEVICE_PLACEHOLDERS = {"dev/null", "dev/zero", "dev/random", "dev/urandom"}
 
 def boundary_stats(results):
     sizes, files, with_procs, with_files, total = [], [], 0, 0, 0
-    proc_names, prefixes = Counter(), Counter()
+    proc_names, prefixes, categories, ports = Counter(), Counter(), Counter(), Counter()
+    with_ports = with_new_fields = 0
     mismatches = commands = timeouts = 0
     for result in results:
         for step in result["steps"]:
@@ -67,6 +68,13 @@ def boundary_stats(results):
                 with_procs += 1
                 proc_names.update(set(state["processes"]))
             prefixes.update(seen)
+            # Ports and categories exist only in runs made after they were added.
+            if "listening_ports" in state:
+                with_new_fields += 1
+                with_ports += bool(state["listening_ports"])
+                ports.update(state["listening_ports"])
+                categories.update({k: v for k, v in state["upper_category_bytes"].items()
+                                   if k != "dev"})
     return {
         "trajectories": len(results), "boundaries": total,
         "boundaries_with_processes": with_procs,
@@ -75,6 +83,10 @@ def boundary_stats(results):
         "upper_files_p50_p90_max": [pct(files, .5), pct(files, .9), max(files, default=None)],
         "process_names": proc_names.most_common(15),
         "prefixes_seen_at_boundaries": prefixes.most_common(15),
+        "boundaries_with_port_data": with_new_fields,
+        "boundaries_with_listening_ports": with_ports,
+        "listening_ports": ports.most_common(10),
+        "upper_category_bytes_summed": dict(categories),
         "commands": commands, "rc_mismatches": mismatches, "timeouts": timeouts,
         "resolved": sum(bool((r.get("grade") or {}).get("resolved")) for r in results),
     }

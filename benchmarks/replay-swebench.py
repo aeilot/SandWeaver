@@ -28,7 +28,7 @@ import pyarrow.parquet as pq
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from sandweaver import scheduler  # noqa: E402
+from sandweaver import sampler, scheduler  # noqa: E402
 import minitraj  # noqa: E402
 
 docker = scheduler.docker
@@ -80,6 +80,13 @@ def main():
     parser.add_argument("--eval-timeout", type=float, default=1800,
                         help="Seconds for the eval script; 0 disables")
     parser.add_argument("--keep", action="store_true", help="Keep the run workspace")
+    parser.add_argument("--sample", type=float, metavar="SECONDS",
+                        help="Sample the worker cgroup at this period and record per-command usage")
+    parser.add_argument("--wait-scale", type=float, default=0,
+                        help="Before each step, sleep its recorded model wait times this factor "
+                             "(0, the default, replays commands back to back)")
+    parser.add_argument("--wait-cap", type=float,
+                        help="Upper bound in seconds on each replayed wait, after scaling")
     args = parser.parse_args()
 
     row = task_row(args.data_dir, args.instance)
@@ -99,6 +106,7 @@ def main():
     result = {
         "instance_id": args.instance, "submission": args.submission, "policy": args.policy,
         "cap_s": cap, "network": args.network, "state_size": args.state_size, "image": image,
+        "wait_scale": args.wait_scale, "wait_cap_s": args.wait_cap,
         "image_id": docker("image", "inspect", "-f", "{{.Id}}", image).stdout.strip(),
         "trajectory_sha256": hashlib.sha256(traj_path.read_bytes()).hexdigest(),
         "recorded_steps": len(steps), "steps": [],
@@ -135,16 +143,41 @@ def main():
         client = stack.enter_context(scheduler.connect(socket))
         client.request("reserve", workspace=str(workspace))
         leased = False
+        samplers = {}  # worker name -> Sampler; batch may be handed a new worker
         replay_started = time.monotonic()
         for index, step in enumerate(steps):
             record = {"index": index, "recorded_model_wait_s": step.model_wait_s,
                       "commands": []}
+            # The recorded model call precedes this step's commands. Under session the
+            # lease is held through it (claimed first on step 0); under batch the
+            # worker was released after the previous step and is claimed after it.
+            wait = (step.model_wait_s or 0) * args.wait_scale
+            if args.wait_cap is not None:
+                wait = min(wait, args.wait_cap)
+            if args.policy == "session" and not leased:
+                begin = time.monotonic_ns()
+                reply = client.request("claim", observe=True)
+                record["claim_ns"] = time.monotonic_ns() - begin
+                record["claim_timing"] = reply.get("timing", {})
+                record["worker"] = reply["worker"]
+                leased = True
+                if args.sample and reply["worker"] not in samplers:
+                    samplers[reply["worker"]] = stack.enter_context(
+                        sampler.Sampler(reply["worker"], args.sample))
+            if wait > 0:
+                record["wait_begin_ns"] = time.monotonic_ns()
+                time.sleep(wait)
+                record["wait_ns"] = time.monotonic_ns() - record["wait_begin_ns"]
             if not leased:
                 begin = time.monotonic_ns()
                 reply = client.request("claim", observe=True)
                 record["claim_ns"] = time.monotonic_ns() - begin
                 record["claim_timing"] = reply.get("timing", {})
+                record["worker"] = reply["worker"]
                 leased = True
+                if args.sample and reply["worker"] not in samplers:
+                    samplers[reply["worker"]] = stack.enter_context(
+                        sampler.Sampler(reply["worker"], args.sample))
             for position, original in enumerate(step.commands):
                 begin = time.monotonic_ns()
                 reply = client.request("exec", command=wrap(original, env, cap), observe=True)
@@ -152,7 +185,7 @@ def main():
                 recorded_rc = step.returncodes[position] if position < len(step.returncodes) else None
                 recorded_s = step.exec_s[position] if position < len(step.exec_s) else None
                 record["commands"].append({
-                    "exec_ns": elapsed, "exit_code": reply["exit_code"],
+                    "begin_ns": begin, "exec_ns": elapsed, "exit_code": reply["exit_code"],
                     "recorded_exit_code": recorded_rc, "recorded_s": recorded_s,
                     "stdout_bytes": len(reply["stdout"]), "stderr_bytes": len(reply["stderr"]),
                     "timed_out": bool(cap) and reply["exit_code"] == 124,
@@ -199,6 +232,33 @@ def main():
             (run / "eval.log").write_text(reply["stdout"] + reply["stderr"])
             client.request("release")
 
+        # Per-command usage from the worker that ran it, against a baseline taken
+        # from that worker's samples before its first command.
+        if samplers:
+            worker = None
+            with (run / "samples.jsonl").open("w") as handle:
+                for name, sampled in samplers.items():
+                    sampled.stop()
+                    for sample in sampled.samples:
+                        handle.write(json.dumps({"worker": name, **sample}) + "\n")
+            result["sampler"] = {name: s.summary() for name, s in samplers.items()}
+            for step in result["steps"]:
+                # Usage over this wait of the worker that ran the previous step (or,
+                # on a session's first step, the one just claimed): held by the
+                # session, or released and idle under batch.
+                waited_on = worker or (step.get("worker") if args.policy == "session" else None)
+                if "wait_begin_ns" in step and waited_on in samplers:
+                    step["wait_usage"] = sampler.window(
+                        samplers[waited_on].samples, step["wait_begin_ns"],
+                        step["wait_begin_ns"] + step["wait_ns"])
+                worker = step.get("worker", worker)
+                samples = samplers[worker].samples
+                for command in step["commands"]:
+                    end = command["begin_ns"] + command["exec_ns"]
+                    command["usage"] = sampler.window(samples, command["begin_ns"], end)
+                    before = [s for s in samples if s["t_ns"] <= command["begin_ns"]]
+                    command["memory_before"] = before[-1]["memory_current"] if before else None
+
     commands = [c for s in result["steps"] for c in s["commands"]]
     result["summary"] = {
         "commands": len(commands),
@@ -207,6 +267,7 @@ def main():
         "exec_s": sum(c["exec_ns"] for c in commands) / 1e9,
         "recorded_exec_s": sum(c["recorded_s"] or 0 for c in commands),
         "claim_s": sum(s.get("claim_ns", 0) for s in result["steps"]) / 1e9,
+        "wait_s": sum(s.get("wait_ns", 0) for s in result["steps"]) / 1e9,
         "release_s": sum(s.get("release_ns", 0) for s in result["steps"]) / 1e9,
         "steps_with_processes": sum(bool(s.get("lease_state", {}).get("processes"))
                                     for s in result["steps"]),

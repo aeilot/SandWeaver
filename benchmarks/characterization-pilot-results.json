@@ -1,0 +1,256 @@
+{
+ "runs": [
+  {
+   "instance_id": "axios__axios-4738",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 54,
+   "wait_s": 587.2,
+   "exec_s": 179.2,
+   "exec_share": 0.2338,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-d054dc5bf6059f249abf56006883a8fa702f19269a1db0fa032721956da60af1.scope",
+     "interval_s": 0.1,
+     "samples": 7728,
+     "errors": 0,
+     "mean_period_s": 0.10000002079125146,
+     "mean_read_cost_us": 406.91702976190476
+    }
+   ]
+  },
+  {
+   "instance_id": "caddyserver__caddy-5626",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 104,
+   "wait_s": 1358.2,
+   "exec_s": 155.1,
+   "exec_share": 0.1025,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-2907c7d1fb3e3d21d17a69926a7390b50c71bf56ce4858ed12788a235d43c642.scope",
+     "interval_s": 0.1,
+     "samples": 15487,
+     "errors": 0,
+     "mean_period_s": 0.10000000782306599,
+     "mean_read_cost_us": 392.7479041776974
+    }
+   ]
+  },
+  {
+   "instance_id": "fmtlib__fmt-3272",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 87,
+   "wait_s": 1374.4,
+   "exec_s": 107.3,
+   "exec_share": 0.0724,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-11e53d7d08454245bb04a26f92c606fd08c8fb144435fd679b11b921450218fe.scope",
+     "interval_s": 0.1,
+     "samples": 14908,
+     "errors": 0,
+     "mean_period_s": 0.10000000806553969,
+     "mean_read_cost_us": 406.7631902334317
+    }
+   ]
+  },
+  {
+   "instance_id": "jqlang__jq-2598",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 64,
+   "wait_s": 525.4,
+   "exec_s": 30.8,
+   "exec_share": 0.0554,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-861463ff58a7f93f72258ade8cab73707e51912fd0bd506ff728f85adac8d04d.scope",
+     "interval_s": 0.1,
+     "samples": 5636,
+     "errors": 0,
+     "mean_period_s": 0.10000015019716059,
+     "mean_read_cost_us": 406.0621256210078
+    }
+   ]
+  },
+  {
+   "instance_id": "laravel__framework-53949",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 30,
+   "wait_s": 213.8,
+   "exec_s": 7.4,
+   "exec_share": 0.0335,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-5ba491733b0d0ac253a2ea669d6c7081bd45997bcb0f8f1bba681673fd32e637.scope",
+     "interval_s": 0.1,
+     "samples": 2252,
+     "errors": 0,
+     "mean_period_s": 0.10000006121590405,
+     "mean_read_cost_us": 434.76332770870334
+    }
+   ]
+  },
+  {
+   "instance_id": "projectlombok__lombok-3479",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 67,
+   "wait_s": 837.2,
+   "exec_s": 14.4,
+   "exec_share": 0.0169,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-0aca91b4eb89299a982fe03ed19db730a73936cb8f0d1f06228da6a55dfbb11f.scope",
+     "interval_s": 0.1,
+     "samples": 8587,
+     "errors": 0,
+     "mean_period_s": 0.10000001506941533,
+     "mean_read_cost_us": 393.6917937580063
+    }
+   ]
+  },
+  {
+   "instance_id": "redis__redis-12472",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 115,
+   "wait_s": 3334.8,
+   "exec_s": 537.2,
+   "exec_share": 0.1387,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-4964b883b325a49e362a5d999e2ba3ae16fb2ad9be2686965ee51385676e022d.scope",
+     "interval_s": 0.1,
+     "samples": 38918,
+     "errors": 0,
+     "mean_period_s": 0.10000000413821723,
+     "mean_read_cost_us": 411.60081160388506
+    }
+   ]
+  },
+  {
+   "instance_id": "rubocop__rubocop-13479",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 56,
+   "wait_s": 766.3,
+   "exec_s": 100.6,
+   "exec_share": 0.116,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-86e6790dd0850813225d42bcb6f9abb98090c6a2b41ccabe75bcc21a3d320e67.scope",
+     "interval_s": 0.1,
+     "samples": 8732,
+     "errors": 0,
+     "mean_period_s": 0.100000012865193,
+     "mean_read_cost_us": 473.6994451442969
+    }
+   ]
+  },
+  {
+   "instance_id": "tokio-rs__tokio-4898",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 48,
+   "wait_s": 362.5,
+   "exec_s": 37.3,
+   "exec_share": 0.0933,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-ee0f6651c42f6cece7f54e57b4e8cc0041bd8705c5e1a6374e26b5f7bfaf4b00.scope",
+     "interval_s": 0.1,
+     "samples": 4049,
+     "errors": 0,
+     "mean_period_s": 0.10000002873838933,
+     "mean_read_cost_us": 400.13789552976044
+    }
+   ]
+  },
+  {
+   "instance_id": "vuejs__core-11589",
+   "submission": "20260213_mini-v2.0.0a0_deepseek-3-2",
+   "policy": "session",
+   "steps": 110,
+   "wait_s": 1745.6,
+   "exec_s": 245.8,
+   "exec_share": 0.1234,
+   "sampler": [
+    {
+     "container_cgroup": "/sys/fs/cgroup/system.slice/docker-6bd852c94f64431a1e8c4862e5cbd1d15b02928e40d3f5aee758ec7a3198ee7f.scope",
+     "interval_s": 0.1,
+     "samples": 20141,
+     "errors": 0,
+     "mean_period_s": 0.1000000086776564,
+     "mean_read_cost_us": 413.54690089866443
+    }
+   ]
+  }
+ ],
+ "rq1": {
+  "wait_s_total": 11105.4,
+  "exec_s_total": 1415.1,
+  "wait_s_per_boundary": {
+   "n": 725,
+   "p50": 7.854,
+   "p90": 33.039,
+   "max": 189.433
+  },
+  "exec_share": 0.113
+ },
+ "rq2": {
+  "wait_cpu_util": {
+   "n": 725,
+   "p50": 0.003071689499695538,
+   "p90": 0.007027492265704185,
+   "max": 0.014008936433437355
+  },
+  "wait_memory_anon_max": {
+   "n": 725,
+   "p50": 2785280,
+   "p90": 3325952,
+   "max": 11026432
+  },
+  "wait_memory_file_max": {
+   "n": 725,
+   "p50": 442458112,
+   "p90": 919281664,
+   "max": 1413062656
+  },
+  "command_cpu_util": {
+   "n": 735,
+   "p50": 0.13282269895614252,
+   "p90": 0.8287880175911353,
+   "max": 6.40718163919366
+  },
+  "command_memory_anon_max": {
+   "n": 735,
+   "p50": 2863104,
+   "p90": 71528448,
+   "max": 1697402880
+  }
+ },
+ "rq3": {
+  "wait_boundaries": 725,
+  "with_live_processes": 231,
+  "with_listening_ports": 8,
+  "with_upper_files": 390,
+  "upper_files_only": 206,
+  "nothing_to_lose": 288,
+  "upper_bytes_per_boundary": {
+   "n": 725,
+   "p50": 188,
+   "p90": 320714692,
+   "max": 532276271
+  },
+  "upper_category_bytes_max": {
+   "tmp": 25165824,
+   "package_cache": 532274556,
+   "other": 21413365
+  }
+ }
+}
