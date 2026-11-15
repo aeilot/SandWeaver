@@ -42,11 +42,16 @@ def task_row(data, instance):
     raise SystemExit(f"Unknown instance {instance}")
 
 
-def wrap(command, env, cap):
-    """Match mini-swe-agent: `bash -lc` in /testbed with its env and timeout."""
+def wrap(command, env, cap, login=True):
+    """Match mini-swe-agent: `bash -lc` in /testbed with its env and timeout.
+
+    The official eval runs its script with a non-login bash; a login shell would
+    let /etc/profile reset root's PATH and drop image paths such as cargo's.
+    """
     prefix = "exec env " + " ".join(f"{k}={shlex.quote(v)}" for k, v in env.items())
     limit = f" timeout {cap:g}" if cap else ""
-    return f"{prefix}{limit} bash -lc {shlex.quote(command)}"
+    flag = "-lc" if login else "-c"
+    return f"{prefix}{limit} bash {flag} {shlex.quote(command)}"
 
 
 def as_root(image, root, script, *args, timeout=900):
@@ -72,6 +77,8 @@ def main():
     parser.add_argument("--max-steps", type=int, help="Stop early, for debugging")
     parser.add_argument("--evaluate", action="store_true",
                         help="Run the official eval script on the final workspace in a fresh lease")
+    parser.add_argument("--eval-timeout", type=float, default=1800,
+                        help="Seconds for the eval script; 0 disables")
     parser.add_argument("--keep", action="store_true", help="Keep the run workspace")
     args = parser.parse_args()
 
@@ -184,9 +191,11 @@ def main():
         if args.evaluate:
             client.request("claim")
             begin = time.monotonic()
-            reply = client.request("exec", command=wrap(row["eval_script"], {}, 0))
+            reply = client.request("exec", command=wrap(row["eval_script"], {},
+                                                        args.eval_timeout, login=False))
             result["eval_s"] = time.monotonic() - begin
             result["eval_exit_code"] = reply["exit_code"]
+            result["eval_timed_out"] = bool(args.eval_timeout) and reply["exit_code"] == 124
             (run / "eval.log").write_text(reply["stdout"] + reply["stderr"])
             client.request("release")
 
