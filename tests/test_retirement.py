@@ -3,6 +3,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import threading
+import time
 import unittest
 from unittest.mock import Mock, patch
 
@@ -103,3 +104,69 @@ class RetirementTest(unittest.TestCase):
 
                 pool.maintain()
                 self.assertEqual(pool.status(), {"total": 0, "leased": 0, "idle": 0})
+
+
+class ResumeGraceTest(unittest.TestCase):
+    GRACE_MS = 300
+
+    def setUp(self):
+        self.directory = tempfile.TemporaryDirectory()
+        self.addCleanup(self.directory.cleanup)
+        pool = Pool.__new__(Pool)
+        pool.root = Path(self.directory.name).resolve()
+        pool.maximum = 1
+        pool.mount = DEFAULT_MOUNT
+        pool.anchor = ""
+        pool.resume_grace_ms = self.GRACE_MS
+        pool.lock = threading.Condition()
+        pool.stop = threading.Event()
+        pool.parked = {}
+        pool.reclaiming = set()
+        pool.reservations = {}
+        pool.workers = []
+        self.resuming_workspace = pool.root / "resuming"
+        parked_workspace = pool.root / "parked"
+        self.resuming_workspace.mkdir()
+        parked_workspace.mkdir()
+        self.resuming_owner = object()
+        self.parked_owner = object()
+        pool.reserve(self.resuming_workspace, self.resuming_owner)
+        pool.reserve(parked_workspace, self.parked_owner)
+        # The resuming session's own worker is gone; the only worker is parked by another session.
+        worker = Worker("sandweaver-test", 0, parked_workspace)
+        pool.workers = [worker]
+        pool.park(self.parked_owner, worker)
+        self.pool, self.worker = pool, worker
+        patcher = patch("sandweaver.scheduler.docker",
+                        return_value=subprocess.CompletedProcess([], 0))
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def acquire(self, resuming):
+        timing = {}
+        started = time.monotonic()
+        worker = self.pool.acquire(self.resuming_workspace, timing, self.resuming_owner,
+                                   resuming=resuming)
+        return worker, timing, time.monotonic() - started
+
+    def test_resuming_session_waits_out_grace_before_reclaiming(self):
+        worker, timing, elapsed = self.acquire(resuming=True)
+        self.assertIs(worker, self.worker)
+        self.assertGreaterEqual(elapsed, self.GRACE_MS / 1000)
+        self.assertGreater(timing["reclaim_ns"], 0)
+        self.assertNotIn(self.parked_owner, self.pool.parked)
+
+    def test_resuming_session_takes_capacity_freed_during_grace(self):
+        releaser = threading.Timer(0.05, self.pool.release_parked, (self.parked_owner,))
+        releaser.start()
+        self.addCleanup(releaser.cancel)
+        worker, timing, elapsed = self.acquire(resuming=True)
+        self.assertIs(worker, self.worker)
+        self.assertEqual(timing["reclaim_ns"], 0)
+        self.assertLess(elapsed, self.GRACE_MS / 1000)
+
+    def test_new_claim_reclaims_without_grace(self):
+        worker, timing, elapsed = self.acquire(resuming=False)
+        self.assertIs(worker, self.worker)
+        self.assertGreater(timing["reclaim_ns"], 0)
+        self.assertLess(elapsed, self.GRACE_MS / 1000)
