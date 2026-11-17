@@ -14,6 +14,7 @@ SandWeaver 是一个独立的本机沙盒调度器。Coding agent 在外部运�
 | [研究交接](handoff.md) | 已测结果、TrEnv 对照、依赖缓存实验及换机步骤 |
 | [会话资源与状态 characterization 方案](characterization.md) | 选题前的插桩实验设计：阶段、占用、状态依赖、恢复成本与 KV 估算 |
 | [相关工作与研究计划](research.md) | 相关系统、集中恢复、容量调度与外部基线 |
+| [工程化路线](engineering.md) | 研究方向不成立时的备选：现状、已核实的工程差距与分阶段计划（提案） |
 | [执行容量与依赖管理](lease-and-dependencies.md) | 等待、复用与扩缩容，隔离，按清单组装依赖和 CXL 假设，附组件实测 |
 
 仓库以外的早期 OpenHands 实验仅作为研究背景。当前 SandWeaver 实现以仓库中的代码、集成测试和可复现的 benchmark 为准。
