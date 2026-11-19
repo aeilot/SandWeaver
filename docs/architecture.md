@@ -67,7 +67,7 @@ flowchart LR
 
 ## 信任和恢复边界
 
-这个原型面向可信本地任务。worker 的挂载辅助程序使用 `SYS_ADMIN` 和放宽的 seccomp 配置。命令经过降权，worker 无外网，但这些措施尚未验证为对抗不可信租户的隔离边界。整个配置工作区根目录挂在 worker 的管理层，任务视图只绑定所选目录。要支持对抗性任务，需要独立验证路径解析、目录替换竞争、挂载传播、文件描述符、IPC、资源限制和宿主侧凭据。
+这个原型面向可信本地任务。worker 的挂载辅助程序使用 `SYS_ADMIN` 和放宽的 seccomp 配置。宿主机启用 AppArmor 时（例如 Debian、Ubuntu），Docker 默认的 AppArmor 配置会拒绝租约建立时的 `unshare` 挂载传播修改，因此 worker 另外以 `apparmor=unconfined` 运行；未启用 AppArmor 的宿主机不加这一选项。命令经过降权，worker 无外网，但这些措施尚未验证为对抗不可信租户的隔离边界。整个配置工作区根目录挂在 worker 的管理层，任务视图只绑定所选目录。要支持对抗性任务，需要独立验证路径解析、目录替换竞争、挂载传播、文件描述符、IPC、资源限制和宿主侧凭据。
 
 当前 `EXEC` 在进入租约根目录后调用该视图的 `/usr/bin/setpriv`，bounding set 只保留 `CAP_DAC_OVERRIDE`、`CAP_FOWNER` 和 `CAP_CHOWN`，清除其余 capabilities 并设置 `no-new-privs`，仍以 root UID/GID 运行。保留这三项是为了让命令既能写宿主用户所有的工作区，也能像 SWE-bench 官方镜像那样以 root 安装依赖。早期版本清除全部 capabilities，在原生 Linux（WSL2 Arch）上因工作区属于宿主用户而无法写入，现有 smoke 在此失败。早期结果取自 macOS OrbStack，推测其文件共享层的属主映射掩盖了这个问题，未单独验证。代价是租约内的 root 可以绕过工作区内文件的权限位；租约仍看不到其他工作区，没有 `SYS_ADMIN`，网络和 PID 隔离不变。把执行及降权入口放到任务无法改写的可信侧是待做的安全改造。
 

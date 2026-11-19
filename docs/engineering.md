@@ -45,7 +45,7 @@
 3. **协议只在本机可用，无鉴权。** 换行分隔的 JSON，跑在权限 `0600` 的 Unix socket 上（`serve`）。操作只有 `status`、`reserve`、`claim`、`exec`、`inspect`、`park`、`release`。租约绑定在连接上，连接断开即释放。
 4. **`exec` 是一次性缓冲执行。** `Pool.run` 等命令结束后整体返回 stdout/stderr，没有流式输出、交互式 shell、文件上传下载或取消。超时即退役整个 worker。
 5. **租约没有资源限制。** `spawn` 的 `docker run` 未设 `--cpus`、`--memory`、`--pids-limit`；租约也没有独立 cgroup，采样只能到 worker 粒度。
-6. **Worker 需要较高权限。** `docker run` 带 `--cap-add SYS_ADMIN` 和 `--security-opt seccomp=unconfined`。README 已声明仅适用于可信本地任务，未针对恶意多租户做过验证。
+6. **Worker 需要较高权限。** `docker run` 带 `--cap-add SYS_ADMIN` 和 `--security-opt seccomp=unconfined`；Docker 报告启用 AppArmor 时，再加 `--security-opt apparmor=unconfined`。README 已声明仅适用于可信本地任务，未针对恶意多租户做过验证。
 7. **调度器状态只在内存中。** 租约、预留和 park 表都在 `Pool` 对象里，容器名前缀每次随机。调度器进程异常退出后，已有容器不会被接管或清理。
 8. **部分参数未暴露。** `resume_grace_ms` 只能在代码里设置，`serve` 的命令行没有对应参数。
 9. **测试与发布。** 只有 Docker 集成 smoke（[smoke.py](../tests/smoke.py)）和一个 mock Docker 的单元测试文件（[test_retirement.py](../tests/test_retirement.py)），仓库没有 CI 配置，未发布到包索引。

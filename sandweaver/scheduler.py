@@ -207,6 +207,12 @@ class Pool:
         self.resume_grace_ms = resume_grace_ms
         self.image = docker("image", "inspect", "--format", "{{.Id}}", image).stdout.strip()
         self.archive = directory / "basis.tar"
+        # The lease setup unshares mount namespaces, which Docker's default AppArmor
+        # profile denies. Workers already run without seccomp, so on AppArmor hosts
+        # they also run unconfined; hosts without AppArmor get no extra option.
+        security = docker("info", "--format", "{{json .SecurityOptions}}").stdout
+        self.apparmor = (["--security-opt", "apparmor=unconfined"]
+                         if "name=apparmor" in security else [])
         self.prefix = "sandweaver-" + uuid.uuid4().hex[:10]
         seed = self.prefix + "-seed"
         self.workers = []
@@ -243,7 +249,7 @@ class Pool:
         try:
             docker("run", "-d", "--name", name, "--network", self.network,
                    "--cap-add", "SYS_ADMIN", "--security-opt", "seccomp=unconfined",
-                   *state, "--mount",
+                   *self.apparmor, *state, "--mount",
                    f"type=bind,src={self.root},dst=/allowed", "--entrypoint", "/bin/sh",
                    self.image, "-ec", "mkdir /basis; exec sleep infinity")
             with self.archive.open("rb") as archive:
