@@ -9,6 +9,13 @@ driver can be stopped and restarted. One JSON line per attempt is appended to
 INDEX (default RUNS_DIR/index.jsonl); the per-run result.json stays in its run
 directory.
 
+A variant names one replay configuration (`--cap`, `--sample`, `--wait-scale`,
+`--wait-cap`); `--repeats` replays every trajectory that many times under it.
+Attempts are keyed by (instance, submission, policy, variant, repeat), so
+variants and repeats can share an index; index lines written before variants
+existed count as variant "base", repeat 0. Repeats are the outer loop, so a
+stopped run has covered every trajectory once before it starts repeating.
+
 Runs are sequential: each replay starts its own one-worker scheduler.
 """
 import argparse
@@ -21,15 +28,26 @@ import time
 HERE = Path(__file__).resolve().parent
 
 
+# Index lines from before variants were replayed with the driver's defaults.
+BASE_OPTIONS = {"cap": None, "sample": None, "wait_scale": 0, "wait_cap": None}
+
+
+def key(entry):
+    return (entry["instance_id"], entry["submission"], entry["policy"],
+            entry.get("variant", "base"), entry.get("repeat", 0))
+
+
 def load_index(path):
-    done = {}
+    """Return (keys whose last attempt is ok, keys attempted at all)."""
+    done, attempted = set(), set()
     if path.exists():
         for line in path.read_text().splitlines():
             if line.strip():
                 entry = json.loads(line)
+                attempted.add(key(entry))
                 if entry.get("status") == "ok":
-                    done[(entry["instance_id"], entry["submission"], entry["policy"])] = entry
-    return done
+                    done.add(key(entry))
+    return done, attempted
 
 
 def leftover_containers():
@@ -53,7 +71,25 @@ def main():
                         help="Wall-clock limit per replay, seconds")
     parser.add_argument("--retry-failed", action="store_true",
                         help="Also rerun attempts whose last status was not ok")
+    parser.add_argument("--variant", default="base",
+                        help="Name recorded with each attempt for this configuration")
+    parser.add_argument("--repeats", type=int, default=1,
+                        help="Replay every trajectory this many times")
+    parser.add_argument("--cap", type=float,
+                        help="Passed to replay-swebench.py; 0 disables the recorded timeout")
+    parser.add_argument("--sample", type=float, metavar="SECONDS",
+                        help="Passed to replay-swebench.py: cgroup sampling period")
+    parser.add_argument("--wait-scale", type=float, default=0,
+                        help="Passed to replay-swebench.py: replay recorded model waits")
+    parser.add_argument("--wait-cap", type=float,
+                        help="Passed to replay-swebench.py: upper bound on each wait")
     args = parser.parse_args()
+    options = {"cap": args.cap, "sample": args.sample, "wait_scale": args.wait_scale,
+               "wait_cap": args.wait_cap}
+    replay_flags = []
+    for name, value in options.items():
+        if value is not None:
+            replay_flags += [f"--{name.replace('_', '-')}", f"{value:g}"]
 
     selection = json.loads(args.selection.read_text())
     instances = [t["instance_id"] for t in selection["tasks"]]
@@ -65,36 +101,44 @@ def main():
     policies = args.policies.split(",")
     index = args.index or args.runs_dir / "index.jsonl"
     args.runs_dir.mkdir(parents=True, exist_ok=True)
-    done = load_index(index)
-    attempted = set()
-    if not args.retry_failed and index.exists():
+    done, attempted = load_index(index)
+    if index.exists():
+        # One variant, one configuration: refuse to mix settings under a name.
         for line in index.read_text().splitlines():
             if line.strip():
                 entry = json.loads(line)
-                attempted.add((entry["instance_id"], entry["submission"], entry["policy"]))
+                if (entry.get("variant", "base") == args.variant
+                        and entry.get("options", BASE_OPTIONS) != options):
+                    raise SystemExit(f"Variant {args.variant} in {index} was run with "
+                                     f"{entry.get('options', BASE_OPTIONS)}, not {options}")
+    skip = done if args.retry_failed else attempted
 
     plan = []
-    for instance in instances:
-        for submission in submissions:
-            if not (args.data_dir / "trajs" / submission / f"{instance}.traj.json").exists():
-                continue
-            for policy in policies:
-                key = (instance, submission, policy)
-                if key not in done and key not in attempted:
-                    plan.append(key)
+    for repeat in range(args.repeats):
+        for instance in instances:
+            for submission in submissions:
+                if not (args.data_dir / "trajs" / submission / f"{instance}.traj.json").exists():
+                    continue
+                for policy in policies:
+                    if (instance, submission, policy, args.variant, repeat) not in skip:
+                        plan.append((instance, submission, policy, repeat))
     if args.limit:
         plan = plan[:args.limit]
-    print(f"{len(plan)} attempts planned, {len(done)} already ok", flush=True)
+    ok_here = sum(k[3] == args.variant for k in done)
+    print(f"{len(plan)} attempts planned, {ok_here} already ok in variant {args.variant}",
+          flush=True)
 
-    for number, (instance, submission, policy) in enumerate(plan, 1):
+    for number, (instance, submission, policy, repeat) in enumerate(plan, 1):
         if subprocess.run(["docker", "info"], capture_output=True).returncode:
             raise SystemExit("Docker daemon is unreachable; stopping before the next attempt")
         entry = {"instance_id": instance, "submission": submission, "policy": policy,
+                 "variant": args.variant, "repeat": repeat, "options": options,
                  "started": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
         begin = time.monotonic()
         command = [sys.executable, str(HERE / "replay-swebench.py"), "--instance", instance,
                    "--submission", submission, "--policy", policy, "--evaluate",
-                   "--data-dir", str(args.data_dir), "--runs-dir", str(args.runs_dir)]
+                   "--data-dir", str(args.data_dir), "--runs-dir", str(args.runs_dir),
+                   *replay_flags]
         try:
             replay = subprocess.run(command, capture_output=True, text=True,
                                     timeout=args.timeout)
@@ -125,7 +169,8 @@ def main():
         entry["leftover_containers"] = leftover_containers()
         with index.open("a") as handle:
             handle.write(json.dumps(entry) + "\n")
-        print(f"[{number}/{len(plan)}] {instance} {submission.split('_')[-1]} {policy}: "
+        print(f"[{number}/{len(plan)}] {args.variant}#{repeat} {instance} "
+              f"{submission.split('_')[-1]} {policy}: "
               f"{entry['status']} resolved={entry.get('resolved')} {entry['wall_s']}s",
               flush=True)
 

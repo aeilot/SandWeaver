@@ -35,6 +35,44 @@ python benchmarks/grade-swebench.py ~/sandweaver-runs/<run-id>
 - `sandweaver-agent --smoke-command …` 可多次指定，用 SDK 工具接口跑固定命令，不请求模型。真实 agent 用 `--prompt`，宿主环境提供模型和密钥。状态默认写到 `~/.local/state/sandweaver`，可用 `--state-dir` 调整。
 - `python tests/smoke.py` 验证实际 Docker 和 OpenHands SDK 链路。应先安装项目和 agent extra，构建示例镜像。脚本也接受已存在的同类镜像标签作为参数。
 
+### 在专用机器上重跑全量回放
+
+2026-11-16 的[全量回放](swe-bench-multilingual.md#全量回放全程持租与每步归还2026-11-16sandweaver-实测)在 `gpu-wsl` 上和 OSWorld 混跑，每条只跑一次，没有采样。本节是在一台专用 Linux 机器上重跑的步骤（计划，尚未执行）。
+
+[replay-swebench-all.py](../benchmarks/replay-swebench-all.py) 用 `--variant` 给一组回放配置命名，用 `--repeats` 重复，并把 `--cap`、`--sample`、`--wait-scale`、`--wait-cap` 传给单条回放。索引按（任务、提交、策略、变体、重复序号）去重，中断后重新执行同一命令即可续跑。同一变体名若用不同参数再跑会被拒绝。每个变体用单独的运行目录，`summarize-characterization.py` 会读取目录下的全部 `result.json`。
+
+**准备。** 需要 cgroup v2 和 Docker，Python ≥ 3.11，分析环境装 `pyarrow` 与 `swebench`（5.x）。数据目录从 `gpu-wsl` 的 `~/sandweaver-data` 整体复制，包含数据集 parquet、`trajs/` 和 `analysis/`。parquet 的 sha256 记录在 [swebench-ml-selection.json](../benchmarks/swebench-ml-selection.json)，复制后应核对。先跑 `python tests/smoke.py`，再用一条轨迹核对采样器能读到 worker 的 cgroup：
+
+```bash
+python benchmarks/replay-swebench.py --instance jqlang__jq-2598 --policy batch --evaluate --sample 0.1
+```
+
+**变体。** 建议按以下顺序串行运行，避免互相干扰：
+
+| 变体 | 命令参数 | 次数 | 回答的问题 |
+|---|---|---:|---|
+| `base` | `--repeats 3 --sample 0.1` | 351 × 2 × 3 | 评分翻转和退出码分歧的方差；每条命令的 CPU 与内存 |
+| `uncapped` | `--cap 0 --sample 0.1` | 351 × 2 | 去掉 60 s 截断后的真实构建时长；调度器的 `--exec-timeout` 仍为 3600 s |
+| `wait` | `--wait-scale 1 --sample 0.1 --policies session` | 351 | 按记录的模型等待回放，测空闲期间占用和边界状态（RQ1–RQ3） |
+
+```bash
+python benchmarks/replay-swebench-all.py --variant base --repeats 3 --sample 0.1 --runs-dir ~/sandweaver-runs/base
+python benchmarks/replay-swebench-all.py --variant uncapped --cap 0 --sample 0.1 --runs-dir ~/sandweaver-runs/uncapped
+python benchmarks/replay-swebench-all.py --variant wait --wait-scale 1 --sample 0.1 --policies session --runs-dir ~/sandweaver-runs/wait
+```
+
+时长：`wait` 按 [无 API 试点](characterization.md#无-api-试点按记录等待回放2026-11-15) 的 10 条 DeepSeek 轨迹平均约 21 分钟一条（等待加执行），351 条串行约 5 天；其他模型的等待长短不同，这只是量级。`base` 和 `uncapped` 的时长没有可靠记录，先看前几十次的 `wall_s` 再估算。重复是最外层循环，中途停下时已有的结果覆盖每条轨迹各一次。
+
+**汇总。**
+
+```bash
+python benchmarks/summarize-swebench-replay.py --index ~/sandweaver-runs/base/index.jsonl --variant base --output base-summary.json
+python benchmarks/summarize-swebench-replay.py --index ~/sandweaver-runs/uncapped/index.jsonl --variant uncapped --output uncapped-summary.json
+python benchmarks/summarize-characterization.py ~/sandweaver-runs/wait --output wait-summary.json --points wait-boundaries.csv
+```
+
+多次重复时，`across_repeats` 给出各项计数的最小、最大和均值，`grade_flips` 列出每个翻转出现在几次重复中，`flaky_resolution` 列出同一策略下评分不稳定的轨迹。只有在全部重复中都出现的翻转才能归因于策略。
+
 ### 按工具批次领用 worker
 
 `sandweaver-agent --batch-leases` 为实验模式。会话连接期间持续独占工作区。首条 shell 命令领用 worker，同一轮的工具命令复用该租约。下一次模型请求前归还 worker，后续工具到达时再领用。项目文件和保存在工作区内的缓存可以随会话恢复。

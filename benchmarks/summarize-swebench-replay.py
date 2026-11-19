@@ -12,6 +12,10 @@ percentiles, the process names and path prefixes seen most often, and exit-code
 mismatches against the recorded trajectory. For trajectories replayed under
 both policies, the grades are compared and, where batch diverged, the first
 diverging step is reported with the session state left by the step before it.
+
+Only one variant is read (`--variant`, default "base"). Each repeat gets its
+own report; with more than one repeat, `across_repeats` gives the spread of the
+headline counts and which grade flips and resolutions are stable or flaky.
 """
 import argparse
 from collections import Counter, defaultdict
@@ -26,17 +30,19 @@ def pct(values, q):
     return values[min(len(values) - 1, int(q * len(values)))]
 
 
-def load(index):
-    runs = {}
+def load(index, variant):
+    """Return {repeat: {(instance, submission, policy): result}} for one variant."""
+    runs = defaultdict(dict)
     for line in index.read_text().splitlines():
         if not line.strip():
             continue
         entry = json.loads(line)
-        if entry.get("status") != "ok":
+        if entry.get("status") != "ok" or entry.get("variant", "base") != variant:
             continue
         result = json.loads((Path(entry["run_dir"]) / "result.json").read_text())
-        runs[(entry["instance_id"], entry["submission"], entry["policy"])] = result
-    return runs
+        runs[entry.get("repeat", 0)][(entry["instance_id"], entry["submission"],
+                                      entry["policy"])] = result
+    return dict(sorted(runs.items()))
 
 
 # The lease setup touches these as bind-mount targets; they are always in the write layer.
@@ -101,15 +107,11 @@ def first_divergence(session, batch):
     return None
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__,
-                                     formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--index", type=Path, default=Path.home() / "sandweaver-runs/index.jsonl")
-    parser.add_argument("--data-dir", type=Path, default=Path.home() / "sandweaver-data")
-    parser.add_argument("--output", type=Path)
-    args = parser.parse_args()
-    runs = load(args.index)
+def resolved(result):
+    return bool((result.get("grade") or {}).get("resolved"))
 
+
+def summarize(runs, official):
     by_policy = defaultdict(list)
     for (_, _, policy), result in runs.items():
         by_policy[policy].append(result)
@@ -121,8 +123,8 @@ def main():
             continue
         batch = runs[(instance, submission, "batch")]
         pairs += 1
-        s_ok = bool((session.get("grade") or {}).get("resolved"))
-        b_ok = bool((batch.get("grade") or {}).get("resolved"))
+        s_ok = resolved(session)
+        b_ok = resolved(batch)
         if s_ok != b_ok:
             grade_flips.append({"instance_id": instance, "submission": submission,
                                 "session_resolved": s_ok, "batch_resolved": b_ok})
@@ -137,17 +139,12 @@ def main():
                                          ("processes", "upper_files", "upper_bytes",
                                           "upper_prefix_bytes")},
             })
-    # Agreement with the submission's recorded verdict, where an analysis file exists.
-    official = {}
-    for path in (args.data_dir / "analysis").glob("2026*.json"):
-        for item in json.loads(path.read_text()):
-            official[(item["instance_id"], path.stem)] = item.get("resolved")
     agreement = defaultdict(lambda: {"agree": 0, "disagree": [], "no_record": 0})
     for (instance, submission, policy), result in runs.items():
         recorded = official.get((instance, submission))
         if recorded is None:
             agreement[policy]["no_record"] += 1
-        elif recorded == bool((result.get("grade") or {}).get("resolved")):
+        elif recorded == resolved(result):
             agreement[policy]["agree"] += 1
         else:
             agreement[policy]["disagree"].append({"instance_id": instance,
@@ -156,6 +153,74 @@ def main():
     report["official_agreement"] = agreement
     report["paired"] = {"trajectories": pairs, "grade_flips": grade_flips,
                         "rc_divergent": len(divergent), "divergences": divergent}
+    return report
+
+
+def spread(values):
+    return {"min": min(values), "max": max(values),
+            "mean": round(sum(values) / len(values), 2)}
+
+
+def across_repeats(repeats, reports):
+    """Spread of headline counts, and per-trajectory stability, across repeats."""
+    headline = defaultdict(list)
+    for report in reports.values():
+        for policy, stats in report["policies"].items():
+            headline[f"{policy}_resolved"].append(stats["resolved"])
+            headline[f"{policy}_rc_mismatches"].append(stats["rc_mismatches"])
+            headline[f"{policy}_boundaries_with_processes"].append(
+                stats["boundaries_with_processes"])
+        headline["grade_flips"].append(len(report["paired"]["grade_flips"]))
+        headline["rc_divergent"].append(report["paired"]["rc_divergent"])
+    # Per trajectory and policy: in how many repeats it resolved.
+    counts = defaultdict(lambda: defaultdict(int))
+    seen = defaultdict(lambda: defaultdict(int))
+    for runs in repeats.values():
+        for (instance, submission, policy), result in runs.items():
+            seen[(instance, submission)][policy] += 1
+            counts[(instance, submission)][policy] += resolved(result)
+    flaky = []
+    for trajectory, by_policy in seen.items():
+        for policy, n in by_policy.items():
+            if 0 < counts[trajectory][policy] < n:
+                flaky.append({"instance_id": trajectory[0], "submission": trajectory[1],
+                              "policy": policy, "resolved": counts[trajectory][policy],
+                              "of": n})
+    flips = Counter()
+    for report in reports.values():
+        for flip in report["paired"]["grade_flips"]:
+            flips[(flip["instance_id"], flip["submission"], flip["session_resolved"])] += 1
+    return {
+        "repeats": len(reports),
+        "headline": {name: spread(values) for name, values in headline.items()},
+        "flaky_resolution": sorted(flaky, key=lambda f: (f["instance_id"], f["submission"],
+                                                         f["policy"])),
+        "grade_flips": [{"instance_id": i, "submission": s, "session_resolved": ok,
+                         "in_repeats": n} for (i, s, ok), n in sorted(flips.items())],
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__,
+                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--index", type=Path, default=Path.home() / "sandweaver-runs/index.jsonl")
+    parser.add_argument("--data-dir", type=Path, default=Path.home() / "sandweaver-data")
+    parser.add_argument("--variant", default="base")
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args()
+    repeats = load(args.index, args.variant)
+    if not repeats:
+        raise SystemExit(f"No successful runs of variant {args.variant} in {args.index}")
+
+    # Agreement with the submission's recorded verdict, where an analysis file exists.
+    official = {}
+    for path in (args.data_dir / "analysis").glob("2026*.json"):
+        for item in json.loads(path.read_text()):
+            official[(item["instance_id"], path.stem)] = item.get("resolved")
+    reports = {repeat: summarize(runs, official) for repeat, runs in repeats.items()}
+    report = {"variant": args.variant, "repeats": reports}
+    if len(reports) > 1:
+        report["across_repeats"] = across_repeats(repeats, reports)
     text = json.dumps(report, indent=1)
     if args.output:
         args.output.write_text(text)
