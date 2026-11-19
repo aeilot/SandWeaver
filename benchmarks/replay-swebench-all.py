@@ -16,7 +16,13 @@ variants and repeats can share an index; index lines written before variants
 existed count as variant "base", repeat 0. Repeats are the outer loop, so a
 stopped run has covered every trajectory once before it starts repeating.
 
-Runs are sequential: each replay starts its own one-worker scheduler.
+Within one driver, runs are sequential: each replay starts its own one-worker
+scheduler. `--shard I/N` runs only every N-th trajectory (both policies of a
+trajectory stay in the same shard), so N drivers can share a runs directory and
+run in parallel. Each shard appends to its own index-<I>of<N>.jsonl; every
+index*.jsonl in the runs directory counts as already done. Parallel shards
+compete for CPU, so command times and 60 s timeouts are not comparable with a
+sequential run.
 """
 import argparse
 import json
@@ -37,16 +43,21 @@ def key(entry):
             entry.get("variant", "base"), entry.get("repeat", 0))
 
 
-def load_index(path):
-    """Return (keys whose last attempt is ok, keys attempted at all)."""
+def read_entries(paths):
+    for path in paths:
+        if path.exists():
+            for line in path.read_text().splitlines():
+                if line.strip():
+                    yield json.loads(line)
+
+
+def load_index(paths):
+    """Return (keys with an ok attempt, keys attempted at all)."""
     done, attempted = set(), set()
-    if path.exists():
-        for line in path.read_text().splitlines():
-            if line.strip():
-                entry = json.loads(line)
-                attempted.add(key(entry))
-                if entry.get("status") == "ok":
-                    done.add(key(entry))
+    for entry in read_entries(paths):
+        attempted.add(key(entry))
+        if entry.get("status") == "ok":
+            done.add(key(entry))
     return done, attempted
 
 
@@ -62,7 +73,11 @@ def main():
     parser.add_argument("--selection", type=Path, default=HERE / "swebench-ml-selection.json")
     parser.add_argument("--data-dir", type=Path, default=Path.home() / "sandweaver-data")
     parser.add_argument("--runs-dir", type=Path, default=Path.home() / "sandweaver-runs")
-    parser.add_argument("--index", type=Path, help="Default: RUNS_DIR/index.jsonl")
+    parser.add_argument("--index", type=Path,
+                        help="File to append to; default RUNS_DIR/index.jsonl, or "
+                             "RUNS_DIR/index-<I>of<N>.jsonl with --shard")
+    parser.add_argument("--shard", metavar="I/N",
+                        help="Run only trajectories whose position modulo N is I (0-based)")
     parser.add_argument("--policies", default="session,batch")
     parser.add_argument("--instances", help="Comma-separated subset of instance IDs")
     parser.add_argument("--submissions", help="Comma-separated subset of submissions")
@@ -99,29 +114,39 @@ def main():
     if args.submissions:
         submissions = [s for s in submissions if s in args.submissions.split(",")]
     policies = args.policies.split(",")
-    index = args.index or args.runs_dir / "index.jsonl"
+    shard, shards = 0, 1
+    if args.shard:
+        shard, shards = (int(part) for part in args.shard.split("/"))
+        if not 0 <= shard < shards:
+            raise SystemExit("--shard I/N needs 0 <= I < N")
+    if args.index:
+        index = args.index
+    elif args.shard:
+        index = args.runs_dir / f"index-{shard}of{shards}.jsonl"
+    else:
+        index = args.runs_dir / "index.jsonl"
     args.runs_dir.mkdir(parents=True, exist_ok=True)
-    done, attempted = load_index(index)
-    if index.exists():
-        # One variant, one configuration: refuse to mix settings under a name.
-        for line in index.read_text().splitlines():
-            if line.strip():
-                entry = json.loads(line)
-                if (entry.get("variant", "base") == args.variant
-                        and entry.get("options", BASE_OPTIONS) != options):
-                    raise SystemExit(f"Variant {args.variant} in {index} was run with "
-                                     f"{entry.get('options', BASE_OPTIONS)}, not {options}")
+    # Every index in the runs directory counts, so shards and reruns see each other.
+    indexes = sorted(set(args.runs_dir.glob("index*.jsonl")) | {index})
+    done, attempted = load_index(indexes)
+    # One variant, one configuration: refuse to mix settings under a name.
+    for entry in read_entries(indexes):
+        if (entry.get("variant", "base") == args.variant
+                and entry.get("options", BASE_OPTIONS) != options):
+            raise SystemExit(f"Variant {args.variant} in {args.runs_dir} was run with "
+                             f"{entry.get('options', BASE_OPTIONS)}, not {options}")
     skip = done if args.retry_failed else attempted
 
+    trajectories = [(instance, submission) for instance in instances
+                    for submission in submissions
+                    if (args.data_dir / "trajs" / submission / f"{instance}.traj.json").exists()]
+    trajectories = trajectories[shard::shards]
     plan = []
     for repeat in range(args.repeats):
-        for instance in instances:
-            for submission in submissions:
-                if not (args.data_dir / "trajs" / submission / f"{instance}.traj.json").exists():
-                    continue
-                for policy in policies:
-                    if (instance, submission, policy, args.variant, repeat) not in skip:
-                        plan.append((instance, submission, policy, repeat))
+        for instance, submission in trajectories:
+            for policy in policies:
+                if (instance, submission, policy, args.variant, repeat) not in skip:
+                    plan.append((instance, submission, policy, repeat))
     if args.limit:
         plan = plan[:args.limit]
     ok_here = sum(k[3] == args.variant for k in done)

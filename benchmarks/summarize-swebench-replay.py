@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Summarize replay-swebench-all.py results: boundary state and batch divergence.
 
-Reads the index (default ~/sandweaver-runs/index.jsonl) and each run's
-result.json. A boundary is the end of a recorded step that ran commands; the
+Reads the indexes (default every ~/sandweaver-runs/index*.jsonl, which
+includes the per-shard ones) and each run's result.json. A boundary is the end of a recorded step that ran commands; the
 lease state there is what a release would discard. Under `session` it is the
 write layer accumulated since the first step; under `batch` it is only that
 step's writes.
@@ -30,10 +30,11 @@ def pct(values, q):
     return values[min(len(values) - 1, int(q * len(values)))]
 
 
-def load(index, variant):
+def load(indexes, variant):
     """Return {repeat: {(instance, submission, policy): result}} for one variant."""
     runs = defaultdict(dict)
-    for line in index.read_text().splitlines():
+    lines = [line for index in indexes for line in index.read_text().splitlines()]
+    for line in lines:
         if not line.strip():
             continue
         entry = json.loads(line)
@@ -203,14 +204,16 @@ def across_repeats(repeats, reports):
 def main():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--index", type=Path, default=Path.home() / "sandweaver-runs/index.jsonl")
+    parser.add_argument("--index", type=Path, nargs="+",
+                        help="Index files; default every index*.jsonl in ~/sandweaver-runs")
     parser.add_argument("--data-dir", type=Path, default=Path.home() / "sandweaver-data")
     parser.add_argument("--variant", default="base")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    repeats = load(args.index, args.variant)
+    indexes = args.index or sorted((Path.home() / "sandweaver-runs").glob("index*.jsonl"))
+    repeats = load(indexes, args.variant)
     if not repeats:
-        raise SystemExit(f"No successful runs of variant {args.variant} in {args.index}")
+        raise SystemExit(f"No successful runs of variant {args.variant} in {indexes}")
 
     # Agreement with the submission's recorded verdict, where an analysis file exists.
     official = {}

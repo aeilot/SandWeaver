@@ -41,7 +41,7 @@ python benchmarks/grade-swebench.py ~/sandweaver-runs/<run-id>
 
 [replay-swebench-all.py](../benchmarks/replay-swebench-all.py) 用 `--variant` 给一组回放配置命名，用 `--repeats` 重复，并把 `--cap`、`--sample`、`--wait-scale`、`--wait-cap` 传给单条回放。索引按（任务、提交、策略、变体、重复序号）去重，中断后重新执行同一命令即可续跑。同一变体名若用不同参数再跑会被拒绝。每个变体用单独的运行目录，`summarize-characterization.py` 会读取目录下的全部 `result.json`。
 
-**准备。** 需要 cgroup v2 和 Docker，Python ≥ 3.11，分析环境装 `pyarrow` 与 `swebench`（5.x）。数据目录从 `gpu-wsl` 的 `~/sandweaver-data` 整体复制，包含数据集 parquet、`trajs/` 和 `analysis/`。parquet 的 sha256 记录在 [swebench-ml-selection.json](../benchmarks/swebench-ml-selection.json)，复制后应核对。先跑 `python tests/smoke.py`，再用一条轨迹核对采样器能读到 worker 的 cgroup：
+**准备。** 需要 cgroup v2 和 Docker，Python ≥ 3.11，分析环境装 `pyarrow` 与 `swebench`（5.x）。[fetch-swebench-data.py](../benchmarks/fetch-swebench-data.py) 从公开来源重建 `~/sandweaver-data`：数据集 parquet 来自 Hugging Face，并按 [swebench-ml-selection.json](../benchmarks/swebench-ml-selection.json) 中记录的 sha256 核对；轨迹来自 SWE-bench 提交桶，路径为 `multilingual/<submission>/trajs/<instance>/<instance>.traj.json`；官方判定取自 SWE-bench/experiments 仓库的 `per_instance_details.json`。加 `--pull` 时预先拉取任务镜像，因为回放开始前会检查镜像是否存在。在全新的 Ubuntu 24.04 Compute Engine 虚拟机上，[gce-setup.sh](../benchmarks/gce-setup.sh) 依次完成安装 Docker、建立 venv、检查 cgroup v2、取数据和拉镜像。之后重新登录，使 docker 组权限生效。先跑 `python tests/smoke.py`，再用一条轨迹核对采样器能读到 worker 的 cgroup：
 
 ```bash
 python benchmarks/replay-swebench.py --instance jqlang__jq-2598 --policy batch --evaluate --sample 0.1
@@ -61,13 +61,21 @@ python benchmarks/replay-swebench-all.py --variant uncapped --cap 0 --sample 0.1
 python benchmarks/replay-swebench-all.py --variant wait --wait-scale 1 --sample 0.1 --policies session --runs-dir ~/sandweaver-runs/wait
 ```
 
+**并行分片。** `--shard I/N` 只运行轨迹列表中下标模 N 余 I 的那些轨迹，同一轨迹的两种策略在同一分片中。N 个驱动共用一个运行目录，各自写 `index-<I>of<N>.jsonl`；目录下所有 `index*.jsonl` 都计为已完成，因此改变分片数或不分片续跑都不会重复执行。并行会争用 CPU，命令耗时和 60 s 截断造成的超时与串行结果不可直接比较，报告中需写明分片数。在 8 vCPU、64 GB 的虚拟机上，建议 `base` 与 `uncapped` 用 4 个分片，`wait` 大部分时间在休眠，可用 8 个分片。三组依次运行，不要同时运行：
+
+```bash
+for i in 0 1 2 3; do python benchmarks/replay-swebench-all.py --variant base --repeats 3 --sample 0.1 --runs-dir ~/sandweaver-runs/base --shard $i/4 > ~/base-$i.log 2>&1 & done; wait
+```
+
+`uncapped` 与 `wait` 换成上表中的参数和各自的运行目录，`wait` 用 `$i/8`。建议在 `tmux` 中运行，虚拟机被抢占或重启后，执行同一命令即可续跑。
+
 时长：`wait` 按 [无 API 试点](characterization.md#无-api-试点按记录等待回放2026-11-15) 的 10 条 DeepSeek 轨迹平均约 21 分钟一条（等待加执行），351 条串行约 5 天；其他模型的等待长短不同，这只是量级。`base` 和 `uncapped` 的时长没有可靠记录，先看前几十次的 `wall_s` 再估算。重复是最外层循环，中途停下时已有的结果覆盖每条轨迹各一次。
 
 **汇总。**
 
 ```bash
-python benchmarks/summarize-swebench-replay.py --index ~/sandweaver-runs/base/index.jsonl --variant base --output base-summary.json
-python benchmarks/summarize-swebench-replay.py --index ~/sandweaver-runs/uncapped/index.jsonl --variant uncapped --output uncapped-summary.json
+python benchmarks/summarize-swebench-replay.py --index ~/sandweaver-runs/base/index*.jsonl --variant base --output base-summary.json
+python benchmarks/summarize-swebench-replay.py --index ~/sandweaver-runs/uncapped/index*.jsonl --variant uncapped --output uncapped-summary.json
 python benchmarks/summarize-characterization.py ~/sandweaver-runs/wait --output wait-summary.json --points wait-boundaries.csv
 ```
 
