@@ -378,6 +378,24 @@
 - DSec 全文已读（见上表）：冻结加 `memory.reclaim` 的机制已有人用在生产上，但只由 GPU 抢占触发、只评测 coding 类负载，且没有时延和副作用数据。因此本方向的落点应是"按每步模型等待触发"和"桌面负载下的副作用与恢复时延"，而不是机制本身。CUA-Sandbox 和 TClone 全文也已读：两者都不处理等待期冻结或回收，都不讨论渲染、帧回调、gVisor 和多租户隔离；TClone 已证明合成器加应用可以在容器内整体 fork，但没有报告身份重复、时钟、D-Bus 等问题。因此桌面特有的部分（GUI 栈在用户态内核下的兼容性、按步冻结后的时钟与超时、按观测出帧导致的卡住、交互式等待下的冻结与恢复时延）在这三篇覆盖范围内仍是空的。
 - 最便宜的第一个实验不变：同一精简桌面镜像在 runc 与 runsc 下回放 OSWorld，再加每步冻结，记录哪些任务卡住或失败及原因。
 
+**安卓框架约定在 Linux 沙盒中的对应（2026-11-19 检索核实；多为项目代码库、问题追踪、文档或新闻，标注同前）。** 安卓的约定按执行者分三层：平台单方面执行、经工具包和桌面协议通知应用、应用自己实现。第一层（cgroup 冻结、整桌面 checkpoint、模板克隆、命名空间隔离）见上文；这里核实第二层，即 Linux 桌面上已经存在、应用不改代码也可能响应的信号。
+
+| 安卓约定 | Linux 上的对应 | 核实结果 | 来源 |
+|---|---|---|---|
+| 窗口不可见即停绘 | xdg-shell 的 `xdg_toplevel` suspended 状态 | 2023-07 随 wayland-protocols 1.32 加入（xdg-shell v6），语义是"表面重绘已暂停，可以省电"。Mutter 在 GNOME 45 实现，有 45.x 的误判和 Qt 6.7 初始状态问题，后已修复；据 Mutter 问题讨论，窗口被遮挡约 3 s 后才发送。KDE Plasma 6.3 测试版中窗口被完全遮挡时不会进入该状态；sway 尚未支持 | [协议说明](https://wayland.app/protocols/xdg-shell)、[1.32 公告](https://lists.freedesktop.org/archives/wayland-devel/2023-July/042836.html)、[Mutter MR 3019](https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3019)、[Mutter #3229](https://gitlab.gnome.org/GNOME/mutter/-/issues/3229)、[Mutter #3663](https://gitlab.gnome.org/GNOME/mutter/-/work_items/3663)、[SDL #12156](https://github.com/libsdl-org/SDL/issues/12156)、[sway #9300](https://github.com/swaywm/sway/issues/9300) |
+| 同上，客户端是否响应 | GTK4、WebKitGTK、Chromium、winit | GTK4 有 `GDK_TOPLEVEL_STATE_SUSPENDED`，帧时钟在帧不可见时可自行停止；在非 Wayland 后端与最小化同时设置。WebKitGTK 用它把视图标为不可见、停止帧时钟。Chromium 有按遮挡节流渲染的逻辑，Ubuntu 的问题报告称 Chrome 收到该状态会停止工作（Chromium 源码未核）。**GTK3 没有这个常量**（Mozilla bug 2063202），因此基于 GTK3 的 Firefox、Thunderbird、LibreOffice（gtk3 后端）、GIMP 不能经 GDK 收到；Firefox 是否另行处理未找到资料。Xwayland 应用收不到 | [GDK 文档](https://docs.gtk.org/gdk4/class.FrameClock.html)、[GTK gdktoplevel.h](https://gitlab.gnome.org/GNOME/gtk/-/blob/main/gdk/gdktoplevel.h)、[WebKit 提交](https://www.mail-archive.com/webkit-changes@lists.webkit.org/msg224653.html)、[Mozilla 2063202](https://bugzilla.mozilla.org/show_bug.cgi?id=2063202)、[Ubuntu 2174026](http://www.mail-archive.com/desktop-bugs@lists.ubuntu.com/msg836236.html)、[winit PR 4709](https://github.com/rust-windowing/winit/pull/4709) |
+| `onTrimMemory` | GLib 的 `GMemoryMonitor`，沙盒内经 xdg-desktop-portal 的 `org.freedesktop.portal.MemoryMonitor` | 2019 年同时进入 GLib 与 xdg-desktop-portal；后端是 low-memory-monitor 守护进程，按级别发 `LowMemoryWarning`，低级别时应用应释放缓存等非必要资源。任何调用 `g_memory_monitor_dup_default()` 的 GLib 应用可自动获得；**没有找到具体哪些应用监听的资料**，需要逐个查源码或实测 | [GLib 提交](https://mail.gnome.org/archives/commits-list/2019-July/msg11223.html)、[PyGObject 文档](https://api.pygobject.gnome.org/Gio-2.0/interface-MemoryMonitor.html)、[ashpd](https://docs.rs/ashpd/latest/src/ashpd/desktop/memory_monitor.rs.html) |
+| 后台限制 | `org.freedesktop.portal.Background` | 只管沙盒应用能否无窗口运行和是否开机自启（v2 增加 `SetStatus`），GNOME 用它填充"后台应用"列表；**不做节流或冻结**，只对 Flatpak 一类沙盒应用有效 | [门户文档](https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.Background.html)、[GNOME 设计](https://gitlab.gnome.org/Teams/Design/os-mockups/-/issues/191) |
+| 进程冻结 | systemd `systemctl freeze`/`thaw` | 基于 cgroup v2 的 `cgroup.freeze`，cgroup v1 不支持；只支持 service、scope、slice 类单元（第三方手册，未对照官方）。GNOME、KDE 已把每个应用放进独立 scope，可以按应用冻结 | [systemd-devel 讨论](https://lists.freedesktop.org/archives/systemd-devel/2021-April/046302.html)、[systemd 提交](https://gitea.basealt.ru/shaba/systemd/src/commit/d9e45bc3abb8adf5a1cb20816ba8f2d2aa65b17e)、[RHEL bug 1830861](https://bugzilla.redhat.com/show_bug.cgi?id=1830861) |
+| `onSaveInstanceState` | `xdg-session-management-v1` 协议，加上工具包层的状态保存 | 协议 2020 年提出，2026-03-23 合入，随 wayland-protocols 1.48（2026-04）发布；Chromium 已加入支持，KDE 与 GNOME 在实现中，Qt 6.12 加 KDE 6.7 有用户报告可用。GTK 的会话保存没赶上 4.22（4.22 有标为不稳定的 `GtkApplication::restore-window` 信号），预计 4.24。协议只恢复窗口（位置、大小等），应用内部状态仍要应用自己存 | [Phoronix 1.48](https://www.phoronix.com/news/Wayland-Protocols-1.48)、[Phoronix Chromium](https://www.phoronix.com/news/Chrome-XDG-Session-Management)、[GTK MR 7370](https://gitlab.gnome.org/GNOME/gtk/-/merge_requests/7370)、[GTK 文档](https://docs.gtk.org/gtk4/signal.Application.restore-window.html)、[Phoronix GTK 黑客松](https://phoronix.com/news/gtk-fosdem-2026-hackfest)、[KDE 讨论](https://discuss.kde.org/t/session-management-with-qt/47876)、[GNOME 计划](https://discourse.gnome.org/t/introducing-the-session-save-restore-initiative/33127) |
+
+判断：
+
+- 第二层的信号确实存在，但覆盖很不均匀。suspended 状态只对 Wayland 原生、基于 GTK4、WebKitGTK 或 Chromium 的客户端有效；OSWorld 的 LibreOffice、GIMP、Thunderbird 走 GTK3，收不到。而且现有 OSWorld 虚拟机用 Xorg，这些协议一个都用不上，必须先换成 Wayland 合成器。
+- 低内存信号的机制完整，但实际有多少应用响应没有资料，只能实测。后台门户与冻结无关，不必移植。
+- 会话保存协议刚进入主线，只管窗口几何，替代不了 `onSaveInstanceState`；应用内部状态仍要靠整桌面 checkpoint 兜底。
+- 因此"把安卓框架约定搬进 Linux 沙盒"的可测问题是：在自写的无头合成器下，对 OSWorld 用到的每个应用依次发 suspended（或停发帧回调）、低内存信号，再做 cgroup 冻结，测各自的 CPU 余波、内存变化和解冻后的功能错误。结果是一张"安卓约定在 Linux 桌面上的覆盖率"表；没有约定的部分，用平台硬冻结兜底，并测它的代价。
+
 **负载：OSWorld 够不够做大规模研究（2026-11-16 检索，只核对到摘要或二手资料）。**
 
 OSWorld 1.0 的局限：
