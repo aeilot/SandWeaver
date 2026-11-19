@@ -114,7 +114,7 @@ TrEnv-X 可用于外部 sandbox 对照。已完成的 Firecracker 试跑通过�
 
 - 评分翻转：10 条轨迹在 session 下解决、在 batch 下未解决，反方向为 0。占全部轨迹的 2.8%，占 session 已解决的 4.1%。涉及 `redis__redis-12472`、`valkey-io__valkey-1842`（2 个模型）、`nlohmann__json-4237`、`caddyserver__caddy-5626`、`preactjs__preact-3689`、`briannesbitt__carbon-2665`（3 个模型）、`sharkdp__bat-2835`。
 - 退出码分歧：92/351 条轨迹（26%）在 batch 下第一次出现与 session 不同的退出码。看分歧前一步 session 留下的状态：62 条只有写层文件，30 条同时有存活进程和文件，没有只靠进程的。跨步依赖以文件为主。分歧前存活进程中最常见的是 node（77）、chrome（49）、valkey-server（24）、esbuild（21）。
-- 写层成分（session，各边界累加，同一文件会被重复计入）：包缓存约 834 GB，/tmp 约 47 GB，node_modules 约 2.8 GB，其他约 6.2 GB。最常见的路径前缀是 `root/.cache`、`root/.npm`、`tmp/fix.patch`、`root/go`、`root/.config`。
+- 写层成分（附注，不作为发现）：把各边界的写层快照直接相加，同一文件在之后每个边界都会再计一次，单位相当于"字节 × 边界"，不是写入量。按这一口径，session 下包缓存约 834 GB（`.cache`、`.npm`、Go 模块等工具缓存，`target`、`build` 等编译输出另归一类），/tmp 约 47 GB，node_modules 约 2.8 GB，其他约 6.2 GB。最常见的路径前缀是 `root/.cache`、`root/.npm`、`tmp/fix.patch`、`root/go`、`root/.config`。缓存占大头在意料之中。真实写入量要取每条轨迹最后一个边界的写层大小或 cgroup I/O 统计，尚未汇总。
 - 按模型（每个模型 27 条轨迹）的退出码分歧数：claude-4-5-haiku 17，kimi-k2-5 15，minimax-2-5 12，glm-5 10，claude-4-5-opus 8，gpt-5-2-high 7，claude-4-5-sonnet 6，deepseek-3-2 5，gpt-5-2-codex 4，claude-4-6-opus 4，gpt-5-mini 2，gemini-3-flash 1，gemini-3-pro 1。不同模型对跨步状态的依赖差别很大。
 - 与录制方的官方评分对照：有记录的 269 条中，session 一致 250 条，batch 一致 241 条；82 条没有记录。session 的 19 条不一致里，`rubocop__rubocop-13479` 占 10 条（有记录的 10 个模型全部不一致，录制方均为解决），`google__gson-1014` 占 3 条。这更像是本地环境与录制方的差异，而不是策略造成的，原因尚未核查。
 
@@ -123,6 +123,7 @@ TrEnv-X 可用于外部 sandbox 对照。已完成的 Firecracker 试跑通过�
 - 回放是盲执行：命令和顺序取自轨迹，agent 不会对 batch 下丢失的状态做出反应。真实 agent 可能重新安装或重启服务，也可能因此多走几步，所以 10 条翻转是上界意义上的估计，不是真实 agent 在 batch 下的成功率。
 - batch 下仍有 471 个边界存在存活进程，是一步内启动、步骤结束时尚未退出的进程，归还时会被终止。
 - 每条轨迹、每种策略只回放一次，没有重复，未给出方差。
+- 对资源瓶颈的含义（解读）：等待期 coding sandbox 几乎不用 CPU，anon 内存只有几 MB（见[刻画试点](characterization.md#无-api-试点按记录等待回放2026-11-15)）。难处理的不是资源量，而是不能丢的状态。跨步依赖主要在写层文件（92 条分歧中 62 条只有文件），文件可以保存或重建。约三分之一（30 条）同时有存活进程，常见的是 node、chrome、valkey-server 等，它们的内存状态只能保留租约或重启。这些进程状态的大小和重建代价尚未测量。
 - 依据：每步归还的代价集中在少数依赖后台服务或跨步文件的轨迹上，且与模型强相关。调度上可以默认归还，只对检测到存活进程或关键写层的步骤保留租约；这是设计推论，尚未实现或测量。
 
 ### 等待与立即复用的对照
