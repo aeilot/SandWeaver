@@ -8,7 +8,8 @@ write layer accumulated since the first step; under `batch` it is only that
 step's writes.
 
 Reported per policy: boundaries with live processes, write-layer size
-percentiles, the process names and path prefixes seen most often, and exit-code
+percentiles, the write layer at each trajectory's last boundary (under session,
+the net size the trajectory left, counting each file once), the process names and path prefixes seen most often, and exit-code
 mismatches against the recorded trajectory. For trajectories replayed under
 both policies, the grades are compared and, where batch diverged, the first
 diverging step is reported with the session state left by the step before it.
@@ -55,7 +56,17 @@ def boundary_stats(results):
     proc_names, prefixes, categories, ports = Counter(), Counter(), Counter(), Counter()
     with_ports = with_new_fields = 0
     mismatches = commands = timeouts = 0
+    final_sizes, final_categories = [], Counter()
     for result in results:
+        # The last boundary's write layer: under session, what the trajectory left in
+        # total (net of deletions, each file once); under batch, only the last step's.
+        final = next((step["lease_state"] for step in reversed(result["steps"])
+                      if "processes" in (step.get("lease_state") or {})), None)
+        if final:
+            final_sizes.append(final["upper_bytes"])
+            final_categories.update({k: v for k, v in
+                                     final.get("upper_category_bytes", {}).items()
+                                     if k != "dev"})
         for step in result["steps"]:
             for command in step["commands"]:
                 commands += 1
@@ -94,6 +105,10 @@ def boundary_stats(results):
         "boundaries_with_listening_ports": with_ports,
         "listening_ports": ports.most_common(10),
         "upper_category_bytes_summed": dict(categories),
+        "final_upper_bytes_p50_p90_max": [pct(final_sizes, .5), pct(final_sizes, .9),
+                                          max(final_sizes, default=None)],
+        "final_upper_bytes_total": sum(final_sizes),
+        "final_upper_category_bytes": dict(final_categories),
         "commands": commands, "rc_mismatches": mismatches, "timeouts": timeouts,
         "resolved": sum(bool((r.get("grade") or {}).get("resolved")) for r in results),
     }
