@@ -19,10 +19,16 @@ from pathlib import Path
 import threading
 import time
 
-from sandweaver import scheduler
+from sandweaver import procs, scheduler
 
 CGROUP_ROOT = Path("/sys/fs/cgroup")
-MEMORY_KEYS = ("anon", "file", "shmem", "file_dirty", "file_writeback")
+MEMORY_KEYS = ("anon", "file", "shmem", "file_dirty", "file_writeback", "file_mapped",
+               "active_file", "inactive_file")
+# Cumulative event counters from memory.stat: faults, refaults of evicted pages,
+# and reclaim activity. Reported as deltas over a window.
+MEMORY_COUNTERS = ("pgfault", "pgmajfault", "workingset_refault_anon",
+                   "workingset_refault_file", "workingset_activate_file", "pgscan", "pgsteal")
+PRESSURE = ("cpu", "memory", "io")
 
 
 def cgroup_dir(container, root=CGROUP_ROOT):
@@ -47,6 +53,17 @@ def read_sample(directory):
         key, value = line.split()
         if key in MEMORY_KEYS:
             sample["memory_" + key] = int(value)
+        elif key in MEMORY_COUNTERS:
+            sample[key] = int(value)
+    for kind in PRESSURE:
+        # Cumulative stall time in microseconds; absent when PSI is disabled.
+        try:
+            text = (directory / f"{kind}.pressure").read_text()
+        except OSError:
+            continue
+        for line in text.splitlines():
+            parts = line.split()
+            sample[f"psi_{kind}_{parts[0]}_us"] = int(parts[-1].partition("=")[2])
     read = written = 0
     for line in (directory / "io.stat").read_text().splitlines():
         for item in line.split()[1:]:
@@ -67,19 +84,29 @@ class Sampler:
     samples: list = field(default_factory=list)
     errors: int = 0
     directory: Path | None = None
+    # Seconds between per-process readings of the same cgroup (procs.py); None: off.
+    process_interval: float | None = None
+    process_ticks: list = field(default_factory=list)
 
     def __post_init__(self):
         self.directory = self.directory or cgroup_dir(self.container)
+        self._procs = (procs.ProcessSampler(str(self.directory))
+                       if self.process_interval else None)
+        self._every = max(1, round((self.process_interval or 0) / self.interval))
         self._stop = threading.Event()
         self._thread = threading.Thread(target=self._run, daemon=True)
         self._cost_ns = 0
 
     def _run(self):
         next_due = time.monotonic()
+        count = 0
         while not self._stop.is_set():
             begin = time.monotonic_ns()
             try:
                 self.samples.append(read_sample(self.directory))
+                if self._procs and count % self._every == 0:
+                    self.process_ticks.append(self._procs.tick())
+                count += 1
             except (OSError, ValueError):
                 # The container is gone or a file was mid-update; keep sampling.
                 self.errors += 1
@@ -105,6 +132,8 @@ class Sampler:
         span = (self.samples[-1]["t_ns"] - self.samples[0]["t_ns"]) / 1e9 if count > 1 else 0
         return {"container_cgroup": str(self.directory), "interval_s": self.interval,
                 "samples": count, "errors": self.errors,
+                "process_interval_s": self.process_interval,
+                "process_ticks": len(self.process_ticks),
                 "mean_period_s": span / (count - 1) if count > 1 else None,
                 "mean_read_cost_us": self._cost_ns / count / 1e3 if count else None}
 
@@ -130,6 +159,9 @@ def window(samples, start_ns, end_ns):
               "cpu_util": cpu / span if span > 0 else None,
               "io_rbytes": last["io_rbytes"] - first["io_rbytes"],
               "io_wbytes": last["io_wbytes"] - first["io_wbytes"]}
+    for key in MEMORY_COUNTERS + tuple(f"psi_{k}_some_us" for k in PRESSURE):
+        if key in first and key in last:
+            result[key] = last[key] - first[key]
     for key in ("memory_current", "memory_anon", "memory_file"):
         values = [s[key] for s in inside if key in s]
         if values:

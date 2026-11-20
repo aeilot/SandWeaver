@@ -14,10 +14,14 @@ Policies:
   freeze-reclaim  as freeze, then ask the kernel to reclaim the frozen cgroup's
                   memory (memory.reclaim); without swap only file pages can go
 
-Measured: host memory, PSI and CPU every --host-interval seconds; each
-container's cgroup (CPU, anon, file, shmem); proportional set size per container
-every --pss-interval seconds; per step the action and screenshot latency, freeze,
-reclaim and thaw latency, and the memory a reclaim released.
+Measured: host memory, PSI, fault/refault/reclaim counters (/proc/vmstat) and
+CPU every --host-interval seconds; each container's cgroup (CPU, anon, file,
+shmem, faults, refaults, PSI); every container process's CPU, faults and RSS
+every --process-interval seconds (procs.jsonl, see sandweaver/procs.py);
+proportional set size per container every --pss-interval seconds; per step the
+action and screenshot latency, freeze, reclaim and thaw latency, and the memory
+a reclaim released. Step times in result.json are relative to `epoch_ns`, the
+host monotonic clock that samples.jsonl and procs.jsonl use.
 
 The desktop image must serve OSWorld's Flask API on port 5000 (CUA-Lite's
 lite.osworld image does). Run as root on a cgroup v2 host:
@@ -116,6 +120,21 @@ def read_pressure(kind):
     return out
 
 
+VMSTAT_KEYS = ("pgmajfault", "pgfault", "workingset_refault_anon", "workingset_refault_file",
+               "pgscan_kswapd", "pgscan_direct", "pgsteal_kswapd", "pgsteal_direct",
+               "pswpin", "pswpout", "pgpgin", "pgpgout")
+
+
+def read_vmstat():
+    """Host-wide cumulative fault, refault, reclaim and swap counters."""
+    out = {}
+    for line in Path("/proc/vmstat").read_text().splitlines():
+        key, _, value = line.partition(" ")
+        if key in VMSTAT_KEYS:
+            out[key] = int(value)
+    return out
+
+
 def read_host_cpu():
     fields = Path("/proc/stat").read_text().splitlines()[0].split()[1:]
     values = list(map(int, fields))
@@ -144,19 +163,47 @@ def cgroup_pss(directory):
 class Profiler:
     """Background sampling of the host and every registered container cgroup."""
 
-    def __init__(self, host_interval, pss_interval, out):
-        from sandweaver import sampler
-        self.sampler = sampler
+    def __init__(self, host_interval, pss_interval, out, process_interval=0.0, procs_out=None):
+        from sandweaver import procs, sampler
+        self.sampler, self.procs = sampler, procs
         self.host_interval, self.pss_interval = host_interval, pss_interval
+        self.process_interval = process_interval
         self.cgroups = {}
+        self.process_samplers = {}
         self.lock = threading.Lock()
         self.stop = threading.Event()
         self.handle = out.open("w")
+        self.procs_handle = procs_out.open("w") if process_interval and procs_out else None
         self.thread = threading.Thread(target=self.run, daemon=True)
+        self.procs_thread = threading.Thread(target=self.run_procs, daemon=True)
+        self.procs_cost_ns = 0
+        self.procs_ticks = 0
 
     def register(self, name, directory):
         with self.lock:
             self.cgroups[name] = directory
+            if self.procs_handle:
+                self.process_samplers[name] = self.procs.ProcessSampler(str(directory))
+
+    def run_procs(self):
+        """Per-process CPU, faults and RSS of every registered container."""
+        next_due = time.monotonic()
+        while not self.stop.is_set():
+            begin = time.monotonic_ns()
+            with self.lock:
+                samplers = dict(self.process_samplers)
+            lines = []
+            for name, sampler in samplers.items():
+                try:
+                    lines.append(json.dumps({"container": name, **sampler.tick()},
+                                            separators=(",", ":")))
+                except (OSError, ValueError):
+                    pass  # the container is gone
+            self.procs_handle.write("".join(line + "\n" for line in lines))
+            self.procs_cost_ns += time.monotonic_ns() - begin
+            self.procs_ticks += 1
+            next_due += self.process_interval
+            self.stop.wait(max(0.0, next_due - time.monotonic()))
 
     def write(self, record):
         with self.lock:
@@ -168,6 +215,7 @@ class Profiler:
             now = time.monotonic()
             record = {"t_ns": time.monotonic_ns(), "kind": "host", "mem": read_meminfo(),
                       "psi_memory": read_pressure("memory"), "psi_cpu": read_pressure("cpu"),
+                      "psi_io": read_pressure("io"), "vmstat": read_vmstat(),
                       "cpu": read_host_cpu(), "containers": {}}
             with self.lock:
                 cgroups = dict(self.cgroups)
@@ -187,12 +235,22 @@ class Profiler:
 
     def __enter__(self):
         self.thread.start()
+        if self.procs_handle:
+            self.procs_thread.start()
         return self
 
     def __exit__(self, *_):
         self.stop.set()
         self.thread.join()
         self.handle.close()
+        if self.procs_handle:
+            self.procs_thread.join()
+            self.procs_handle.close()
+
+    def summary(self):
+        return {"process_interval_s": self.process_interval, "process_ticks": self.procs_ticks,
+                "process_tick_cost_ms_mean": (self.procs_cost_ns / self.procs_ticks / 1e6
+                                              if self.procs_ticks else None)}
 
 
 # ── lifecycle ────────────────────────────────────────────────────────────────
@@ -377,7 +435,9 @@ def main():
     parser.add_argument("--wait-scale", type=float, default=1.0)
     parser.add_argument("--max-steps", type=int)
     parser.add_argument("--ready-timeout", type=float, default=600)
-    parser.add_argument("--host-interval", type=float, default=1.0)
+    parser.add_argument("--host-interval", type=float, default=0.5)
+    parser.add_argument("--process-interval", type=float, default=0.5,
+                        help="Per-process sampling period for every container (0: off)")
     parser.add_argument("--pss-interval", type=float, default=30.0)
     parser.add_argument("--prefix", default="swarm")
     parser.add_argument("--keep", action="store_true", help="Leave containers running at the end")
@@ -392,15 +452,17 @@ def main():
     epoch = time.monotonic_ns()
     result = {"config": {k: str(v) for k, v in vars(args).items()},
               "image_id": docker("image", "inspect", "-f", "{{.Id}}", args.image).stdout.strip(),
-              "kernel": os.uname().release, "cpus": os.cpu_count(),
+              "kernel": os.uname().release, "cpus": os.cpu_count(), "epoch_ns": epoch,
               "mem_before": read_meminfo()}
     try:
-        with Profiler(args.host_interval, args.pss_interval, args.output / "samples.jsonl") as prof:
+        with Profiler(args.host_interval, args.pss_interval, args.output / "samples.jsonl",
+                      args.process_interval, args.output / "procs.jsonl") as prof:
             with ThreadPoolExecutor(max_workers=args.n) as pool:
                 futures = [pool.submit(replay, d, trajs[d.index % len(trajs)], args, prof, epoch)
                            for d in desktops]
                 result["instances"] = [f.result() for f in futures]
             result["wall_ns"] = time.monotonic_ns() - epoch
+        result["profiler"] = prof.summary()
     finally:
         if not args.keep:
             for d in desktops:

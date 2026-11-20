@@ -29,7 +29,7 @@ def summarize(run):
     starts = [i["replay_begin_ns"] for i in instances if "replay_begin_ns" in i]
     ends = [i["end_ns"] for i in instances if "end_ns" in i]
     samples = [json.loads(line) for line in (run / "samples.jsonl").read_text().splitlines()]
-    epoch = samples[0]["t_ns"] if samples else 0
+    epoch = result.get("epoch_ns") or (samples[0]["t_ns"] if samples else 0)
     # samples carry absolute monotonic ns; result times are relative to the runner's epoch,
     # which is a few ms before the first sample.
     lo, hi = (min(starts), max(ends)) if starts else (0, 0)

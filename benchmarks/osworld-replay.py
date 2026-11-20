@@ -19,6 +19,8 @@ OSWorld's evaluator separately.
 """
 import argparse
 import ast
+import base64
+import gzip
 from datetime import datetime
 import json
 import os
@@ -88,6 +90,46 @@ def to_command(action, converter):
     return None
 
 
+class GuestProcs:
+    """Run sandweaver/procs.py inside the guest as root and fetch its samples.
+
+    The guest's clocks differ from the host's, so `probe` reads the guest's
+    CLOCK_REALTIME between two host monotonic readings; the midpoint maps guest
+    wall time to host monotonic time with an error of at most half the round trip.
+    """
+
+    def __init__(self, host, port, password, interval):
+        import requests
+        self.requests, self.url = requests, f"http://{host}:{port}/execute"
+        self.password, self.interval = password, interval
+
+    def shell(self, command, timeout=120):
+        reply = self.requests.post(self.url, timeout=timeout,
+                                   json={"command": command, "shell": True}).json()
+        return reply.get("output") or ""
+
+    def probe(self):
+        before = time.monotonic_ns()
+        guest = int(self.shell("date +%s%N").strip())
+        after = time.monotonic_ns()
+        return {"host_before_ns": before, "host_after_ns": after, "guest_wall_ns": guest}
+
+    def start(self):
+        source = base64.b64encode((REPO / "sandweaver/procs.py").read_bytes()).decode()
+        self.shell(f"echo {source} | base64 -d > /tmp/sw-procs.py")
+        self.shell(f"echo {self.password} | sudo -S sh -c 'nohup python3 /tmp/sw-procs.py "
+                   f"--interval {self.interval} --io --out /tmp/sw-procs.jsonl "
+                   f">/tmp/sw-procs.err 2>&1 &'")
+
+    def stop(self, path):
+        self.shell(f"echo {self.password} | sudo -S pkill -TERM -f sw-procs.py; sleep 1")
+        data = self.shell("gzip -c /tmp/sw-procs.jsonl | base64 -w0", timeout=600)
+        raw = gzip.decompress(base64.b64decode(data)) if data.strip() else b""
+        path.write_bytes(raw)
+        return {"bytes": len(raw), "lines": raw.count(b"\n"),
+                "stderr": self.shell("cat /tmp/sw-procs.err")[-2000:]}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -98,6 +140,8 @@ def main():
     parser.add_argument("--sample", type=float, default=0.1)
     parser.add_argument("--wait-scale", type=float, default=1.0)
     parser.add_argument("--max-steps", type=int)
+    parser.add_argument("--guest-procs", type=float, default=0.25, metavar="SECONDS",
+                        help="Per-process sampling period inside the guest (0: off)")
     parser.add_argument("--idle-tail", type=float, default=0,
                         help="Seconds to keep the VM idle after the last step, sampled")
     args = parser.parse_args()
@@ -139,6 +183,15 @@ def main():
             cache = args.output / "cache" / task_id
             cache.mkdir(parents=True, exist_ok=True)
             setup.reset_cache_dir(str(cache))
+            guest = None
+            if args.guest_procs:
+                guest = GuestProcs(host, server, "password", args.guest_procs)
+                try:
+                    guest.start()
+                    result["guest_probe_start"] = guest.probe()
+                except (ValueError, OSError, guest.requests.RequestException) as exc:
+                    result["guest_procs_error"] = f"start: {exc}"
+                    guest = None
             begin = time.monotonic_ns()
             result["setup_ok"] = bool(setup.setup(config.get("config", []), False))
             result["setup_ns"] = time.monotonic_ns() - begin
@@ -181,6 +234,12 @@ def main():
                     result["guest_top_after_idle"] = reply.get("output") or reply
                 except (requests.RequestException, ValueError) as exc:
                     result["guest_top_after_idle"] = f"probe failed: {exc}"
+            if guest:
+                try:
+                    result["guest_probe_end"] = guest.probe()
+                    result["guest_procs"] = guest.stop(args.output / "guest-procs.jsonl")
+                except (ValueError, OSError, guest.requests.RequestException) as exc:
+                    result["guest_procs_error"] = f"stop: {exc}"
         samples = sampled.samples
         result["sampler"] = sampled.summary()
         for record in result["steps"]:

@@ -82,6 +82,9 @@ def main():
     parser.add_argument("--keep", action="store_true", help="Keep the run workspace")
     parser.add_argument("--sample", type=float, metavar="SECONDS",
                         help="Sample the worker cgroup at this period and record per-command usage")
+    parser.add_argument("--process-sample", type=float, metavar="SECONDS",
+                        help="Also sample each worker's processes (CPU, faults, RSS) at this "
+                             "period into procs.jsonl; needs --sample")
     parser.add_argument("--wait-scale", type=float, default=0,
                         help="Before each step, sleep its recorded model wait times this factor "
                              "(0, the default, replays commands back to back)")
@@ -163,7 +166,8 @@ def main():
                 leased = True
                 if args.sample and reply["worker"] not in samplers:
                     samplers[reply["worker"]] = stack.enter_context(
-                        sampler.Sampler(reply["worker"], args.sample))
+                        sampler.Sampler(reply["worker"], args.sample,
+                                        process_interval=args.process_sample))
             if wait > 0:
                 record["wait_begin_ns"] = time.monotonic_ns()
                 time.sleep(wait)
@@ -177,7 +181,8 @@ def main():
                 leased = True
                 if args.sample and reply["worker"] not in samplers:
                     samplers[reply["worker"]] = stack.enter_context(
-                        sampler.Sampler(reply["worker"], args.sample))
+                        sampler.Sampler(reply["worker"], args.sample,
+                                        process_interval=args.process_sample))
             for position, original in enumerate(step.commands):
                 begin = time.monotonic_ns()
                 reply = client.request("exec", command=wrap(original, env, cap), observe=True)
@@ -241,6 +246,11 @@ def main():
                     sampled.stop()
                     for sample in sampled.samples:
                         handle.write(json.dumps({"worker": name, **sample}) + "\n")
+            if args.process_sample:
+                with (run / "procs.jsonl").open("w") as handle:
+                    for name, sampled in samplers.items():
+                        for tick in sampled.process_ticks:
+                            handle.write(json.dumps({"worker": name, **tick}) + "\n")
             result["sampler"] = {name: s.summary() for name, s in samplers.items()}
             for step in result["steps"]:
                 # Usage over this wait of the worker that ran the previous step (or,
