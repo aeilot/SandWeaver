@@ -1,0 +1,17 @@
+step 1/16 command action=1.23s shot=1460362
+step 2/16 command action=0.99s shot=1474785
+step 3/16 command action=0.99s shot=1460774
+step 4/16 command action=0.79s shot=1275433
+step 5/16 command action=0.80s shot=1292958
+step 6/16 command action=0.81s shot=1293920
+step 7/16 command action=0.81s shot=1293920
+step 8/16 command action=0.80s shot=1293920
+step 9/16 command action=0.80s shot=1294179
+step 10/16 command action=0.81s shot=1294179
+step 11/16 command action=0.79s shot=1293149
+step 12/16 command action=0.79s shot=1293029
+step 13/16 command action=0.80s shot=1293130
+step 14/16 command action=0.82s shot=1293343
+step 15/16 command action=0.90s shot=1460018
+step 16/16 DONE action=0.67s shot=1460124
+Result: /home/aeilot/osworld-runs/phase1/vlc/result.json

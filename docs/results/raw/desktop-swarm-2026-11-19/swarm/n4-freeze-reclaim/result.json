@@ -1,0 +1,1209 @@
+{
+ "config": {
+  "pilot": "/home/aeilot/pilot.json",
+  "n": "4",
+  "policy": "freeze-reclaim",
+  "output": "/home/aeilot/osworld-runs/swarm/n4-freeze-reclaim",
+  "image": "ghcr.io/cua-lite/lite.osworld:latest",
+  "docker_arg": "[]",
+  "osworld": "/home/aeilot/agent-experiments/OSWorld",
+  "stagger": "20.0",
+  "settle": "10.0",
+  "min_frozen": "2.0",
+  "wait_scale": "1.0",
+  "max_steps": "None",
+  "ready_timeout": "600",
+  "host_interval": "1.0",
+  "pss_interval": "30.0",
+  "prefix": "swarm",
+  "keep": "False"
+ },
+ "image_id": "sha256:2d51f12e1bff4a8621c3a810cd5399c2c678aafae0db310f757c8c240cf954b1",
+ "kernel": "7.0.0-1017-gcp",
+ "cpus": 4,
+ "mem_before": {
+  "MemTotal": 33648353280,
+  "MemAvailable": 32745476096,
+  "Cached": 261754880,
+  "SwapTotal": 0,
+  "SwapFree": 0,
+  "AnonPages": 189001728,
+  "Shmem": 1085440,
+  "AnonHugePages": 0
+ },
+ "instances": [
+  {
+   "instance": 0,
+   "name": "swarm-0",
+   "task_id": "030eeff7-b492-4218-b312-701ec99ee0cc",
+   "domain": "chrome",
+   "steps": [
+    {
+     "step": 1,
+     "recorded_gap_s": 8.501999139785767,
+     "kind": "command",
+     "action_begin_ns": 14588297069,
+     "exec_ok": true,
+     "exec_ns": 793091459,
+     "shot_ns": 281559511,
+     "screenshot_bytes": 2136734
+    },
+    {
+     "step": 2,
+     "recorded_gap_s": 8.877599000930786,
+     "kind": "command",
+     "action_begin_ns": 23090488289,
+     "exec_ok": true,
+     "exec_ns": 528060416,
+     "shot_ns": 345458672,
+     "screenshot_bytes": 1375445
+    },
+    {
+     "step": 3,
+     "recorded_gap_s": 9.33018684387207,
+     "kind": "command",
+     "action_begin_ns": 31968256083,
+     "exec_ok": true,
+     "exec_ns": 407700535,
+     "shot_ns": 258672178,
+     "screenshot_bytes": 1363454
+    },
+    {
+     "step": 4,
+     "recorded_gap_s": 38.761104106903076,
+     "kind": "command",
+     "action_begin_ns": 41298577371,
+     "exec_ok": true,
+     "exec_ns": 639546617,
+     "shot_ns": 378167696,
+     "screenshot_bytes": 1363789,
+     "freeze_ns": 1880615,
+     "frozen_at_ns": 52318256366,
+     "reclaim": {
+      "reclaim_ns": 486259555,
+      "before": 2463809536,
+      "after": 921116672,
+      "complete": false
+     },
+     "thaw_ns": 2120546,
+     "thawed_at_ns": 80061930066
+    },
+    {
+     "step": 5,
+     "recorded_gap_s": 17.35096001625061,
+     "kind": "command",
+     "action_begin_ns": 80061942937,
+     "exec_ok": true,
+     "exec_ns": 587649122,
+     "shot_ns": 330633333,
+     "screenshot_bytes": 1378674,
+     "freeze_ns": 3267328,
+     "frozen_at_ns": 90983623792,
+     "reclaim": {
+      "reclaim_ns": 274491485,
+      "before": 1166589952,
+      "after": 971481088,
+      "complete": false
+     },
+     "thaw_ns": 2326582,
+     "thawed_at_ns": 97415390340
+    },
+    {
+     "step": 6,
+     "recorded_gap_s": 23.898128986358643,
+     "kind": "command",
+     "action_begin_ns": 97415402392,
+     "exec_ok": true,
+     "exec_ns": 442044395,
+     "shot_ns": 248775377,
+     "screenshot_bytes": 1378674,
+     "freeze_ns": 1572245,
+     "frozen_at_ns": 108107932684,
+     "reclaim": {
+      "reclaim_ns": 71862058,
+      "before": 1067245568,
+      "after": 933572608,
+      "complete": false
+     },
+     "thaw_ns": 2470187,
+     "thawed_at_ns": 121316111603
+    },
+    {
+     "step": 7,
+     "recorded_gap_s": 17.157733917236328,
+     "kind": "command",
+     "action_begin_ns": 121316123018,
+     "exec_ok": true,
+     "exec_ns": 449451488,
+     "shot_ns": 248597567,
+     "screenshot_bytes": 1376720,
+     "freeze_ns": 1650994,
+     "frozen_at_ns": 132015969936,
+     "reclaim": {
+      "reclaim_ns": 39893407,
+      "before": 1026174976,
+      "after": 932032512,
+      "complete": false
+     },
+     "thaw_ns": 2306164,
+     "thawed_at_ns": 138476347301
+    },
+    {
+     "step": 8,
+     "recorded_gap_s": 17.139163970947266,
+     "kind": "command",
+     "action_begin_ns": 138476381801,
+     "exec_ok": true,
+     "exec_ns": 533536404,
+     "shot_ns": 301349790,
+     "screenshot_bytes": 1363496,
+     "freeze_ns": 1696996,
+     "frozen_at_ns": 149313082059,
+     "reclaim": {
+      "reclaim_ns": 69005230,
+      "before": 1055264768,
+      "after": 927916032,
+      "complete": false
+     },
+     "thaw_ns": 2297763,
+     "thawed_at_ns": 155618009469
+    },
+    {
+     "step": 9,
+     "recorded_gap_s": 38.41901397705078,
+     "kind": "command",
+     "action_begin_ns": 155618020799,
+     "exec_ok": true,
+     "exec_ns": 853045089,
+     "shot_ns": 295608309,
+     "screenshot_bytes": 1376509,
+     "freeze_ns": 1613659,
+     "frozen_at_ns": 166768450796,
+     "reclaim": {
+      "reclaim_ns": 76562017,
+      "before": 1049006080,
+      "after": 927895552,
+      "complete": false
+     },
+     "thaw_ns": 2268747,
+     "thawed_at_ns": 194039479196
+    },
+    {
+     "step": 10,
+     "recorded_gap_s": 11.629317998886108,
+     "kind": "command",
+     "action_begin_ns": 194039492061,
+     "exec_ok": true,
+     "exec_ns": 1542881195,
+     "shot_ns": 241257061,
+     "screenshot_bytes": 1339197
+    },
+    {
+     "step": 11,
+     "recorded_gap_s": 19.4692599773407,
+     "kind": "command",
+     "action_begin_ns": 205668982583,
+     "exec_ok": true,
+     "exec_ns": 716087660,
+     "shot_ns": 397645667,
+     "screenshot_bytes": 1376752,
+     "freeze_ns": 1822921,
+     "frozen_at_ns": 216784696457,
+     "reclaim": {
+      "reclaim_ns": 79558223,
+      "before": 1116819456,
+      "after": 931983360,
+      "complete": false
+     },
+     "thaw_ns": 2301102,
+     "thawed_at_ns": 225140698319
+    },
+    {
+     "step": 12,
+     "recorded_gap_s": 27.449413061141968,
+     "kind": "command",
+     "action_begin_ns": 225140710875,
+     "exec_ok": true,
+     "exec_ns": 757335715,
+     "shot_ns": 331977802,
+     "screenshot_bytes": 1361670,
+     "freeze_ns": 3178484,
+     "frozen_at_ns": 236233311449,
+     "reclaim": {
+      "reclaim_ns": 51580053,
+      "before": 1058631680,
+      "after": 939655168,
+      "complete": false
+     },
+     "thaw_ns": 1943521,
+     "thawed_at_ns": 252592227168
+    },
+    {
+     "step": 13,
+     "recorded_gap_s": 26.13299298286438,
+     "kind": "command",
+     "action_begin_ns": 252592400994,
+     "exec_ok": true,
+     "exec_ns": 727301720,
+     "shot_ns": 246813092,
+     "screenshot_bytes": 1361280,
+     "freeze_ns": 1579019,
+     "frozen_at_ns": 263568246617,
+     "reclaim": {
+      "reclaim_ns": 49314371,
+      "before": 1049333760,
+      "after": 930734080,
+      "complete": false
+     },
+     "thaw_ns": 2065632,
+     "thawed_at_ns": 278727591662
+    },
+    {
+     "step": 14,
+     "recorded_gap_s": 17.999845027923584,
+     "kind": "command",
+     "action_begin_ns": 278727602090,
+     "exec_ok": true,
+     "exec_ns": 720219676,
+     "shot_ns": 244996526,
+     "screenshot_bytes": 1361430,
+     "freeze_ns": 2330486,
+     "frozen_at_ns": 289695289537,
+     "reclaim": {
+      "reclaim_ns": 20154345,
+      "before": 974135296,
+      "after": 930725888,
+      "complete": false
+     },
+     "thaw_ns": 2405149,
+     "thawed_at_ns": 296730004345
+    },
+    {
+     "step": 15,
+     "recorded_gap_s": 48.40097498893738,
+     "kind": "command",
+     "action_begin_ns": 296730013660,
+     "exec_ok": true,
+     "exec_ns": 730180825,
+     "shot_ns": 244903119,
+     "screenshot_bytes": 1361393,
+     "freeze_ns": 1647553,
+     "frozen_at_ns": 307706901610,
+     "reclaim": {
+      "reclaim_ns": 13307029,
+      "before": 967843840,
+      "after": 931831808,
+      "complete": false
+     },
+     "thaw_ns": 2529170,
+     "thawed_at_ns": 345133680137
+    },
+    {
+     "step": 16,
+     "recorded_gap_s": 36.37301707267761,
+     "kind": "command",
+     "action_begin_ns": 345133691846,
+     "exec_ok": true,
+     "exec_ns": 831927294,
+     "shot_ns": 246403946,
+     "screenshot_bytes": 1361007,
+     "freeze_ns": 1695193,
+     "frozen_at_ns": 356213865793,
+     "reclaim": {
+      "reclaim_ns": 33580484,
+      "before": 1007534080,
+      "after": 931282944,
+      "complete": false
+     },
+     "thaw_ns": 1895343,
+     "thawed_at_ns": 381508780642
+    },
+    {
+     "step": 17,
+     "recorded_gap_s": null,
+     "kind": "DONE",
+     "action_begin_ns": 381508793947,
+     "exec_ns": 1210,
+     "shot_ns": 257011527,
+     "screenshot_bytes": 1361011
+    }
+   ],
+   "ready": true,
+   "boot_ns": 10318192492,
+   "setup_ok": true,
+   "setup_ns": 81940739,
+   "replay_begin_ns": 14588291381,
+   "end_ns": 381766841738
+  },
+  {
+   "instance": 1,
+   "name": "swarm-1",
+   "task_id": "045bf3ff-9077-4b86-b483-a1040a949cff",
+   "domain": "gimp",
+   "steps": [
+    {
+     "step": 1,
+     "recorded_gap_s": 10.248969793319702,
+     "kind": "command",
+     "action_begin_ns": 33120619965,
+     "exec_ok": true,
+     "exec_ns": 624523584,
+     "shot_ns": 301795381,
+     "screenshot_bytes": 2143625
+    },
+    {
+     "step": 2,
+     "recorded_gap_s": 8.423511028289795,
+     "kind": "command",
+     "action_begin_ns": 43369791101,
+     "exec_ok": true,
+     "exec_ns": 409359520,
+     "shot_ns": 241546348,
+     "screenshot_bytes": 1451015
+    },
+    {
+     "step": 3,
+     "recorded_gap_s": 11.487920999526978,
+     "kind": "command",
+     "action_begin_ns": 51793446903,
+     "exec_ok": true,
+     "exec_ns": 1058023952,
+     "shot_ns": 911548113,
+     "screenshot_bytes": 1450863
+    },
+    {
+     "step": 4,
+     "recorded_gap_s": 8.422232151031494,
+     "kind": "command",
+     "action_begin_ns": 63281489200,
+     "exec_ok": true,
+     "exec_ns": 499643212,
+     "shot_ns": 240044501,
+     "screenshot_bytes": 1450863
+    },
+    {
+     "step": 5,
+     "recorded_gap_s": 8.855032920837402,
+     "kind": "command",
+     "action_begin_ns": 71703816001,
+     "exec_ok": true,
+     "exec_ns": 896729514,
+     "shot_ns": 327193621,
+     "screenshot_bytes": 1450989
+    },
+    {
+     "step": 6,
+     "recorded_gap_s": 10.163762092590332,
+     "kind": "command",
+     "action_begin_ns": 80558990499,
+     "exec_ok": true,
+     "exec_ns": 1070547950,
+     "shot_ns": 294303859,
+     "screenshot_bytes": 1450835
+    },
+    {
+     "step": 7,
+     "recorded_gap_s": 11.402853012084961,
+     "kind": "command",
+     "action_begin_ns": 90722936745,
+     "exec_ok": true,
+     "exec_ns": 437702319,
+     "shot_ns": 361312927,
+     "screenshot_bytes": 1460202
+    },
+    {
+     "step": 8,
+     "recorded_gap_s": 12.620952844619751,
+     "kind": "command",
+     "action_begin_ns": 102125969765,
+     "exec_ok": true,
+     "exec_ns": 414251335,
+     "shot_ns": 243116995,
+     "screenshot_bytes": 1455732
+    },
+    {
+     "step": 9,
+     "recorded_gap_s": 10.657915115356445,
+     "kind": "command",
+     "action_begin_ns": 114747092303,
+     "exec_ok": true,
+     "exec_ns": 471337581,
+     "shot_ns": 377881627,
+     "screenshot_bytes": 1455835
+    },
+    {
+     "step": 10,
+     "recorded_gap_s": 11.902787923812866,
+     "kind": "command",
+     "action_begin_ns": 125405170099,
+     "exec_ok": true,
+     "exec_ns": 407361562,
+     "shot_ns": 243022926,
+     "screenshot_bytes": 1455894
+    },
+    {
+     "step": 11,
+     "recorded_gap_s": 15.477855920791626,
+     "kind": "command",
+     "action_begin_ns": 137308143513,
+     "exec_ok": true,
+     "exec_ns": 800524688,
+     "shot_ns": 243254012,
+     "screenshot_bytes": 1455894,
+     "freeze_ns": 1347465,
+     "frozen_at_ns": 148353411976,
+     "reclaim": {
+      "reclaim_ns": 184476232,
+      "before": 1067909120,
+      "after": 835203072,
+      "complete": false
+     },
+     "thaw_ns": 1872603,
+     "thawed_at_ns": 152788026288
+    },
+    {
+     "step": 12,
+     "recorded_gap_s": null,
+     "kind": "DONE",
+     "action_begin_ns": 152788037515,
+     "exec_ns": 919,
+     "shot_ns": 834941786,
+     "screenshot_bytes": 1455966
+    }
+   ],
+   "ready": true,
+   "boot_ns": 8428080565,
+   "setup_ok": true,
+   "setup_ns": 508202509,
+   "replay_begin_ns": 33120615057,
+   "end_ns": 153624052599
+  },
+  {
+   "instance": 2,
+   "name": "swarm-2",
+   "task_id": "aa3a8974-2e85-438b-b29e-a64df44deb4b",
+   "domain": "libreoffice_calc",
+   "steps": [
+    {
+     "step": 1,
+     "recorded_gap_s": 22.059332847595215,
+     "kind": "command",
+     "action_begin_ns": 55120607999,
+     "exec_ok": true,
+     "exec_ns": 741097114,
+     "shot_ns": 280713517,
+     "screenshot_bytes": 2136544,
+     "freeze_ns": 3167501,
+     "frozen_at_ns": 66145703344,
+     "reclaim": {
+      "reclaim_ns": 220525255,
+      "before": 1541517312,
+      "after": 867110912,
+      "complete": false
+     },
+     "thaw_ns": 1550929,
+     "thawed_at_ns": 77181610986
+    },
+    {
+     "step": 2,
+     "recorded_gap_s": 10.08247995376587,
+     "kind": "command",
+     "action_begin_ns": 77181622970,
+     "exec_ok": true,
+     "exec_ns": 494513921,
+     "shot_ns": 222369482,
+     "screenshot_bytes": 240006
+    },
+    {
+     "step": 3,
+     "recorded_gap_s": 57.80002999305725,
+     "kind": "command",
+     "action_begin_ns": 87264242374,
+     "exec_ok": true,
+     "exec_ns": 573595457,
+     "shot_ns": 302431784,
+     "screenshot_bytes": 238934,
+     "freeze_ns": 1391992,
+     "frozen_at_ns": 98141854304,
+     "reclaim": {
+      "reclaim_ns": 59785817,
+      "before": 901709824,
+      "after": 842395648,
+      "complete": false
+     },
+     "thaw_ns": 1766625,
+     "thawed_at_ns": 145066203247
+    },
+    {
+     "step": 4,
+     "recorded_gap_s": 28.348403215408325,
+     "kind": "command",
+     "action_begin_ns": 145066214111,
+     "exec_ok": true,
+     "exec_ns": 428704694,
+     "shot_ns": 200698934,
+     "screenshot_bytes": 256340,
+     "freeze_ns": 1498833,
+     "frozen_at_ns": 155697249531,
+     "reclaim": {
+      "reclaim_ns": 48724325,
+      "before": 883535872,
+      "after": 841768960,
+      "complete": false
+     },
+     "thaw_ns": 1767073,
+     "thawed_at_ns": 173416569130
+    },
+    {
+     "step": 5,
+     "recorded_gap_s": 38.147846937179565,
+     "kind": "command",
+     "action_begin_ns": 173416580113,
+     "exec_ok": true,
+     "exec_ns": 733032827,
+     "shot_ns": 199943516,
+     "screenshot_bytes": 238920,
+     "freeze_ns": 1300471,
+     "frozen_at_ns": 184351000890,
+     "reclaim": {
+      "reclaim_ns": 69924922,
+      "before": 988553216,
+      "after": 846897152,
+      "complete": false
+     },
+     "thaw_ns": 1578844,
+     "thawed_at_ns": 211566164488
+    },
+    {
+     "step": 6,
+     "recorded_gap_s": 19.322284936904907,
+     "kind": "command",
+     "action_begin_ns": 211566174048,
+     "exec_ok": true,
+     "exec_ns": 470325008,
+     "shot_ns": 227000624,
+     "screenshot_bytes": 270959,
+     "freeze_ns": 1592270,
+     "frozen_at_ns": 222265570856,
+     "reclaim": {
+      "reclaim_ns": 16064050,
+      "before": 866181120,
+      "after": 848343040,
+      "complete": false
+     },
+     "thaw_ns": 1515014,
+     "thawed_at_ns": 230890135996
+    },
+    {
+     "step": 7,
+     "recorded_gap_s": 30.750550985336304,
+     "kind": "command",
+     "action_begin_ns": 230890144407,
+     "exec_ok": true,
+     "exec_ns": 430643659,
+     "shot_ns": 227104685,
+     "screenshot_bytes": 275462,
+     "freeze_ns": 2621277,
+     "frozen_at_ns": 241550646128,
+     "reclaim": {
+      "reclaim_ns": 8411420,
+      "before": 857407488,
+      "after": 848265216,
+      "complete": false
+     },
+     "thaw_ns": 1533033,
+     "thawed_at_ns": 261642358727
+    },
+    {
+     "step": 8,
+     "recorded_gap_s": 27.025211095809937,
+     "kind": "command",
+     "action_begin_ns": 261642368915,
+     "exec_ok": true,
+     "exec_ns": 435582262,
+     "shot_ns": 211257804,
+     "screenshot_bytes": 270557,
+     "freeze_ns": 1346759,
+     "frozen_at_ns": 272290706636,
+     "reclaim": {
+      "reclaim_ns": 15895186,
+      "before": 883826688,
+      "after": 847765504,
+      "complete": false
+     },
+     "thaw_ns": 1537050,
+     "thawed_at_ns": 288669277699
+    },
+    {
+     "step": 9,
+     "recorded_gap_s": 39.022160053253174,
+     "kind": "command",
+     "action_begin_ns": 288669289284,
+     "exec_ok": true,
+     "exec_ns": 444082445,
+     "shot_ns": 219523285,
+     "screenshot_bytes": 259075,
+     "freeze_ns": 1339024,
+     "frozen_at_ns": 299334337762,
+     "reclaim": {
+      "reclaim_ns": 25145590,
+      "before": 906727424,
+      "after": 847364096,
+      "complete": false
+     },
+     "thaw_ns": 1621749,
+     "thawed_at_ns": 327693250960
+    },
+    {
+     "step": 10,
+     "recorded_gap_s": 24.536831855773926,
+     "kind": "command",
+     "action_begin_ns": 327693262781,
+     "exec_ok": true,
+     "exec_ns": 769976316,
+     "shot_ns": 215960160,
+     "screenshot_bytes": 249556,
+     "freeze_ns": 1434238,
+     "frozen_at_ns": 338680803996,
+     "reclaim": {
+      "reclaim_ns": 19429995,
+      "before": 900210688,
+      "after": 849068032,
+      "complete": false
+     },
+     "thaw_ns": 1531805,
+     "thawed_at_ns": 352231782866
+    },
+    {
+     "step": 11,
+     "recorded_gap_s": 43.51176714897156,
+     "kind": "command",
+     "action_begin_ns": 352231794280,
+     "exec_ok": true,
+     "exec_ns": 435370286,
+     "shot_ns": 202025432,
+     "screenshot_bytes": 239117,
+     "freeze_ns": 1338999,
+     "frozen_at_ns": 362870692323,
+     "reclaim": {
+      "reclaim_ns": 24101013,
+      "before": 918724608,
+      "after": 860266496,
+      "complete": false
+     },
+     "thaw_ns": 1637206,
+     "thawed_at_ns": 395745338912
+    },
+    {
+     "step": 12,
+     "recorded_gap_s": 27.525433778762817,
+     "kind": "command",
+     "action_begin_ns": 395745350234,
+     "exec_ok": true,
+     "exec_ns": 748081466,
+     "shot_ns": 204947736,
+     "screenshot_bytes": 242886,
+     "freeze_ns": 1381092,
+     "frozen_at_ns": 406699890385,
+     "reclaim": {
+      "reclaim_ns": 12142030,
+      "before": 884940800,
+      "after": 859217920,
+      "complete": false
+     },
+     "thaw_ns": 1674182,
+     "thawed_at_ns": 423272612468
+    },
+    {
+     "step": 13,
+     "recorded_gap_s": 31.39354109764099,
+     "kind": "command",
+     "action_begin_ns": 423272625124,
+     "exec_ok": true,
+     "exec_ns": 770843036,
+     "shot_ns": 204411903,
+     "screenshot_bytes": 242632,
+     "freeze_ns": 1293131,
+     "frozen_at_ns": 434249268678,
+     "reclaim": {
+      "reclaim_ns": 15780890,
+      "before": 891342848,
+      "after": 859815936,
+      "complete": false
+     },
+     "thaw_ns": 1875696,
+     "thawed_at_ns": 454668202720
+    },
+    {
+     "step": 14,
+     "recorded_gap_s": 49.263906955718994,
+     "kind": "command",
+     "action_begin_ns": 454668216054,
+     "exec_ok": true,
+     "exec_ns": 854638014,
+     "shot_ns": 208049157,
+     "screenshot_bytes": 242801,
+     "freeze_ns": 1339650,
+     "frozen_at_ns": 465732395766,
+     "reclaim": {
+      "reclaim_ns": 45866800,
+      "before": 991481856,
+      "after": 877506560,
+      "complete": false
+     },
+     "thaw_ns": 1959785,
+     "thawed_at_ns": 503934204802
+    },
+    {
+     "step": 15,
+     "recorded_gap_s": 26.726503133773804,
+     "kind": "command",
+     "action_begin_ns": 503934218342,
+     "exec_ok": true,
+     "exec_ns": 737691137,
+     "shot_ns": 197060051,
+     "screenshot_bytes": 239248,
+     "freeze_ns": 1411387,
+     "frozen_at_ns": 514870541039,
+     "reclaim": {
+      "reclaim_ns": 10410018,
+      "before": 904056832,
+      "after": 869949440,
+      "complete": false
+     },
+     "thaw_ns": 1577178,
+     "thawed_at_ns": 530662461025
+    },
+    {
+     "step": 16,
+     "recorded_gap_s": 42.44966983795166,
+     "kind": "command",
+     "action_begin_ns": 530662472322,
+     "exec_ok": true,
+     "exec_ns": 768566508,
+     "shot_ns": 217919713,
+     "screenshot_bytes": 239184,
+     "freeze_ns": 1608458,
+     "frozen_at_ns": 541650716800,
+     "reclaim": {
+      "reclaim_ns": 64083509,
+      "before": 1022746624,
+      "after": 891199488,
+      "complete": false
+     },
+     "thaw_ns": 1751066,
+     "thawed_at_ns": 573114046298
+    },
+    {
+     "step": 17,
+     "recorded_gap_s": 21.595932006835938,
+     "kind": "command",
+     "action_begin_ns": 573114061312,
+     "exec_ok": true,
+     "exec_ns": 762775083,
+     "shot_ns": 208825702,
+     "screenshot_bytes": 238944,
+     "freeze_ns": 1270974,
+     "frozen_at_ns": 584087082410,
+     "reclaim": {
+      "reclaim_ns": 26053804,
+      "before": 964370432,
+      "after": 891858944,
+      "complete": false
+     },
+     "thaw_ns": 1816515,
+     "thawed_at_ns": 594711962738
+    },
+    {
+     "step": 18,
+     "recorded_gap_s": 13.878223180770874,
+     "kind": "command",
+     "action_begin_ns": 594711973982,
+     "exec_ok": true,
+     "exec_ns": 756742216,
+     "shot_ns": 201662577,
+     "screenshot_bytes": 255934,
+     "freeze_ns": 1463813,
+     "frozen_at_ns": 605671990639,
+     "reclaim": {
+      "reclaim_ns": 18973286,
+      "before": 939724800,
+      "after": 892719104,
+      "complete": false
+     },
+     "thaw_ns": 1513681,
+     "thawed_at_ns": 608591868613
+    },
+    {
+     "step": 19,
+     "recorded_gap_s": 21.970011949539185,
+     "kind": "command",
+     "action_begin_ns": 608591894840,
+     "exec_ok": true,
+     "exec_ns": 759308461,
+     "shot_ns": 196346644,
+     "screenshot_bytes": 239278,
+     "freeze_ns": 1326071,
+     "frozen_at_ns": 619549023760,
+     "reclaim": {
+      "reclaim_ns": 12123462,
+      "before": 928145408,
+      "after": 892698624,
+      "complete": false
+     },
+     "thaw_ns": 1623009,
+     "thawed_at_ns": 630563685671
+    },
+    {
+     "step": 20,
+     "recorded_gap_s": 10.667470932006836,
+     "kind": "command",
+     "action_begin_ns": 630563697728,
+     "exec_ok": true,
+     "exec_ns": 773889892,
+     "shot_ns": 194315815,
+     "screenshot_bytes": 255948
+    },
+    {
+     "step": 21,
+     "recorded_gap_s": 12.458544969558716,
+     "kind": "command",
+     "action_begin_ns": 641231344772,
+     "exec_ok": true,
+     "exec_ns": 411662099,
+     "shot_ns": 242126340,
+     "screenshot_bytes": 239019
+    },
+    {
+     "step": 22,
+     "recorded_gap_s": 21.102187156677246,
+     "kind": "command",
+     "action_begin_ns": 653690105314,
+     "exec_ok": true,
+     "exec_ns": 415759831,
+     "shot_ns": 194197247,
+     "screenshot_bytes": 243579,
+     "freeze_ns": 1373638,
+     "frozen_at_ns": 664301616869,
+     "reclaim": {
+      "reclaim_ns": 23830644,
+      "before": 953819136,
+      "after": 892096512,
+      "complete": false
+     },
+     "thaw_ns": 1815189,
+     "thawed_at_ns": 674794271309
+    },
+    {
+     "step": 23,
+     "recorded_gap_s": 18.837986946105957,
+     "kind": "command",
+     "action_begin_ns": 674794286233,
+     "exec_ok": true,
+     "exec_ns": 948123749,
+     "shot_ns": 246545150,
+     "screenshot_bytes": 239690,
+     "freeze_ns": 1297875,
+     "frozen_at_ns": 685990411508,
+     "reclaim": {
+      "reclaim_ns": 31493928,
+      "before": 989401088,
+      "after": 892043264,
+      "complete": false
+     },
+     "thaw_ns": 1828346,
+     "thawed_at_ns": 693634255153
+    },
+    {
+     "step": 24,
+     "recorded_gap_s": null,
+     "kind": "DONE",
+     "action_begin_ns": 693634263843,
+     "exec_ns": 703,
+     "shot_ns": 204076680,
+     "screenshot_bytes": 239683
+    }
+   ],
+   "ready": true,
+   "boot_ns": 8601370251,
+   "setup_ok": true,
+   "setup_ns": 2335199980,
+   "replay_begin_ns": 55120600124,
+   "end_ns": 693838977110
+  },
+  {
+   "instance": 3,
+   "name": "swarm-3",
+   "task_id": "0f84bef9-9790-432e-92b7-eece357603fb",
+   "domain": "libreoffice_impress",
+   "steps": [
+    {
+     "step": 1,
+     "recorded_gap_s": 15.719756841659546,
+     "kind": "command",
+     "action_begin_ns": 75966748910,
+     "exec_ok": true,
+     "exec_ns": 540403264,
+     "shot_ns": 278151152,
+     "screenshot_bytes": 2142087,
+     "freeze_ns": 1417235,
+     "frozen_at_ns": 86786873121,
+     "reclaim": {
+      "reclaim_ns": 277874093,
+      "before": 1706426368,
+      "after": 925716480,
+      "complete": false
+     },
+     "thaw_ns": 1914611,
+     "thawed_at_ns": 91688575645
+    },
+    {
+     "step": 2,
+     "recorded_gap_s": 8.079821109771729,
+     "kind": "command",
+     "action_begin_ns": 91688587972,
+     "exec_ok": true,
+     "exec_ns": 521494590,
+     "shot_ns": 206717589,
+     "screenshot_bytes": 516297
+    },
+    {
+     "step": 3,
+     "recorded_gap_s": 19.635031938552856,
+     "kind": "command",
+     "action_begin_ns": 99768576618,
+     "exec_ok": true,
+     "exec_ns": 434651271,
+     "shot_ns": 294184916,
+     "screenshot_bytes": 524359,
+     "freeze_ns": 1307140,
+     "frozen_at_ns": 110498874308,
+     "reclaim": {
+      "reclaim_ns": 61301732,
+      "before": 1029623808,
+      "after": 914489344,
+      "complete": false
+     },
+     "thaw_ns": 1671152,
+     "thawed_at_ns": 119405473637
+    },
+    {
+     "step": 4,
+     "recorded_gap_s": 44.494341135025024,
+     "kind": "command",
+     "action_begin_ns": 119405484807,
+     "exec_ok": true,
+     "exec_ns": 526690746,
+     "shot_ns": 209793362,
+     "screenshot_bytes": 466615,
+     "freeze_ns": 1313421,
+     "frozen_at_ns": 130143430635,
+     "reclaim": {
+      "reclaim_ns": 10885519,
+      "before": 909516800,
+      "after": 901427200,
+      "complete": false
+     },
+     "thaw_ns": 1651344,
+     "thawed_at_ns": 163901630255
+    },
+    {
+     "step": 5,
+     "recorded_gap_s": 25.56222701072693,
+     "kind": "command",
+     "action_begin_ns": 163901641125,
+     "exec_ok": true,
+     "exec_ns": 435979218,
+     "shot_ns": 206620308,
+     "screenshot_bytes": 466710,
+     "freeze_ns": 1365434,
+     "frozen_at_ns": 174545728797,
+     "reclaim": {
+      "reclaim_ns": 33190402,
+      "before": 910860288,
+      "after": 900042752,
+      "complete": false
+     },
+     "thaw_ns": 2028588,
+     "thawed_at_ns": 189466059242
+    },
+    {
+     "step": 6,
+     "recorded_gap_s": 25.396445989608765,
+     "kind": "command",
+     "action_begin_ns": 189466071893,
+     "exec_ok": true,
+     "exec_ns": 743369690,
+     "shot_ns": 254655184,
+     "screenshot_bytes": 466680,
+     "freeze_ns": 1263490,
+     "frozen_at_ns": 200465529830,
+     "reclaim": {
+      "reclaim_ns": 44912729,
+      "before": 980320256,
+      "after": 898433024,
+      "complete": false
+     },
+     "thaw_ns": 1383416,
+     "thawed_at_ns": 214864072496
+    },
+    {
+     "step": 7,
+     "recorded_gap_s": 10.49299693107605,
+     "kind": "command",
+     "action_begin_ns": 214864084340,
+     "exec_ok": true,
+     "exec_ns": 430950241,
+     "shot_ns": 215466072,
+     "screenshot_bytes": 522026
+    },
+    {
+     "step": 8,
+     "recorded_gap_s": 32.283915996551514,
+     "kind": "command",
+     "action_begin_ns": 225357210229,
+     "exec_ok": true,
+     "exec_ns": 539722651,
+     "shot_ns": 284351189,
+     "screenshot_bytes": 525206,
+     "freeze_ns": 2761609,
+     "frozen_at_ns": 236184177084,
+     "reclaim": {
+      "reclaim_ns": 48455418,
+      "before": 987365376,
+      "after": 916803584,
+      "complete": false
+     },
+     "thaw_ns": 1565234,
+     "thawed_at_ns": 257642853022
+    },
+    {
+     "step": 9,
+     "recorded_gap_s": 23.985027074813843,
+     "kind": "command",
+     "action_begin_ns": 257642864041,
+     "exec_ok": true,
+     "exec_ns": 437671128,
+     "shot_ns": 234513800,
+     "screenshot_bytes": 438356,
+     "freeze_ns": 1331926,
+     "frozen_at_ns": 268316535832,
+     "reclaim": {
+      "reclaim_ns": 16839175,
+      "before": 946241536,
+      "after": 915898368,
+      "complete": false
+     },
+     "thaw_ns": 1644199,
+     "thawed_at_ns": 281629700605
+    },
+    {
+     "step": 10,
+     "recorded_gap_s": 26.23930287361145,
+     "kind": "command",
+     "action_begin_ns": 281629712755,
+     "exec_ok": true,
+     "exec_ns": 432261398,
+     "shot_ns": 209281566,
+     "screenshot_bytes": 438478,
+     "freeze_ns": 1206723,
+     "frozen_at_ns": 292272608132,
+     "reclaim": {
+      "reclaim_ns": 6670303,
+      "before": 921182208,
+      "after": 916553728,
+      "complete": false
+     },
+     "thaw_ns": 1665642,
+     "thawed_at_ns": 307870849345
+    },
+    {
+     "step": 11,
+     "recorded_gap_s": 27.579496145248413,
+     "kind": "command",
+     "action_begin_ns": 307870861829,
+     "exec_ok": true,
+     "exec_ns": 757170101,
+     "shot_ns": 211912409,
+     "screenshot_bytes": 438610,
+     "freeze_ns": 1304808,
+     "frozen_at_ns": 318841422873,
+     "reclaim": {
+      "reclaim_ns": 16712387,
+      "before": 949436416,
+      "after": 915652608,
+      "complete": false
+     },
+     "thaw_ns": 1563273,
+     "thawed_at_ns": 335452085839
+    },
+    {
+     "step": 12,
+     "recorded_gap_s": 20.95521593093872,
+     "kind": "command",
+     "action_begin_ns": 335452108807,
+     "exec_ok": true,
+     "exec_ns": 426411339,
+     "shot_ns": 204571218,
+     "screenshot_bytes": 438353,
+     "freeze_ns": 1198183,
+     "frozen_at_ns": 346084433229,
+     "reclaim": {
+      "reclaim_ns": 3457575,
+      "before": 919011328,
+      "after": 916492288,
+      "complete": false
+     },
+     "thaw_ns": 1566973,
+     "thawed_at_ns": 356409052900
+    },
+    {
+     "step": 13,
+     "recorded_gap_s": 25.623723030090332,
+     "kind": "command",
+     "action_begin_ns": 356409063743,
+     "exec_ok": true,
+     "exec_ns": 726606811,
+     "shot_ns": 214600437,
+     "screenshot_bytes": 438330,
+     "freeze_ns": 1332080,
+     "frozen_at_ns": 367351744027,
+     "reclaim": {
+      "reclaim_ns": 8801992,
+      "before": 940916736,
+      "after": 916578304,
+      "complete": false
+     },
+     "thaw_ns": 1933825,
+     "thawed_at_ns": 382034874931
+    },
+    {
+     "step": 14,
+     "recorded_gap_s": null,
+     "kind": "DONE",
+     "action_begin_ns": 382034885668,
+     "exec_ns": 1183,
+     "shot_ns": 208289007,
+     "screenshot_bytes": 438330
+    }
+   ],
+   "ready": true,
+   "boot_ns": 10070567094,
+   "setup_ok": true,
+   "setup_ns": 1707522010,
+   "replay_begin_ns": 75966741380,
+   "end_ns": 382243698868
+  }
+ ],
+ "wall_ns": 693839592646,
+ "mem_after": {
+  "MemTotal": 33648353280,
+  "MemAvailable": 32628748288,
+  "Cached": 915689472,
+  "SwapTotal": 0,
+  "SwapFree": 0,
+  "AnonPages": 275656704,
+  "Shmem": 1085440,
+  "AnonHugePages": 0
+ }
+}

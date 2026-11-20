@@ -1,0 +1,22 @@
+step 1/21 command action=0.75s shot=248383
+step 2/21 command action=0.40s shot=245991
+step 3/21 command action=0.38s shot=251289
+step 4/21 command action=1.86s shot=248209
+step 5/21 command action=0.46s shot=131829
+step 6/21 command action=0.36s shot=128280
+step 7/21 command action=0.68s shot=171281
+step 8/21 command action=0.67s shot=168611
+step 9/21 command action=0.68s shot=245559
+step 10/21 command action=0.69s shot=247504
+step 11/21 command action=0.40s shot=283814
+step 12/21 command action=0.41s shot=283382
+step 13/21 command action=0.40s shot=294713
+step 14/21 command action=0.44s shot=297487
+step 15/21 command action=0.40s shot=307244
+step 16/21 command action=0.41s shot=285679
+step 17/21 command action=0.41s shot=285862
+step 18/21 command action=0.40s shot=285862
+step 19/21 command action=0.40s shot=203243
+step 20/21 command action=0.68s shot=264617
+step 21/21 DONE action=0.13s shot=265077
+Result: /home/aeilot/osworld-runs/phase1/libreoffice_writer/result.json

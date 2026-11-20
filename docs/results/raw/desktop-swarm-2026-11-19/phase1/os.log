@@ -1,0 +1,15 @@
+step 1/14 command action=1.33s shot=1669836
+step 2/14 command action=0.84s shot=894508
+step 3/14 command action=0.97s shot=1052358
+step 4/14 command action=0.74s shot=1102146
+step 5/14 command action=0.75s shot=1118690
+step 6/14 command action=0.91s shot=1118203
+step 7/14 command action=0.73s shot=1118626
+step 8/14 command action=0.81s shot=1118162
+step 9/14 command action=0.75s shot=1116496
+step 10/14 command action=0.71s shot=1117702
+step 11/14 command action=0.83s shot=1120809
+step 12/14 command action=1.57s shot=1041832
+step 13/14 command action=0.75s shot=899146
+step 14/14 DONE action=0.41s shot=899146
+Result: /home/aeilot/osworld-runs/phase1/os/result.json

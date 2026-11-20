@@ -1,0 +1,13 @@
+step 1/12 command action=1.44s shot=1669588
+step 2/12 command action=0.55s shot=241367
+step 3/12 command action=0.47s shot=239704
+step 4/12 command action=1.93s shot=239704
+step 5/12 command action=0.37s shot=243578
+step 6/12 command action=0.37s shot=239533
+step 7/12 command action=0.37s shot=239616
+step 8/12 command action=0.38s shot=239528
+step 9/12 command action=2.50s shot=239528
+step 10/12 command action=0.38s shot=239514
+step 11/12 command action=0.37s shot=239313
+step 12/12 DONE action=0.13s shot=239313
+Result: /home/aeilot/osworld-runs/phase1/thunderbird/result.json

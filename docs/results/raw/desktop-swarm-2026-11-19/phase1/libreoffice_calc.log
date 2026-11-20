@@ -1,0 +1,25 @@
+step 1/24 command action=0.54s shot=219565
+step 2/24 command action=0.41s shot=235759
+step 3/24 command action=0.46s shot=205444
+step 4/24 command action=0.38s shot=232614
+step 5/24 command action=0.38s shot=202094
+step 6/24 command action=0.42s shot=241846
+step 7/24 command action=0.40s shot=247901
+step 8/24 command action=0.39s shot=242778
+step 9/24 command action=0.43s shot=201352
+step 10/24 command action=0.37s shot=219476
+step 11/24 command action=0.51s shot=202186
+step 12/24 command action=0.47s shot=274898
+step 13/24 command action=0.39s shot=201712
+step 14/24 command action=0.38s shot=201481
+step 15/24 command action=0.37s shot=201528
+step 16/24 command action=0.45s shot=202445
+step 17/24 command action=0.44s shot=201716
+step 18/24 command action=0.38s shot=229732
+step 19/24 command action=0.37s shot=233001
+step 20/24 command action=0.37s shot=232986
+step 21/24 command action=0.44s shot=201619
+step 22/24 command action=0.37s shot=203270
+step 23/24 command action=0.48s shot=201695
+step 24/24 DONE action=0.12s shot=201637
+Result: /home/aeilot/osworld-runs/phase1/libreoffice_calc/result.json
