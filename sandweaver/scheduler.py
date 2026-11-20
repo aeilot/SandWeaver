@@ -271,8 +271,20 @@ class Pool:
         return worker
 
     @staticmethod
-    def remove(worker):
-        return docker("rm", "-f", "-v", worker.name, check=False)
+    def remove(worker, attempts=5):
+        # Under heavy CPU load `docker rm -f` can fail with "did not receive an
+        # exit event" while the kill is still in progress. A single attempt then
+        # leaves a stopped container, and its copy of the basis, on disk forever.
+        for attempt in range(attempts):
+            result = docker("rm", "-f", "-v", worker.name, check=False)
+            if not result.returncode:
+                return result
+            remaining = docker("ps", "-aq", "--filter", f"name=^/{worker.name}$", check=False)
+            if not remaining.returncode and not remaining.stdout.strip():
+                return subprocess.CompletedProcess(result.args, 0)
+            if attempt + 1 < attempts:
+                time.sleep(2 * (attempt + 1))
+        return result
 
     def run(self, worker, command, timeout=60):
         """Run a shell command inside the worker's current lease."""

@@ -67,6 +67,21 @@ def leftover_containers():
     return len(out.stdout.split())
 
 
+def remove_stopped_workers():
+    """Remove stopped worker containers that a scheduler failed to delete.
+
+    Running workers may belong to concurrent shards and are left alone. A stopped
+    worker is never reused, and each one keeps a multi-GB copy of its basis.
+    """
+    out = subprocess.run(["docker", "ps", "-aq", "--filter", "name=sandweaver-",
+                          "--filter", "status=exited", "--filter", "status=dead"],
+                         capture_output=True, text=True)
+    stale = out.stdout.split()
+    if stale:
+        subprocess.run(["docker", "rm", "-f", "-v", *stale], capture_output=True)
+    return len(stale)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -192,6 +207,7 @@ def main():
             entry["status"] = "timeout"
         entry["wall_s"] = round(time.monotonic() - begin, 1)
         entry["leftover_containers"] = leftover_containers()
+        entry["removed_stopped_workers"] = remove_stopped_workers()
         with index.open("a") as handle:
             handle.write(json.dumps(entry) + "\n")
         print(f"[{number}/{len(plan)}] {args.variant}#{repeat} {instance} "

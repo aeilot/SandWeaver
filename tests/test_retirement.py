@@ -93,10 +93,14 @@ class RetirementTest(unittest.TestCase):
             failed_remove = subprocess.CompletedProcess([], 1)
             container_present = subprocess.CompletedProcess([], 0, stdout="container-id\n")
             container_absent = subprocess.CompletedProcess([], 0, stdout="")
-            with patch("sandweaver.scheduler.docker", side_effect=[
-                RuntimeError("reset failed"), failed_remove, container_present,
-                failed_remove, container_absent,
-            ]):
+            # The first retirement exhausts every removal attempt; the retry in
+            # maintain() then finds the container gone after one failed attempt.
+            attempts = [failed_remove, container_present] * 5
+            with (patch("sandweaver.scheduler.time.sleep"),
+                  patch("sandweaver.scheduler.docker", side_effect=[
+                      RuntimeError("reset failed"), *attempts, container_present,
+                      failed_remove, container_absent,
+                  ])):
                 pool.release(worker)
                 self.assertEqual(pool.status(), {"total": 1, "leased": 1, "idle": 0})
                 with self.assertRaisesRegex(RuntimeError, "overlaps an active lease"):
