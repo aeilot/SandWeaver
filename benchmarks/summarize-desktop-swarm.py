@@ -4,7 +4,12 @@
 Reads every <run>/result.json and <run>/samples.jsonl under the given
 directory. Host memory in use is MemTotal - MemAvailable. Container figures
 are summed over the swarm per host sample, then summarized over the replay
-window (first replay start to last instance end), so boot is excluded.
+window (first replay start to last instance end). That window excludes the
+first instance's boot but not the others': with staggered starts, instances
+keep booting until the last replay starts. Host CPU is therefore also reported
+separately for the boot phase (run start to last replay start) and the
+all-booted phase (last replay start to last instance end). Execution latency
+counts only steps that ran a command.
 """
 import argparse
 import json
@@ -54,6 +59,16 @@ def summarize(run):
             cpu.append((b["cpu"]["busy_ticks"] - a["cpu"]["busy_ticks"]) / total * result["cpus"])
     psi_mem = [s["psi_memory"]["some"]["avg10"] for s in window]
     psi_cpu = [s["psi_cpu"]["some"]["avg10"] for s in window]
+    # Phases of the window: some instances still boot until the last replay starts.
+    all_booted = max(starts) if starts else 0
+
+    def cores_between(a_ns, b_ns):
+        part = [s for s in samples if a_ns <= s["t_ns"] - epoch <= b_ns]
+        if len(part) < 2:
+            return None
+        busy = part[-1]["cpu"]["busy_ticks"] - part[0]["cpu"]["busy_ticks"]
+        return busy / (part[-1]["cpu"]["total_ticks"] - part[0]["cpu"]["total_ticks"]) * result["cpus"]
+
     # Per instance: frozen time over that instance's own replay span. The host-sample
     # share above also counts instances that already finished as not frozen.
     instance_frozen = [
@@ -62,6 +77,9 @@ def summarize(run):
         for i in instances if "end_ns" in i and "replay_begin_ns" in i]
     reclaims = [s["reclaim"] for s in steps if "reclaim" in s]
     ms = lambda key: [s[key] / 1e6 for s in steps if key in s]
+    # Execution latency only for steps that ran a command; DONE, FAIL and WAIT
+    # steps execute nothing and would pull the percentiles down.
+    exec_ms = [s["exec_ns"] / 1e6 for s in steps if s.get("kind") == "command"]
     return {
         "run": run.name, "n": int(cfg["n"]), "policy": cfg["policy"],
         "errors": sum(1 for i in instances if "error" in i),
@@ -69,7 +87,7 @@ def summarize(run):
         "boot_s_max": max((i["boot_ns"] / 1e9 for i in instances if "boot_ns" in i), default=None),
         "steps": len(steps),
         "exec_fail": sum(1 for s in steps if s.get("kind") == "command" and not s.get("exec_ok")),
-        "exec_ms_p50": pct(ms("exec_ns"), 0.5), "exec_ms_p95": pct(ms("exec_ns"), 0.95),
+        "exec_ms_p50": pct(exec_ms, 0.5), "exec_ms_p95": pct(exec_ms, 0.95),
         "shot_ms_p50": pct(ms("shot_ns"), 0.5), "shot_ms_p95": pct(ms("shot_ns"), 0.95),
         "freeze_ms_p95": pct(ms("freeze_ns"), 0.95), "thaw_ms_p50": pct(ms("thaw_ns"), 0.5),
         "thaw_ms_p95": pct(ms("thaw_ns"), 0.95), "thaw_ms_max": max(ms("thaw_ns"), default=None),
@@ -90,6 +108,10 @@ def summarize(run):
         "per_desktop_pss_gib_p50": pct(pss, 0.5), "per_desktop_private_gib_p50": pct(private, 0.5),
         "host_cpu_cores_mean": statistics.mean(cpu) if cpu else None,
         "host_cpu_cores_p95": pct(cpu, 0.95),
+        # Run start to the last replay start (instances still booting), and from
+        # there to the last instance's end (all booted; replaying or idle).
+        "host_cpu_cores_boot_phase": cores_between(0, all_booted),
+        "host_cpu_cores_all_booted": cores_between(all_booted, hi),
         "psi_mem_some_avg10_max": max(psi_mem, default=None),
         "psi_cpu_some_avg10_mean": statistics.mean(psi_cpu) if psi_cpu else None,
         "window_s": (hi - lo) / 1e9,
