@@ -15,8 +15,10 @@ process's CPU time and major faults across the phases of the replay:
 A tick lists a process only when its counters changed, so a change seen at
 tick k happened between ticks k-1 and k; it is attributed to the phase that
 contains the midpoint of that interval. Guest timestamps are mapped to the
-host clock with the probes osworld-replay.py records (error up to half the
-probe's round trip). Process names are grouped: digits and kernel-thread
+host clock with the two probes osworld-replay.py records before and after the
+replay. Each probe's round trip is a few tens of ms, but the guest clock drifts
+by up to 1.5 s between them, so the offset is interpolated linearly between the
+two probes; the error is whatever part of the drift is not linear. Process names are grouped: digits and kernel-thread
 suffixes are dropped (kworker/3:1-events -> kworker).
 
 Usage: summarize-procs.py RUN_DIR [RUN_DIR ...] [--top 12] [--json]
@@ -24,9 +26,19 @@ Usage: summarize-procs.py RUN_DIR [RUN_DIR ...] [--top 12] [--json]
 import argparse
 import bisect
 import collections
+import gzip
 import json
 from pathlib import Path
 import re
+
+
+def read_text(path):
+    """Read a raw output file, or its gzipped copy (path + ".gz") from docs/results/raw."""
+    path = Path(path)
+    if not path.exists() and path.with_name(path.name + ".gz").exists():
+        return gzip.decompress(path.with_name(path.name + ".gz").read_bytes()).decode()
+    return path.read_text()
+
 
 AFTERSHOCK_S = 10.0
 
@@ -121,10 +133,10 @@ def summarize(run, top):
     cpu = collections.defaultdict(collections.Counter)
     faults = collections.defaultdict(collections.Counter)
     seconds = collections.Counter()
-    if (run / "procs.jsonl").exists():
+    if (run / "procs.jsonl").exists() or (run / "procs.jsonl.gz").exists():
         phases = swarm_phases(result)
         streams = collections.defaultdict(list)
-        for line in (run / "procs.jsonl").read_text().splitlines():
+        for line in read_text(run / "procs.jsonl").splitlines():
             tick = json.loads(line)
             streams[tick["container"]].append(tick)
         for name, ticks in streams.items():
@@ -135,14 +147,22 @@ def summarize(run, top):
             # Host ticks carry no header; Linux USER_HZ is 100.
             attribute(ticks, clock, spans, 100, cpu, faults, seconds)
         kind = "swarm"
-    elif (run / "guest-procs.jsonl").exists():
-        lines = (run / "guest-procs.jsonl").read_text().splitlines()
+    elif (run / "guest-procs.jsonl").exists() or (run / "guest-procs.jsonl.gz").exists():
+        lines = read_text(run / "guest-procs.jsonl").splitlines()
         header, ticks = json.loads(lines[0]), [json.loads(x) for x in lines[1:]]
         probes = [result[k] for k in ("guest_probe_start", "guest_probe_end") if k in result]
-        offsets = [p["guest_wall_ns"] - (p["host_before_ns"] + p["host_after_ns"]) // 2
-                   for p in probes]
-        offset = sum(offsets) // len(offsets)
-        clock = Clock(lambda w: w - offset, "wall_ns")
+        points = [(p["guest_wall_ns"],
+                   p["guest_wall_ns"] - (p["host_before_ns"] + p["host_after_ns"]) // 2)
+                  for p in probes]
+        offsets = [off for _, off in points]
+
+        def to_host(w, points=points):
+            if len(points) < 2 or points[1][0] == points[0][0]:
+                return w - points[0][1]
+            (w0, o0), (w1, o1) = points
+            return w - (o0 + (o1 - o0) * (w - w0) / (w1 - w0))
+
+        clock = Clock(to_host, "wall_ns")
         attribute(ticks, clock, vm_phases(result), header["clk_tck"], cpu, faults, seconds)
         kind = "vm"
     else:

@@ -12,9 +12,19 @@ all-booted phase (last replay start to last instance end). Execution latency
 counts only steps that ran a command.
 """
 import argparse
+import gzip
 import json
 from pathlib import Path
 import statistics
+
+
+def read_text(path):
+    """Read a raw output file, or its gzipped copy (path + ".gz") from docs/results/raw."""
+    path = Path(path)
+    if not path.exists() and path.with_name(path.name + ".gz").exists():
+        return gzip.decompress(path.with_name(path.name + ".gz").read_bytes()).decode()
+    return path.read_text()
+
 
 GIB = 1024 ** 3
 
@@ -33,7 +43,7 @@ def summarize(run):
     steps = [s for i in instances for s in i["steps"]]
     starts = [i["replay_begin_ns"] for i in instances if "replay_begin_ns" in i]
     ends = [i["end_ns"] for i in instances if "end_ns" in i]
-    samples = [json.loads(line) for line in (run / "samples.jsonl").read_text().splitlines()]
+    samples = [json.loads(line) for line in read_text(run / "samples.jsonl").splitlines()]
     epoch = result.get("epoch_ns") or (samples[0]["t_ns"] if samples else 0)
     # samples carry absolute monotonic ns; result times are relative to the runner's epoch,
     # which is a few ms before the first sample.

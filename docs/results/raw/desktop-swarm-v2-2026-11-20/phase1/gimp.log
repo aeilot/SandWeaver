@@ -1,0 +1,13 @@
+step 1/12 command action=1.36s shot=1676670
+step 2/12 command action=0.38s shot=198785
+step 3/12 command action=1.03s shot=198757
+step 4/12 command action=0.56s shot=192351
+step 5/12 command action=0.42s shot=570297
+step 6/12 command action=0.97s shot=579314
+step 7/12 command action=0.43s shot=537456
+step 8/12 command action=0.40s shot=404027
+step 9/12 command action=0.39s shot=446094
+step 10/12 command action=0.44s shot=537184
+step 11/12 command action=0.78s shot=295211
+step 12/12 DONE action=0.14s shot=295211
+Result: /home/aeilot/osworld-runs/v2/phase1/gimp/result.json

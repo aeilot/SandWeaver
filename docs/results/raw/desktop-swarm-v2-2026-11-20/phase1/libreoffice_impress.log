@@ -1,0 +1,15 @@
+step 1/14 command action=0.47s shot=74104
+step 2/14 command action=0.48s shot=491216
+step 3/14 command action=0.56s shot=483165
+step 4/14 command action=0.40s shot=444481
+step 5/14 command action=0.40s shot=444167
+step 6/14 command action=0.46s shot=482944
+step 7/14 command action=0.40s shot=481215
+step 8/14 command action=0.51s shot=483303
+step 9/14 command action=0.39s shot=397830
+step 10/14 command action=0.40s shot=400802
+step 11/14 command action=0.43s shot=404668
+step 12/14 command action=0.39s shot=404236
+step 13/14 command action=0.51s shot=483333
+step 14/14 DONE action=0.20s shot=489639
+Result: /home/aeilot/osworld-runs/v2/phase1/libreoffice_impress/result.json

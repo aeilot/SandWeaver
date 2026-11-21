@@ -1,0 +1,18 @@
+step 1/17 command action=1.43s shot=1670247
+step 2/17 command action=0.45s shot=119328
+step 3/17 command action=0.40s shot=165308
+step 4/17 command action=0.40s shot=103836
+step 5/17 command action=0.38s shot=103682
+step 6/17 command action=0.36s shot=103690
+step 7/17 command action=0.36s shot=104959
+step 8/17 command action=0.37s shot=104878
+step 9/17 command action=0.39s shot=104985
+step 10/17 command action=1.47s shot=104986
+step 11/17 command action=0.44s shot=106179
+step 12/17 command action=0.42s shot=406713
+step 13/17 command action=0.39s shot=410936
+step 14/17 command action=0.39s shot=402481
+step 15/17 command action=0.68s shot=414307
+step 16/17 command action=0.48s shot=267783
+step 17/17 DONE action=0.16s shot=359398
+Result: /home/aeilot/osworld-runs/v2/phase1/chrome/result.json

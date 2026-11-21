@@ -1,0 +1,6110 @@
+{
+ "swarm": [
+  {
+   "run": "n4-always",
+   "n": 4,
+   "policy": "always",
+   "errors": 0,
+   "boot_s_p50": 8.413946987,
+   "boot_s_max": 10.590932077,
+   "steps": 67,
+   "exec_fail": 0,
+   "exec_ms_p50": 417.447442,
+   "exec_ms_p95": 826.72325,
+   "shot_ms_p50": 237.734621,
+   "shot_ms_p95": 379.376669,
+   "freeze_ms_p95": null,
+   "thaw_ms_p50": null,
+   "thaw_ms_p95": null,
+   "thaw_ms_max": null,
+   "freezes": 0,
+   "reclaim_mib_mean": null,
+   "reclaim_ms_p50": null,
+   "frozen_share_mean": 0.0,
+   "instance_frozen_share_mean": 0.0,
+   "host_used_gib_mean": 4.100260843996142,
+   "host_used_gib_max": 4.328025817871094,
+   "host_anon_gib_max": 3.3544273376464844,
+   "swarm_current_gib_mean": 4.974459137895246,
+   "swarm_anon_gib_mean": 2.9014850025205425,
+   "swarm_anon_gib_max": 3.0750465393066406,
+   "swarm_file_gib_mean": 1.897550173559061,
+   "per_desktop_pss_gib_p50": 0.9183425903320312,
+   "per_desktop_private_gib_p50": 0.7802047729492188,
+   "host_cpu_cores_mean": 0.35156379025822676,
+   "host_cpu_cores_p95": 1.9405940594059405,
+   "host_cpu_cores_boot_phase": 1.5922998986828774,
+   "host_cpu_cores_all_booted": 0.22528229137978517,
+   "psi_mem_some_avg10_max": 0.0,
+   "psi_cpu_some_avg10_mean": 1.3844932935916543,
+   "window_s": 677.491181401
+  },
+  {
+   "run": "n4-freeze",
+   "n": 4,
+   "policy": "freeze",
+   "errors": 0,
+   "boot_s_p50": 8.448141547,
+   "boot_s_max": 10.794034069,
+   "steps": 67,
+   "exec_fail": 0,
+   "exec_ms_p50": 423.318518,
+   "exec_ms_p95": 859.693704,
+   "shot_ms_p50": 238.127757,
+   "shot_ms_p95": 375.154949,
+   "freeze_ms_p95": 3.921399,
+   "thaw_ms_p50": 1.695277,
+   "thaw_ms_p95": 2.961547,
+   "thaw_ms_max": 4.201336,
+   "freezes": 44,
+   "reclaim_mib_mean": null,
+   "reclaim_ms_p50": null,
+   "frozen_share_mean": 0.28427719821162445,
+   "instance_frozen_share_mean": 0.43781797638290904,
+   "host_used_gib_mean": 4.112060646364124,
+   "host_used_gib_max": 4.346652984619141,
+   "host_anon_gib_max": 3.3659820556640625,
+   "swarm_current_gib_mean": 4.970636953362409,
+   "swarm_anon_gib_mean": 2.904772467122881,
+   "swarm_anon_gib_max": 3.0621566772460938,
+   "swarm_file_gib_mean": 1.890987779983998,
+   "per_desktop_pss_gib_p50": 0.9247407913208008,
+   "per_desktop_private_gib_p50": 0.78887939453125,
+   "host_cpu_cores_mean": 0.33033129224770186,
+   "host_cpu_cores_p95": 2.01980198019802,
+   "host_cpu_cores_boot_phase": 1.5866729742515375,
+   "host_cpu_cores_all_booted": 0.20148921172247836,
+   "psi_mem_some_avg10_max": 0.0,
+   "psi_cpu_some_avg10_mean": 1.4571013412816691,
+   "window_s": 677.341636371
+  },
+  {
+   "run": "n4-freeze-reclaim",
+   "n": 4,
+   "policy": "freeze-reclaim",
+   "errors": 0,
+   "boot_s_p50": 10.027718838,
+   "boot_s_max": 10.917480805,
+   "steps": 67,
+   "exec_fail": 0,
+   "exec_ms_p50": 575.320648,
+   "exec_ms_p95": 963.65937,
+   "shot_ms_p50": 234.125279,
+   "shot_ms_p95": 383.788025,
+   "freeze_ms_p95": 2.800671,
+   "thaw_ms_p50": 1.728813,
+   "thaw_ms_p95": 2.536699,
+   "thaw_ms_max": 3.527137,
+   "freezes": 44,
+   "reclaim_mib_mean": 128.2889737215909,
+   "reclaim_ms_p50": 31.491388,
+   "frozen_share_mean": 0.28077018325903913,
+   "instance_frozen_share_mean": 0.43280186047381736,
+   "host_used_gib_mean": 4.0901662222874995,
+   "host_used_gib_max": 4.428352355957031,
+   "host_anon_gib_max": 3.3823165893554688,
+   "swarm_current_gib_mean": 3.440515362313031,
+   "swarm_anon_gib_mean": 2.9111106413434555,
+   "swarm_anon_gib_max": 3.0833282470703125,
+   "swarm_file_gib_mean": 0.3992245037878073,
+   "per_desktop_pss_gib_p50": 0.8141860961914062,
+   "per_desktop_private_gib_p50": 0.7561111450195312,
+   "host_cpu_cores_mean": 0.3507467616208511,
+   "host_cpu_cores_p95": 1.8217821782178218,
+   "host_cpu_cores_boot_phase": 1.5770684724368036,
+   "host_cpu_cores_all_booted": 0.22257626431539476,
+   "psi_mem_some_avg10_max": 0.0,
+   "psi_cpu_some_avg10_mean": 1.4385141158989598,
+   "window_s": 678.357728463
+  },
+  {
+   "run": "n8-always",
+   "n": 8,
+   "policy": "always",
+   "errors": 0,
+   "boot_s_p50": 8.932986742,
+   "boot_s_max": 11.333611767,
+   "steps": 130,
+   "exec_fail": 0,
+   "exec_ms_p50": 444.436346,
+   "exec_ms_p95": 963.317791,
+   "shot_ms_p50": 246.903929,
+   "shot_ms_p95": 400.186965,
+   "freeze_ms_p95": null,
+   "thaw_ms_p50": null,
+   "thaw_ms_p95": null,
+   "thaw_ms_max": null,
+   "freezes": 0,
+   "reclaim_mib_mean": null,
+   "reclaim_ms_p50": null,
+   "frozen_share_mean": 0.0,
+   "instance_frozen_share_mean": 0.0,
+   "host_used_gib_mean": 6.593758518389637,
+   "host_used_gib_max": 7.281673431396484,
+   "host_anon_gib_max": 6.086067199707031,
+   "swarm_current_gib_mean": 7.786268148931418,
+   "swarm_anon_gib_mean": 5.153626680030107,
+   "swarm_anon_gib_max": 5.744350433349609,
+   "swarm_file_gib_mean": 2.3358997906441297,
+   "per_desktop_pss_gib_p50": 0.8531837463378906,
+   "per_desktop_private_gib_p50": 0.7597503662109375,
+   "host_cpu_cores_mean": 0.7014858178552631,
+   "host_cpu_cores_p95": 3.231527093596059,
+   "host_cpu_cores_boot_phase": 1.9062454458603884,
+   "host_cpu_cores_all_booted": 0.3945362106576636,
+   "psi_mem_some_avg10_max": 0.0,
+   "psi_cpu_some_avg10_mean": 3.298860028860029,
+   "window_s": 705.050944926
+  },
+  {
+   "run": "n8-freeze",
+   "n": 8,
+   "policy": "freeze",
+   "errors": 0,
+   "boot_s_p50": 8.618300083,
+   "boot_s_max": 11.046121282,
+   "steps": 130,
+   "exec_fail": 0,
+   "exec_ms_p50": 438.607579,
+   "exec_ms_p95": 1003.224312,
+   "shot_ms_p50": 244.238775,
+   "shot_ms_p95": 377.086128,
+   "freeze_ms_p95": 3.727764,
+   "thaw_ms_p50": 1.673553,
+   "thaw_ms_p95": 2.633159,
+   "thaw_ms_max": 3.360545,
+   "freezes": 84,
+   "reclaim_mib_mean": null,
+   "reclaim_ms_p50": null,
+   "frozen_share_mean": 0.29426391320767675,
+   "instance_frozen_share_mean": 0.45634863942907095,
+   "host_used_gib_mean": 6.584602790507981,
+   "host_used_gib_max": 7.221794128417969,
+   "host_anon_gib_max": 6.037265777587891,
+   "swarm_current_gib_mean": 7.742999606967918,
+   "swarm_anon_gib_mean": 5.1441079561196394,
+   "swarm_anon_gib_max": 5.702861785888672,
+   "swarm_file_gib_mean": 2.3035887489236337,
+   "per_desktop_pss_gib_p50": 0.8480205535888672,
+   "per_desktop_private_gib_p50": 0.7551307678222656,
+   "host_cpu_cores_mean": 0.6325162467159513,
+   "host_cpu_cores_p95": 2.9411764705882355,
+   "host_cpu_cores_boot_phase": 1.8125121935358002,
+   "host_cpu_cores_all_booted": 0.3353101826891633,
+   "psi_mem_some_avg10_max": 0.0,
+   "psi_cpu_some_avg10_mean": 3.0775342465753424,
+   "window_s": 705.100364543
+  },
+  {
+   "run": "n8-freeze-reclaim",
+   "n": 8,
+   "policy": "freeze-reclaim",
+   "errors": 0,
+   "boot_s_p50": 9.255663094,
+   "boot_s_max": 10.99546279,
+   "steps": 130,
+   "exec_fail": 0,
+   "exec_ms_p50": 540.832259,
+   "exec_ms_p95": 1181.275513,
+   "shot_ms_p50": 266.609595,
+   "shot_ms_p95": 710.851008,
+   "freeze_ms_p95": 3.817326,
+   "thaw_ms_p50": 1.620676,
+   "thaw_ms_p95": 2.319049,
+   "thaw_ms_max": 2.880431,
+   "freezes": 83,
+   "reclaim_mib_mean": 102.74628200301204,
+   "reclaim_ms_p50": 34.935328,
+   "frozen_share_mean": 0.28964097834255653,
+   "instance_frozen_share_mean": 0.448868290690773,
+   "host_used_gib_mean": 6.563140338257361,
+   "host_used_gib_max": 7.284984588623047,
+   "host_anon_gib_max": 6.0582427978515625,
+   "swarm_current_gib_mean": 6.017040602959041,
+   "swarm_anon_gib_mean": 5.145583846476704,
+   "swarm_anon_gib_max": 5.720340728759766,
+   "swarm_file_gib_mean": 0.6460257794285779,
+   "per_desktop_pss_gib_p50": 0.7771730422973633,
+   "per_desktop_private_gib_p50": 0.7332534790039062,
+   "host_cpu_cores_mean": 0.6691903825648514,
+   "host_cpu_cores_p95": 3.089108910891089,
+   "host_cpu_cores_boot_phase": 1.882862779340901,
+   "host_cpu_cores_all_booted": 0.3595053891423659,
+   "psi_mem_some_avg10_max": 0.0,
+   "psi_cpu_some_avg10_mean": 3.2062625538020084,
+   "window_s": 707.290022191
+  },
+  {
+   "run": "n16-always",
+   "n": 16,
+   "policy": "always",
+   "errors": 0,
+   "boot_s_p50": 9.002525696,
+   "boot_s_max": 10.856072881,
+   "steps": 262,
+   "exec_fail": 0,
+   "exec_ms_p50": 505.422285,
+   "exec_ms_p95": 1120.726765,
+   "shot_ms_p50": 270.32899,
+   "shot_ms_p95": 499.747698,
+   "freeze_ms_p95": null,
+   "thaw_ms_p50": null,
+   "thaw_ms_p95": null,
+   "thaw_ms_max": null,
+   "freezes": 0,
+   "reclaim_mib_mean": null,
+   "reclaim_ms_p50": null,
+   "frozen_share_mean": 0.0,
+   "instance_frozen_share_mean": 0.0,
+   "host_used_gib_mean": 11.356575236862671,
+   "host_used_gib_max": 13.494747161865234,
+   "host_anon_gib_max": 11.77773666381836,
+   "swarm_current_gib_mean": 12.903059852088505,
+   "swarm_anon_gib_mean": 9.443318040586421,
+   "swarm_anon_gib_max": 11.359355926513672,
+   "swarm_file_gib_mean": 2.936458307383012,
+   "per_desktop_pss_gib_p50": 0.8233509063720703,
+   "per_desktop_private_gib_p50": 0.7256088256835938,
+   "host_cpu_cores_mean": 1.192104828451921,
+   "host_cpu_cores_p95": 3.781094527363184,
+   "host_cpu_cores_boot_phase": 2.1766806990687586,
+   "host_cpu_cores_all_booted": 0.6862100853586298,
+   "psi_mem_some_avg10_max": 0.0,
+   "psi_cpu_some_avg10_mean": 7.552239067055393,
+   "window_s": 886.627260409
+  },
+  {
+   "run": "n16-freeze",
+   "n": 16,
+   "policy": "freeze",
+   "errors": 0,
+   "boot_s_p50": 8.544119295,
+   "boot_s_max": 10.959228449,
+   "steps": 262,
+   "exec_fail": 0,
+   "exec_ms_p50": 474.196381,
+   "exec_ms_p95": 1233.929128,
+   "shot_ms_p50": 256.326927,
+   "shot_ms_p95": 425.172119,
+   "freeze_ms_p95": 4.330685,
+   "thaw_ms_p50": 1.675634,
+   "thaw_ms_p95": 2.485616,
+   "thaw_ms_max": 3.933518,
+   "freezes": 167,
+   "reclaim_mib_mean": null,
+   "reclaim_ms_p50": null,
+   "frozen_share_mean": 0.26150877110737497,
+   "instance_frozen_share_mean": 0.4480350631383338,
+   "host_used_gib_mean": 11.423892422288292,
+   "host_used_gib_max": 13.5435791015625,
+   "host_anon_gib_max": 11.798908233642578,
+   "swarm_current_gib_mean": 12.934946565034432,
+   "swarm_anon_gib_mean": 9.513052029967517,
+   "swarm_anon_gib_max": 11.415576934814453,
+   "swarm_file_gib_mean": 2.90145313691233,
+   "per_desktop_pss_gib_p50": 0.8226385116577148,
+   "per_desktop_private_gib_p50": 0.7311019897460938,
+   "host_cpu_cores_mean": 1.0628405997698935,
+   "host_cpu_cores_p95": 3.6381909547738696,
+   "host_cpu_cores_boot_phase": 1.991324870829878,
+   "host_cpu_cores_all_booted": 0.5862195173851981,
+   "psi_mem_some_avg10_max": 0.0,
+   "psi_cpu_some_avg10_mean": 6.207934845840605,
+   "window_s": 886.90018794
+  },
+  {
+   "run": "n16-freeze-reclaim",
+   "n": 16,
+   "policy": "freeze-reclaim",
+   "errors": 0,
+   "boot_s_p50": 9.60321517,
+   "boot_s_max": 11.951828759,
+   "steps": 262,
+   "exec_fail": 0,
+   "exec_ms_p50": 557.792809,
+   "exec_ms_p95": 1339.2861,
+   "shot_ms_p50": 304.424602,
+   "shot_ms_p95": 610.317329,
+   "freeze_ms_p95": 5.101802,
+   "thaw_ms_p50": 1.664075,
+   "thaw_ms_p95": 2.409064,
+   "thaw_ms_max": 3.786615,
+   "freezes": 166,
+   "reclaim_mib_mean": 92.26760165662651,
+   "reclaim_ms_p50": 35.993368,
+   "frozen_share_mean": 0.2585647244534528,
+   "instance_frozen_share_mean": 0.44316956543833286,
+   "host_used_gib_mean": 11.52405194188818,
+   "host_used_gib_max": 13.724800109863281,
+   "host_anon_gib_max": 11.962078094482422,
+   "swarm_current_gib_mean": 11.052265147391083,
+   "swarm_anon_gib_mean": 9.629265107171383,
+   "swarm_anon_gib_max": 11.564098358154297,
+   "swarm_file_gib_mean": 1.007221592368418,
+   "per_desktop_pss_gib_p50": 0.7855329513549805,
+   "per_desktop_private_gib_p50": 0.7346305847167969,
+   "host_cpu_cores_mean": 1.1359577542742432,
+   "host_cpu_cores_p95": 3.722772277227723,
+   "host_cpu_cores_boot_phase": 2.1341676460311914,
+   "host_cpu_cores_all_booted": 0.6178107291914086,
+   "psi_mem_some_avg10_max": 0.0,
+   "psi_cpu_some_avg10_mean": 7.123670520231214,
+   "window_s": 889.532385247
+  }
+ ],
+ "thaw_cost": [
+  {
+   "run": "n4-always",
+   "n": 4,
+   "policy": "always",
+   "groups": {
+    "other": {
+     "steps": 63,
+     "exec_ms_p50": 417.4,
+     "majflt_mean": 29.1,
+     "majflt_p50": 0.0,
+     "refault_file_mean": 0.0,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 12.5,
+     "io_stall_ms_p50": 0.0,
+     "read_mib_mean": 3.5,
+     "read_mib_p50": 0.0
+    }
+   }
+  },
+  {
+   "run": "n4-freeze",
+   "n": 4,
+   "policy": "freeze",
+   "groups": {
+    "after_thaw": {
+     "steps": 40,
+     "exec_ms_p50": 414.8,
+     "majflt_mean": 3.1,
+     "majflt_p50": 0.0,
+     "refault_file_mean": 0.0,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 1.5,
+     "io_stall_ms_p50": 0.0,
+     "read_mib_mean": 0.1,
+     "read_mib_p50": 0.0
+    },
+    "other": {
+     "steps": 23,
+     "exec_ms_p50": 449.7,
+     "majflt_mean": 77.7,
+     "majflt_p50": 0.0,
+     "refault_file_mean": 0.0,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 37.0,
+     "io_stall_ms_p50": 0.5,
+     "read_mib_mean": 9.0,
+     "read_mib_p50": 0.0
+    }
+   }
+  },
+  {
+   "run": "n4-freeze-reclaim",
+   "n": 4,
+   "policy": "freeze-reclaim",
+   "groups": {
+    "after_thaw": {
+     "steps": 40,
+     "exec_ms_p50": 627.3,
+     "majflt_mean": 541.9,
+     "majflt_p50": 470.0,
+     "refault_file_mean": 8530.2,
+     "refault_file_p50": 7204.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 221.3,
+     "io_stall_ms_p50": 209.6,
+     "read_mib_mean": 43.5,
+     "read_mib_p50": 36.3
+    },
+    "other": {
+     "steps": 23,
+     "exec_ms_p50": 507.3,
+     "majflt_mean": 306.7,
+     "majflt_p50": 167.0,
+     "refault_file_mean": 535.2,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 173.3,
+     "io_stall_ms_p50": 101.1,
+     "read_mib_mean": 34.0,
+     "read_mib_p50": 18.3
+    }
+   },
+   "corr_exec_after_thaw": {
+    "majflt": 0.33,
+    "refault_file": 0.3,
+    "mem_stall_ms": 0.24,
+    "io_stall_ms": 0.64,
+    "read_mib": 0.38,
+    "reclaimed_mib": -0.08
+   }
+  },
+  {
+   "run": "n8-always",
+   "n": 8,
+   "policy": "always",
+   "groups": {
+    "other": {
+     "steps": 122,
+     "exec_ms_p50": 444.1,
+     "majflt_mean": 21.6,
+     "majflt_p50": 0.0,
+     "refault_file_mean": 0.0,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 9.4,
+     "io_stall_ms_p50": 0.0,
+     "read_mib_mean": 2.7,
+     "read_mib_p50": 0.0
+    }
+   }
+  },
+  {
+   "run": "n8-freeze",
+   "n": 8,
+   "policy": "freeze",
+   "groups": {
+    "after_thaw": {
+     "steps": 76,
+     "exec_ms_p50": 429.3,
+     "majflt_mean": 1.4,
+     "majflt_p50": 0.0,
+     "refault_file_mean": 0.0,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 0.8,
+     "io_stall_ms_p50": 0.0,
+     "read_mib_mean": 0.1,
+     "read_mib_p50": 0.0
+    },
+    "other": {
+     "steps": 46,
+     "exec_ms_p50": 485.1,
+     "majflt_mean": 63.3,
+     "majflt_p50": 0.0,
+     "refault_file_mean": 0.0,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 24.5,
+     "io_stall_ms_p50": 0.0,
+     "read_mib_mean": 6.3,
+     "read_mib_p50": 0.0
+    }
+   }
+  },
+  {
+   "run": "n8-freeze-reclaim",
+   "n": 8,
+   "policy": "freeze-reclaim",
+   "groups": {
+    "after_thaw": {
+     "steps": 75,
+     "exec_ms_p50": 585.6,
+     "majflt_mean": 489.9,
+     "majflt_p50": 466.0,
+     "refault_file_mean": 5634.8,
+     "refault_file_p50": 2685.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 196.2,
+     "io_stall_ms_p50": 195.1,
+     "read_mib_mean": 40.5,
+     "read_mib_p50": 34.3
+    },
+    "other": {
+     "steps": 47,
+     "exec_ms_p50": 496.6,
+     "majflt_mean": 155.4,
+     "majflt_p50": 8.0,
+     "refault_file_mean": 140.8,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 89.9,
+     "io_stall_ms_p50": 5.2,
+     "read_mib_mean": 18.2,
+     "read_mib_p50": 0.3
+    }
+   },
+   "corr_exec_after_thaw": {
+    "majflt": 0.14,
+    "refault_file": 0.02,
+    "mem_stall_ms": null,
+    "io_stall_ms": 0.32,
+    "read_mib": 0.19,
+    "reclaimed_mib": 0.22
+   }
+  },
+  {
+   "run": "n16-always",
+   "n": 16,
+   "policy": "always",
+   "groups": {
+    "other": {
+     "steps": 246,
+     "exec_ms_p50": 504.7,
+     "majflt_mean": 13.4,
+     "majflt_p50": 0.0,
+     "refault_file_mean": 0.0,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 5.2,
+     "io_stall_ms_p50": 0.0,
+     "read_mib_mean": 1.5,
+     "read_mib_p50": 0.0
+    }
+   }
+  },
+  {
+   "run": "n16-freeze",
+   "n": 16,
+   "policy": "freeze",
+   "groups": {
+    "after_thaw": {
+     "steps": 151,
+     "exec_ms_p50": 462.4,
+     "majflt_mean": 0.7,
+     "majflt_p50": 0.0,
+     "refault_file_mean": 0.0,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 0.5,
+     "io_stall_ms_p50": 0.0,
+     "read_mib_mean": 0.0,
+     "read_mib_p50": 0.0
+    },
+    "other": {
+     "steps": 95,
+     "exec_ms_p50": 504.8,
+     "majflt_mean": 30.7,
+     "majflt_p50": 0.0,
+     "refault_file_mean": 0.0,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 12.4,
+     "io_stall_ms_p50": 0.0,
+     "read_mib_mean": 3.3,
+     "read_mib_p50": 0.0
+    }
+   }
+  },
+  {
+   "run": "n16-freeze-reclaim",
+   "n": 16,
+   "policy": "freeze-reclaim",
+   "groups": {
+    "after_thaw": {
+     "steps": 150,
+     "exec_ms_p50": 588.0,
+     "majflt_mean": 399.8,
+     "majflt_p50": 317.0,
+     "refault_file_mean": 4721.6,
+     "refault_file_p50": 1305.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 144.2,
+     "io_stall_ms_p50": 116.8,
+     "read_mib_mean": 31.5,
+     "read_mib_p50": 25.0
+    },
+    "other": {
+     "steps": 96,
+     "exec_ms_p50": 526.0,
+     "majflt_mean": 175.7,
+     "majflt_p50": 20.5,
+     "refault_file_mean": 417.1,
+     "refault_file_p50": 0.0,
+     "mem_stall_ms_mean": 0.0,
+     "mem_stall_ms_p50": 0.0,
+     "io_stall_ms_mean": 83.1,
+     "io_stall_ms_p50": 5.1,
+     "read_mib_mean": 18.7,
+     "read_mib_p50": 1.1
+    }
+   },
+   "corr_exec_after_thaw": {
+    "majflt": 0.25,
+    "refault_file": 0.22,
+    "mem_stall_ms": -0.02,
+    "io_stall_ms": 0.37,
+    "read_mib": 0.28,
+    "reclaimed_mib": 0.2
+   }
+  }
+ ],
+ "procs": [
+  {
+   "run": "n16-always",
+   "kind": "swarm",
+   "phases": {
+    "action": {
+     "seconds": 226.2,
+     "cores": 0.373,
+     "top": [
+      [
+       "gnome-shell",
+       0.128,
+       0.343,
+       16
+      ],
+      [
+       "python",
+       0.061,
+       0.164,
+       50
+      ],
+      [
+       "soffice.bin",
+       0.055,
+       0.149,
+       124
+      ],
+      [
+       "chrome",
+       0.042,
+       0.112,
+       1467
+      ],
+      [
+       "Xvnc",
+       0.039,
+       0.104,
+       0
+      ],
+      [
+       "code",
+       0.009,
+       0.023,
+       430
+      ],
+      [
+       "thunderbird",
+       0.008,
+       0.022,
+       282
+      ],
+      [
+       "gimp",
+       0.006,
+       0.015,
+       151
+      ],
+      [
+       "gnome-software",
+       0.005,
+       0.014,
+       21
+      ],
+      [
+       "gnome-terminal-",
+       0.005,
+       0.013,
+       0
+      ],
+      [
+       "packagekitd",
+       0.005,
+       0.013,
+       0
+      ],
+      [
+       "gjs",
+       0.003,
+       0.008,
+       1
+      ]
+     ],
+     "majflt_per_s": 11.2
+    },
+    "wait 0-10s": {
+     "seconds": 2386.2,
+     "cores": 0.079,
+     "top": [
+      [
+       "gnome-shell",
+       0.021,
+       0.271,
+       28
+      ],
+      [
+       "chrome",
+       0.015,
+       0.184,
+       1150
+      ],
+      [
+       "soffice.bin",
+       0.008,
+       0.105,
+       134
+      ],
+      [
+       "packagekitd",
+       0.006,
+       0.071,
+       15
+      ],
+      [
+       "code",
+       0.005,
+       0.06,
+       1208
+      ],
+      [
+       "thunderbird",
+       0.004,
+       0.047,
+       1739
+      ],
+      [
+       "Xvnc",
+       0.004,
+       0.047,
+       2
+      ],
+      [
+       "gimp",
+       0.003,
+       0.044,
+       142
+      ],
+      [
+       "gnome-software",
+       0.003,
+       0.037,
+       43
+      ],
+      [
+       "python",
+       0.002,
+       0.027,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.002,
+       0.022,
+       3
+      ],
+      [
+       "gjs",
+       0.002,
+       0.02,
+       0
+      ]
+     ],
+     "majflt_per_s": 1.9
+    },
+    "wait >10s": {
+     "seconds": 3138.1,
+     "cores": 0.029,
+     "top": [
+      [
+       "packagekitd",
+       0.01,
+       0.334,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.006,
+       0.223,
+       9
+      ],
+      [
+       "python",
+       0.002,
+       0.071,
+       0
+      ],
+      [
+       "gnome-software",
+       0.002,
+       0.067,
+       0
+      ],
+      [
+       "gnome-terminal-",
+       0.002,
+       0.055,
+       0
+      ],
+      [
+       "gjs",
+       0.001,
+       0.048,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.001,
+       0.039,
+       0
+      ],
+      [
+       "Xvnc",
+       0.001,
+       0.037,
+       0
+      ],
+      [
+       "chrome",
+       0.001,
+       0.022,
+       64
+      ],
+      [
+       "xdg-desktop-por",
+       0.001,
+       0.022,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.021,
+       0
+      ],
+      [
+       "code",
+       0.001,
+       0.02,
+       1
+      ]
+     ],
+     "majflt_per_s": 0.0
+    }
+   }
+  },
+  {
+   "run": "n16-freeze-reclaim",
+   "kind": "swarm",
+   "phases": {
+    "action": {
+     "seconds": 262.0,
+     "cores": 0.325,
+     "top": [
+      [
+       "gnome-shell",
+       0.092,
+       0.284,
+       2496
+      ],
+      [
+       "python",
+       0.072,
+       0.222,
+       2025
+      ],
+      [
+       "chrome",
+       0.032,
+       0.098,
+       15214
+      ],
+      [
+       "soffice.bin",
+       0.031,
+       0.095,
+       16864
+      ],
+      [
+       "Xvnc",
+       0.03,
+       0.093,
+       319
+      ],
+      [
+       "code",
+       0.013,
+       0.039,
+       8243
+      ],
+      [
+       "packagekitd",
+       0.012,
+       0.037,
+       34
+      ],
+      [
+       "tracker-miner-f",
+       0.006,
+       0.019,
+       129
+      ],
+      [
+       "thunderbird",
+       0.006,
+       0.017,
+       1795
+      ],
+      [
+       "gnome-software",
+       0.005,
+       0.015,
+       412
+      ],
+      [
+       "gjs",
+       0.005,
+       0.014,
+       176
+      ],
+      [
+       "gimp",
+       0.005,
+       0.014,
+       287
+      ]
+     ],
+     "majflt_per_s": 191.1
+    },
+    "frozen": {
+     "seconds": 3085.0,
+     "cores": 0.002,
+     "top": [
+      [
+       "gnome-shell",
+       0.0,
+       0.328,
+       139
+      ],
+      [
+       "gjs",
+       0.0,
+       0.088,
+       16
+      ],
+      [
+       "soffice.bin",
+       0.0,
+       0.086,
+       496
+      ],
+      [
+       "python",
+       0.0,
+       0.067,
+       300
+      ],
+      [
+       "xdg-desktop-por",
+       0.0,
+       0.062,
+       3
+      ],
+      [
+       "gsd-xsettings",
+       0.0,
+       0.054,
+       0
+      ],
+      [
+       "packagekitd",
+       0.0,
+       0.045,
+       3
+      ],
+      [
+       "code",
+       0.0,
+       0.043,
+       897
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.03,
+       1
+      ],
+      [
+       "gnome-terminal-",
+       0.0,
+       0.028,
+       22
+      ],
+      [
+       "Xvnc",
+       0.0,
+       0.026,
+       6
+      ],
+      [
+       "chrome",
+       0.0,
+       0.019,
+       704
+      ]
+     ],
+     "majflt_per_s": 1.0
+    },
+    "wait 0-10s": {
+     "seconds": 2380.0,
+     "cores": 0.1,
+     "top": [
+      [
+       "gnome-shell",
+       0.025,
+       0.254,
+       5726
+      ],
+      [
+       "chrome",
+       0.015,
+       0.149,
+       5641
+      ],
+      [
+       "packagekitd",
+       0.015,
+       0.148,
+       210
+      ],
+      [
+       "soffice.bin",
+       0.014,
+       0.137,
+       14249
+      ],
+      [
+       "code",
+       0.005,
+       0.052,
+       6744
+      ],
+      [
+       "Xvnc",
+       0.004,
+       0.043,
+       256
+      ],
+      [
+       "thunderbird",
+       0.004,
+       0.039,
+       3181
+      ],
+      [
+       "gimp",
+       0.004,
+       0.036,
+       254
+      ],
+      [
+       "gnome-software",
+       0.003,
+       0.034,
+       604
+      ],
+      [
+       "python",
+       0.002,
+       0.021,
+       169
+      ],
+      [
+       "tracker-miner-f",
+       0.002,
+       0.016,
+       182
+      ],
+      [
+       "gjs",
+       0.002,
+       0.016,
+       345
+      ]
+     ],
+     "majflt_per_s": 16.3
+    },
+    "wait >10s": {
+     "seconds": 25.0,
+     "cores": 0.08,
+     "top": [
+      [
+       "packagekitd",
+       0.037,
+       0.458,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.018,
+       0.219,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.012,
+       0.149,
+       0
+      ],
+      [
+       "python",
+       0.003,
+       0.04,
+       0
+      ],
+      [
+       "Xvnc",
+       0.003,
+       0.035,
+       0
+      ],
+      [
+       "gnome-software",
+       0.003,
+       0.035,
+       0
+      ],
+      [
+       "xdg-desktop-por",
+       0.002,
+       0.02,
+       0
+      ],
+      [
+       "supervisord",
+       0.001,
+       0.01,
+       0
+      ],
+      [
+       "thunderbird",
+       0.001,
+       0.01,
+       1
+      ],
+      [
+       "gjs",
+       0.0,
+       0.005,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.005,
+       0
+      ],
+      [
+       "tracker-extract",
+       0.0,
+       0.005,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    }
+   }
+  },
+  {
+   "run": "n16-freeze",
+   "kind": "swarm",
+   "phases": {
+    "action": {
+     "seconds": 213.0,
+     "cores": 0.394,
+     "top": [
+      [
+       "gnome-shell",
+       0.137,
+       0.347,
+       18
+      ],
+      [
+       "soffice.bin",
+       0.057,
+       0.144,
+       101
+      ],
+      [
+       "python",
+       0.052,
+       0.131,
+       57
+      ],
+      [
+       "Xvnc",
+       0.04,
+       0.102,
+       0
+      ],
+      [
+       "chrome",
+       0.04,
+       0.101,
+       715
+      ],
+      [
+       "packagekitd",
+       0.016,
+       0.039,
+       0
+      ],
+      [
+       "code",
+       0.011,
+       0.029,
+       374
+      ],
+      [
+       "thunderbird",
+       0.007,
+       0.017,
+       233
+      ],
+      [
+       "gnome-terminal-",
+       0.007,
+       0.017,
+       0
+      ],
+      [
+       "gimp",
+       0.006,
+       0.016,
+       166
+      ],
+      [
+       "gjs",
+       0.005,
+       0.013,
+       1
+      ],
+      [
+       "tracker-miner-f",
+       0.005,
+       0.012,
+       0
+      ]
+     ],
+     "majflt_per_s": 7.8
+    },
+    "frozen": {
+     "seconds": 3119.6,
+     "cores": 0.002,
+     "top": [
+      [
+       "gnome-shell",
+       0.001,
+       0.352,
+       0
+      ],
+      [
+       "packagekitd",
+       0.0,
+       0.156,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.076,
+       0
+      ],
+      [
+       "chrome",
+       0.0,
+       0.053,
+       52
+      ],
+      [
+       "Xvnc",
+       0.0,
+       0.045,
+       0
+      ],
+      [
+       "python",
+       0.0,
+       0.043,
+       0
+      ],
+      [
+       "xdg-desktop-por",
+       0.0,
+       0.041,
+       0
+      ],
+      [
+       "gsd-xsettings",
+       0.0,
+       0.039,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.035,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.0,
+       0.033,
+       0
+      ],
+      [
+       "gnome-keyring-d",
+       0.0,
+       0.012,
+       0
+      ],
+      [
+       "gnome-software",
+       0.0,
+       0.012,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 2388.3,
+     "cores": 0.086,
+     "top": [
+      [
+       "gnome-shell",
+       0.021,
+       0.239,
+       26
+      ],
+      [
+       "packagekitd",
+       0.016,
+       0.181,
+       17
+      ],
+      [
+       "chrome",
+       0.014,
+       0.159,
+       1876
+      ],
+      [
+       "soffice.bin",
+       0.008,
+       0.088,
+       14
+      ],
+      [
+       "code",
+       0.005,
+       0.053,
+       872
+      ],
+      [
+       "thunderbird",
+       0.004,
+       0.042,
+       1745
+      ],
+      [
+       "Xvnc",
+       0.004,
+       0.042,
+       2
+      ],
+      [
+       "gimp",
+       0.003,
+       0.038,
+       94
+      ],
+      [
+       "gnome-software",
+       0.003,
+       0.038,
+       43
+      ],
+      [
+       "python",
+       0.002,
+       0.024,
+       0
+      ],
+      [
+       "gnome-terminal-",
+       0.002,
+       0.019,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.001,
+       0.017,
+       3
+      ]
+     ],
+     "majflt_per_s": 2.0
+    },
+    "wait >10s": {
+     "seconds": 29.1,
+     "cores": 0.079,
+     "top": [
+      [
+       "packagekitd",
+       0.034,
+       0.432,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.015,
+       0.188,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.014,
+       0.183,
+       0
+      ],
+      [
+       "thunderbird",
+       0.003,
+       0.039,
+       0
+      ],
+      [
+       "gjs",
+       0.002,
+       0.031,
+       0
+      ],
+      [
+       "Xvnc",
+       0.002,
+       0.031,
+       0
+      ],
+      [
+       "gnome-software",
+       0.002,
+       0.026,
+       0
+      ],
+      [
+       "python",
+       0.001,
+       0.017,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.017,
+       0
+      ],
+      [
+       "gnome-terminal-",
+       0.001,
+       0.013,
+       0
+      ],
+      [
+       "xdg-desktop-por",
+       0.0,
+       0.004,
+       0
+      ],
+      [
+       "supervisord",
+       0.0,
+       0.004,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    }
+   }
+  },
+  {
+   "run": "n4-always",
+   "kind": "swarm",
+   "phases": {
+    "action": {
+     "seconds": 50.0,
+     "cores": 0.617,
+     "top": [
+      [
+       "gnome-shell",
+       0.235,
+       0.38,
+       12
+      ],
+      [
+       "chrome",
+       0.211,
+       0.342,
+       1023
+      ],
+      [
+       "soffice.bin",
+       0.086,
+       0.139,
+       81
+      ],
+      [
+       "Xvnc",
+       0.042,
+       0.069,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.019,
+       50
+      ],
+      [
+       "nautilus",
+       0.012,
+       0.019,
+       12
+      ],
+      [
+       "gjs",
+       0.007,
+       0.011,
+       1
+      ],
+      [
+       "gimp",
+       0.006,
+       0.009,
+       145
+      ],
+      [
+       "dbus-daemon",
+       0.003,
+       0.004,
+       0
+      ],
+      [
+       "at-spi2-registr",
+       0.001,
+       0.002,
+       0
+      ],
+      [
+       "pulseaudio",
+       0.001,
+       0.001,
+       2
+      ],
+      [
+       "tracker-miner-f",
+       0.001,
+       0.001,
+       0
+      ]
+     ],
+     "majflt_per_s": 26.5
+    },
+    "wait 0-10s": {
+     "seconds": 612.0,
+     "cores": 0.082,
+     "top": [
+      [
+       "chrome",
+       0.026,
+       0.322,
+       1565
+      ],
+      [
+       "gnome-shell",
+       0.024,
+       0.293,
+       27
+      ],
+      [
+       "soffice.bin",
+       0.013,
+       0.156,
+       142
+      ],
+      [
+       "gimp",
+       0.007,
+       0.084,
+       142
+      ],
+      [
+       "Xvnc",
+       0.003,
+       0.041,
+       2
+      ],
+      [
+       "python",
+       0.002,
+       0.023,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.002,
+       0.022,
+       3
+      ],
+      [
+       "gjs",
+       0.002,
+       0.02,
+       0
+      ],
+      [
+       "gnome-terminal-",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "nautilus",
+       0.0,
+       0.004,
+       0
+      ],
+      [
+       "file-jpeg",
+       0.0,
+       0.003,
+       0
+      ]
+     ],
+     "majflt_per_s": 3.1
+    },
+    "wait >10s": {
+     "seconds": 770.0,
+     "cores": 0.018,
+     "top": [
+      [
+       "gnome-shell",
+       0.007,
+       0.401,
+       0
+      ],
+      [
+       "chrome",
+       0.003,
+       0.148,
+       56
+      ],
+      [
+       "soffice.bin",
+       0.002,
+       0.107,
+       5
+      ],
+      [
+       "python",
+       0.002,
+       0.106,
+       0
+      ],
+      [
+       "gjs",
+       0.001,
+       0.072,
+       0
+      ],
+      [
+       "gnome-terminal-",
+       0.001,
+       0.065,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.033,
+       0
+      ],
+      [
+       "Xvnc",
+       0.0,
+       0.025,
+       0
+      ],
+      [
+       "supervisord",
+       0.0,
+       0.013,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.0,
+       0.011,
+       0
+      ],
+      [
+       "xdg-desktop-por",
+       0.0,
+       0.005,
+       0
+      ],
+      [
+       "gnome-keyring-d",
+       0.0,
+       0.004,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.1
+    }
+   }
+  },
+  {
+   "run": "n4-freeze-reclaim",
+   "kind": "swarm",
+   "phases": {
+    "action": {
+     "seconds": 63.5,
+     "cores": 0.442,
+     "top": [
+      [
+       "gnome-shell",
+       0.146,
+       0.332,
+       1644
+      ],
+      [
+       "chrome",
+       0.12,
+       0.272,
+       8790
+      ],
+      [
+       "python",
+       0.081,
+       0.184,
+       1224
+      ],
+      [
+       "soffice.bin",
+       0.033,
+       0.075,
+       6409
+      ],
+      [
+       "Xvnc",
+       0.027,
+       0.061,
+       188
+      ],
+      [
+       "gimp",
+       0.009,
+       0.021,
+       259
+      ],
+      [
+       "gjs",
+       0.008,
+       0.017,
+       272
+      ],
+      [
+       "tracker-miner-f",
+       0.004,
+       0.008,
+       69
+      ],
+      [
+       "ffmpeg",
+       0.003,
+       0.007,
+       426
+      ],
+      [
+       "gnome-terminal-",
+       0.003,
+       0.006,
+       6
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.003,
+       13
+      ],
+      [
+       "supervisord",
+       0.001,
+       0.002,
+       5
+      ]
+     ],
+     "majflt_per_s": 311.0
+    },
+    "frozen": {
+     "seconds": 754.0,
+     "cores": 0.001,
+     "top": [
+      [
+       "gnome-shell",
+       0.0,
+       0.369,
+       150
+      ],
+      [
+       "chrome",
+       0.0,
+       0.154,
+       773
+      ],
+      [
+       "python",
+       0.0,
+       0.077,
+       121
+      ],
+      [
+       "tracker-miner-f",
+       0.0,
+       0.077,
+       72
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.062,
+       2
+      ],
+      [
+       "gjs",
+       0.0,
+       0.062,
+       18
+      ],
+      [
+       "xdg-desktop-por",
+       0.0,
+       0.031,
+       2
+      ],
+      [
+       "soffice.bin",
+       0.0,
+       0.031,
+       421
+      ],
+      [
+       "pulseaudio",
+       0.0,
+       0.015,
+       0
+      ],
+      [
+       "gvfsd",
+       0.0,
+       0.015,
+       0
+      ],
+      [
+       "supervisord",
+       0.0,
+       0.015,
+       0
+      ],
+      [
+       "Xvnc",
+       0.0,
+       0.015,
+       6
+      ]
+     ],
+     "majflt_per_s": 2.2
+    },
+    "wait 0-10s": {
+     "seconds": 610.0,
+     "cores": 0.108,
+     "top": [
+      [
+       "chrome",
+       0.036,
+       0.33,
+       4371
+      ],
+      [
+       "gnome-shell",
+       0.031,
+       0.288,
+       3628
+      ],
+      [
+       "soffice.bin",
+       0.021,
+       0.194,
+       6123
+      ],
+      [
+       "gimp",
+       0.006,
+       0.06,
+       90
+      ],
+      [
+       "Xvnc",
+       0.004,
+       0.038,
+       101
+      ],
+      [
+       "python",
+       0.002,
+       0.017,
+       125
+      ],
+      [
+       "tracker-miner-f",
+       0.002,
+       0.017,
+       122
+      ],
+      [
+       "gjs",
+       0.002,
+       0.015,
+       226
+      ],
+      [
+       "gnome-terminal-",
+       0.001,
+       0.014,
+       55
+      ],
+      [
+       "nautilus",
+       0.001,
+       0.01,
+       168
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.007,
+       23
+      ],
+      [
+       "supervisord",
+       0.0,
+       0.002,
+       64
+      ]
+     ],
+     "majflt_per_s": 25.0
+    },
+    "wait >10s": {
+     "seconds": 5.0,
+     "cores": 0.006,
+     "top": [
+      [
+       "gnome-shell",
+       0.002,
+       0.333,
+       11
+      ],
+      [
+       "python",
+       0.002,
+       0.333,
+       0
+      ],
+      [
+       "gjs",
+       0.002,
+       0.333,
+       0
+      ]
+     ],
+     "majflt_per_s": 2.2
+    }
+   }
+  },
+  {
+   "run": "n4-freeze",
+   "kind": "swarm",
+   "phases": {
+    "action": {
+     "seconds": 44.5,
+     "cores": 0.651,
+     "top": [
+      [
+       "gnome-shell",
+       0.255,
+       0.391,
+       12
+      ],
+      [
+       "chrome",
+       0.196,
+       0.301,
+       1115
+      ],
+      [
+       "soffice.bin",
+       0.093,
+       0.143,
+       63
+      ],
+      [
+       "Xvnc",
+       0.048,
+       0.073,
+       0
+      ],
+      [
+       "python",
+       0.023,
+       0.035,
+       50
+      ],
+      [
+       "gjs",
+       0.009,
+       0.014,
+       1
+      ],
+      [
+       "tracker-miner-f",
+       0.006,
+       0.01,
+       0
+      ],
+      [
+       "gimp",
+       0.006,
+       0.009,
+       150
+      ],
+      [
+       "gnome-terminal-",
+       0.004,
+       0.006,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.003,
+       0.005,
+       0
+      ],
+      [
+       "nautilus",
+       0.002,
+       0.004,
+       0
+      ],
+      [
+       "tracker-extract",
+       0.001,
+       0.001,
+       0
+      ]
+     ],
+     "majflt_per_s": 31.3
+    },
+    "frozen": {
+     "seconds": 768.0,
+     "cores": 0.002,
+     "top": [
+      [
+       "gnome-shell",
+       0.001,
+       0.359,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.094,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.0,
+       0.094,
+       0
+      ],
+      [
+       "python",
+       0.0,
+       0.068,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.06,
+       0
+      ],
+      [
+       "chrome",
+       0.0,
+       0.051,
+       3
+      ],
+      [
+       "tracker-extract",
+       0.0,
+       0.051,
+       0
+      ],
+      [
+       "Xvnc",
+       0.0,
+       0.034,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.0,
+       0.034,
+       0
+      ],
+      [
+       "supervisord",
+       0.0,
+       0.026,
+       0
+      ],
+      [
+       "accounts-daemon",
+       0.0,
+       0.017,
+       0
+      ],
+      [
+       "gsd-media-keys",
+       0.0,
+       0.017,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 612.5,
+     "cores": 0.091,
+     "top": [
+      [
+       "chrome",
+       0.033,
+       0.361,
+       1586
+      ],
+      [
+       "gnome-shell",
+       0.026,
+       0.285,
+       23
+      ],
+      [
+       "soffice.bin",
+       0.013,
+       0.148,
+       163
+      ],
+      [
+       "gimp",
+       0.007,
+       0.075,
+       126
+      ],
+      [
+       "Xvnc",
+       0.003,
+       0.038,
+       2
+      ],
+      [
+       "python",
+       0.002,
+       0.022,
+       0
+      ],
+      [
+       "gjs",
+       0.001,
+       0.016,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.001,
+       0.016,
+       3
+      ],
+      [
+       "gnome-terminal-",
+       0.001,
+       0.01,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.008,
+       0
+      ],
+      [
+       "nautilus",
+       0.001,
+       0.008,
+       2
+      ],
+      [
+       "supervisord",
+       0.0,
+       0.003,
+       0
+      ]
+     ],
+     "majflt_per_s": 3.1
+    },
+    "wait >10s": {
+     "seconds": 7.0,
+     "cores": 0.006,
+     "top": [
+      [
+       "python",
+       0.006,
+       1.0,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.0,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    }
+   }
+  },
+  {
+   "run": "n8-always",
+   "kind": "swarm",
+   "phases": {
+    "action": {
+     "seconds": 95.5,
+     "cores": 0.439,
+     "top": [
+      [
+       "gnome-shell",
+       0.177,
+       0.404,
+       13
+      ],
+      [
+       "chrome",
+       0.081,
+       0.183,
+       1232
+      ],
+      [
+       "soffice.bin",
+       0.048,
+       0.109,
+       89
+      ],
+      [
+       "Xvnc",
+       0.047,
+       0.107,
+       0
+      ],
+      [
+       "python",
+       0.036,
+       0.083,
+       0
+      ],
+      [
+       "packagekitd",
+       0.013,
+       0.029,
+       0
+      ],
+      [
+       "gnome-software",
+       0.012,
+       0.028,
+       0
+      ],
+      [
+       "thunderbird",
+       0.007,
+       0.016,
+       190
+      ],
+      [
+       "gjs",
+       0.005,
+       0.011,
+       1
+      ],
+      [
+       "gnome-terminal-",
+       0.003,
+       0.007,
+       0
+      ],
+      [
+       "gimp",
+       0.003,
+       0.006,
+       136
+      ],
+      [
+       "dbus-daemon",
+       0.002,
+       0.005,
+       0
+      ]
+     ],
+     "majflt_per_s": 17.4
+    },
+    "wait 0-10s": {
+     "seconds": 1188.9,
+     "cores": 0.093,
+     "top": [
+      [
+       "gnome-shell",
+       0.021,
+       0.226,
+       24
+      ],
+      [
+       "packagekitd",
+       0.019,
+       0.201,
+       15
+      ],
+      [
+       "chrome",
+       0.018,
+       0.192,
+       1206
+      ],
+      [
+       "soffice.bin",
+       0.009,
+       0.096,
+       167
+      ],
+      [
+       "gnome-software",
+       0.006,
+       0.06,
+       43
+      ],
+      [
+       "thunderbird",
+       0.004,
+       0.044,
+       1715
+      ],
+      [
+       "Xvnc",
+       0.004,
+       0.044,
+       2
+      ],
+      [
+       "gimp",
+       0.004,
+       0.039,
+       142
+      ],
+      [
+       "python",
+       0.002,
+       0.021,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.002,
+       0.017,
+       3
+      ],
+      [
+       "gjs",
+       0.001,
+       0.016,
+       0
+      ],
+      [
+       "gnome-terminal-",
+       0.001,
+       0.015,
+       0
+      ]
+     ],
+     "majflt_per_s": 2.8
+    },
+    "wait >10s": {
+     "seconds": 1597.5,
+     "cores": 0.025,
+     "top": [
+      [
+       "packagekitd",
+       0.006,
+       0.238,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.006,
+       0.224,
+       0
+      ],
+      [
+       "gnome-software",
+       0.004,
+       0.143,
+       0
+      ],
+      [
+       "python",
+       0.002,
+       0.08,
+       0
+      ],
+      [
+       "gjs",
+       0.001,
+       0.055,
+       0
+      ],
+      [
+       "chrome",
+       0.001,
+       0.052,
+       68
+      ],
+      [
+       "Xvnc",
+       0.001,
+       0.045,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.001,
+       0.042,
+       0
+      ],
+      [
+       "gnome-terminal-",
+       0.001,
+       0.042,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.023,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.0,
+       0.015,
+       0
+      ],
+      [
+       "supervisord",
+       0.0,
+       0.009,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    }
+   }
+  },
+  {
+   "run": "n8-freeze-reclaim",
+   "kind": "swarm",
+   "phases": {
+    "action": {
+     "seconds": 126.0,
+     "cores": 0.396,
+     "top": [
+      [
+       "gnome-shell",
+       0.118,
+       0.297,
+       1733
+      ],
+      [
+       "python",
+       0.076,
+       0.192,
+       1840
+      ],
+      [
+       "chrome",
+       0.073,
+       0.184,
+       9486
+      ],
+      [
+       "Xvnc",
+       0.033,
+       0.083,
+       307
+      ],
+      [
+       "soffice.bin",
+       0.031,
+       0.077,
+       10052
+      ],
+      [
+       "gnome-software",
+       0.018,
+       0.045,
+       649
+      ],
+      [
+       "packagekitd",
+       0.01,
+       0.026,
+       33
+      ],
+      [
+       "thunderbird",
+       0.007,
+       0.018,
+       1297
+      ],
+      [
+       "gjs",
+       0.006,
+       0.015,
+       230
+      ],
+      [
+       "ffmpeg",
+       0.004,
+       0.011,
+       1141
+      ],
+      [
+       "gnome-terminal-",
+       0.004,
+       0.009,
+       1
+      ],
+      [
+       "tracker-miner-f",
+       0.004,
+       0.009,
+       51
+      ]
+     ],
+     "majflt_per_s": 222.3
+    },
+    "frozen": {
+     "seconds": 1561.0,
+     "cores": 0.001,
+     "top": [
+      [
+       "gnome-shell",
+       0.0,
+       0.333,
+       279
+      ],
+      [
+       "gjs",
+       0.0,
+       0.09,
+       30
+      ],
+      [
+       "chrome",
+       0.0,
+       0.081,
+       1143
+      ],
+      [
+       "python",
+       0.0,
+       0.071,
+       321
+      ],
+      [
+       "soffice.bin",
+       0.0,
+       0.057,
+       557
+      ],
+      [
+       "gnome-terminal-",
+       0.0,
+       0.038,
+       15
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.033,
+       11
+      ],
+      [
+       "Xvnc",
+       0.0,
+       0.029,
+       28
+      ],
+      [
+       "xdg-desktop-por",
+       0.0,
+       0.029,
+       12
+      ],
+      [
+       "gsd-xsettings",
+       0.0,
+       0.024,
+       1
+      ],
+      [
+       "gnome-software",
+       0.0,
+       0.019,
+       58
+      ],
+      [
+       "thunderbird",
+       0.0,
+       0.019,
+       272
+      ]
+     ],
+     "majflt_per_s": 2.1
+    },
+    "wait 0-10s": {
+     "seconds": 1183.5,
+     "cores": 0.106,
+     "top": [
+      [
+       "packagekitd",
+       0.025,
+       0.237,
+       172
+      ],
+      [
+       "gnome-shell",
+       0.024,
+       0.222,
+       2755
+      ],
+      [
+       "chrome",
+       0.018,
+       0.167,
+       2724
+      ],
+      [
+       "soffice.bin",
+       0.013,
+       0.124,
+       7327
+      ],
+      [
+       "gnome-software",
+       0.005,
+       0.051,
+       567
+      ],
+      [
+       "Xvnc",
+       0.004,
+       0.039,
+       237
+      ],
+      [
+       "thunderbird",
+       0.004,
+       0.037,
+       2325
+      ],
+      [
+       "gimp",
+       0.003,
+       0.032,
+       90
+      ],
+      [
+       "python",
+       0.002,
+       0.019,
+       58
+      ],
+      [
+       "gjs",
+       0.002,
+       0.015,
+       347
+      ],
+      [
+       "tracker-miner-f",
+       0.002,
+       0.015,
+       109
+      ],
+      [
+       "gnome-terminal-",
+       0.001,
+       0.01,
+       47
+      ]
+     ],
+     "majflt_per_s": 14.8
+    },
+    "wait >10s": {
+     "seconds": 13.5,
+     "cores": 0.041,
+     "top": [
+      [
+       "tracker-miner-f",
+       0.021,
+       0.509,
+       7
+      ],
+      [
+       "gnome-shell",
+       0.007,
+       0.164,
+       0
+      ],
+      [
+       "Xvnc",
+       0.003,
+       0.073,
+       0
+      ],
+      [
+       "gnome-software",
+       0.003,
+       0.073,
+       0
+      ],
+      [
+       "python",
+       0.002,
+       0.055,
+       0
+      ],
+      [
+       "gjs",
+       0.001,
+       0.036,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.001,
+       0.018,
+       0
+      ],
+      [
+       "supervisord",
+       0.001,
+       0.018,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.018,
+       0
+      ],
+      [
+       "gsd-xsettings",
+       0.001,
+       0.018,
+       0
+      ],
+      [
+       "xdg-desktop-por",
+       0.001,
+       0.018,
+       0
+      ],
+      [
+       "bash",
+       0.0,
+       0.0,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.5
+    }
+   }
+  },
+  {
+   "run": "n8-freeze",
+   "kind": "swarm",
+   "phases": {
+    "action": {
+     "seconds": 93.0,
+     "cores": 0.502,
+     "top": [
+      [
+       "gnome-shell",
+       0.193,
+       0.385,
+       12
+      ],
+      [
+       "chrome",
+       0.115,
+       0.23,
+       1087
+      ],
+      [
+       "soffice.bin",
+       0.055,
+       0.109,
+       89
+      ],
+      [
+       "Xvnc",
+       0.049,
+       0.097,
+       0
+      ],
+      [
+       "python",
+       0.047,
+       0.093,
+       53
+      ],
+      [
+       "gnome-software",
+       0.008,
+       0.016,
+       0
+      ],
+      [
+       "thunderbird",
+       0.008,
+       0.016,
+       186
+      ],
+      [
+       "gjs",
+       0.006,
+       0.012,
+       1
+      ],
+      [
+       "packagekitd",
+       0.005,
+       0.01,
+       0
+      ],
+      [
+       "gimp",
+       0.004,
+       0.007,
+       153
+      ],
+      [
+       "dbus-daemon",
+       0.003,
+       0.005,
+       0
+      ],
+      [
+       "gnome-terminal-",
+       0.002,
+       0.004,
+       0
+      ]
+     ],
+     "majflt_per_s": 17.0
+    },
+    "frozen": {
+     "seconds": 1586.0,
+     "cores": 0.001,
+     "top": [
+      [
+       "gnome-shell",
+       0.0,
+       0.355,
+       0
+      ],
+      [
+       "chrome",
+       0.0,
+       0.107,
+       56
+      ],
+      [
+       "gjs",
+       0.0,
+       0.079,
+       0
+      ],
+      [
+       "python",
+       0.0,
+       0.056,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.056,
+       0
+      ],
+      [
+       "xdg-desktop-por",
+       0.0,
+       0.047,
+       0
+      ],
+      [
+       "Xvnc",
+       0.0,
+       0.037,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.0,
+       0.037,
+       0
+      ],
+      [
+       "thunderbird",
+       0.0,
+       0.037,
+       7
+      ],
+      [
+       "gnome-software",
+       0.0,
+       0.033,
+       0
+      ],
+      [
+       "gsd-xsettings",
+       0.0,
+       0.023,
+       0
+      ],
+      [
+       "polkitd",
+       0.0,
+       0.019,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 1188.9,
+     "cores": 0.091,
+     "top": [
+      [
+       "gnome-shell",
+       0.021,
+       0.232,
+       28
+      ],
+      [
+       "packagekitd",
+       0.019,
+       0.204,
+       15
+      ],
+      [
+       "chrome",
+       0.015,
+       0.162,
+       1591
+      ],
+      [
+       "soffice.bin",
+       0.009,
+       0.097,
+       167
+      ],
+      [
+       "gnome-software",
+       0.006,
+       0.064,
+       43
+      ],
+      [
+       "Xvnc",
+       0.004,
+       0.049,
+       2
+      ],
+      [
+       "thunderbird",
+       0.004,
+       0.044,
+       1716
+      ],
+      [
+       "gimp",
+       0.004,
+       0.039,
+       101
+      ],
+      [
+       "python",
+       0.002,
+       0.022,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.002,
+       0.02,
+       3
+      ],
+      [
+       "gjs",
+       0.002,
+       0.017,
+       0
+      ],
+      [
+       "gnome-terminal-",
+       0.001,
+       0.016,
+       0
+      ]
+     ],
+     "majflt_per_s": 3.1
+    },
+    "wait >10s": {
+     "seconds": 13.5,
+     "cores": 0.084,
+     "top": [
+      [
+       "packagekitd",
+       0.037,
+       0.439,
+       0
+      ],
+      [
+       "tracker-miner-f",
+       0.016,
+       0.184,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.013,
+       0.149,
+       0
+      ],
+      [
+       "Xvnc",
+       0.007,
+       0.079,
+       0
+      ],
+      [
+       "gnome-software",
+       0.004,
+       0.053,
+       0
+      ],
+      [
+       "python",
+       0.003,
+       0.035,
+       0
+      ],
+      [
+       "gjs",
+       0.001,
+       0.018,
+       0
+      ],
+      [
+       "supervisord",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "gnome-keyring-d",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "gsd-xsettings",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "thunderbird",
+       0.001,
+       0.009,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    }
+   }
+  },
+  {
+   "run": "chrome",
+   "kind": "vm",
+   "phases": {
+    "action": {
+     "seconds": 9.5,
+     "cores": 0.812,
+     "top": [
+      [
+       "chrome",
+       0.177,
+       0.218,
+       888
+      ],
+      [
+       "python",
+       0.136,
+       0.168,
+       0
+      ],
+      [
+       "packagekitd",
+       0.115,
+       0.142,
+       503
+      ],
+      [
+       "gnome-shell",
+       0.097,
+       0.119,
+       0
+      ],
+      [
+       "sw-procs",
+       0.053,
+       0.065,
+       0
+      ],
+      [
+       "snap-store",
+       0.052,
+       0.064,
+       14
+      ],
+      [
+       "cnf-update-db",
+       0.052,
+       0.064,
+       0
+      ],
+      [
+       "fwupd",
+       0.047,
+       0.058,
+       11
+      ],
+      [
+       "apt-check",
+       0.039,
+       0.048,
+       2
+      ],
+      [
+       "Xorg",
+       0.03,
+       0.036,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.004,
+       0.005,
+       0
+      ],
+      [
+       "kworker",
+       0.001,
+       0.001,
+       0
+      ]
+     ],
+     "majflt_per_s": 149.5
+    },
+    "idle tail": {
+     "seconds": 120.0,
+     "cores": 0.058,
+     "top": [
+      [
+       "sw-procs",
+       0.04,
+       0.693,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.215,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.016,
+       0
+      ],
+      [
+       "kworker",
+       0.001,
+       0.013,
+       0
+      ],
+      [
+       "chrome",
+       0.001,
+       0.013,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.01,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.0,
+       0.007,
+       0
+      ],
+      [
+       "migration",
+       0.0,
+       0.003,
+       0
+      ],
+      [
+       "irqbalance",
+       0.0,
+       0.003,
+       0
+      ],
+      [
+       "rtkit-daemon",
+       0.0,
+       0.003,
+       0
+      ],
+      [
+       "xdg-desktop-por",
+       0.0,
+       0.003,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 154.1,
+     "cores": 0.417,
+     "top": [
+      [
+       "chrome",
+       0.091,
+       0.217,
+       1629
+      ],
+      [
+       "packagekitd",
+       0.074,
+       0.178,
+       1
+      ],
+      [
+       "sw-procs",
+       0.046,
+       0.11,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.043,
+       0.103,
+       19
+      ],
+      [
+       "python",
+       0.027,
+       0.065,
+       28
+      ],
+      [
+       "cnf-update-db",
+       0.026,
+       0.061,
+       0
+      ],
+      [
+       "apt-check",
+       0.023,
+       0.056,
+       426
+      ],
+      [
+       "snap-store",
+       0.023,
+       0.055,
+       27
+      ],
+      [
+       "store",
+       0.017,
+       0.041,
+       0
+      ],
+      [
+       "appstreamcli",
+       0.013,
+       0.032,
+       3
+      ],
+      [
+       "Xorg",
+       0.008,
+       0.02,
+       0
+      ],
+      [
+       "kworker",
+       0.007,
+       0.017,
+       0
+      ]
+     ],
+     "majflt_per_s": 13.9
+    },
+    "wait >10s": {
+     "seconds": 203.4,
+     "cores": 0.092,
+     "top": [
+      [
+       "sw-procs",
+       0.042,
+       0.456,
+       0
+      ],
+      [
+       "chrome",
+       0.024,
+       0.261,
+       21
+      ],
+      [
+       "python",
+       0.011,
+       0.123,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.006,
+       0.071,
+       2
+      ],
+      [
+       "Xorg",
+       0.002,
+       0.025,
+       0
+      ],
+      [
+       "kworker",
+       0.002,
+       0.024,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.01,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.008,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.006,
+       0
+      ],
+      [
+       "snapd",
+       0.0,
+       0.004,
+       0
+      ],
+      [
+       "snap-store",
+       0.0,
+       0.003,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.002,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.1
+    }
+   },
+   "clock_offset_spread_ms": 876.967284
+  },
+  {
+   "run": "gimp",
+   "kind": "vm",
+   "phases": {
+    "action": {
+     "seconds": 7.0,
+     "cores": 1.122,
+     "top": [
+      [
+       "packagekitd",
+       0.262,
+       0.233,
+       305
+      ],
+      [
+       "python",
+       0.232,
+       0.207,
+       0
+      ],
+      [
+       "snap-store",
+       0.156,
+       0.139,
+       13
+      ],
+      [
+       "gimp",
+       0.126,
+       0.112,
+       300
+      ],
+      [
+       "gnome-shell",
+       0.12,
+       0.107,
+       0
+      ],
+      [
+       "fwupd",
+       0.06,
+       0.054,
+       11
+      ],
+      [
+       "sw-procs",
+       0.054,
+       0.048,
+       0
+      ],
+      [
+       "Xorg",
+       0.049,
+       0.043,
+       0
+      ],
+      [
+       "cnf-update-db",
+       0.036,
+       0.032,
+       0
+      ],
+      [
+       "decompose",
+       0.007,
+       0.006,
+       0
+      ],
+      [
+       "kworker",
+       0.006,
+       0.005,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.004,
+       0.004,
+       0
+      ]
+     ],
+     "majflt_per_s": 90.2
+    },
+    "idle tail": {
+     "seconds": 120.1,
+     "cores": 0.057,
+     "top": [
+      [
+       "sw-procs",
+       0.04,
+       0.71,
+       0
+      ],
+      [
+       "python",
+       0.013,
+       0.223,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.018,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "kworker",
+       0.0,
+       0.009,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.0,
+       0.007,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.003,
+       0
+      ],
+      [
+       "kcompactd",
+       0.0,
+       0.001,
+       0
+      ],
+      [
+       "jbd",
+       0.0,
+       0.001,
+       0
+      ],
+      [
+       "gvfs-afc-volume",
+       0.0,
+       0.001,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.001,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 102.6,
+     "cores": 0.504,
+     "top": [
+      [
+       "packagekitd",
+       0.105,
+       0.208,
+       3
+      ],
+      [
+       "gnome-shell",
+       0.047,
+       0.093,
+       22
+      ],
+      [
+       "decompose",
+       0.047,
+       0.092,
+       1
+      ],
+      [
+       "sw-procs",
+       0.045,
+       0.089,
+       0
+      ],
+      [
+       "cnf-update-db",
+       0.039,
+       0.076,
+       0
+      ],
+      [
+       "apt-check",
+       0.038,
+       0.075,
+       492
+      ],
+      [
+       "gimp",
+       0.038,
+       0.075,
+       150
+      ],
+      [
+       "python",
+       0.029,
+       0.058,
+       28
+      ],
+      [
+       "snap-store",
+       0.027,
+       0.053,
+       14
+      ],
+      [
+       "store",
+       0.026,
+       0.051,
+       0
+      ],
+      [
+       "appstreamcli",
+       0.018,
+       0.035,
+       3
+      ],
+      [
+       "kworker",
+       0.01,
+       0.02,
+       0
+      ]
+     ],
+     "majflt_per_s": 7.1
+    },
+    "wait >10s": {
+     "seconds": 10.2,
+     "cores": 0.075,
+     "top": [
+      [
+       "sw-procs",
+       0.039,
+       0.519,
+       0
+      ],
+      [
+       "python",
+       0.013,
+       0.169,
+       0
+      ],
+      [
+       "packagekitd",
+       0.01,
+       0.13,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.008,
+       0.104,
+       0
+      ],
+      [
+       "kworker",
+       0.002,
+       0.026,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.013,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.013,
+       0
+      ],
+      [
+       "gjs",
+       0.001,
+       0.013,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.013,
+       0
+      ],
+      [
+       "gnome-session-b",
+       0.0,
+       0.0,
+       0
+      ],
+      [
+       "deja-dup-monito",
+       0.0,
+       0.0,
+       0
+      ],
+      [
+       "gsd-housekeepin",
+       0.0,
+       0.0,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    }
+   },
+   "clock_offset_spread_ms": 391.294091
+  },
+  {
+   "run": "libreoffice_calc",
+   "kind": "vm",
+   "phases": {
+    "action": {
+     "seconds": 9.5,
+     "cores": 0.286,
+     "top": [
+      [
+       "gnome-shell",
+       0.067,
+       0.236,
+       0
+      ],
+      [
+       "packagekitd",
+       0.051,
+       0.177,
+       2
+      ],
+      [
+       "sw-procs",
+       0.041,
+       0.144,
+       0
+      ],
+      [
+       "python",
+       0.033,
+       0.114,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.028,
+       0.1,
+       26
+      ],
+      [
+       "store",
+       0.026,
+       0.092,
+       0
+      ],
+      [
+       "Xorg",
+       0.013,
+       0.044,
+       0
+      ],
+      [
+       "kworker",
+       0.007,
+       0.026,
+       0
+      ],
+      [
+       "xdg-desktop-por",
+       0.003,
+       0.011,
+       0
+      ],
+      [
+       "snapd",
+       0.003,
+       0.011,
+       0
+      ],
+      [
+       "snap-store",
+       0.002,
+       0.007,
+       1
+      ],
+      [
+       "dbus-daemon",
+       0.002,
+       0.007,
+       0
+      ]
+     ],
+     "majflt_per_s": 3.3
+    },
+    "idle tail": {
+     "seconds": 120.1,
+     "cores": 0.054,
+     "top": [
+      [
+       "sw-procs",
+       0.038,
+       0.699,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.229,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.015,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "kworker",
+       0.0,
+       0.009,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.0,
+       0.006,
+       0
+      ],
+      [
+       "xdg-desktop-por",
+       0.0,
+       0.003,
+       0
+      ],
+      [
+       "Xorg",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "kcompactd",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "jbd",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "NetworkManager",
+       0.0,
+       0.002,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 230.0,
+     "cores": 0.21,
+     "top": [
+      [
+       "gnome-shell",
+       0.046,
+       0.22,
+       14
+      ],
+      [
+       "sw-procs",
+       0.041,
+       0.194,
+       0
+      ],
+      [
+       "python",
+       0.025,
+       0.117,
+       0
+      ],
+      [
+       "packagekitd",
+       0.023,
+       0.109,
+       1
+      ],
+      [
+       "cnf-update-db",
+       0.018,
+       0.085,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.014,
+       0.068,
+       257
+      ],
+      [
+       "appstreamcli",
+       0.007,
+       0.035,
+       1
+      ],
+      [
+       "Xorg",
+       0.007,
+       0.033,
+       0
+      ],
+      [
+       "apt-check",
+       0.007,
+       0.033,
+       489
+      ],
+      [
+       "kworker",
+       0.004,
+       0.018,
+       0
+      ],
+      [
+       "store",
+       0.003,
+       0.016,
+       0
+      ],
+      [
+       "snapd",
+       0.003,
+       0.013,
+       0
+      ]
+     ],
+     "majflt_per_s": 4.1
+    },
+    "wait >10s": {
+     "seconds": 399.0,
+     "cores": 0.118,
+     "top": [
+      [
+       "sw-procs",
+       0.041,
+       0.348,
+       0
+      ],
+      [
+       "packagekitd",
+       0.016,
+       0.132,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.106,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.011,
+       0.096,
+       2
+      ],
+      [
+       "snapd",
+       0.009,
+       0.08,
+       7
+      ],
+      [
+       "snap-store",
+       0.008,
+       0.066,
+       26
+      ],
+      [
+       "apt-check",
+       0.006,
+       0.051,
+       3
+      ],
+      [
+       "kworker",
+       0.004,
+       0.031,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.002,
+       0.015,
+       67
+      ],
+      [
+       "systemd",
+       0.002,
+       0.013,
+       0
+      ],
+      [
+       "xdelta",
+       0.001,
+       0.008,
+       1
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.008,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.3
+    }
+   },
+   "clock_offset_spread_ms": 959.751561
+  },
+  {
+   "run": "libreoffice_impress",
+   "kind": "vm",
+   "phases": {
+    "action": {
+     "seconds": 5.2,
+     "cores": 1.09,
+     "top": [
+      [
+       "gnome-shell",
+       0.36,
+       0.33,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.257,
+       0.236,
+       57
+      ],
+      [
+       "python",
+       0.255,
+       0.234,
+       0
+      ],
+      [
+       "Xorg",
+       0.08,
+       0.073,
+       0
+      ],
+      [
+       "sw-procs",
+       0.051,
+       0.047,
+       0
+      ],
+      [
+       "appstreamcli",
+       0.025,
+       0.023,
+       0
+      ],
+      [
+       "packagekitd",
+       0.019,
+       0.017,
+       0
+      ],
+      [
+       "snap-store",
+       0.017,
+       0.016,
+       0
+      ],
+      [
+       "snapd",
+       0.006,
+       0.005,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.004,
+       0.003,
+       0
+      ],
+      [
+       "rsyslogd",
+       0.004,
+       0.003,
+       0
+      ],
+      [
+       "plymouthd",
+       0.002,
+       0.002,
+       0
+      ]
+     ],
+     "majflt_per_s": 10.9
+    },
+    "idle tail": {
+     "seconds": 120.0,
+     "cores": 0.055,
+     "top": [
+      [
+       "sw-procs",
+       0.037,
+       0.672,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.225,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.001,
+       0.024,
+       0
+      ],
+      [
+       "kworker",
+       0.001,
+       0.017,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.017,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.011,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.0,
+       0.006,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.003,
+       0
+      ],
+      [
+       "kcompactd",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "jbd",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "accounts-daemon",
+       0.0,
+       0.002,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 127.7,
+     "cores": 0.292,
+     "top": [
+      [
+       "packagekitd",
+       0.073,
+       0.251,
+       3
+      ],
+      [
+       "sw-procs",
+       0.042,
+       0.145,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.035,
+       0.119,
+       15
+      ],
+      [
+       "cnf-update-db",
+       0.033,
+       0.111,
+       0
+      ],
+      [
+       "python",
+       0.021,
+       0.073,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.019,
+       0.065,
+       50
+      ],
+      [
+       "apt-check",
+       0.016,
+       0.056,
+       397
+      ],
+      [
+       "appstreamcli",
+       0.015,
+       0.051,
+       1
+      ],
+      [
+       "snap-store",
+       0.012,
+       0.04,
+       1
+      ],
+      [
+       "Xorg",
+       0.007,
+       0.025,
+       1
+      ],
+      [
+       "kworker",
+       0.006,
+       0.021,
+       0
+      ],
+      [
+       "snapd",
+       0.005,
+       0.016,
+       3
+      ]
+     ],
+     "majflt_per_s": 3.7
+    },
+    "wait >10s": {
+     "seconds": 173.2,
+     "cores": 0.098,
+     "top": [
+      [
+       "sw-procs",
+       0.041,
+       0.422,
+       0
+      ],
+      [
+       "packagekitd",
+       0.013,
+       0.134,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.123,
+       0
+      ],
+      [
+       "snap-store",
+       0.011,
+       0.117,
+       26
+      ],
+      [
+       "apt-check",
+       0.011,
+       0.112,
+       3
+      ],
+      [
+       "soffice.bin",
+       0.002,
+       0.017,
+       0
+      ],
+      [
+       "snapd",
+       0.001,
+       0.015,
+       1
+      ],
+      [
+       "kworker",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.001,
+       0.007,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.007,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.2
+    }
+   },
+   "clock_offset_spread_ms": 129.543485
+  },
+  {
+   "run": "libreoffice_writer",
+   "kind": "vm",
+   "phases": {
+    "action": {
+     "seconds": 12.9,
+     "cores": 0.449,
+     "top": [
+      [
+       "soffice.bin",
+       0.093,
+       0.208,
+       86
+      ],
+      [
+       "gnome-shell",
+       0.068,
+       0.152,
+       0
+      ],
+      [
+       "python",
+       0.066,
+       0.147,
+       0
+      ],
+      [
+       "Xorg",
+       0.052,
+       0.116,
+       0
+      ],
+      [
+       "store",
+       0.045,
+       0.1,
+       0
+      ],
+      [
+       "sw-procs",
+       0.04,
+       0.088,
+       0
+      ],
+      [
+       "packagekitd",
+       0.04,
+       0.088,
+       0
+      ],
+      [
+       "apt-check",
+       0.013,
+       0.029,
+       0
+      ],
+      [
+       "http",
+       0.011,
+       0.024,
+       0
+      ],
+      [
+       "at-spi2-registr",
+       0.003,
+       0.007,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.002,
+       0.005,
+       0
+      ],
+      [
+       "snap-store",
+       0.002,
+       0.005,
+       0
+      ]
+     ],
+     "majflt_per_s": 6.8
+    },
+    "idle tail": {
+     "seconds": 119.9,
+     "cores": 0.063,
+     "top": [
+      [
+       "sw-procs",
+       0.038,
+       0.596,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.193,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.005,
+       0.074,
+       0
+      ],
+      [
+       "Xorg",
+       0.004,
+       0.06,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.001,
+       0.017,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.015,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "kworker",
+       0.001,
+       0.011,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.011,
+       0
+      ],
+      [
+       "ksoftirqd",
+       0.0,
+       0.001,
+       0
+      ],
+      [
+       "kcompactd",
+       0.0,
+       0.001,
+       0
+      ],
+      [
+       "jbd",
+       0.0,
+       0.001,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 198.8,
+     "cores": 0.24,
+     "top": [
+      [
+       "packagekitd",
+       0.057,
+       0.239,
+       3
+      ],
+      [
+       "sw-procs",
+       0.04,
+       0.168,
+       0
+      ],
+      [
+       "python",
+       0.025,
+       0.104,
+       0
+      ],
+      [
+       "cnf-update-db",
+       0.022,
+       0.09,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.019,
+       0.077,
+       15
+      ],
+      [
+       "apt-check",
+       0.018,
+       0.077,
+       486
+      ],
+      [
+       "snap-store",
+       0.018,
+       0.074,
+       28
+      ],
+      [
+       "appstreamcli",
+       0.009,
+       0.039,
+       1
+      ],
+      [
+       "soffice.bin",
+       0.006,
+       0.027,
+       258
+      ],
+      [
+       "store",
+       0.006,
+       0.024,
+       0
+      ],
+      [
+       "Xorg",
+       0.006,
+       0.023,
+       0
+      ],
+      [
+       "kworker",
+       0.004,
+       0.017,
+       0
+      ]
+     ],
+     "majflt_per_s": 4.0
+    },
+    "wait >10s": {
+     "seconds": 414.8,
+     "cores": 0.069,
+     "top": [
+      [
+       "sw-procs",
+       0.039,
+       0.564,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.167,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.008,
+       0.117,
+       0
+      ],
+      [
+       "Xorg",
+       0.003,
+       0.04,
+       0
+      ],
+      [
+       "soffice.bin",
+       0.002,
+       0.026,
+       56
+      ],
+      [
+       "kworker",
+       0.001,
+       0.02,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.01,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.01,
+       0
+      ],
+      [
+       "apt-check",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "snapd",
+       0.0,
+       0.005,
+       2
+      ],
+      [
+       "snap-store",
+       0.0,
+       0.004,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.1
+    }
+   },
+   "clock_offset_spread_ms": 857.919331
+  },
+  {
+   "run": "os",
+   "kind": "vm",
+   "phases": {
+    "action": {
+     "seconds": 13.2,
+     "cores": 0.532,
+     "top": [
+      [
+       "python",
+       0.162,
+       0.304,
+       28
+      ],
+      [
+       "gnome-shell",
+       0.128,
+       0.24,
+       3
+      ],
+      [
+       "snap-store",
+       0.086,
+       0.162,
+       5
+      ],
+      [
+       "sw-procs",
+       0.048,
+       0.091,
+       0
+      ],
+      [
+       "Xorg",
+       0.025,
+       0.047,
+       0
+      ],
+      [
+       "packagekitd",
+       0.022,
+       0.041,
+       1
+      ],
+      [
+       "cnf-update-db",
+       0.019,
+       0.036,
+       0
+      ],
+      [
+       "apt-check",
+       0.005,
+       0.01,
+       369
+      ],
+      [
+       "kworker",
+       0.005,
+       0.009,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.005,
+       0.009,
+       0
+      ],
+      [
+       "fwupd",
+       0.005,
+       0.009,
+       0
+      ],
+      [
+       "setup-autostart",
+       0.005,
+       0.009,
+       0
+      ]
+     ],
+     "majflt_per_s": 31.0
+    },
+    "idle tail": {
+     "seconds": 120.2,
+     "cores": 0.077,
+     "top": [
+      [
+       "sw-procs",
+       0.037,
+       0.474,
+       0
+      ],
+      [
+       "snap-store",
+       0.021,
+       0.274,
+       0
+      ],
+      [
+       "python",
+       0.015,
+       0.197,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "kworker",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.008,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.008,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.0,
+       0.004,
+       0
+      ],
+      [
+       "migration",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "rsyslogd",
+       0.0,
+       0.001,
+       0
+      ],
+      [
+       "ksoftirqd",
+       0.0,
+       0.001,
+       0
+      ],
+      [
+       "kcompactd",
+       0.0,
+       0.001,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 130.1,
+     "cores": 0.407,
+     "top": [
+      [
+       "packagekitd",
+       0.08,
+       0.197,
+       3
+      ],
+      [
+       "snap-store",
+       0.065,
+       0.159,
+       29
+      ],
+      [
+       "python",
+       0.054,
+       0.133,
+       0
+      ],
+      [
+       "sw-procs",
+       0.042,
+       0.103,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.035,
+       0.087,
+       16
+      ],
+      [
+       "apt-check",
+       0.032,
+       0.078,
+       113
+      ],
+      [
+       "cnf-update-db",
+       0.03,
+       0.075,
+       0
+      ],
+      [
+       "store",
+       0.018,
+       0.045,
+       1
+      ],
+      [
+       "Xorg",
+       0.014,
+       0.036,
+       1
+      ],
+      [
+       "appstreamcli",
+       0.014,
+       0.034,
+       3
+      ],
+      [
+       "snapd",
+       0.007,
+       0.016,
+       2
+      ],
+      [
+       "kworker",
+       0.005,
+       0.012,
+       0
+      ]
+     ],
+     "majflt_per_s": 1.3
+    },
+    "wait >10s": {
+     "seconds": 252.5,
+     "cores": 0.089,
+     "top": [
+      [
+       "sw-procs",
+       0.04,
+       0.447,
+       0
+      ],
+      [
+       "snap-store",
+       0.023,
+       0.258,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.133,
+       0
+      ],
+      [
+       "packagekitd",
+       0.008,
+       0.089,
+       0
+      ],
+      [
+       "kworker",
+       0.002,
+       0.021,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.001,
+       0.009,
+       2
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.007,
+       0
+      ],
+      [
+       "snapd",
+       0.001,
+       0.006,
+       1
+      ],
+      [
+       "rcu_preempt",
+       0.0,
+       0.005,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.002,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    }
+   },
+   "clock_offset_spread_ms": 1482.706823
+  },
+  {
+   "run": "thunderbird",
+   "kind": "vm",
+   "phases": {
+    "action": {
+     "seconds": 9.2,
+     "cores": 0.934,
+     "top": [
+      [
+       "packagekitd",
+       0.255,
+       0.273,
+       16
+      ],
+      [
+       "python",
+       0.21,
+       0.224,
+       30
+      ],
+      [
+       "thunderbird",
+       0.103,
+       0.11,
+       435
+      ],
+      [
+       "gnome-shell",
+       0.062,
+       0.066,
+       3
+      ],
+      [
+       "apt-check",
+       0.052,
+       0.056,
+       0
+      ],
+      [
+       "snapd",
+       0.051,
+       0.055,
+       0
+      ],
+      [
+       "sw-procs",
+       0.048,
+       0.051,
+       0
+      ],
+      [
+       "fwupd",
+       0.045,
+       0.048,
+       0
+      ],
+      [
+       "snap-store",
+       0.028,
+       0.03,
+       0
+      ],
+      [
+       "Xorg",
+       0.026,
+       0.028,
+       0
+      ],
+      [
+       "cnf-update-db",
+       0.02,
+       0.021,
+       0
+      ],
+      [
+       "kworker",
+       0.01,
+       0.01,
+       0
+      ]
+     ],
+     "majflt_per_s": 52.8
+    },
+    "idle tail": {
+     "seconds": 120.0,
+     "cores": 0.068,
+     "top": [
+      [
+       "sw-procs",
+       0.041,
+       0.604,
+       0
+      ],
+      [
+       "python",
+       0.013,
+       0.199,
+       0
+      ],
+      [
+       "kworker",
+       0.006,
+       0.085,
+       0
+      ],
+      [
+       "fstrim",
+       0.003,
+       0.038,
+       2
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.016,
+       0
+      ],
+      [
+       "thunderbird",
+       0.001,
+       0.014,
+       7
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.011,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.01,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.0,
+       0.006,
+       0
+      ],
+      [
+       "gvfs-afc-volume",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "Xorg",
+       0.0,
+       0.001,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.1
+    },
+    "wait 0-10s": {
+     "seconds": 99.4,
+     "cores": 0.44,
+     "top": [
+      [
+       "packagekitd",
+       0.102,
+       0.232,
+       3
+      ],
+      [
+       "thunderbird",
+       0.047,
+       0.107,
+       877
+      ],
+      [
+       "sw-procs",
+       0.044,
+       0.1,
+       0
+      ],
+      [
+       "cnf-update-db",
+       0.037,
+       0.085,
+       0
+      ],
+      [
+       "apt-check",
+       0.035,
+       0.08,
+       370
+      ],
+      [
+       "snap-store",
+       0.034,
+       0.076,
+       27
+      ],
+      [
+       "gnome-shell",
+       0.029,
+       0.067,
+       18
+      ],
+      [
+       "store",
+       0.028,
+       0.063,
+       1
+      ],
+      [
+       "python",
+       0.027,
+       0.06,
+       1
+      ],
+      [
+       "appstreamcli",
+       0.02,
+       0.045,
+       3
+      ],
+      [
+       "kworker",
+       0.01,
+       0.022,
+       0
+      ],
+      [
+       "snapd",
+       0.007,
+       0.015,
+       1
+      ]
+     ],
+     "majflt_per_s": 13.4
+    },
+    "wait >10s": {
+     "seconds": 27.6,
+     "cores": 0.06,
+     "top": [
+      [
+       "sw-procs",
+       0.041,
+       0.681,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.205,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.002,
+       0.03,
+       0
+      ],
+      [
+       "kworker",
+       0.001,
+       0.024,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.012,
+       0
+      ],
+      [
+       "thunderbird",
+       0.001,
+       0.012,
+       2
+      ],
+      [
+       "snap-store",
+       0.0,
+       0.006,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.0,
+       0.006,
+       0
+      ],
+      [
+       "systemd-resolve",
+       0.0,
+       0.006,
+       0
+      ],
+      [
+       "gvfsd-metadata",
+       0.0,
+       0.006,
+       0
+      ],
+      [
+       "packagekitd",
+       0.0,
+       0.0,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.1
+    }
+   },
+   "clock_offset_spread_ms": 1090.256282
+  },
+  {
+   "run": "vlc",
+   "kind": "vm",
+   "phases": {
+    "action": {
+     "seconds": 14.5,
+     "cores": 0.711,
+     "top": [
+      [
+       "python",
+       0.339,
+       0.477,
+       30
+      ],
+      [
+       "packagekitd",
+       0.104,
+       0.147,
+       3
+      ],
+      [
+       "gnome-shell",
+       0.064,
+       0.09,
+       0
+      ],
+      [
+       "apt-check",
+       0.053,
+       0.075,
+       439
+      ],
+      [
+       "sw-procs",
+       0.048,
+       0.067,
+       0
+      ],
+      [
+       "snapd",
+       0.022,
+       0.031,
+       4
+      ],
+      [
+       "snap-store",
+       0.02,
+       0.028,
+       0
+      ],
+      [
+       "Xorg",
+       0.017,
+       0.023,
+       0
+      ],
+      [
+       "fwupd",
+       0.015,
+       0.021,
+       0
+      ],
+      [
+       "vlc",
+       0.007,
+       0.01,
+       22
+      ],
+      [
+       "kworker",
+       0.003,
+       0.005,
+       0
+      ],
+      [
+       "https",
+       0.003,
+       0.004,
+       1
+      ]
+     ],
+     "majflt_per_s": 34.5
+    },
+    "idle tail": {
+     "seconds": 120.1,
+     "cores": 0.113,
+     "top": [
+      [
+       "sw-procs",
+       0.04,
+       0.349,
+       0
+      ],
+      [
+       "snapd",
+       0.022,
+       0.19,
+       1
+      ],
+      [
+       "mandb",
+       0.019,
+       0.168,
+       15
+      ],
+      [
+       "python",
+       0.013,
+       0.113,
+       0
+      ],
+      [
+       "systemd",
+       0.005,
+       0.041,
+       0
+      ],
+      [
+       "kworker",
+       0.004,
+       0.033,
+       0
+      ],
+      [
+       "xdelta",
+       0.003,
+       0.026,
+       1
+      ],
+      [
+       "gnome-shell",
+       0.002,
+       0.019,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.009,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.008,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.007,
+       0
+      ],
+      [
+       "gvfs-udisks2-vo",
+       0.001,
+       0.007,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.1
+    },
+    "wait 0-10s": {
+     "seconds": 148.9,
+     "cores": 0.29,
+     "top": [
+      [
+       "packagekitd",
+       0.072,
+       0.247,
+       3
+      ],
+      [
+       "python",
+       0.046,
+       0.159,
+       0
+      ],
+      [
+       "sw-procs",
+       0.042,
+       0.147,
+       0
+      ],
+      [
+       "cnf-update-db",
+       0.027,
+       0.092,
+       0
+      ],
+      [
+       "snap-store",
+       0.022,
+       0.078,
+       27
+      ],
+      [
+       "apt-check",
+       0.022,
+       0.076,
+       3
+      ],
+      [
+       "store",
+       0.015,
+       0.053,
+       1
+      ],
+      [
+       "gnome-shell",
+       0.011,
+       0.04,
+       19
+      ],
+      [
+       "appstreamcli",
+       0.011,
+       0.038,
+       2
+      ],
+      [
+       "kworker",
+       0.006,
+       0.022,
+       0
+      ],
+      [
+       "snapd",
+       0.003,
+       0.012,
+       1
+      ],
+      [
+       "dbus-daemon",
+       0.002,
+       0.006,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.4
+    },
+    "wait >10s": {
+     "seconds": 129.1,
+     "cores": 0.057,
+     "top": [
+      [
+       "sw-procs",
+       0.04,
+       0.702,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.212,
+       0
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.015,
+       0
+      ],
+      [
+       "kworker",
+       0.001,
+       0.013,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.011,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.0,
+       0.008,
+       0
+      ],
+      [
+       "snapd",
+       0.0,
+       0.008,
+       1
+      ],
+      [
+       "fwupd",
+       0.0,
+       0.004,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.0,
+       0.004,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.004,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.0,
+       0.003,
+       0
+      ],
+      [
+       "rtkit-daemon",
+       0.0,
+       0.001,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    }
+   },
+   "clock_offset_spread_ms": 604.942359
+  },
+  {
+   "run": "vs_code",
+   "kind": "vm",
+   "phases": {
+    "action": {
+     "seconds": 11.0,
+     "cores": 0.553,
+     "top": [
+      [
+       "python",
+       0.154,
+       0.278,
+       27
+      ],
+      [
+       "code",
+       0.138,
+       0.25,
+       507
+      ],
+      [
+       "sw-procs",
+       0.052,
+       0.094,
+       0
+      ],
+      [
+       "packagekitd",
+       0.049,
+       0.089,
+       3
+      ],
+      [
+       "gnome-shell",
+       0.036,
+       0.064,
+       0
+      ],
+      [
+       "Xorg",
+       0.029,
+       0.053,
+       0
+      ],
+      [
+       "snap-store",
+       0.029,
+       0.053,
+       4
+      ],
+      [
+       "fwupd",
+       0.024,
+       0.043,
+       0
+      ],
+      [
+       "http",
+       0.008,
+       0.015,
+       0
+      ],
+      [
+       "snapd",
+       0.008,
+       0.015,
+       0
+      ],
+      [
+       "https",
+       0.005,
+       0.01,
+       2
+      ],
+      [
+       "goa-identity-se",
+       0.004,
+       0.007,
+       0
+      ]
+     ],
+     "majflt_per_s": 49.6
+    },
+    "idle tail": {
+     "seconds": 120.0,
+     "cores": 0.105,
+     "top": [
+      [
+       "sw-procs",
+       0.041,
+       0.392,
+       0
+      ],
+      [
+       "code",
+       0.026,
+       0.247,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.119,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.011,
+       0.109,
+       0
+      ],
+      [
+       "Xorg",
+       0.008,
+       0.076,
+       0
+      ],
+      [
+       "kworker",
+       0.001,
+       0.011,
+       0
+      ],
+      [
+       "snapd",
+       0.001,
+       0.01,
+       2
+      ],
+      [
+       "systemd-oomd",
+       0.001,
+       0.01,
+       0
+      ],
+      [
+       "rcu_preempt",
+       0.001,
+       0.007,
+       0
+      ],
+      [
+       "goa-identity-se",
+       0.001,
+       0.006,
+       0
+      ],
+      [
+       "gjs",
+       0.0,
+       0.002,
+       0
+      ],
+      [
+       "snap-store",
+       0.0,
+       0.002,
+       0
+      ]
+     ],
+     "majflt_per_s": 0.0
+    },
+    "wait 0-10s": {
+     "seconds": 166.9,
+     "cores": 0.406,
+     "top": [
+      [
+       "code",
+       0.153,
+       0.376,
+       1145
+      ],
+      [
+       "gnome-shell",
+       0.047,
+       0.117,
+       21
+      ],
+      [
+       "sw-procs",
+       0.046,
+       0.114,
+       0
+      ],
+      [
+       "packagekitd",
+       0.045,
+       0.111,
+       3
+      ],
+      [
+       "python",
+       0.026,
+       0.064,
+       0
+      ],
+      [
+       "appstreamcli",
+       0.017,
+       0.042,
+       3
+      ],
+      [
+       "store",
+       0.016,
+       0.039,
+       0
+      ],
+      [
+       "cnf-update-db",
+       0.014,
+       0.036,
+       0
+      ],
+      [
+       "Xorg",
+       0.013,
+       0.032,
+       0
+      ],
+      [
+       "snap-store",
+       0.009,
+       0.023,
+       1
+      ],
+      [
+       "kworker",
+       0.005,
+       0.012,
+       0
+      ],
+      [
+       "snapd",
+       0.003,
+       0.007,
+       1
+      ]
+     ],
+     "majflt_per_s": 7.5
+    },
+    "wait >10s": {
+     "seconds": 99.6,
+     "cores": 0.23,
+     "top": [
+      [
+       "sw-procs",
+       0.044,
+       0.191,
+       0
+      ],
+      [
+       "packagekitd",
+       0.042,
+       0.184,
+       0
+      ],
+      [
+       "apt-check",
+       0.041,
+       0.178,
+       374
+      ],
+      [
+       "code",
+       0.028,
+       0.12,
+       0
+      ],
+      [
+       "snap-store",
+       0.019,
+       0.083,
+       23
+      ],
+      [
+       "cnf-update-db",
+       0.017,
+       0.075,
+       0
+      ],
+      [
+       "python",
+       0.012,
+       0.053,
+       0
+      ],
+      [
+       "gnome-shell",
+       0.011,
+       0.05,
+       0
+      ],
+      [
+       "Xorg",
+       0.006,
+       0.026,
+       0
+      ],
+      [
+       "kworker",
+       0.004,
+       0.019,
+       0
+      ],
+      [
+       "snapd",
+       0.001,
+       0.006,
+       0
+      ],
+      [
+       "dbus-daemon",
+       0.001,
+       0.003,
+       0
+      ]
+     ],
+     "majflt_per_s": 4.0
+    }
+   },
+   "clock_offset_spread_ms": 778.582103
+  }
+ ]
+}

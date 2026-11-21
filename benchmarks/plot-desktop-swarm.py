@@ -10,6 +10,7 @@ pass another with --font).
 Usage: plot-desktop-swarm.py RAW_DIR OUT_DIR [--font PATH]
 """
 import glob
+import gzip
 import json
 import math
 import statistics as st
@@ -22,6 +23,15 @@ from matplotlib import font_manager
 from matplotlib.patches import Patch
 
 import argparse
+
+
+def read_text(path):
+    """Read a raw output file, or its gzipped copy (path + ".gz") from docs/results/raw."""
+    path = Path(path)
+    if not path.exists() and path.with_name(path.name + ".gz").exists():
+        return gzip.decompress(path.with_name(path.name + ".gz").read_bytes()).decode()
+    return path.read_text()
+
 
 parser = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -52,7 +62,7 @@ def load(path):
 
 
 def samples(path):
-    return [json.loads(l) for l in Path(path).read_text().splitlines()]
+    return [json.loads(l) for l in read_text(path).splitlines()]
 
 
 def save(fig, name):

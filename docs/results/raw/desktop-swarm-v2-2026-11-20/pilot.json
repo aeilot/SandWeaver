@@ -1,0 +1,56 @@
+{
+ "chrome": {
+  "task": "030eeff7-b492-4218-b312-701ec99ee0cc",
+  "steps": 17,
+  "target": 17,
+  "traj": "/home/aeilot/osworld-data/trajs/results_claude-sonnet-4-5-20250929_50steps/claude_computer_use/screenshot/global.anthropic.claude-sonnet-4-5-20250929-v1:0/chrome/030eeff7-b492-4218-b312-701ec99ee0cc/traj.jsonl"
+ },
+ "gimp": {
+  "task": "045bf3ff-9077-4b86-b483-a1040a949cff",
+  "steps": 12,
+  "target": 12,
+  "traj": "/home/aeilot/osworld-data/trajs/results_claude-sonnet-4-5-20250929_50steps/claude_computer_use/screenshot/global.anthropic.claude-sonnet-4-5-20250929-v1:0/gimp/045bf3ff-9077-4b86-b483-a1040a949cff/traj.jsonl"
+ },
+ "libreoffice_calc": {
+  "task": "aa3a8974-2e85-438b-b29e-a64df44deb4b",
+  "steps": 24,
+  "target": 24,
+  "traj": "/home/aeilot/osworld-data/trajs/results_claude-sonnet-4-5-20250929_50steps/claude_computer_use/screenshot/global.anthropic.claude-sonnet-4-5-20250929-v1:0/libreoffice_calc/aa3a8974-2e85-438b-b29e-a64df44deb4b/traj.jsonl"
+ },
+ "libreoffice_impress": {
+  "task": "0f84bef9-9790-432e-92b7-eece357603fb",
+  "steps": 14,
+  "target": 14,
+  "traj": "/home/aeilot/osworld-data/trajs/results_claude-sonnet-4-5-20250929_50steps/claude_computer_use/screenshot/global.anthropic.claude-sonnet-4-5-20250929-v1:0/libreoffice_impress/0f84bef9-9790-432e-92b7-eece357603fb/traj.jsonl"
+ },
+ "libreoffice_writer": {
+  "task": "0e763496-b6bb-4508-a427-fad0b6c3e195",
+  "steps": 21,
+  "target": 21,
+  "traj": "/home/aeilot/osworld-data/trajs/results_claude-sonnet-4-5-20250929_50steps/claude_computer_use/screenshot/global.anthropic.claude-sonnet-4-5-20250929-v1:0/libreoffice_writer/0e763496-b6bb-4508-a427-fad0b6c3e195/traj.jsonl"
+ },
+ "os": {
+  "task": "13584542-872b-42d8-b299-866967b5c3ef",
+  "steps": 14,
+  "target": 14,
+  "traj": "/home/aeilot/osworld-data/trajs/results_claude-sonnet-4-5-20250929_50steps/claude_computer_use/screenshot/global.anthropic.claude-sonnet-4-5-20250929-v1:0/os/13584542-872b-42d8-b299-866967b5c3ef/traj.jsonl"
+ },
+ "thunderbird": {
+  "task": "9b7bc335-06b5-4cd3-9119-1a649c478509",
+  "steps": 12,
+  "target": 12,
+  "traj": "/home/aeilot/osworld-data/trajs/results_claude-sonnet-4-5-20250929_50steps/claude_computer_use/screenshot/global.anthropic.claude-sonnet-4-5-20250929-v1:0/thunderbird/9b7bc335-06b5-4cd3-9119-1a649c478509/traj.jsonl"
+ },
+ "vlc": {
+  "task": "8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89",
+  "steps": 16,
+  "target": 16,
+  "traj": "/home/aeilot/osworld-data/trajs/results_claude-sonnet-4-5-20250929_50steps/claude_computer_use/screenshot/global.anthropic.claude-sonnet-4-5-20250929-v1:0/vlc/8ba5ae7a-5ae5-4eab-9fcc-5dd4fe3abf89/traj.jsonl"
+ },
+ "vs_code": {
+  "task": "70745df8-f2f5-42bd-8074-fbc10334fcc5",
+  "steps": 18,
+  "target": 18,
+  "traj": "/home/aeilot/osworld-data/trajs/results_claude-sonnet-4-5-20250929_50steps/claude_computer_use/screenshot/global.anthropic.claude-sonnet-4-5-20250929-v1:0/vs_code/70745df8-f2f5-42bd-8074-fbc10334fcc5/traj.jsonl"
+ }
+}
